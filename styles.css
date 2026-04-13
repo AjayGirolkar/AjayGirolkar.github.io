@@ -961,3 +961,382 @@ body[data-theme="dark"] .contact-form textarea {
     width: 100%;
   }
 }
+
+/* ═══════════════════════════════════════
+   TYPEWRITER
+═══════════════════════════════════════ */
+.typewriter { color: var(--accent); }
+.typewriter-cursor {
+  color: var(--accent);
+  animation: cursorBlink .75s step-end infinite;
+  margin-left: 1px;
+}
+@keyframes cursorBlink { from,to{opacity:1} 50%{opacity:0} }
+
+/* ═══════════════════════════════════════
+   iPHONE FRAME SYSTEM
+═══════════════════════════════════════ */
+.iphone-frame {
+  position: relative;
+  border-radius: 44px;
+  background: linear-gradient(160deg,#1c1c1e,#0d0d10);
+  box-shadow: 0 0 0 2px #3a3a3c, 0 40px 120px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.05);
+  padding: 14px 12px;
+  width: 260px;
+  flex-shrink: 0;
+}
+.iphone-frame.iphone-lg { width: 300px; }
+.iphone-frame.iphone-sm { width: 190px; border-radius: 36px; }
+.iphone-notch {
+  width: 100px; height: 28px;
+  background: #0d0d10;
+  border-radius: 0 0 22px 22px;
+  margin: 0 auto 8px;
+}
+.iphone-frame.iphone-sm .iphone-notch { width: 70px; height: 20px; border-radius: 0 0 14px 14px; }
+.iphone-screen {
+  border-radius: 32px;
+  overflow: hidden;
+  aspect-ratio: 9/19.5;
+  background: #000;
+  font-family: "Manrope",sans-serif;
+}
+.iphone-frame.iphone-sm .iphone-screen { border-radius: 24px; }
+
+/* ═══════════════════════════════════════
+   HERO PHONES
+═══════════════════════════════════════ */
+.hero-phone-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+.hero-phone-float { animation: phoneFloat 5s ease-in-out infinite; }
+@keyframes phoneFloat {
+  0%,100% { transform: translateY(0) rotate(-1.5deg); }
+  50% { transform: translateY(-16px) rotate(.5deg); }
+}
+.hero-phone-secondary {
+  position: absolute;
+  right: -60px; top: 70px;
+  opacity: .85; z-index: 0;
+  animation: phoneFloat 5s ease-in-out infinite reverse;
+  animation-delay: .6s;
+}
+.hero-phone-float { position: relative; z-index: 1; }
+
+/* ═══════════════════════════════════════
+   APP SHARED STYLES
+═══════════════════════════════════════ */
+.app-status-bar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px; font-weight: 600;
+  opacity: .65;
+}
+.app-label { font-size: 11px; opacity: .55; margin: 0 0 3px; font-weight: 600; letter-spacing: .04em; }
+.pos { color: #34d399; }
+.neg { color: #f87171; }
+.app-tab-bar { display: flex; justify-content: center; gap: 8px; padding: 6px 0 2px; }
+.tab { font-size: 7px; opacity: .3; color: white; }
+.tab.active { opacity: 1; color: #34d399; }
+
+/* ── FinanceKit ── */
+.app-screen-finance {
+  background: linear-gradient(180deg,#0a1628,#0d1f3c);
+  padding: 14px 14px 10px;
+  display: flex; flex-direction: column; gap: 10px;
+  color: white; height: 100%; box-sizing: border-box; overflow: hidden;
+}
+.app-balance { font-size: clamp(20px,5vw,28px); font-weight: 800; letter-spacing: -.05em; margin: 0; line-height: 1.1; }
+.app-gain { font-size: 11px; color: #34d399; font-weight: 700; }
+.app-chart-wrap { flex-shrink: 0; }
+.chart-svg { width: 100%; height: 70px; display: block; }
+.chart-line {
+  stroke-dasharray: 520; stroke-dashoffset: 520;
+  animation: drawLine 1.8s cubic-bezier(.4,0,.2,1) forwards .4s;
+}
+@keyframes drawLine { to { stroke-dashoffset: 0; } }
+.app-holdings { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.holding-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 10px; border-radius: 10px;
+  background: rgba(255,255,255,.05); font-size: 12px; font-weight: 600;
+}
+.holding-left { display: flex; align-items: center; gap: 8px; }
+.hold-icon { width: 24px; height: 24px; border-radius: 8px; flex-shrink: 0; }
+
+/* ── SwiftHealth small (hero) ── */
+.app-screen-health {
+  background: #f2f2f7;
+  padding: 12px; display: flex; flex-direction: column; gap: 10px;
+  color: #1c1c1e; height: 100%; box-sizing: border-box; overflow: hidden;
+}
+.health-greeting-sm { font-size: 13px; font-weight: 800; color: #1c1c1e; margin: 0; letter-spacing: -.03em; }
+.rings-sm-wrap { position: relative; width: 100%; max-width: 120px; margin: 0 auto; }
+.rings-sm-svg { width: 100%; height: auto; display: block; }
+.rings-sm-center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.rings-sm-center strong { font-size: 18px; font-weight: 800; color: #ff3c3c; letter-spacing: -.04em; }
+.ring-fill { animation: ringIn 1.6s cubic-bezier(.4,0,.2,1) backwards; }
+.ring-move { animation-delay: .3s; }
+.ring-exercise { animation-delay: .5s; }
+.ring-stand { animation-delay: .7s; }
+@keyframes ringIn { from { stroke-dashoffset: 700; } }
+.health-stats-sm { display: flex; justify-content: space-around; gap: 6px; }
+.health-stats-sm div {
+  text-align: center; background: white; border-radius: 10px;
+  padding: 8px 6px; flex: 1; box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+.health-stats-sm strong { display: block; font-size: 15px; font-weight: 800; color: #1c1c1e; letter-spacing: -.03em; }
+.health-stats-sm span { font-size: 9px; color: #8e8e93; font-weight: 600; }
+
+/* ── SwiftHealth full (app demo) ── */
+.app-screen-health-full {
+  background: #f2f2f7;
+  padding: 14px; display: flex; flex-direction: column; gap: 12px;
+  color: #1c1c1e; height: 100%; box-sizing: border-box; overflow: hidden;
+}
+.health-full-greeting p { font-size: 12px; color: #8e8e93; margin: 0; }
+.health-full-greeting h3 { font-size: 22px; font-weight: 800; letter-spacing: -.04em; margin: 2px 0 0; color: #1c1c1e; }
+.activity-rings-full { position: relative; width: 180px; height: 180px; margin: 0 auto; }
+.activity-rings-full svg { width: 100%; height: 100%; }
+.rings-center-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.rings-pct { font-size: 28px; font-weight: 800; color: #ff3c3c; letter-spacing: -.04em; line-height: 1; }
+.rings-sub { font-size: 11px; color: #8e8e93; font-weight: 600; }
+.health-stats-full { display: flex; gap: 8px; }
+.health-stat-item { flex: 1; text-align: center; padding: 10px 8px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+.health-stat-item strong { display: block; font-size: 18px; font-weight: 800; letter-spacing: -.03em; color: #1c1c1e; }
+.health-stat-item span { font-size: 10px; color: #8e8e93; font-weight: 600; }
+.streak-card-full {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px; background: white; border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+.streak-card-full > span { font-size: 24px; }
+.streak-card-full strong { display: block; font-weight: 800; font-size: 13px; color: #1c1c1e; }
+.streak-card-full p { font-size: 11px; color: #8e8e93; margin: 2px 0 0; }
+
+/* ── StreamWave ── */
+.app-screen-stream {
+  background: #000; display: flex; flex-direction: column;
+  color: white; height: 100%; box-sizing: border-box; overflow: hidden;
+}
+.stream-banner {
+  position: relative;
+  background: linear-gradient(160deg,#1a0a2e,#0f0720);
+  flex-shrink: 0; height: 45%;
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 12px;
+}
+.stream-banner::after {
+  content:''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.7));
+}
+.stream-banner-content { position: relative; z-index: 1; }
+.stream-badge {
+  display: inline-block; padding: 2px 8px; border-radius: 4px;
+  background: #e50914; font-size: 9px; font-weight: 800;
+  letter-spacing: .08em; margin-bottom: 4px;
+}
+.stream-show-name { font-size: 16px; font-weight: 800; letter-spacing: -.03em; margin: 0 0 8px; }
+.stream-controls { display: flex; gap: 6px; }
+.stream-play,.stream-more {
+  padding: 6px 12px; border-radius: 6px; font-size: 10px;
+  font-weight: 700; border: none; cursor: pointer; font-family: inherit;
+}
+.stream-play { background: white; color: #000; }
+.stream-more { background: rgba(255,255,255,.2); color: white; }
+.stream-content { padding: 10px; display: flex; flex-direction: column; gap: 8px; flex: 1; overflow: hidden; }
+.stream-section-title { font-size: 11px; font-weight: 800; margin: 0 0 6px; letter-spacing: -.01em; }
+.content-row { display: flex; gap: 6px; }
+.content-thumb { flex: 1; aspect-ratio: 16/9; border-radius: 6px; }
+.stream-status { color: white; }
+
+/* ── BankPro ── */
+.app-screen-bank {
+  background: linear-gradient(180deg,#08080f,#10101a);
+  padding: 14px 14px 10px; display: flex; flex-direction: column;
+  gap: 8px; color: white; height: 100%; box-sizing: border-box; overflow: hidden;
+}
+.bank-name { font-size: 14px; font-weight: 800; letter-spacing: -.03em; margin: 2px 0 0; }
+.bank-card {
+  border-radius: 16px;
+  background: linear-gradient(135deg,#1a1f35,#0d1428);
+  border: 1px solid rgba(255,255,255,.08); padding: 14px; flex-shrink: 0;
+}
+.bank-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.bank-card-brand { font-size: 11px; font-weight: 800; letter-spacing: .06em; color: rgba(255,255,255,.85); }
+.bank-chip { width: 24px; height: 18px; border-radius: 4px; background: linear-gradient(135deg,#c8a84b,#f0d060); }
+.bank-balance-label { font-size: 10px; opacity: .55; margin: 0; }
+.bank-balance-amount { font-size: 20px; font-weight: 800; letter-spacing: -.05em; margin: 2px 0 8px; }
+.bank-card-bottom { display: flex; justify-content: space-between; font-size: 10px; opacity: .7; }
+.bank-card-num { letter-spacing: .08em; }
+.txn-list { display: flex; flex-direction: column; gap: 6px; flex: 1; overflow: hidden; }
+.txn-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 9px 10px; border-radius: 10px;
+  background: rgba(255,255,255,.05); font-size: 11px;
+}
+.txn-icon { width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0; }
+.txn-name { font-size: 11px; font-weight: 700; margin: 0; color: white; }
+.txn-date { font-size: 9px; color: rgba(255,255,255,.45); margin: 2px 0 0; }
+
+/* ═══════════════════════════════════════
+   METRICS SECTION
+═══════════════════════════════════════ */
+.metrics-section {
+  background: linear-gradient(180deg,#080d1c,#050810);
+  color: white; padding: 72px 0;
+}
+.metrics-grid { display: grid; grid-template-columns: repeat(4,1fr); }
+.metric-card { padding: 40px 24px; text-align: center; border-right: 1px solid rgba(255,255,255,.06); }
+.metric-card:last-child { border-right: none; }
+.metric-num { font-size: clamp(2.8rem,6vw,5rem); font-weight: 800; letter-spacing: -.07em; color: var(--accent); display: block; }
+.metric-label { font-size: .88rem; color: rgba(245,247,251,.5); margin-top: 8px; line-height: 1.4; }
+
+/* ═══════════════════════════════════════
+   FEATURED APPS SECTION
+═══════════════════════════════════════ */
+.apps-section {
+  background: radial-gradient(circle at left top,rgba(30,108,255,.1),transparent 30%),var(--bg-muted);
+}
+.app-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 48px; flex-wrap: wrap; }
+.app-tab {
+  padding: 10px 26px; border-radius: 999px;
+  border: 1px solid var(--line); background: rgba(255,255,255,.6);
+  cursor: pointer; font-weight: 700; font-family: inherit;
+  font-size: .92rem; color: var(--text-soft);
+  transition: all 180ms ease;
+}
+body[data-theme="dark"] .app-tab { background: rgba(255,255,255,.05); }
+.app-tab:hover { border-color: var(--accent); color: var(--accent); }
+.app-tab.active {
+  background: var(--accent); color: white;
+  border-color: transparent; box-shadow: 0 8px 24px rgba(30,108,255,.3);
+}
+.app-demo-grid { position: relative; min-height: 520px; }
+.app-demo { display: none; grid-template-columns: auto 1fr; gap: 64px; align-items: center; }
+.app-demo.active { display: grid; animation: fadeSlide 380ms cubic-bezier(.4,0,.2,1); }
+@keyframes fadeSlide { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+.app-demo-phone .iphone-frame { animation: phoneBob 6s ease-in-out infinite; }
+@keyframes phoneBob { 0%,100%{transform:translateY(0) rotate(-.5deg)} 50%{transform:translateY(-10px) rotate(.5deg)} }
+.app-demo-info h3 { font-size: clamp(1.8rem,4vw,3rem); font-weight: 800; letter-spacing: -.05em; margin: 8px 0 16px; }
+.app-demo-info > p { font-size: 1.05rem; line-height: 1.7; color: var(--text-soft); max-width: 50ch; }
+.app-features { list-style: none; padding: 0; margin: 20px 0; display: grid; gap: 10px; }
+.app-features li { display: flex; align-items: center; gap: 10px; font-size: .95rem; color: var(--text-soft); }
+.app-features li::before {
+  content: "✓"; display: inline-flex; width: 20px; height: 20px;
+  border-radius: 50%; background: rgba(30,108,255,.12);
+  color: var(--accent); font-size: 11px; font-weight: 800;
+  align-items: center; justify-content: center; flex-shrink: 0;
+}
+.app-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.app-tech span {
+  padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line);
+  font-size: .8rem; font-weight: 700;
+  background: rgba(255,255,255,.6); color: var(--text-soft);
+}
+body[data-theme="dark"] .app-tech span { background: rgba(255,255,255,.04); }
+
+/* ═══════════════════════════════════════
+   PRICING V2
+═══════════════════════════════════════ */
+.pricing-grid-v2 { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; align-items: stretch; margin-bottom: 24px; }
+.pricing-card-v2 { position: relative; display: flex; flex-direction: column; gap: 16px; padding-top: 36px; transition: transform 220ms ease; }
+.pricing-card-v2:hover { transform: translateY(-4px); }
+.pricing-featured { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(30,108,255,.2),var(--shadow-lg); }
+.pricing-badge {
+  position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+  white-space: nowrap; padding: 5px 18px; border-radius: 999px;
+  background: linear-gradient(135deg,var(--accent),var(--accent-soft));
+  color: white; font-size: .76rem; font-weight: 800;
+  letter-spacing: .08em; text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(30,108,255,.3);
+}
+.pricing-tier { font-weight: 800; color: var(--text-muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; }
+.pricing-amount { display: flex; align-items: baseline; gap: 4px; }
+.price-num { font-size: clamp(2.2rem,4vw,3rem); font-weight: 800; letter-spacing: -.06em; }
+.price-unit { color: var(--text-muted); font-size: 1rem; font-weight: 600; }
+.pricing-desc { color: var(--text-soft); line-height: 1.65; }
+.pricing-features { list-style: none; padding: 0; margin: 4px 0; display: grid; gap: 10px; flex: 1; }
+.pricing-features li { display: flex; align-items: center; gap: 10px; font-size: .92rem; color: var(--text-soft); }
+.pricing-features li::before {
+  content: "✓"; display: inline-flex; width: 18px; height: 18px;
+  border-radius: 50%; background: rgba(30,108,255,.1);
+  color: var(--accent); font-size: 10px; font-weight: 800;
+  align-items: center; justify-content: center; flex-shrink: 0;
+}
+.pricing-card-v2 .button { margin-top: auto; width: 100%; justify-content: center; }
+.section-sub { color: var(--text-muted); margin-top: 12px; font-size: 1.05rem; }
+
+/* ═══════════════════════════════════════
+   BOOKING SECTION
+═══════════════════════════════════════ */
+.booking-section {
+  background: radial-gradient(circle at top left,rgba(30,108,255,.12),transparent 28%),radial-gradient(circle at bottom right,rgba(107,124,255,.08),transparent 28%),var(--bg-soft);
+}
+.booking-shell { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.booking-copy h2 { font-size: clamp(2rem,4vw,3.2rem); letter-spacing: -.05em; margin: 8px 0 16px; }
+.booking-copy > p { color: var(--text-soft); line-height: 1.72; max-width: 48ch; }
+.booking-perks { list-style: none; padding: 0; margin: 24px 0; display: grid; gap: 12px; }
+.booking-perks li { display: flex; align-items: center; gap: 10px; font-size: .95rem; color: var(--text-soft); }
+.booking-perks li::before {
+  content: "✓"; display: inline-flex; width: 20px; height: 20px;
+  border-radius: 50%; background: rgba(30,108,255,.12);
+  color: var(--accent); font-size: 11px; font-weight: 800;
+  align-items: center; justify-content: center; flex-shrink: 0;
+}
+.payment-logos { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+.payment-badge {
+  padding: 7px 16px; border-radius: 999px; border: 1px solid var(--line);
+  font-size: .82rem; font-weight: 700;
+  background: rgba(255,255,255,.7); color: var(--text-soft);
+}
+body[data-theme="dark"] .payment-badge { background: rgba(255,255,255,.05); }
+.booking-widget { display: flex; flex-direction: column; gap: 18px; }
+.booking-widget-title { font-size: 1.1rem; font-weight: 800; letter-spacing: -.03em; margin: 0; }
+.cal-preview { border: 1px solid var(--line); border-radius: 18px; padding: 18px; background: rgba(255,255,255,.5); }
+body[data-theme="dark"] .cal-preview { background: rgba(255,255,255,.03); }
+.cal-month { font-weight: 800; text-align: center; margin-bottom: 14px; font-size: .95rem; }
+.cal-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 6px; text-align: center; margin-bottom: 14px; }
+.cal-day-label { font-size: .72rem; color: var(--text-muted); font-weight: 700; padding-bottom: 8px; letter-spacing: .04em; }
+.cal-day { padding: 9px 4px; border-radius: 10px; font-size: .85rem; font-weight: 600; cursor: pointer; color: var(--text-muted); transition: all 160ms ease; }
+.cal-empty { opacity: .35; cursor: default; }
+.cal-available { background: rgba(30,108,255,.1); color: var(--accent); font-weight: 800; }
+.cal-available:hover,.cal-selected { background: var(--accent); color: white; }
+.cal-time-slots { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+.time-slot {
+  padding: 10px 6px; border: 1px solid var(--line); border-radius: 10px;
+  text-align: center; font-size: .8rem; font-weight: 700; cursor: pointer;
+  color: var(--text-soft); transition: all 160ms ease;
+}
+.time-slot:hover,.slot-selected { border-color: var(--accent); background: rgba(30,108,255,.08); color: var(--accent); }
+.booking-widget .button { width: 100%; justify-content: center; min-height: 52px; font-size: 1rem; }
+
+/* ═══════════════════════════════════════
+   NEW RESPONSIVE OVERRIDES
+═══════════════════════════════════════ */
+@media (max-width: 1120px) {
+  .app-demo { grid-template-columns: 1fr; justify-items: center; }
+  .app-demo-info { text-align: center; }
+  .app-demo-info > p,.app-features,.app-tech { margin-left: auto; margin-right: auto; }
+  .app-tech { justify-content: center; }
+  .pricing-grid-v2 { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto 24px; }
+  .booking-shell { grid-template-columns: 1fr; }
+  .metrics-grid { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 860px) {
+  .hero-phone-secondary { display: none; }
+  .app-tab { padding: 8px 18px; font-size: .88rem; }
+  .metrics-grid { grid-template-columns: repeat(2,1fr); }
+  .metric-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); }
+  .metric-card:last-child { border-bottom: none; }
+  .cal-time-slots { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .iphone-frame { width: 220px; }
+  .iphone-frame.iphone-lg { width: 240px; }
+  .metrics-section { padding: 48px 0; }
+  .metric-card { padding: 28px 16px; }
+}
