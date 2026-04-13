@@ -1,1 +1,10 @@
 .DS_Store
+
+# Secrets — never commit these
+.env
+credentials.json
+token.json
+
+# Temporary processing files
+.tmp/*
+!.tmp/.gitkeep

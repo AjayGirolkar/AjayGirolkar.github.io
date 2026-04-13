@@ -1,0 +1,16 @@
+# Core
+python-dotenv
+
+# HTTP / scraping
+requests
+beautifulsoup4
+
+# Google APIs (uncomment when needed)
+# google-auth
+# google-auth-oauthlib
+# google-auth-httplib2
+# google-api-python-client
+
+# LLM SDKs (uncomment when needed)
+# anthropic
+# openai
