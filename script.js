@@ -127,10 +127,40 @@ function initCalendar() {
   });
 }
 
+/* ── Collapsible sections ─────────────────────────── */
+function initCollapsibleSections() {
+  const headers = document.querySelectorAll('.collapse-header');
+  headers.forEach(header => {
+    const section = header.closest('.collapsible-section');
+    const bodyId = header.getAttribute('aria-controls');
+    const body = bodyId ? document.getElementById(bodyId) : header.nextElementSibling;
+
+    const toggle = () => {
+      const isCollapsed = section.classList.contains('collapsed');
+      section.classList.toggle('collapsed', !isCollapsed);
+      header.setAttribute('aria-expanded', String(isCollapsed));
+
+      if (isCollapsed) {
+        // Trigger reveal animations inside the newly opened section
+        const revealEls = body ? body.querySelectorAll('.reveal:not(.visible)') : [];
+        revealEls.forEach((el, i) => {
+          setTimeout(() => el.classList.add('visible'), i * 60 + 50);
+        });
+      }
+    };
+
+    header.addEventListener('click', toggle);
+    header.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initTypewriter();
   initCounters();
   initAppTabs();
   initParallax();
   initCalendar();
+  initCollapsibleSections();
 });
