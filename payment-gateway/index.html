@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure Checkout — Ajay Girolkar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Razorpay Checkout -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <!-- QR Code generator (UPI QR) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+  <!-- ── Back link ── -->
+  <a class="pg-back-link" href="../index.html">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Back to Portfolio
+  </a>
+
+  <!-- ── Step progress ── -->
+  <div class="pg-progress" role="list" aria-label="Payment steps">
+    <div class="pg-step active" data-step="1" role="listitem">
+      <div class="pg-step-dot">1</div>
+      <span class="pg-step-label">Method</span>
+    </div>
+    <div class="pg-connector"></div>
+    <div class="pg-step" data-step="2" role="listitem">
+      <div class="pg-step-dot">2</div>
+      <span class="pg-step-label">Review</span>
+    </div>
+    <div class="pg-connector"></div>
+    <div class="pg-step" data-step="3" role="listitem">
+      <div class="pg-step-dot">3</div>
+      <span class="pg-step-label">Confirm</span>
+    </div>
+  </div>
+
+  <!-- ── Main layout ── -->
+  <main class="pg-shell">
+
+    <!-- LEFT: Order summary -->
+    <aside class="pg-summary panel">
+      <p class="eyebrow">Order Summary</p>
+
+      <div class="pg-product">
+        <div class="pg-product-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect width="28" height="28" rx="8" fill="var(--accent)" opacity="0.12"/>
+            <path d="M14 6C10.686 6 8 8.686 8 12c0 5.25 6 10 6 10s6-4.75 6-10c0-3.314-2.686-6-6-6zm0 8a2 2 0 110-4 2 2 0 010 4z" fill="var(--accent)"/>
+          </svg>
+        </div>
+        <div class="pg-product-info">
+          <h2 class="pg-product-name" id="pg-product-name">iOS Consulting Session</h2>
+          <p class="pg-product-sub" id="pg-product-sub">Expert iOS engineering guidance</p>
+        </div>
+      </div>
+
+      <div class="pg-breakdown">
+        <div class="pg-line-item">
+          <span>Service fee</span>
+          <span id="pg-fee">₹12,500</span>
+        </div>
+        <div class="pg-line-item">
+          <span>Platform fee (2%)</span>
+          <span id="pg-platform">₹250</span>
+        </div>
+        <div class="pg-line-item pg-line-item--tax">
+          <span>GST (18%)</span>
+          <span id="pg-tax">₹2,295</span>
+        </div>
+        <div class="pg-line-divider"></div>
+        <div class="pg-line-item pg-line-total">
+          <span>Total</span>
+          <strong id="pg-total">₹15,045</strong>
+        </div>
+      </div>
+
+      <div class="pg-trust-row">
+        <div class="pg-trust-badge">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M7 1L2 3.5V7.5C2 10.3 4.2 12.9 7 13.5C9.8 12.9 12 10.3 12 7.5V3.5L7 1Z" stroke="var(--success)" stroke-width="1.2" fill="none"/>
+            <path d="M4.5 7l1.5 1.5L9 5" stroke="var(--success)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          256-bit SSL
+        </div>
+        <div class="pg-trust-badge">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <rect x="2" y="5" width="10" height="7" rx="1.5" stroke="var(--accent)" stroke-width="1.2" fill="none"/>
+            <path d="M5 5V4a2 2 0 014 0v1" stroke="var(--accent)" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          PCI DSS
+        </div>
+        <div class="pg-trust-badge">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <circle cx="7" cy="7" r="5" stroke="var(--accent)" stroke-width="1.2" fill="none"/>
+            <path d="M5 7l1.5 1.5L9.5 5" stroke="var(--accent)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Razorpay
+        </div>
+      </div>
+
+      <div class="pg-summary-footer">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M8 1.5C4.41 1.5 1.5 4.41 1.5 8S4.41 14.5 8 14.5 14.5 11.59 14.5 8 11.59 1.5 8 1.5zm.75 10.5h-1.5V7.25h1.5V12zm0-6h-1.5V4.5h1.5V6z" fill="var(--text-muted)"/>
+        </svg>
+        <p>You'll be redirected to Razorpay's secure environment to complete payment.</p>
+      </div>
+    </aside>
+
+    <!-- RIGHT: Payment panel -->
+    <section class="pg-payment panel">
+
+      <!-- ── VIEW 1: Method selection ── -->
+      <div class="pg-view active" id="view-method">
+        <h3 class="pg-view-title">Choose Payment Method</h3>
+
+        <!-- Method tabs -->
+        <div class="pg-method-tabs" role="tablist" aria-label="Payment methods">
+          <button class="pg-tab active" role="tab" data-method="upi"
+                  aria-selected="true" aria-controls="pane-upi" id="tab-upi">
+            <span class="pg-tab-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <rect width="18" height="18" rx="4" fill="#6750A4" opacity="0.15"/>
+                <text x="9" y="13" text-anchor="middle" font-size="8" font-weight="800" fill="#6750A4" font-family="sans-serif">UPI</text>
+              </svg>
+            </span>
+            UPI
+          </button>
+          <button class="pg-tab" role="tab" data-method="credit"
+                  aria-selected="false" aria-controls="pane-credit" id="tab-credit">
+            <span class="pg-tab-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <rect x="1" y="3.5" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.3" fill="none"/>
+                <rect x="1" y="7" width="16" height="2.5" fill="currentColor" opacity="0.2"/>
+              </svg>
+            </span>
+            Credit Card
+          </button>
+          <button class="pg-tab" role="tab" data-method="debit"
+                  aria-selected="false" aria-controls="pane-debit" id="tab-debit">
+            <span class="pg-tab-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <rect x="1" y="3.5" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.3" fill="none"/>
+                <circle cx="13" cy="9" r="2" fill="currentColor" opacity="0.3"/>
+                <circle cx="15.5" cy="9" r="2" fill="currentColor" opacity="0.15"/>
+              </svg>
+            </span>
+            Debit Card
+          </button>
+          <button class="pg-tab" role="tab" data-method="apple"
+                  aria-selected="false" aria-controls="pane-apple" id="tab-apple">
+            <span class="pg-tab-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M13.2 9.4c0-1.9 1.6-2.8 1.6-2.8C13.8 5 12.6 4.9 12.2 4.9c-1.1-.1-2.1.6-2.7.6-.5 0-1.4-.6-2.3-.6C5.7 5 4 6.4 4 9c0 1.6.6 3.3 1.4 4.4.7 1 1.5 2.1 2.6 2.1 1 0 1.4-.7 2.7-.7 1.2 0 1.6.7 2.7.7 1.1 0 1.8-1 2.5-2 .5-.7.8-1.4.8-1.4s-2.5-.9-2.5-3.7z" fill="currentColor" opacity="0.7"/>
+                <path d="M11.5 3.5c.6-.7 1-1.7 1-2.5-.9.1-2 .6-2.7 1.3-.6.6-1 1.5-1 2.4.9 0 1.9-.5 2.7-1.2z" fill="currentColor" opacity="0.7"/>
+              </svg>
+            </span>
+            Apple Pay
+          </button>
+        </div>
+
+        <!-- ── UPI Pane ── -->
+        <div class="pg-pane active" id="pane-upi" role="tabpanel" aria-labelledby="tab-upi">
+          <div class="pg-qr-wrap">
+            <div class="pg-qr-frame">
+              <div id="upi-qr-canvas" aria-label="UPI QR Code"></div>
+              <div class="pg-qr-shimmer" id="upi-qr-shimmer" aria-hidden="true">
+                <div class="pg-qr-placeholder">
+                  <div class="pg-qr-grid" aria-hidden="true"></div>
+                </div>
+              </div>
+            </div>
+            <div class="pg-qr-meta">
+              <p class="pg-qr-label">Scan with any UPI app</p>
+              <div class="pg-timer" id="upi-timer" aria-live="polite">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.3"/>
+                  <path d="M7 4.5V7l1.5 1.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                </svg>
+                <span id="upi-countdown">10:00</span>
+              </div>
+              <div class="pg-qr-apps">
+                <span>PhonePe</span>
+                <span class="pg-dot">·</span>
+                <span>GPay</span>
+                <span class="pg-dot">·</span>
+                <span>Paytm</span>
+                <span class="pg-dot">·</span>
+                <span>BHIM</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pg-or-divider"><span>or enter UPI ID</span></div>
+
+          <label class="pg-field" for="upi-id-input">
+            <span class="pg-field-label">UPI ID</span>
+            <div class="pg-input-wrap">
+              <input type="text" id="upi-id-input" class="pg-input"
+                     placeholder="yourname@upi" autocomplete="off"
+                     inputmode="email" aria-describedby="upi-id-hint"/>
+              <div class="pg-input-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <rect x="1" y="1" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.3" fill="none"/>
+                  <text x="8" y="11" text-anchor="middle" font-size="7" font-weight="800" fill="currentColor" font-family="sans-serif">UPI</text>
+                </svg>
+              </div>
+            </div>
+            <span class="pg-field-hint" id="upi-id-hint">e.g. ajay@okaxis or 9876543210@ybl</span>
+          </label>
+
+          <button class="button button-primary pg-submit-btn" id="upi-submit">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Pay ₹<span class="pg-pay-amount">15,045</span>
+          </button>
+        </div>
+
+        <!-- ── Credit Card Pane ── -->
+        <div class="pg-pane" id="pane-credit" role="tabpanel" aria-labelledby="tab-credit">
+
+          <!-- 3D Card Preview -->
+          <div class="pg-card-scene" aria-hidden="true">
+            <div class="pg-card-flipper" id="credit-flipper">
+              <!-- Front -->
+              <div class="pg-card-front">
+                <div class="pg-card-header">
+                  <div class="pg-card-chip"></div>
+                  <div class="pg-card-network" id="credit-network-display"></div>
+                </div>
+                <div class="pg-card-number-display" id="credit-num-display">•••• •••• •••• ••••</div>
+                <div class="pg-card-footer">
+                  <div class="pg-card-field-group">
+                    <span class="pg-card-field-label">Card Holder</span>
+                    <span class="pg-card-value" id="credit-name-display">FULL NAME</span>
+                  </div>
+                  <div class="pg-card-field-group">
+                    <span class="pg-card-field-label">Expires</span>
+                    <span class="pg-card-value" id="credit-expiry-display">MM/YY</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Back -->
+              <div class="pg-card-back">
+                <div class="pg-card-stripe"></div>
+                <div class="pg-card-cvv-area">
+                  <span class="pg-card-field-label">CVV</span>
+                  <div class="pg-card-cvv-strip"><span id="credit-cvv-display">•••</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card form -->
+          <div class="pg-form" id="credit-form">
+            <label class="pg-field pg-field--full" for="credit-number">
+              <span class="pg-field-label">Card Number</span>
+              <div class="pg-input-wrap">
+                <input type="text" id="credit-number" class="pg-input"
+                       placeholder="1234 5678 9012 3456"
+                       inputmode="numeric" maxlength="19"
+                       autocomplete="cc-number" aria-required="true"/>
+                <div class="pg-card-logo-slot" id="credit-logo-slot"></div>
+              </div>
+            </label>
+            <label class="pg-field pg-field--full" for="credit-name">
+              <span class="pg-field-label">Cardholder Name</span>
+              <input type="text" id="credit-name" class="pg-input"
+                     placeholder="Name as on card"
+                     autocomplete="cc-name" aria-required="true"/>
+            </label>
+            <label class="pg-field" for="credit-expiry">
+              <span class="pg-field-label">Expiry Date</span>
+              <input type="text" id="credit-expiry" class="pg-input"
+                     placeholder="MM/YY"
+                     inputmode="numeric" maxlength="5"
+                     autocomplete="cc-exp" aria-required="true"/>
+            </label>
+            <label class="pg-field" for="credit-cvv">
+              <span class="pg-field-label">CVV / CVC</span>
+              <div class="pg-input-wrap">
+                <input type="password" id="credit-cvv" class="pg-input"
+                       placeholder="•••"
+                       inputmode="numeric" maxlength="4"
+                       autocomplete="cc-csc" aria-required="true"/>
+                <div class="pg-input-icon pg-cvv-hint" aria-label="3 or 4 digits on back of card">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.3" fill="none"/>
+                    <path d="M8 7v4M8 5.5v.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                  </svg>
+                </div>
+              </div>
+            </label>
+          </div>
+
+          <button class="button button-primary pg-submit-btn" id="credit-submit">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <rect x="1.5" y="4" width="13" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <path d="M1.5 7.5h13" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            Pay ₹<span class="pg-pay-amount">15,045</span>
+          </button>
+        </div>
+
+        <!-- ── Debit Card Pane (mirrors credit, separate IDs) ── -->
+        <div class="pg-pane" id="pane-debit" role="tabpanel" aria-labelledby="tab-debit">
+
+          <div class="pg-card-scene" aria-hidden="true">
+            <div class="pg-card-flipper" id="debit-flipper">
+              <div class="pg-card-front pg-card-front--debit">
+                <div class="pg-card-header">
+                  <div class="pg-card-chip"></div>
+                  <div class="pg-card-network" id="debit-network-display"></div>
+                </div>
+                <div class="pg-card-number-display" id="debit-num-display">•••• •••• •••• ••••</div>
+                <div class="pg-card-footer">
+                  <div class="pg-card-field-group">
+                    <span class="pg-card-field-label">Card Holder</span>
+                    <span class="pg-card-value" id="debit-name-display">FULL NAME</span>
+                  </div>
+                  <div class="pg-card-field-group">
+                    <span class="pg-card-field-label">Expires</span>
+                    <span class="pg-card-value" id="debit-expiry-display">MM/YY</span>
+                  </div>
+                </div>
+              </div>
+              <div class="pg-card-back">
+                <div class="pg-card-stripe"></div>
+                <div class="pg-card-cvv-area">
+                  <span class="pg-card-field-label">CVV</span>
+                  <div class="pg-card-cvv-strip"><span id="debit-cvv-display">•••</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pg-form" id="debit-form">
+            <label class="pg-field pg-field--full" for="debit-number">
+              <span class="pg-field-label">Card Number</span>
+              <div class="pg-input-wrap">
+                <input type="text" id="debit-number" class="pg-input"
+                       placeholder="1234 5678 9012 3456"
+                       inputmode="numeric" maxlength="19"
+                       autocomplete="cc-number" aria-required="true"/>
+                <div class="pg-card-logo-slot" id="debit-logo-slot"></div>
+              </div>
+            </label>
+            <label class="pg-field pg-field--full" for="debit-name">
+              <span class="pg-field-label">Cardholder Name</span>
+              <input type="text" id="debit-name" class="pg-input"
+                     placeholder="Name as on card"
+                     autocomplete="cc-name" aria-required="true"/>
+            </label>
+            <label class="pg-field" for="debit-expiry">
+              <span class="pg-field-label">Expiry Date</span>
+              <input type="text" id="debit-expiry" class="pg-input"
+                     placeholder="MM/YY"
+                     inputmode="numeric" maxlength="5"
+                     autocomplete="cc-exp" aria-required="true"/>
+            </label>
+            <label class="pg-field" for="debit-cvv">
+              <span class="pg-field-label">CVV / CVC</span>
+              <div class="pg-input-wrap">
+                <input type="password" id="debit-cvv" class="pg-input"
+                       placeholder="•••"
+                       inputmode="numeric" maxlength="4"
+                       autocomplete="cc-csc" aria-required="true"/>
+                <div class="pg-input-icon pg-cvv-hint" aria-label="3 or 4 digits on back of card">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.3" fill="none"/>
+                    <path d="M8 7v4M8 5.5v.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                  </svg>
+                </div>
+              </div>
+            </label>
+          </div>
+
+          <button class="button button-primary pg-submit-btn" id="debit-submit">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <rect x="1.5" y="4" width="13" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <path d="M1.5 7.5h13" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            Pay ₹<span class="pg-pay-amount">15,045</span>
+          </button>
+        </div>
+
+        <!-- ── Apple Pay Pane ── -->
+        <div class="pg-pane" id="pane-apple" role="tabpanel" aria-labelledby="tab-apple">
+          <div class="pg-apple-wrap">
+            <div class="pg-apple-hero">
+              <div class="pg-apple-logo-ring" aria-hidden="true">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                  <path d="M35.2 25.4c0-5.1 4.3-7.5 4.3-7.5C37 13.4 32.8 13 31.7 13c-3-.3-5.8 1.7-7.3 1.7-1.5 0-3.8-1.7-6.3-1.6C14.9 13.2 10 17 10 24c0 4.2 1.6 8.6 3.7 11.5 1.9 2.7 4.1 5.5 6.9 5.4 2.8-.1 3.8-1.8 7.2-1.8 3.4 0 4.3 1.8 7.2 1.7 2.9-.1 4.9-2.7 6.7-5.4 1.3-1.9 2.2-3.8 2.2-3.8S35.2 30.5 35.2 25.4z" fill="currentColor"/>
+                  <path d="M29 8c1.6-1.9 2.7-4.5 2.7-6.8-2.4.1-5.4 1.6-7.2 3.5-1.6 1.6-2.7 4-2.7 6.4 2.4.1 5-1.3 7.2-3.1z" fill="currentColor"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="pg-apple-title">Apple Pay</h4>
+                <p class="pg-apple-sub">Pay securely with Face ID or Touch ID</p>
+              </div>
+            </div>
+
+            <div class="pg-apple-features">
+              <div class="pg-apple-feature">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M2 8C2 8 4 3 8 3s6 5 6 5-2 5-6 5-6-5-6-5z" stroke="var(--success)" stroke-width="1.3" fill="none"/>
+                  <circle cx="8" cy="8" r="2" fill="var(--success)"/>
+                </svg>
+                <span>No card details needed</span>
+              </div>
+              <div class="pg-apple-feature">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M8 1.5C4.41 1.5 1.5 4.41 1.5 8S4.41 14.5 8 14.5 14.5 11.59 14.5 8 11.59 1.5 8 1.5zm.75 10.5h-1.5V7.25h1.5V12zm0-6h-1.5V4.5h1.5V6z" fill="var(--success)"/>
+                </svg>
+                <span>Instant biometric authentication</span>
+              </div>
+              <div class="pg-apple-feature">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <rect x="2" y="5" width="12" height="8" rx="1.5" stroke="var(--success)" stroke-width="1.3" fill="none"/>
+                  <path d="M5 5V4a3 3 0 016 0v1" stroke="var(--success)" stroke-width="1.3" stroke-linecap="round"/>
+                </svg>
+                <span>End-to-end encrypted</span>
+              </div>
+            </div>
+
+            <!-- Apple Pay button container — JS renders native button or fallback -->
+            <div id="apple-pay-btn-container"></div>
+
+            <!-- Fallback for non-Apple browsers -->
+            <div class="pg-apple-fallback" id="apple-fallback" hidden>
+              <div class="pg-apple-fallback-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="10" stroke="var(--text-muted)" stroke-width="1.5" fill="none"/>
+                  <path d="M12 7v6M12 15.5v.5" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <p>Apple Pay is not available in this browser.</p>
+              <p class="pg-apple-fallback-sub">Please use UPI, Credit Card, or Debit Card to complete your payment.</p>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /view-method -->
+
+      <!-- ── VIEW 2: Processing ── -->
+      <div class="pg-view" id="view-processing" aria-live="polite">
+        <div class="pg-processing-wrap">
+          <div class="pg-spinner-ring" aria-label="Processing payment"></div>
+          <div class="pg-processing-dots" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+          <h3 class="pg-processing-title">Processing Payment</h3>
+          <p class="pg-processing-sub" id="pg-processing-msg">Connecting to payment gateway…</p>
+          <div class="pg-processing-steps">
+            <div class="pg-proc-step active" id="proc-step-1">Initiating secure connection</div>
+            <div class="pg-proc-step" id="proc-step-2">Verifying payment details</div>
+            <div class="pg-proc-step" id="proc-step-3">Confirming transaction</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── VIEW 3: Success ── -->
+      <div class="pg-view" id="view-success" aria-live="polite">
+        <div class="pg-result-wrap">
+          <div class="pg-result-icon pg-success-icon" aria-label="Payment successful">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <circle cx="20" cy="20" r="18" stroke="var(--success)" stroke-width="2"/>
+              <path class="pg-check-path" d="M11 20l6 6 12-12"
+                    stroke="var(--success)" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round"
+                    fill="none"/>
+            </svg>
+          </div>
+          <h3 class="pg-result-title">Payment Successful!</h3>
+          <p class="pg-result-sub">Your booking has been confirmed.</p>
+          <div class="pg-txn-card">
+            <div class="pg-txn-row">
+              <span>Transaction ID</span>
+              <code id="pg-txn-id">—</code>
+            </div>
+            <div class="pg-txn-row">
+              <span>Amount Paid</span>
+              <strong id="pg-txn-amount">₹15,045</strong>
+            </div>
+            <div class="pg-txn-row">
+              <span>Status</span>
+              <span class="pg-txn-status">Confirmed</span>
+            </div>
+          </div>
+          <p class="pg-result-note">A confirmation has been sent to your email. Ajay will reach out within 24 hours to schedule your session.</p>
+          <a class="button button-secondary pg-back-home" href="../index.html">Back to Portfolio</a>
+        </div>
+      </div>
+
+      <!-- ── VIEW 4: Failure ── -->
+      <div class="pg-view" id="view-failure" aria-live="polite">
+        <div class="pg-result-wrap">
+          <div class="pg-result-icon pg-failure-icon" aria-label="Payment failed">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <circle cx="20" cy="20" r="18" stroke="#ef4444" stroke-width="2"/>
+              <path class="pg-x-path-1" d="M13 13l14 14"
+                    stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              <path class="pg-x-path-2" d="M27 13L13 27"
+                    stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            </svg>
+          </div>
+          <h3 class="pg-result-title">Payment Failed</h3>
+          <p class="pg-result-sub" id="pg-error-msg">Something went wrong. Please try again.</p>
+          <div class="pg-failure-actions">
+            <button class="button button-primary" id="pg-retry-btn">Try Again</button>
+            <a class="button button-secondary" href="mailto:ajaygirolkar@gmail.com?subject=Payment%20Issue">Contact Support</a>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /pg-payment -->
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="pg-footer">
+    <p>Secured by <strong>Razorpay</strong> · Payments processed in India · <a href="../index.html">© Ajay Girolkar</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
