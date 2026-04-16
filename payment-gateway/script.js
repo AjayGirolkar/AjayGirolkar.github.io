@@ -15,7 +15,7 @@
    ═══════════════════════════════════════════════════════════════ */
 const CONFIG = {
   razorpay: {
-    keyId:       'rzp_test_YOUR_KEY_ID',   // ← replace with your Razorpay Key ID
+    keyId:       window.RAZORPAY_KEY_ID || 'rzp_test_YOUR_KEY_ID',
     name:        'Ajay Girolkar',
     description: 'iOS Engineering Services',
     image:       '../assets/ajay-profile.jpg',
@@ -30,8 +30,7 @@ const CONFIG = {
     },
   },
   upi: {
-    vpa:         'ajay@okaxis',            // ← replace with your UPI VPA
-    qrExpiryMs:  600000,                   // 10 minutes
+    vpa: 'ajaygirolkar@okaxis',     // ← replace with your UPI VPA
   },
   applePay: {
     merchantId:      'merchant.com.ajaygirolkar',
@@ -43,7 +42,7 @@ const CONFIG = {
   order: {
     productName: 'iOS Consulting Session',
     productSub:  'Expert iOS engineering guidance',
-    baseAmount:  12500,   // in paise (₹125.00). Overridden by URL params.
+    baseAmount:  100,     // in paise (₹1.00). Overridden by URL params.
     platformFee: 0.02,    // 2%
     gstRate:     0.18,    // 18%
   },
@@ -91,8 +90,6 @@ const STATE = {
   method:         'upi',
   orderId:        null,
   razorpayOrderId: null,
-  upiTimerId:     null,
-  upiSecondsLeft: 600,
   amounts: {
     base:     0,
     platform: 0,
@@ -143,7 +140,7 @@ class RazorpayClient {
    * Opens Razorpay's hosted checkout modal.
    * Returns a Promise that resolves with payment response or rejects on failure/dismiss.
    */
-  openCheckout({ orderId, razorpayOrderId, amount, method, prefill }) {
+  openCheckout({ razorpayOrderId, amount, method, prefill }) {
     return new Promise((resolve, reject) => {
       const isDark = document.body.dataset.theme === 'dark';
 
@@ -334,73 +331,7 @@ function initMethodTabs() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   10. UPI QR CODE GENERATION
-   ═══════════════════════════════════════════════════════════════ */
-function buildUPIString(orderId) {
-  const params = new URLSearchParams({
-    pa: CONFIG.upi.vpa,
-    pn: CONFIG.razorpay.name,
-    am: (STATE.amounts.total / 100).toFixed(2),
-    cu: 'INR',
-    tn: `Order-${orderId}`,
-  });
-  return `upi://pay?${params.toString()}`;
-}
-
-function generateUPIQR(upiString) {
-  const container = document.getElementById('upi-qr-canvas');
-  const shimmer   = document.getElementById('upi-qr-shimmer');
-
-  if (!container || typeof QRCode === 'undefined') return;
-
-  try {
-    container.innerHTML = '';
-    new QRCode(container, {
-      text:         upiString,
-      width:        168,
-      height:       168,
-      colorDark:    '#10131a',
-      colorLight:   '#ffffff',
-      correctLevel: QRCode.CorrectLevel.H,
-    });
-    if (shimmer) shimmer.classList.add('loaded');
-  } catch (e) {
-    console.warn('[PG] QR generation failed:', e.message);
-  }
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   11. UPI COUNTDOWN TIMER
-   ═══════════════════════════════════════════════════════════════ */
-function startUPITimer() {
-  clearInterval(STATE.upiTimerId);
-  STATE.upiSecondsLeft = CONFIG.upi.qrExpiryMs / 1000;
-
-  const display = document.getElementById('upi-countdown');
-  const wrapper = document.getElementById('upi-timer');
-  if (!display || !wrapper) return;
-
-  STATE.upiTimerId = setInterval(() => {
-    STATE.upiSecondsLeft--;
-
-    const m = Math.floor(STATE.upiSecondsLeft / 60).toString().padStart(2, '0');
-    const s = (STATE.upiSecondsLeft % 60).toString().padStart(2, '0');
-    display.textContent = `${m}:${s}`;
-
-    const isExpiring = STATE.upiSecondsLeft < 60;
-    wrapper.classList.toggle('expiring', isExpiring);
-
-    if (STATE.upiSecondsLeft <= 0) {
-      clearInterval(STATE.upiTimerId);
-      if (STATE.step === 1 && STATE.method === 'upi') {
-        showFailure('QR code expired. Please refresh the page to generate a new one.');
-      }
-    }
-  }, 1000);
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   12. LIVE CARD PREVIEW
+   10. LIVE CARD PREVIEW
    ═══════════════════════════════════════════════════════════════ */
 function detectNetwork(pan) {
   const clean = pan.replace(/\s/g, '');
@@ -482,7 +413,6 @@ function initCardPreview(prefix) {
    ═══════════════════════════════════════════════════════════════ */
 function initApplePay() {
   const container = document.getElementById('apple-pay-btn-container');
-  const fallback  = document.getElementById('apple-fallback');
   if (!container) return;
 
   // Check Web Payments API availability (Safari 16.4+ or Chrome with flag)
@@ -523,20 +453,20 @@ function initApplePay() {
 
           btn.addEventListener('click', () => handleApplePayClick(methodData, paymentDetails));
         } else {
-          showAppleFallback(container, fallback);
+          showAppleFallback(container);
         }
-      }).catch(() => showAppleFallback(container, fallback));
+      }).catch(() => showAppleFallback(container));
 
     } catch {
-      showAppleFallback(container, fallback);
+      showAppleFallback(container);
     }
 
   } else {
-    showAppleFallback(container, fallback);
+    showAppleFallback(container);
   }
 }
 
-function showAppleFallback(container, fallback) {
+function showAppleFallback(container) {
   if (container) {
     // Render a styled black pill button that degrades gracefully
     const btn = document.createElement('button');
@@ -666,7 +596,6 @@ async function submitPayment() {
   setStep(2);
   showView('view-processing');
   updateProcessingStep(1);
-  clearInterval(STATE.upiTimerId);
 
   try {
     // Step 1: Create order
@@ -701,7 +630,6 @@ async function submitPayment() {
         // User dismissed — go back to method selection
         setStep(1);
         showView('view-method');
-        startUPITimer();
         return;
       }
       throw e;
@@ -751,7 +679,6 @@ async function submitUPI() {
    ════════════════════════════════════════════════════ */
 function showSuccess(txnId) {
   setStep(3);
-  clearInterval(STATE.upiTimerId);
 
   const txnEl = document.getElementById('pg-txn-id');
   if (txnEl) txnEl.textContent = txnId || '—';
@@ -761,7 +688,6 @@ function showSuccess(txnId) {
 
 function showFailure(message) {
   setStep(3);
-  clearInterval(STATE.upiTimerId);
 
   const msgEl = document.getElementById('pg-error-msg');
   if (msgEl) msgEl.textContent = message || 'Something went wrong. Please try again.';
@@ -784,13 +710,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 18c. Init tabs
   initMethodTabs();
 
-  // 18d. Generate UPI QR
-  const dummyOrderId = `ORD-${Date.now()}`;
-  STATE.orderId = dummyOrderId;
-  generateUPIQR(buildUPIString(dummyOrderId));
-  startUPITimer();
-
-  // 18e. Init card previews
+  // 18d. Init card previews
   initCardPreview('credit');
   initCardPreview('debit');
 
@@ -828,8 +748,6 @@ document.addEventListener('DOMContentLoaded', () => {
     retryBtn.addEventListener('click', () => {
       setStep(1);
       showView('view-method');
-      // Restart UPI timer if UPI tab is active
-      if (STATE.method === 'upi') startUPITimer();
     });
   }
 

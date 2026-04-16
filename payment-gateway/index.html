@@ -10,8 +10,6 @@
   <link rel="stylesheet" href="styles.css" />
   <!-- Razorpay Checkout -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-  <!-- QR Code generator (UPI QR) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
@@ -167,37 +165,6 @@
 
         <!-- ── UPI Pane ── -->
         <div class="pg-pane active" id="pane-upi" role="tabpanel" aria-labelledby="tab-upi">
-          <div class="pg-qr-wrap">
-            <div class="pg-qr-frame">
-              <div id="upi-qr-canvas" aria-label="UPI QR Code"></div>
-              <div class="pg-qr-shimmer" id="upi-qr-shimmer" aria-hidden="true">
-                <div class="pg-qr-placeholder">
-                  <div class="pg-qr-grid" aria-hidden="true"></div>
-                </div>
-              </div>
-            </div>
-            <div class="pg-qr-meta">
-              <p class="pg-qr-label">Scan with any UPI app</p>
-              <div class="pg-timer" id="upi-timer" aria-live="polite">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.3"/>
-                  <path d="M7 4.5V7l1.5 1.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-                </svg>
-                <span id="upi-countdown">10:00</span>
-              </div>
-              <div class="pg-qr-apps">
-                <span>PhonePe</span>
-                <span class="pg-dot">·</span>
-                <span>GPay</span>
-                <span class="pg-dot">·</span>
-                <span>Paytm</span>
-                <span class="pg-dot">·</span>
-                <span>BHIM</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="pg-or-divider"><span>or enter UPI ID</span></div>
 
           <label class="pg-field" for="upi-id-input">
             <span class="pg-field-label">UPI ID</span>
@@ -529,6 +496,7 @@
     <p>Secured by <strong>Razorpay</strong> · Payments processed in India · <a href="../index.html">© Ajay Girolkar</a></p>
   </footer>
 
+  <script src="keys.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
