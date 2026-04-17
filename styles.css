@@ -200,27 +200,29 @@ body[data-theme="dark"] .nav-shell {
   width: 54px;
   height: 32px;
   padding: 4px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-strong);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.64);
+  background: #d1d9f0;
 }
 
 body[data-theme="dark"] .theme-toggle-track {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255,255,255,0.12);
 }
 
 .theme-toggle-thumb {
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: linear-gradient(180deg, #ffffff 0%, #dbe3ff 100%);
-  box-shadow: 0 6px 12px rgba(28, 37, 56, 0.12);
+  background: linear-gradient(180deg, #1e6cff 0%, #4f8aff 100%);
+  box-shadow: 0 2px 8px rgba(30, 108, 255, 0.35);
   transition: transform 180ms ease;
 }
 
 body[data-theme="dark"] .theme-toggle-thumb {
   transform: translateX(22px);
   background: linear-gradient(180deg, #8aa2ff 0%, #6077ff 100%);
+  box-shadow: 0 2px 8px rgba(107, 124, 255, 0.4);
 }
 
 .nav-cta,
@@ -1641,6 +1643,53 @@ body[data-theme="dark"] .cal-preview { background: rgba(255,255,255,.03); }
 }
 .github-profile-link:hover { opacity: .7; }
 
+/* ══ FORM CONTACT ROW ═══════════════════════════════════════════ */
+.form-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 14px;
+  color: var(--text-muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.form-divider::before,
+.form-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.form-contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.form-contact-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-soft);
+  text-decoration: none;
+  transition: border-color .15s, color .15s, background .15s;
+  white-space: nowrap;
+}
+.form-contact-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(30,108,255,.05);
+}
+body[data-theme="dark"] .form-contact-chip {
+  border-color: rgba(255,255,255,.12);
+  color: var(--text-soft);
+}
+
 /* ══ CALENDLY EMBED ═════════════════════════════════════════════ */
 .calendly-panel { padding: 0; overflow: hidden; }
 .calendly-inline-widget { border-radius: var(--radius-lg); overflow: hidden; }
@@ -1656,6 +1705,7 @@ body[data-theme="dark"] .cal-preview { background: rgba(255,255,255,.03); }
   font-size: 13px;
   font-weight: 500;
   padding: 7px 14px;
+  margin-top: 10px;
   border-radius: 999px;
   margin-bottom: 18px;
 }
