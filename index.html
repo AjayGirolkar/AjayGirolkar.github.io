@@ -64,6 +64,10 @@
               <a class="button button-primary" href="#contact">Hire Me</a>
               <a class="button button-secondary" href="#apps">View My Apps</a>
             </div>
+            <div class="availability-banner">
+              <span class="avail-dot"></span>
+              <span>Available from May 2026 — <strong>2 project spots remaining for Q2</strong></span>
+            </div>
             <div class="hero-badges">
               <article class="hero-badge">
                 <strong data-counter="11" data-suffix="+">11+</strong>
@@ -317,8 +321,9 @@
       <section class="section apps-section" id="apps">
         <div class="container">
           <div class="section-heading center reveal">
-            <p class="eyebrow">Featured iOS Apps</p>
-            <h2>Apps I've built — and can build for you.</h2>
+            <p class="eyebrow">Architecture Reference Projects</p>
+            <h2>Real SwiftUI code — patterns I use in production.</h2>
+            <p class="section-sub">These are architectural showcase projects demonstrating production patterns across FinTech, Payments, E-Commerce, Social, and App Store domains. Full SwiftUI source shared during discovery calls.</p>
           </div>
 
           <div class="app-tabs reveal">
@@ -365,8 +370,8 @@
                   <span>Swift</span><span>SwiftUI</span><span>Combine</span><span>Charts</span><span>Core Data</span><span>REST API</span><span>Keychain</span>
                 </div>
                 <div class="app-links">
-                  <a href="https://github.com/ajaygirolkar" target="_blank" rel="noreferrer" class="app-link-github">View GitHub →</a>
-                  <span class="app-link-badge">Architecture doc on request</span>
+                  <a href="https://github.com/AjayGirolkar" target="_blank" rel="noreferrer" class="app-link-github">View Source on GitHub →</a>
+                  <span class="app-link-badge">SwiftUI source shared on discovery call</span>
                 </div>
               </div>
             </div>
@@ -493,8 +498,8 @@
                   <span>Swift</span><span>SwiftUI</span><span>AVFoundation</span><span>WebSocket</span><span>Firebase</span><span>Push Notifications</span><span>Core Data</span>
                 </div>
                 <div class="app-links">
-                  <a href="https://github.com/ajaygirolkar" target="_blank" rel="noreferrer" class="app-link-github">View GitHub →</a>
-                  <span class="app-link-badge">Architecture doc on request</span>
+                  <a href="https://github.com/AjayGirolkar" target="_blank" rel="noreferrer" class="app-link-github">View Source on GitHub →</a>
+                  <span class="app-link-badge">SwiftUI source shared on discovery call</span>
                 </div>
               </div>
             </div>
@@ -550,7 +555,7 @@
           <div class="collapse-header" role="button" tabindex="0" aria-expanded="false" aria-controls="skills-body">
             <div class="collapse-teaser">
               <span class="eyebrow">Tech Stack</span>
-              <p class="collapse-summary">Swift &amp; SwiftUI (11 yrs) · Architecture · Combine · HealthKit · Performance Engineering.</p>
+              <p class="collapse-summary">Swift &amp; SwiftUI (11 yrs) · Architecture · Combine · HealthKit · Swift 6 · SwiftData · Performance Engineering.</p>
             </div>
             <span class="collapse-chevron" aria-hidden="true">›</span>
           </div>
@@ -588,6 +593,16 @@
                 <p class="expertise-years">6+ years</p>
                 <h3>Performance Engineering</h3>
                 <p>Instruments profiling, memory leak detection, main-thread offloading. Real numbers — not guesses. The 20–30% improvement came from systematic profiling.</p>
+              </article>
+              <article class="panel expertise-card expertise-new">
+                <p class="expertise-years expertise-new-tag">Swift 6</p>
+                <h3>Swift 6 &amp; Strict Concurrency</h3>
+                <p>Actors, Sendable conformance, strict concurrency checking. Eliminating data races at compile time — the standard on all new projects.</p>
+              </article>
+              <article class="panel expertise-card expertise-new">
+                <p class="expertise-years expertise-new-tag">iOS 17+</p>
+                <h3>SwiftData &amp; Swift Testing</h3>
+                <p>SwiftData for modern persistence (replacing Core Data), Swift Testing framework for expressive test suites. Staying current with Apple's preferred stack.</p>
               </article>
             </div>
           </div>
@@ -660,16 +675,28 @@
           </div>
           <div class="testimonial-grid reveal">
             <article class="panel quote-card">
+              <div class="quote-avatar" aria-hidden="true">TL</div>
               <p>"Redesigned our state management layer mid-project with zero disruption to the delivery timeline. That kind of architecture ownership is rare in a contractor."</p>
-              <span>iOS Tech Lead — FinTech Product Team</span>
+              <div class="quote-meta">
+                <span class="quote-role">iOS Tech Lead — FinTech Product Team</span>
+                <span class="quote-date">Q3 2024 · Name available on request</span>
+              </div>
             </article>
             <article class="panel quote-card">
+              <div class="quote-avatar" aria-hidden="true">EM</div>
               <p>"Identified a memory leak in production within hours using monitoring tool correlation our on-call team had been chasing for two days."</p>
-              <span>Engineering Manager — Mobile Banking</span>
+              <div class="quote-meta">
+                <span class="quote-role">Engineering Manager — Mobile Banking</span>
+                <span class="quote-date">Q1 2023 · Name available on request</span>
+              </div>
             </article>
             <article class="panel quote-card">
+              <div class="quote-avatar" aria-hidden="true">CTO</div>
               <p>"Not 'feels faster' — actually 20–30% faster measured in Instruments. That's the difference between senior and mid-level."</p>
-              <span>CTO — Media Streaming Platform</span>
+              <div class="quote-meta">
+                <span class="quote-role">CTO — Media Streaming Platform</span>
+                <span class="quote-date">Q4 2021 · Name available on request</span>
+              </div>
             </article>
           </div><!-- /testimonial-grid -->
           </div><!-- /collapse-body -->
@@ -690,6 +717,7 @@
               <div class="pricing-tier">Consulting</div>
               <div class="pricing-amount"><span class="price-num">$150</span><span class="price-unit">/hr</span></div>
               <p class="pricing-desc">Expert guidance for architecture decisions, code reviews, and delivery unblocking.</p>
+              <div class="pricing-timeline">⏱ Response within 48 hrs · async-friendly</div>
               <ul class="pricing-features">
                 <li>Architecture review sessions</li>
                 <li>Code quality audit</li>
@@ -704,6 +732,7 @@
               <div class="pricing-tier">Project Build</div>
               <div class="pricing-amount"><span class="price-num">$5k</span><span class="price-unit">–$50k</span></div>
               <p class="pricing-desc">Fixed-scope iOS app development from MVP to production-ready App Store launch.</p>
+              <div class="pricing-timeline">⏱ Typical timeline: 4–16 weeks depending on scope</div>
               <ul class="pricing-features">
                 <li>Full app development</li>
                 <li>Architecture design</li>
@@ -718,6 +747,7 @@
               <div class="pricing-tier">Monthly Retainer</div>
               <div class="pricing-amount"><span class="price-num">$3k</span><span class="price-unit">/mo</span></div>
               <p class="pricing-desc">Ongoing iOS engineering partnership for teams that need reliable capacity.</p>
+              <div class="pricing-timeline">⏱ Ongoing · 1-week onboarding · cancel anytime</div>
               <ul class="pricing-features">
                 <li>40 hrs dedicated monthly</li>
                 <li>Priority response</li>
@@ -729,6 +759,78 @@
 
           </div>
           <p class="pricing-note">All prices in USD. Scope, complexity, and timeline affect final pricing. Discovery calls are free.</p>
+        </div>
+      </section>
+
+      <!-- ══ FAQ ═══════════════════════════════════════════════ -->
+      <section class="section section-soft collapsible-section collapsed" id="faq">
+        <div class="container">
+          <div class="collapse-header" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-body">
+            <div class="collapse-teaser">
+              <span class="eyebrow">FAQ</span>
+              <p class="collapse-summary">NDA · IP ownership · timezones · contracts · what to expect before you hire.</p>
+            </div>
+            <span class="collapse-chevron" aria-hidden="true">›</span>
+          </div>
+          <div class="collapse-body" id="faq-body">
+            <div class="section-heading center reveal">
+              <h2>Common questions answered up front.</h2>
+              <p class="section-sub">These are the questions that matter before signing anything.</p>
+            </div>
+            <div class="faq-grid reveal">
+
+              <details class="panel faq-item">
+                <summary>Do you sign NDAs?</summary>
+                <p>Yes. I sign a mutual NDA before any discovery call where proprietary details are shared. Standard template provided — or use yours.</p>
+              </details>
+
+              <details class="panel faq-item">
+                <summary>Who owns the source code?</summary>
+                <p>You do, 100%, upon final payment. Full IP transfer is included in every project contract. No licensing clauses or usage restrictions.</p>
+              </details>
+
+              <details class="panel faq-item">
+                <summary>What's your typical response time?</summary>
+                <p>Within 24 hours on business days (IST). Retainer clients get priority response — typically within a few hours during working hours.</p>
+              </details>
+
+              <details class="panel faq-item">
+                <summary>Do you work with US or EU timezones?</summary>
+                <p>Yes. I schedule overlap time with US EST/PST and EU CET clients. Morning calls at IST work well for East Coast; evening IST covers West Coast afternoon slots.</p>
+              </details>
+
+              <details class="panel faq-item">
+                <summary>Fixed price or hourly — which is better?</summary>
+                <p>Fixed scope for greenfield MVPs and well-defined features. Hourly for consulting, code reviews, and evolving requirements. I'll recommend the right model after the discovery call.</p>
+              </details>
+
+              <details class="panel faq-item">
+                <summary>What if requirements change mid-project?</summary>
+                <p>Handled via a lightweight change-request process — I scope the delta, estimate the impact on timeline and budget, and we align before proceeding. No surprise invoices.</p>
+              </details>
+
+              <details class="panel faq-item">
+                <summary>Do you work with existing codebases?</summary>
+                <p>Yes — this is a specialty. Legacy Swift/UIKit modernisation, Objective-C migration, architecture refactors, and test coverage uplift on inherited projects are common engagements.</p>
+              </details>
+
+              <details class="panel faq-item">
+                <summary>Can I see code samples before hiring?</summary>
+                <p>Yes. After a discovery call, I share private GitHub repo access for the architecture reference projects. You can evaluate code quality, patterns, and style before committing.</p>
+              </details>
+
+              <details class="panel faq-item">
+                <summary>What happens after launch?</summary>
+                <p>All project builds include 30 days of post-launch support at no extra cost — bug fixes, App Store review responses, and hotfixes. Retainer clients have ongoing coverage.</p>
+              </details>
+
+              <details class="panel faq-item">
+                <summary>Do you work with non-technical founders?</summary>
+                <p>Regularly. I translate requirements into clear scopes, explain trade-offs without jargon, and provide weekly updates in plain language. Technical fluency on your side is not required.</p>
+              </details>
+
+            </div>
+          </div>
         </div>
       </section>
 
@@ -753,36 +855,8 @@
                 <span class="payment-badge">Credit / Debit Card</span>
               </div>
             </div>
-            <div class="booking-widget panel">
-              <p class="booking-widget-title">Schedule a Call</p>
-              <div class="cal-preview">
-                <div class="cal-month">April 2026</div>
-                <div class="cal-grid">
-                  <div class="cal-day-label">Mon</div>
-                  <div class="cal-day-label">Tue</div>
-                  <div class="cal-day-label">Wed</div>
-                  <div class="cal-day-label">Thu</div>
-                  <div class="cal-day-label">Fri</div>
-                  <div class="cal-day cal-empty">13</div>
-                  <div class="cal-day cal-available">14</div>
-                  <div class="cal-day cal-available">15</div>
-                  <div class="cal-day">16</div>
-                  <div class="cal-day cal-available">17</div>
-                  <div class="cal-day cal-available">21</div>
-                  <div class="cal-day cal-available">22</div>
-                  <div class="cal-day">23</div>
-                  <div class="cal-day cal-available">24</div>
-                  <div class="cal-day cal-available">25</div>
-                </div>
-                <div class="cal-time-slots">
-                  <div class="time-slot">10:00 AM IST</div>
-                  <div class="time-slot">2:00 PM IST</div>
-                  <div class="time-slot">5:00 PM IST</div>
-                </div>
-              </div>
-              <a class="button button-primary" href="mailto:ajaygirolkar@gmail.com?subject=Book%20a%20Discovery%20Call">
-                Book via Email →
-              </a>
+            <div class="booking-widget panel calendly-panel">
+              <div class="calendly-inline-widget" data-url="https://calendly.com/ajaygirolkar/30min?hide_gdpr_banner=1" style="min-width:280px;height:700px;"></div>
             </div>
           </div>
         </div>
@@ -880,7 +954,7 @@
               <div class="contact-links">
                 <a href="mailto:ajaygirolkar@gmail.com">ajaygirolkar@gmail.com</a>
                 <a href="tel:+919420963751">+91-9420963751</a>
-                <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/ajaygirolkar" target="_blank" rel="noreferrer">LinkedIn</a>
                 <a href="https://github.com/ajaygirolkar" target="_blank" rel="noreferrer">GitHub</a>
               </div>
               <div class="contact-ctas">
@@ -917,5 +991,6 @@
     </footer>
 
     <script src="script.js?v=20260413-v2"></script>
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
   </body>
 </html>
