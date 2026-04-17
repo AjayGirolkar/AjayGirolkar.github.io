@@ -156,10 +156,73 @@ function initCollapsibleSections() {
   });
 }
 
+/* ── Screenshot carousels ─────────────────────────── */
+function initScreenshotCarousels() {
+  document.querySelectorAll('.screenshot-carousel').forEach(carousel => {
+    const slides = carousel.querySelectorAll('.sc-slide');
+    if (slides.length < 2) return;
+
+    const phone = carousel.closest('.app-demo-phone');
+    const dotsWrap = phone ? phone.querySelector('.carousel-dots') : null;
+    if (!dotsWrap) return;
+
+    let current = 0;
+    let timer = null;
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', `Screen ${i + 1}`);
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+
+    function goTo(idx) {
+      slides[current].classList.remove('active');
+      dotsWrap.children[current].classList.remove('active');
+      current = (idx + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dotsWrap.children[current].classList.add('active');
+    }
+
+    function startAuto() {
+      if (matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+      timer = setInterval(() => goTo(current + 1), 2800);
+    }
+    function stopAuto() { clearInterval(timer); timer = null; }
+
+    // Pause on hover / tap
+    const zone = phone || carousel;
+    zone.addEventListener('mouseenter', stopAuto);
+    zone.addEventListener('mouseleave', startAuto);
+    zone.addEventListener('focusin', stopAuto);
+    zone.addEventListener('focusout', startAuto);
+
+    // Restart carousel when its tab becomes active
+    const appDemo = carousel.closest('.app-demo');
+    if (appDemo) {
+      const observer = new MutationObserver(() => {
+        if (appDemo.classList.contains('active')) {
+          goTo(0);
+          stopAuto();
+          startAuto();
+        } else {
+          stopAuto();
+        }
+      });
+      observer.observe(appDemo, { attributes: true, attributeFilter: ['class'] });
+    }
+
+    startAuto();
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initTypewriter();
   initCounters();
   initAppTabs();
+  initScreenshotCarousels();
   initParallax();
   initCalendar();
   initCollapsibleSections();

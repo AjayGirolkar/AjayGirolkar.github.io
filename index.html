@@ -88,73 +88,20 @@
           <!-- Right: floating iPhones -->
           <div class="hero-phone-wrap">
 
-            <!-- Primary phone — FinanceKit -->
+            <!-- Primary phone — WealthKit -->
             <div class="hero-phone-float">
               <div class="iphone-frame">
-                <div class="iphone-notch"></div>
-                <div class="iphone-screen app-screen-finance">
-                  <div class="app-status-bar"><span>9:41</span><span>●●●</span></div>
-                  <div>
-                    <p class="app-label">Portfolio Value</p>
-                    <p class="app-balance">$847,293</p>
-                    <span class="app-gain">↑ +$12,430 today (+1.49%)</span>
-                  </div>
-                  <div class="app-chart-wrap">
-                    <svg viewBox="0 0 240 80" class="chart-svg" preserveAspectRatio="none">
-                      <defs>
-                        <linearGradient id="cg1" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stop-color="#34d399" stop-opacity="0.4"/>
-                          <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
-                        </linearGradient>
-                      </defs>
-                      <path d="M0,70 C20,58 40,52 60,46 S100,32 120,34 S160,22 185,16 S215,10 240,8 L240,80 L0,80Z" fill="url(#cg1)"/>
-                      <path class="chart-line" d="M0,70 C20,58 40,52 60,46 S100,32 120,34 S160,22 185,16 S215,10 240,8" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round"/>
-                      <circle cx="240" cy="8" r="4" fill="#34d399"/>
-                    </svg>
-                  </div>
-                  <div class="app-holdings">
-                    <div class="holding-row">
-                      <div class="holding-left"><div class="hold-icon" style="background:#0071e3"></div><span>AAPL</span></div>
-                      <span class="pos">+2.3%</span>
-                    </div>
-                    <div class="holding-row">
-                      <div class="holding-left"><div class="hold-icon" style="background:#76b900"></div><span>NVDA</span></div>
-                      <span class="pos">+4.1%</span>
-                    </div>
-                    <div class="holding-row">
-                      <div class="holding-left"><div class="hold-icon" style="background:#e63946"></div><span>BRK.B</span></div>
-                      <span class="neg">-0.8%</span>
-                    </div>
-                  </div>
-                  <div class="app-tab-bar">
-                    <span class="tab active">●</span><span class="tab">○</span><span class="tab">○</span><span class="tab">○</span>
-                  </div>
+                <div class="iphone-screen">
+                  <img src="assets/app-screenshots/wealthkit/screen-1.png" alt="WealthKit portfolio app" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
                 </div>
               </div>
             </div>
 
-            <!-- Secondary phone — SwiftHealth (peeking behind) -->
+            <!-- Secondary phone — PaySwift (peeking behind) -->
             <div class="hero-phone-secondary">
               <div class="iphone-frame iphone-sm">
-                <div class="iphone-notch"></div>
-                <div class="iphone-screen app-screen-health">
-                  <div class="app-status-bar" style="color:#1c1c1e"><span>9:41</span><span>●</span></div>
-                  <p class="health-greeting-sm">Activity</p>
-                  <div class="rings-sm-wrap">
-                    <svg viewBox="0 0 100 100" class="rings-sm-svg">
-                      <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,60,60,.15)" stroke-width="8"/>
-                      <circle cx="50" cy="50" r="40" fill="none" stroke="#ff3c3c" stroke-width="8" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="55" transform="rotate(-90 50 50)" class="ring-fill ring-move"/>
-                      <circle cx="50" cy="50" r="30" fill="none" stroke="rgba(68,255,130,.15)" stroke-width="8"/>
-                      <circle cx="50" cy="50" r="30" fill="none" stroke="#44ff82" stroke-width="8" stroke-linecap="round" stroke-dasharray="188" stroke-dashoffset="68" transform="rotate(-90 50 50)" class="ring-fill ring-exercise"/>
-                      <circle cx="50" cy="50" r="20" fill="none" stroke="rgba(0,255,240,.15)" stroke-width="8"/>
-                      <circle cx="50" cy="50" r="20" fill="none" stroke="#00ffe0" stroke-width="8" stroke-linecap="round" stroke-dasharray="126" stroke-dashoffset="13" transform="rotate(-90 50 50)" class="ring-fill ring-stand"/>
-                    </svg>
-                    <div class="rings-sm-center"><strong>78%</strong></div>
-                  </div>
-                  <div class="health-stats-sm">
-                    <div><strong>8,432</strong><span>Steps</span></div>
-                    <div><strong>72</strong><span>BPM</span></div>
-                  </div>
+                <div class="iphone-screen">
+                  <img src="assets/app-screenshots/payswift/screen-1.png" alt="PaySwift payments app" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
                 </div>
               </div>
             </div>
@@ -375,68 +322,47 @@
           </div>
 
           <div class="app-tabs reveal">
-            <button class="app-tab active" data-app="finance">FinanceKit</button>
-            <button class="app-tab" data-app="health">SwiftHealth</button>
-            <button class="app-tab" data-app="stream">StreamWave</button>
-            <button class="app-tab" data-app="bank">BankPro</button>
+            <button class="app-tab active" data-app="wealthkit">WealthKit</button>
+            <button class="app-tab" data-app="payswift">PaySwift</button>
+            <button class="app-tab" data-app="shopeasy">ShopEase</button>
+            <button class="app-tab" data-app="socialflow">SocialFlow</button>
+            <button class="app-tab" data-app="appmarket">AppMarket</button>
           </div>
 
           <div class="app-demo-grid reveal">
 
-            <!-- FinanceKit -->
-            <div class="app-demo active" data-app="finance">
+            <!-- WealthKit -->
+            <div class="app-demo active" data-app="wealthkit">
               <div class="app-demo-phone">
                 <div class="iphone-frame iphone-lg">
-                  <div class="iphone-notch"></div>
-                  <div class="iphone-screen app-screen-finance">
-                    <div class="app-status-bar"><span>9:41</span><span>●●●</span></div>
-                    <div>
-                      <p class="app-label">Portfolio Value</p>
-                      <p class="app-balance">$847,293</p>
-                      <span class="app-gain">↑ +$12,430 today (+1.49%)</span>
+                  <div class="iphone-screen">
+                    <div class="screenshot-carousel">
+                      <div class="sc-slide active"><img src="assets/app-screenshots/wealthkit/screen-1.png" alt="WealthKit portfolio overview" loading="eager"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/screen-2.png" alt="WealthKit portfolio detail" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/screen-3.png" alt="WealthKit mutual funds" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/screen-4.png" alt="WealthKit alerts" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/screen-5.png" alt="WealthKit profile" loading="lazy"></div>
                     </div>
-                    <div class="app-chart-wrap">
-                      <svg viewBox="0 0 240 80" class="chart-svg" preserveAspectRatio="none">
-                        <defs>
-                          <linearGradient id="cg2" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stop-color="#34d399" stop-opacity="0.4"/>
-                            <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
-                          </linearGradient>
-                        </defs>
-                        <path d="M0,70 C20,58 40,52 60,46 S100,32 120,34 S160,22 185,16 S215,10 240,8 L240,80 L0,80Z" fill="url(#cg2)"/>
-                        <path class="chart-line" d="M0,70 C20,58 40,52 60,46 S100,32 120,34 S160,22 185,16 S215,10 240,8" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round"/>
-                        <circle cx="240" cy="8" r="5" fill="#34d399"/>
-                      </svg>
-                    </div>
-                    <div class="app-holdings">
-                      <div class="holding-row"><div class="holding-left"><div class="hold-icon" style="background:#0071e3"></div><span>AAPL</span></div><span class="pos">+2.3%</span></div>
-                      <div class="holding-row"><div class="holding-left"><div class="hold-icon" style="background:#76b900"></div><span>NVDA</span></div><span class="pos">+4.1%</span></div>
-                      <div class="holding-row"><div class="holding-left"><div class="hold-icon" style="background:#e63946"></div><span>BRK.B</span></div><span class="neg">-0.8%</span></div>
-                      <div class="holding-row"><div class="holding-left"><div class="hold-icon" style="background:#9b59b6"></div><span>MSFT</span></div><span class="pos">+1.7%</span></div>
-                    </div>
-                    <div class="app-tab-bar"><span class="tab active">●</span><span class="tab">○</span><span class="tab">○</span><span class="tab">○</span></div>
                   </div>
                 </div>
+                <div class="carousel-dots"></div>
               </div>
               <div class="app-demo-info">
-                <p class="eyebrow">Investment Tracker</p>
-                <h3>FinanceKit</h3>
+                <p class="eyebrow">Investment Portfolio Tracker</p>
+                <h3>WealthKit</h3>
                 <div class="app-scara">
-                  <p><strong>Problem:</strong> Most fintech apps hardcode their screen states — every UI change requires an app update. FinanceKit demonstrates a server-driven architecture where new flows ship from the backend without a release.</p>
-                  <p><strong>Result:</strong> Zero hardcoded screen states. New investment flows configurable without app updates.</p>
+                  <p><strong>Problem:</strong> Most fintech apps hardcode their screen states — every UI change requires an app update. WealthKit demonstrates a server-driven architecture where new investment flows ship from the backend without a release.</p>
+                  <p><strong>Result:</strong> Real-time portfolio donut chart, live stock P&amp;L, mutual fund discovery — all zero hardcoded screen states.</p>
                 </div>
                 <ul class="app-features">
                   <li>Server-driven UI — flows configured from backend</li>
-                  <li>Real-time portfolio charts with animated SVG</li>
+                  <li>Real-time portfolio donut chart with AAPL, NVDA, MSFT, TSLA</li>
+                  <li>Mutual funds browser — Equity, Debt, Hybrid, Index, ELSS</li>
                   <li>Secure Keychain + Face ID biometric auth</li>
                   <li>Background data sync with Combine pipelines</li>
-                  <li>Retirement &amp; investment flow management</li>
                 </ul>
-                <div class="app-metrics">
-                  <span>Server-driven UI</span><span>Biometric Auth</span><span>Combine Pipelines</span>
-                </div>
                 <div class="app-tech">
-                  <span>Swift</span><span>SwiftUI</span><span>Combine</span><span>Core Data</span><span>REST API</span><span>Keychain</span>
+                  <span>Swift</span><span>SwiftUI</span><span>Combine</span><span>Charts</span><span>Core Data</span><span>REST API</span><span>Keychain</span>
                 </div>
                 <div class="app-links">
                   <a href="https://github.com/ajaygirolkar" target="_blank" rel="noreferrer" class="app-link-github">View GitHub →</a>
@@ -445,65 +371,80 @@
               </div>
             </div>
 
-            <!-- SwiftHealth -->
-            <div class="app-demo" data-app="health">
+            <!-- PaySwift -->
+            <div class="app-demo" data-app="payswift">
               <div class="app-demo-phone">
                 <div class="iphone-frame iphone-lg">
-                  <div class="iphone-notch"></div>
-                  <div class="iphone-screen app-screen-health-full">
-                    <div class="app-status-bar" style="color:#1c1c1e"><span>9:41</span><span>●●●</span></div>
-                    <div class="health-full-greeting">
-                      <p>Good morning 🌤</p>
-                      <h3>Ajay</h3>
-                    </div>
-                    <div class="activity-rings-full">
-                      <svg viewBox="0 0 180 180">
-                        <circle cx="90" cy="90" r="72" fill="none" stroke="rgba(255,60,60,.15)" stroke-width="13"/>
-                        <circle cx="90" cy="90" r="54" fill="none" stroke="rgba(68,255,130,.15)" stroke-width="13"/>
-                        <circle cx="90" cy="90" r="36" fill="none" stroke="rgba(0,255,240,.15)" stroke-width="13"/>
-                        <!-- Move 78%: circumference=452, offset=99 -->
-                        <circle cx="90" cy="90" r="72" fill="none" stroke="#ff3c3c" stroke-width="13" stroke-linecap="round" stroke-dasharray="452" stroke-dashoffset="99" transform="rotate(-90 90 90)" class="ring-fill ring-move"/>
-                        <!-- Exercise 64%: circumference=339, offset=122 -->
-                        <circle cx="90" cy="90" r="54" fill="none" stroke="#44ff82" stroke-width="13" stroke-linecap="round" stroke-dasharray="339" stroke-dashoffset="122" transform="rotate(-90 90 90)" class="ring-fill ring-exercise"/>
-                        <!-- Stand 90%: circumference=226, offset=23 -->
-                        <circle cx="90" cy="90" r="36" fill="none" stroke="#00ffe0" stroke-width="13" stroke-linecap="round" stroke-dasharray="226" stroke-dashoffset="23" transform="rotate(-90 90 90)" class="ring-fill ring-stand"/>
-                      </svg>
-                      <div class="rings-center-overlay">
-                        <span class="rings-pct">78%</span>
-                        <span class="rings-sub">Move Goal</span>
-                      </div>
-                    </div>
-                    <div class="health-stats-full">
-                      <div class="health-stat-item"><strong>8,432</strong><span>Steps</span></div>
-                      <div class="health-stat-item"><strong>72</strong><span>BPM</span></div>
-                      <div class="health-stat-item"><strong>620</strong><span>Cal</span></div>
-                    </div>
-                    <div class="streak-card-full">
-                      <span>🔥</span>
-                      <div><strong>14-day streak</strong><p>Keep it going!</p></div>
+                  <div class="iphone-screen">
+                    <div class="screenshot-carousel">
+                      <div class="sc-slide active"><img src="assets/app-screenshots/payswift/screen-1.png" alt="PaySwift home dashboard" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/payswift/screen-2.png" alt="PaySwift send money" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/payswift/screen-3.png" alt="PaySwift scan and pay" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/payswift/screen-4.png" alt="PaySwift transactions" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/payswift/screen-5.png" alt="PaySwift cards" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/payswift/screen-6.png" alt="PaySwift profile" loading="lazy"></div>
                     </div>
                   </div>
                 </div>
+                <div class="carousel-dots"></div>
               </div>
               <div class="app-demo-info">
-                <p class="eyebrow">HealthKit + WidgetKit</p>
-                <h3>SwiftHealth</h3>
+                <p class="eyebrow">Digital Payments &amp; UPI</p>
+                <h3>PaySwift</h3>
                 <div class="app-scara">
-                  <p><strong>Problem:</strong> Most health apps display HealthKit data inside the app. SwiftHealth treats WidgetKit home screen widgets as first-class — the activity ring on your Lock Screen is a purpose-built WidgetKit timeline, not a UI copy.</p>
-                  <p><strong>Result:</strong> A health companion where the Lock Screen and home screen widget are the primary experience, not an afterthought.</p>
+                  <p><strong>Problem:</strong> Payment apps need a trust-first UX — users must feel every rupee is safe. PaySwift prioritises security-at-glance design: Face ID entry, encrypted transaction state, and a QR scanner that validates before it pays.</p>
+                  <p><strong>Result:</strong> Send, receive, and scan-to-pay flows secured end-to-end with Secure Enclave and biometric auth — no plaintext values ever leave the device.</p>
                 </div>
                 <ul class="app-features">
-                  <li>HealthKit deep integration (steps, BPM, calories)</li>
-                  <li>Animated SVG activity rings</li>
-                  <li>WidgetKit Lock Screen + Home Screen widgets</li>
-                  <li>Streak &amp; goal tracking with local notifications</li>
-                  <li>Apple Watch companion via WatchConnectivity</li>
+                  <li>Wallet + bank balance dashboard in one view</li>
+                  <li>Send money, add money, Scan &amp; Pay (QR)</li>
+                  <li>Transaction history with category tagging</li>
+                  <li>Face ID / Touch ID authentication gate</li>
+                  <li>Secure Enclave key storage — no plaintext on disk</li>
                 </ul>
-                <div class="app-metrics">
-                  <span>HealthKit</span><span>WidgetKit Timelines</span><span>WatchKit</span>
-                </div>
                 <div class="app-tech">
-                  <span>Swift</span><span>SwiftUI</span><span>HealthKit</span><span>WidgetKit</span><span>WatchKit</span>
+                  <span>Swift</span><span>SwiftUI</span><span>Secure Enclave</span><span>LocalAuthentication</span><span>AVFoundation</span><span>UPI API</span>
+                </div>
+                <div class="app-links">
+                  <a href="https://github.com/ajaygirolkar" target="_blank" rel="noreferrer" class="app-link-github">View GitHub →</a>
+                  <span class="app-link-badge">Security writeup on request</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ShopEase -->
+            <div class="app-demo" data-app="shopeasy">
+              <div class="app-demo-phone">
+                <div class="iphone-frame iphone-lg">
+                  <div class="iphone-screen">
+                    <div class="screenshot-carousel">
+                      <div class="sc-slide active"><img src="assets/app-screenshots/shopeasy/screen-1.png" alt="ShopEase home feed" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/shopeasy/screen-2.png" alt="ShopEase categories" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/shopeasy/screen-3.png" alt="ShopEase product detail" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/shopeasy/screen-4.png" alt="ShopEase wishlist" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/shopeasy/screen-5.png" alt="ShopEase cart" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/shopeasy/screen-6.png" alt="ShopEase checkout" loading="lazy"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-dots"></div>
+              </div>
+              <div class="app-demo-info">
+                <p class="eyebrow">E-Commerce Platform</p>
+                <h3>ShopEase</h3>
+                <div class="app-scara">
+                  <p><strong>Problem:</strong> Shopping apps live or die by their browse-to-checkout speed. ShopEase demonstrates an architecture where category browsing, product listings, and cart state all persist across sessions — no lost carts on app relaunch.</p>
+                  <p><strong>Result:</strong> Persistent cart, offline-ready product cache, and Apple Pay one-tap checkout — engineered to minimise drop-off at every funnel step.</p>
+                </div>
+                <ul class="app-features">
+                  <li>Dynamic promotions banner (Mega Sale, Up to 70% OFF)</li>
+                  <li>Category grid — Electronics, Fashion, Grocery, Beauty, Sports</li>
+                  <li>Today's Deals with discount badges and pricing</li>
+                  <li>Persistent cart with Core Data — survives app restart</li>
+                  <li>Apple Pay one-tap checkout integration</li>
+                </ul>
+                <div class="app-tech">
+                  <span>Swift</span><span>SwiftUI</span><span>Core Data</span><span>REST API</span><span>Apple Pay</span><span>StoreKit</span>
                 </div>
                 <div class="app-links">
                   <a href="https://github.com/ajaygirolkar" target="_blank" rel="noreferrer" class="app-link-github">View GitHub →</a>
@@ -512,140 +453,89 @@
               </div>
             </div>
 
-            <!-- StreamWave -->
-            <div class="app-demo" data-app="stream">
-              <div class="app-demo-phone">
-                <div class="iphone-frame iphone-lg">
-                  <div class="iphone-notch"></div>
-                  <div class="iphone-screen app-screen-stream">
-                    <div class="stream-banner">
-                      <div class="stream-banner-content">
-                        <span class="stream-badge">NEW</span>
-                        <p class="stream-show-name">Silicon Valley</p>
-                        <div class="stream-controls">
-                          <button class="stream-play">▶ Play</button>
-                          <button class="stream-more">+ List</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="stream-content">
-                      <p class="stream-section-title">Continue Watching</p>
-                      <div class="content-row">
-                        <div class="content-thumb" style="background:linear-gradient(135deg,#1a1040,#0d0820)"></div>
-                        <div class="content-thumb" style="background:linear-gradient(135deg,#1a2040,#0d1220)"></div>
-                        <div class="content-thumb" style="background:linear-gradient(135deg,#402010,#200c08)"></div>
-                      </div>
-                      <p class="stream-section-title">Trending</p>
-                      <div class="content-row">
-                        <div class="content-thumb" style="background:linear-gradient(135deg,#10401a,#081a0d)"></div>
-                        <div class="content-thumb" style="background:linear-gradient(135deg,#401040,#1a0820)"></div>
-                        <div class="content-thumb" style="background:linear-gradient(135deg,#204040,#0d2020)"></div>
-                      </div>
-                    </div>
-                    <div class="app-tab-bar" style="background:#111;padding:8px 0"><span class="tab active">●</span><span class="tab">○</span><span class="tab">○</span><span class="tab">○</span></div>
-                  </div>
+            <!-- SocialFlow -->
+            <div class="app-demo" data-app="socialflow">
+              <div class="app-demo-phone socialflow-demo-phone">
+                <p class="socialflow-gallery-label">14 screens across Feed · Profile · Reels · Stories · DMs</p>
+                <div class="socialflow-gallery">
+                  <img src="assets/app-screenshots/socialflow/screen-1.png" alt="SocialFlow profile and reels" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-2.png" alt="SocialFlow feed and discovery" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-3.png" alt="SocialFlow posts and detail" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-4.png" alt="SocialFlow dark feed" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-5.png" alt="SocialFlow trending and profile" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-6.png" alt="SocialFlow messages" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-7.png" alt="SocialFlow search" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-8.png" alt="SocialFlow stories and notifications" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-9.png" alt="SocialFlow topics feed" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-10.png" alt="SocialFlow story viewer" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-11.png" alt="SocialFlow stories and profiles grid" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-12.png" alt="SocialFlow creator tools" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-13.png" alt="SocialFlow notifications" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-14.png" alt="SocialFlow settings" loading="lazy">
                 </div>
               </div>
               <div class="app-demo-info">
-                <p class="eyebrow">Media Streaming</p>
-                <h3>StreamWave</h3>
+                <p class="eyebrow">Social Media Platform</p>
+                <h3>SocialFlow</h3>
                 <div class="app-scara">
-                  <p><strong>Problem:</strong> Video apps that stutter lose subscribers. An inherited Objective-C codebase had threading patterns blocking the main queue on asset loading — users saw a delayed landing screen.</p>
-                  <p><strong>Result:</strong> 20–30% faster landing page load after migrating to background-thread dispatch and refactoring the asset cache — measured in Instruments.</p>
+                  <p><strong>Problem:</strong> Social apps are the hardest category to build — real-time feeds, live stories, short-form video, DMs, and algorithmic discovery all need to feel instant and never glitch. SocialFlow demonstrates the full surface area.</p>
+                  <p><strong>Result:</strong> A feature-complete social platform with home feed, reels, stories, profile gallery, messaging, and creator tools — dark &amp; light modes, smooth transitions throughout.</p>
                 </div>
                 <ul class="app-features">
-                  <li>Custom AVPlayer with HUD overlay controls</li>
-                  <li>Adaptive bitrate streaming (HLS)</li>
-                  <li>Background-thread asset cache (20–30% speed gain)</li>
-                  <li>Offline download queue with Core Data</li>
-                  <li>AirPlay &amp; Cast support</li>
+                  <li>Algorithmic home feed with infinite scroll</li>
+                  <li>Short-form video (Reels) with AVFoundation player</li>
+                  <li>Stories — 24-hour ephemeral content with viewer tracking</li>
+                  <li>Real-time DMs via WebSocket</li>
+                  <li>Creator tools — post composer, caption, hashtags</li>
+                  <li>Profile grid, follow graph, and notification centre</li>
                 </ul>
-                <div class="app-metrics">
-                  <span>20–30% faster load</span><span>HLS Streaming</span><span>Instruments-verified</span>
-                </div>
                 <div class="app-tech">
-                  <span>Swift</span><span>AVFoundation</span><span>UIKit</span><span>Core Data</span><span>Obj-C</span>
-                </div>
-                <div class="app-links">
-                  <a href="https://github.com/ajaygirolkar" target="_blank" rel="noreferrer" class="app-link-github">View GitHub →</a>
-                  <span class="app-link-badge">Performance writeup on request</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- BankPro -->
-            <div class="app-demo" data-app="bank">
-              <div class="app-demo-phone">
-                <div class="iphone-frame iphone-lg">
-                  <div class="iphone-notch"></div>
-                  <div class="iphone-screen app-screen-bank">
-                    <div class="app-status-bar"><span>9:41</span><span>●●●</span></div>
-                    <div>
-                      <p class="app-label">Welcome back</p>
-                      <p class="bank-name">Ajay Girolkar</p>
-                    </div>
-                    <div class="bank-card">
-                      <div class="bank-card-top">
-                        <span class="bank-card-brand">BankPro</span>
-                        <div class="bank-chip"></div>
-                      </div>
-                      <p class="bank-balance-label">Available Balance</p>
-                      <p class="bank-balance-amount">$24,830.50</p>
-                      <div class="bank-card-bottom">
-                        <span class="bank-card-num">•••• •••• •••• 4291</span>
-                        <span>04/28</span>
-                      </div>
-                    </div>
-                    <p class="app-label" style="margin:4px 0">Recent Transactions</p>
-                    <div class="txn-list">
-                      <div class="txn-row">
-                        <div style="display:flex;gap:8px;align-items:center">
-                          <div class="txn-icon" style="background:#1d3f6e"></div>
-                          <div><p class="txn-name">Apple Store</p><p class="txn-date">Today</p></div>
-                        </div>
-                        <span class="neg">-$1,299</span>
-                      </div>
-                      <div class="txn-row">
-                        <div style="display:flex;gap:8px;align-items:center">
-                          <div class="txn-icon" style="background:#1e4d2e"></div>
-                          <div><p class="txn-name">Stripe Payout</p><p class="txn-date">Yesterday</p></div>
-                        </div>
-                        <span class="pos">+$4,500</span>
-                      </div>
-                      <div class="txn-row">
-                        <div style="display:flex;gap:8px;align-items:center">
-                          <div class="txn-icon" style="background:#4d2e1e"></div>
-                          <div><p class="txn-name">AWS Services</p><p class="txn-date">Apr 12</p></div>
-                        </div>
-                        <span class="neg">-$234</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="app-demo-info">
-                <p class="eyebrow">Enterprise Banking</p>
-                <h3>BankPro</h3>
-                <div class="app-scara">
-                  <p><strong>Problem:</strong> Consumer banking apps demand enterprise-grade security, monitoring, and test discipline from day one — not bolted on after launch. BankPro demonstrates the full quality stack built upfront.</p>
-                  <p><strong>Result:</strong> App Dynamics + Splunk monitoring, SwiftLint enforcement, and snapshot test suite — the same production quality setup used in real global banking apps.</p>
-                </div>
-                <ul class="app-features">
-                  <li>Face ID / Touch ID biometric authentication</li>
-                  <li>Encrypted transaction flows</li>
-                  <li>SwiftLint + Snapshot test suite from day one</li>
-                  <li>App Dynamics performance monitoring</li>
-                  <li>Production triage &amp; Splunk logging</li>
-                </ul>
-                <div class="app-metrics">
-                  <span>App Dynamics Monitoring</span><span>Snapshot Tests</span><span>Splunk Logging</span>
-                </div>
-                <div class="app-tech">
-                  <span>Swift</span><span>UIKit</span><span>LocalAuthentication</span><span>SwiftLint</span><span>Splunk</span>
+                  <span>Swift</span><span>SwiftUI</span><span>AVFoundation</span><span>WebSocket</span><span>Firebase</span><span>Push Notifications</span><span>Core Data</span>
                 </div>
                 <div class="app-links">
                   <a href="https://github.com/ajaygirolkar" target="_blank" rel="noreferrer" class="app-link-github">View GitHub →</a>
                   <span class="app-link-badge">Architecture doc on request</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- AppMarket -->
+            <div class="app-demo" data-app="appmarket">
+              <div class="app-demo-phone">
+                <div class="iphone-frame iphone-lg">
+                  <div class="iphone-screen">
+                    <div class="screenshot-carousel">
+                      <div class="sc-slide active"><img src="assets/app-screenshots/appmarket/screen-1.png" alt="AppMarket Today feed" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/appmarket/screen-2.png" alt="AppMarket Top Charts" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/appmarket/screen-3.png" alt="AppMarket Search" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/appmarket/screen-4.png" alt="AppMarket app detail" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/appmarket/screen-5.png" alt="AppMarket Arcade" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/appmarket/screen-6.png" alt="AppMarket account" loading="lazy"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-dots"></div>
+              </div>
+              <div class="app-demo-info">
+                <p class="eyebrow">App Discovery Platform</p>
+                <h3>AppMarket</h3>
+                <div class="app-scara">
+                  <p><strong>Problem:</strong> App stores need to surface the right app to the right user — editorial curation (Today, New &amp; Noteworthy), chart rankings, and universal search all need to feel instant and render without layout shift.</p>
+                  <p><strong>Result:</strong> A full-fidelity App Store clone with Today editorial feed, Top Charts, category search, and in-app purchase flows — powered by StoreKit 2 and CloudKit sync.</p>
+                </div>
+                <ul class="app-features">
+                  <li>Today editorial feed — App of the Day, curated stories</li>
+                  <li>Top Charts with Free / Paid / Grossing categories</li>
+                  <li>Universal search with Top Results and category filters</li>
+                  <li>App detail pages with ratings, screenshots, reviews</li>
+                  <li>StoreKit 2 — in-app purchase &amp; subscription management</li>
+                </ul>
+                <div class="app-tech">
+                  <span>Swift</span><span>UIKit</span><span>SwiftUI</span><span>StoreKit 2</span><span>CloudKit</span><span>Core Data</span>
+                </div>
+                <div class="app-links">
+                  <a href="https://github.com/ajaygirolkar" target="_blank" rel="noreferrer" class="app-link-github">View GitHub →</a>
+                  <span class="app-link-badge">Code available on request</span>
                 </div>
               </div>
             </div>
@@ -927,7 +817,7 @@
             <article class="panel proof-card">
               <div class="proof-icon">⌥</div>
               <h3>Demo App Code</h3>
-              <p>All four portfolio demo apps (FinanceKit, SwiftHealth, StreamWave, BankPro) are available as private GitHub repos and shared during discovery calls.</p>
+              <p>All five portfolio demo apps (WealthKit, PaySwift, ShopEase, SocialFlow, AppMarket) are available as private GitHub repos and shared during discovery calls.</p>
               <span class="proof-badge">Code available on request</span>
             </article>
           </div>
