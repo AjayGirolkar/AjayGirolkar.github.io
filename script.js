@@ -40,7 +40,9 @@ const observer = new IntersectionObserver(
       observer.unobserve(entry.target);
     });
   },
-  { threshold: 0.14 }
+  // rootMargin pre-triggers reveal ~400px before element enters viewport,
+  // so content is faded in by the time the user scrolls to it.
+  { threshold: 0, rootMargin: "0px 0px 400px 0px" }
 );
 
 revealItems.forEach((item, index) => {
@@ -218,6 +220,23 @@ function initScreenshotCarousels() {
   });
 }
 
+/* ── Preload lazy images after first paint ────────── */
+// Keeps initial load fast (lazy until painted), then warms every
+// lazy image during idle time so they're cached before the user
+// scrolls to them — no pop-in on scroll.
+function preloadLazyImages() {
+  const warm = () => {
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+      img.loading = 'eager';
+    });
+  };
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(warm, { timeout: 2000 });
+  } else {
+    setTimeout(warm, 1200);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initTypewriter();
   initCounters();
@@ -227,3 +246,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initCalendar();
   initCollapsibleSections();
 });
+
+window.addEventListener('load', preloadLazyImages);

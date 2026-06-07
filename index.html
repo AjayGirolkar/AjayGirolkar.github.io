@@ -15,6 +15,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css?v=20260413-v2" />
+    <!-- Preload above-the-fold hero images so they paint instantly -->
+    <link rel="preload" as="image" href="assets/ajay-profile.jpg?v=20260412" fetchpriority="high" />
+    <link rel="preload" as="image" href="assets/app-screenshots/wealthkit/screen-1.webp" />
+    <link rel="preload" as="image" href="assets/app-screenshots/payswift/screen-1.webp" />
   </head>
   <body>
 
@@ -96,7 +100,7 @@
             <div class="hero-phone-float">
               <div class="iphone-frame">
                 <div class="iphone-screen">
-                  <img src="assets/app-screenshots/wealthkit/screen-1.png" alt="WealthKit portfolio app" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+                  <img src="assets/app-screenshots/wealthkit/screen-1.webp" alt="WealthKit portfolio app" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
                 </div>
               </div>
             </div>
@@ -105,7 +109,7 @@
             <div class="hero-phone-secondary">
               <div class="iphone-frame iphone-sm">
                 <div class="iphone-screen">
-                  <img src="assets/app-screenshots/payswift/screen-1.png" alt="PaySwift payments app" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+                  <img src="assets/app-screenshots/payswift/screen-1.webp" alt="PaySwift payments app" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
                 </div>
               </div>
             </div>
@@ -342,11 +346,11 @@
                 <div class="iphone-frame iphone-lg">
                   <div class="iphone-screen">
                     <div class="screenshot-carousel">
-                      <div class="sc-slide active"><img src="assets/app-screenshots/wealthkit/screen-1.png" alt="WealthKit portfolio overview" loading="eager"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/screen-2.png" alt="WealthKit portfolio detail" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/screen-3.png" alt="WealthKit mutual funds" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/screen-4.png" alt="WealthKit alerts" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/screen-5.png" alt="WealthKit profile" loading="lazy"></div>
+                      <div class="sc-slide active"><img src="assets/app-screenshots/wealthkit/screen-1.webp" alt="WealthKit portfolio overview" loading="eager"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/screen-2.webp" alt="WealthKit portfolio detail" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/screen-3.webp" alt="WealthKit mutual funds" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/screen-4.webp" alt="WealthKit alerts" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/screen-5.webp" alt="WealthKit profile" loading="lazy"></div>
                     </div>
                   </div>
                 </div>
@@ -382,12 +386,12 @@
                 <div class="iphone-frame iphone-lg">
                   <div class="iphone-screen">
                     <div class="screenshot-carousel">
-                      <div class="sc-slide active"><img src="assets/app-screenshots/payswift/screen-1.png" alt="PaySwift home dashboard" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/payswift/screen-2.png" alt="PaySwift send money" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/payswift/screen-3.png" alt="PaySwift scan and pay" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/payswift/screen-4.png" alt="PaySwift transactions" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/payswift/screen-5.png" alt="PaySwift cards" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/payswift/screen-6.png" alt="PaySwift profile" loading="lazy"></div>
+                      <div class="sc-slide active"><img src="assets/app-screenshots/payswift/screen-1.webp" alt="PaySwift home dashboard" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/payswift/screen-2.webp" alt="PaySwift send money" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/payswift/screen-3.webp" alt="PaySwift scan and pay" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/payswift/screen-4.webp" alt="PaySwift transactions" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/payswift/screen-5.webp" alt="PaySwift cards" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/payswift/screen-6.webp" alt="PaySwift profile" loading="lazy"></div>
                     </div>
                   </div>
                 </div>
@@ -423,12 +427,12 @@
                 <div class="iphone-frame iphone-lg">
                   <div class="iphone-screen">
                     <div class="screenshot-carousel">
-                      <div class="sc-slide active"><img src="assets/app-screenshots/shopeasy/screen-1.png" alt="ShopEase home feed" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/shopeasy/screen-2.png" alt="ShopEase categories" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/shopeasy/screen-3.png" alt="ShopEase product detail" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/shopeasy/screen-4.png" alt="ShopEase wishlist" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/shopeasy/screen-5.png" alt="ShopEase cart" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/shopeasy/screen-6.png" alt="ShopEase checkout" loading="lazy"></div>
+                      <div class="sc-slide active"><img src="assets/app-screenshots/shopeasy/screen-1.webp" alt="ShopEase home feed" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/shopeasy/screen-2.webp" alt="ShopEase categories" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/shopeasy/screen-3.webp" alt="ShopEase product detail" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/shopeasy/screen-4.webp" alt="ShopEase wishlist" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/shopeasy/screen-5.webp" alt="ShopEase cart" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/shopeasy/screen-6.webp" alt="ShopEase checkout" loading="lazy"></div>
                     </div>
                   </div>
                 </div>
@@ -463,20 +467,20 @@
               <div class="app-demo-phone socialflow-demo-phone">
                 <p class="socialflow-gallery-label">14 screens across Feed · Profile · Reels · Stories · DMs</p>
                 <div class="socialflow-gallery">
-                  <img src="assets/app-screenshots/socialflow/screen-1.png" alt="SocialFlow profile and reels" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-2.png" alt="SocialFlow feed and discovery" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-3.png" alt="SocialFlow posts and detail" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-4.png" alt="SocialFlow dark feed" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-5.png" alt="SocialFlow trending and profile" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-6.png" alt="SocialFlow messages" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-7.png" alt="SocialFlow search" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-8.png" alt="SocialFlow stories and notifications" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-9.png" alt="SocialFlow topics feed" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-10.png" alt="SocialFlow story viewer" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-11.png" alt="SocialFlow stories and profiles grid" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-12.png" alt="SocialFlow creator tools" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-13.png" alt="SocialFlow notifications" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-14.png" alt="SocialFlow settings" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-1.webp" alt="SocialFlow profile and reels" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-2.webp" alt="SocialFlow feed and discovery" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-3.webp" alt="SocialFlow posts and detail" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-4.webp" alt="SocialFlow dark feed" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-5.webp" alt="SocialFlow trending and profile" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-6.webp" alt="SocialFlow messages" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-7.webp" alt="SocialFlow search" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-8.webp" alt="SocialFlow stories and notifications" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-9.webp" alt="SocialFlow topics feed" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-10.webp" alt="SocialFlow story viewer" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-11.webp" alt="SocialFlow stories and profiles grid" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-12.webp" alt="SocialFlow creator tools" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-13.webp" alt="SocialFlow notifications" loading="lazy">
+                  <img src="assets/app-screenshots/socialflow/screen-14.webp" alt="SocialFlow settings" loading="lazy">
                 </div>
               </div>
               <div class="app-demo-info">
@@ -510,12 +514,12 @@
                 <div class="iphone-frame iphone-lg">
                   <div class="iphone-screen">
                     <div class="screenshot-carousel">
-                      <div class="sc-slide active"><img src="assets/app-screenshots/appmarket/screen-1.png" alt="AppMarket Today feed" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/appmarket/screen-2.png" alt="AppMarket Top Charts" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/appmarket/screen-3.png" alt="AppMarket Search" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/appmarket/screen-4.png" alt="AppMarket app detail" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/appmarket/screen-5.png" alt="AppMarket Arcade" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/appmarket/screen-6.png" alt="AppMarket account" loading="lazy"></div>
+                      <div class="sc-slide active"><img src="assets/app-screenshots/appmarket/screen-1.webp" alt="AppMarket Today feed" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/appmarket/screen-2.webp" alt="AppMarket Top Charts" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/appmarket/screen-3.webp" alt="AppMarket Search" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/appmarket/screen-4.webp" alt="AppMarket app detail" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/appmarket/screen-5.webp" alt="AppMarket Arcade" loading="lazy"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/appmarket/screen-6.webp" alt="AppMarket account" loading="lazy"></div>
                     </div>
                   </div>
                 </div>
@@ -1009,7 +1013,7 @@
       </div>
     </footer>
 
-    <script src="script.js?v=20260413-v2"></script>
+    <script src="script.js?v=20260607-webp"></script>
     <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
   </body>
 </html>
