@@ -316,6 +316,24 @@
                   <p class="case-result">Before: main-thread asset loading blocking UI. After: 20–30% faster measured in Instruments.</p>
                 </div>
               </article>
+              <article class="case-study">
+                <div class="case-study-visual visual-fintech">
+                  <div class="mockup-card"><span>Fintech</span><strong>Auditable security, on device</strong></div>
+                </div>
+                <div class="case-study-copy">
+                  <p class="card-kicker">FinVault / Self-directed reference build — public source</p>
+                  <p class="case-situation">Situation: Founders can&#39;t tell from a r&eacute;sum&eacute; whether an iOS engineer has shipped regulated software, and most portfolio banking apps are a polished shell over mock data.</p>
+                  <h3>A banking app where every security claim links to running code.</h3>
+                  <p>I built a full retail-banking iOS app on a live Postgres backend — biometric vault, MFA fund transfer, wealth analytics — architected so a reviewer can audit the security story in sixty seconds instead of trusting a README. It shipped on bundled fixtures first, then migrated to live Supabase with row-level security and server-side Edge Functions: fifteen repositories changed implementation, zero view models changed.</p>
+                  <ul>
+                    <li>Solution: MVVM + Coordinator, protocol at every layer boundary, typed errors end to end</li>
+                    <li>Stack: Swift, SwiftUI, @Observable, async/await, Swift Testing, Supabase (Postgres + RLS, Edge Functions)</li>
+                    <li>Impact: 31.7k lines across 17 feature modules, 94 deterministic tests, zero third-party runtime dependencies</li>
+                  </ul>
+                  <p class="case-result">The security table states how far each claim is actually wired — certificate pinning and App Attest ship deliberately inactive, with the blocker named on each.</p>
+                  <p class="case-link-wrap"><a class="case-link" href="case-studies/finvault/">Read the full case study <span aria-hidden="true">&rarr;</span></a></p>
+                </div>
+              </article>
             </div>
           </div>
         </div>
