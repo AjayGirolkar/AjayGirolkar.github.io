@@ -1,0 +1,75 @@
+<div class="ios">
+  <div class="glow"></div>
+  <div class="island"></div>
+  <div class="stack">
+{{SB}}
+    <!-- no navbar, no tab bar: chrome is gone for the duration of the workout -->
+    <div class="scroll">
+      <div class="pad" style="display:flex;align-items:center;justify-content:space-between;margin-top:20px">
+        <div style="display:flex;align-items:center;gap:9px">
+          <span class="livedot"></span>
+          <span class="lbl" style="color:var(--z3)">Zone 3 · Aerobic</span>
+        </div>
+        <span class="lbl" style="color:var(--ink-3);font-size:11px">Zone 2 Run · outdoor</span>
+      </div>
+
+      <!-- BOLD MOVE: elapsed time at 104pt rounded — the whole top of the screen -->
+      <div class="pad" style="margin-top:26px">
+        <div class="big" style="font-size:104px">42:07</div>
+        <div class="lbl" style="font-size:10px;color:var(--ink-3);margin-top:14px">Elapsed</div>
+      </div>
+
+      <div class="metrics3" style="margin-top:30px">
+        <div><div class="v" style="color:var(--z3)">156</div><div class="k">bpm</div></div>
+        <div><div class="v">7.42</div><div class="k">km</div></div>
+        <div><div class="v">5:40</div><div class="k">avg / km</div></div>
+      </div>
+
+      <svg width="393" height="126" viewBox="0 0 393 126" style="display:block;margin-top:26px">
+        <defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="var(--accent)" stop-opacity=".34"/>
+          <stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>
+        <path d="{{S3_HR_A}}" fill="url(#lg)"/>
+        <path d="{{S3_HR_D}}" fill="none" stroke="var(--accent)" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="{{S3_HR_X}}" cy="{{S3_HR_Y}}" r="9" fill="var(--accent)" opacity=".20"/>
+        <circle cx="{{S3_HR_X}}" cy="{{S3_HR_Y}}" r="3.6" fill="var(--accent)"/>
+      </svg>
+
+      <!-- the zone band, edge to edge: it is the surface, not a card -->
+      <div style="display:flex;height:26px;margin-top:14px">
+        <i style="flex:200;background:var(--z1)"></i>
+        <i style="flex:588;background:var(--z2)"></i>
+        <i style="flex:1102;background:var(--z3);box-shadow:inset 0 0 0 2px rgba(7,9,10,.55)"></i>
+        <i style="flex:491;background:var(--z4)"></i>
+        <i style="flex:146;background:var(--z5)"></i>
+      </div>
+      <div class="pad zkeys" style="margin-top:8px">
+        <div style="flex:200"><div class="zn">Z1</div></div>
+        <div style="flex:588"><div class="zn">Z2</div><div class="zt">9:48</div></div>
+        <div style="flex:1102"><div class="zn" style="color:var(--z3)">Z3</div><div class="zt" style="color:var(--ink)">18:22</div></div>
+        <div style="flex:491"><div class="zn">Z4</div><div class="zt">8:11</div></div>
+        <div style="flex:146"><div class="zn">Z5</div></div>
+      </div>
+
+      <!-- dense pace ladder: extreme alternation against the 104pt numeral -->
+      <div class="ladder" style="margin-top:26px">
+        <div class="lbl" style="font-size:10px;color:var(--ink-3);margin-bottom:9px">Splits</div>
+        <div class="lad"><span class="km">KM 2</span><span class="bar"><i style="width:62%;background:var(--z2)"></i></span><span class="pc">5:44</span></div>
+        <div class="lad"><span class="km">KM 3</span><span class="bar"><i style="width:76%;background:var(--z3)"></i></span><span class="pc">5:38</span></div>
+        <div class="lad"><span class="km">KM 4</span><span class="bar"><i style="width:70%;background:var(--z3)"></i></span><span class="pc">5:41</span></div>
+        <div class="lad"><span class="km">KM 5</span><span class="bar"><i style="width:92%;background:var(--z4)"></i></span><span class="pc">5:33</span></div>
+        <div class="lad"><span class="km">KM 6</span><span class="bar"><i style="width:74%;background:var(--z3)"></i></span><span class="pc">5:39</span></div>
+        <div class="lad"><span class="km">KM 7</span><span class="bar"><i style="width:80%;background:var(--z3)"></i></span><span class="pc">5:36</span></div>
+      </div>
+    </div>
+
+    <!-- the single glass layer in the entire set -->
+    <div class="ctrl glass glass--rim">
+      <span class="b"><svg class="i"><use href="#ic-lock"/></svg></span>
+      <span class="b"><svg class="i"><use href="#ic-stop"/></svg></span>
+      <span class="b b--stop">End</span>
+    </div>
+  </div>
+  <div class="homebar"></div>
+</div>

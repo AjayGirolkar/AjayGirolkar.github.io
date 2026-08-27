@@ -1,0 +1,117 @@
+<div class="ios">
+  <div class="island"></div>
+  <div class="stack">
+{{SB}}
+    <div class="navbar" style="height:auto;padding:2px var(--margin) 0;align-items:flex-start">
+      <div>
+        <div class="eyebrow">Thu 27 Aug</div>
+        <div style="font-size:26px;font-weight:700;letter-spacing:-.6px;margin-top:3px">Today</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;padding-top:8px">
+        <svg class="i"><use href="#ic-cal"/></svg>
+        <svg class="i"><use href="#ic-person"/></svg>
+      </div>
+    </div>
+
+    <div class="scroll">
+      <!-- BOLD MOVE: one 236pt ring owns the screen; the numeral is the type story -->
+      <div style="position:relative;width:236px;height:236px;margin:8px auto 0">
+        <svg class="ring" width="236" height="236" viewBox="0 0 236 236"
+             style="transform:rotate(-90deg)">
+          <defs><linearGradient id="mv" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="var(--accent-dim)"/><stop offset=".55" stop-color="var(--accent)"/>
+            <stop offset="1" stop-color="var(--accent-lift)"/></linearGradient></defs>
+          <circle class="trk" cx="118" cy="118" r="104" stroke-width="17"/>
+          <circle cx="118" cy="118" r="104" stroke="url(#mv)" stroke-width="17"
+                  stroke-dasharray="{{RING_MOVE}}"/>
+        </svg>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;
+                    align-items:center;justify-content:center">
+          <div class="big" style="font-size:80px;color:var(--accent)">612</div>
+          <div class="lbl" style="margin-top:11px;font-size:11px">of 750 kcal</div>
+        </div>
+      </div>
+
+      <!-- the two lesser goals, deliberately at a fraction of the weight -->
+      <div class="pad" style="display:flex;gap:14px;margin-top:22px">
+        <div style="flex:1;display:flex;align-items:center;gap:11px">
+          <svg class="mini-ring" width="56" height="56" viewBox="0 0 56 56" style="transform:rotate(-90deg);flex:none">
+            <circle cx="28" cy="28" r="24" stroke="rgba(63,191,201,.20)"/>
+            <circle cx="28" cy="28" r="24" stroke="var(--z2)" stroke-dasharray="{{RING_TRAIN}}"/>
+          </svg>
+          <div><div class="big" style="font-size:23px">41<span class="u">/45 min</span></div>
+            <div class="lbl" style="font-size:10px;margin-top:5px;color:var(--ink-3)">Train</div></div>
+        </div>
+        <div style="width:.5px;background:var(--hairline)"></div>
+        <div style="flex:1;display:flex;align-items:center;gap:11px">
+          <svg class="mini-ring" width="56" height="56" viewBox="0 0 56 56" style="transform:rotate(-90deg);flex:none">
+            <circle cx="28" cy="28" r="24" stroke="rgba(255,169,46,.20)"/>
+            <circle cx="28" cy="28" r="24" stroke="var(--z4)" stroke-dasharray="{{RING_STAND}}"/>
+          </svg>
+          <div><div class="big" style="font-size:23px">9<span class="u">/12 hr</span></div>
+            <div class="lbl" style="font-size:10px;margin-top:5px;color:var(--ink-3)">Stand</div></div>
+        </div>
+      </div>
+
+      <!-- HR zone band = a surface in its own right, no card around it -->
+      <div class="pad" style="margin-top:26px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:11px">
+          <span class="lbl">Effort · Zone 2 Run</span>
+          <span style="font-size:12.5px;color:var(--ink-3);font-variant-numeric:tabular-nums">58:12</span>
+        </div>
+        <div class="zband">
+          <i style="flex:10.65;background:var(--z1)"></i>
+          <i style="flex:25.14;background:var(--z2)"></i>
+          <i style="flex:36.20;background:var(--z3)"></i>
+          <i style="flex:19.64;background:var(--z4)"></i>
+          <i style="flex:8.36;background:var(--z5)"></i>
+        </div>
+        <div class="zkeys">
+          <div style="flex:10.65"><div class="zn">Z1</div><div class="zt">6:12</div></div>
+          <div style="flex:25.14"><div class="zn">Z2</div><div class="zt">14:38</div></div>
+          <div style="flex:36.20"><div class="zn" style="color:var(--z3)">Z3</div><div class="zt">21:04</div></div>
+          <div style="flex:19.64"><div class="zn">Z4</div><div class="zt">11:26</div></div>
+          <div style="flex:8.36"><div class="zn">Z5</div><div class="zt">4:52</div></div>
+        </div>
+      </div>
+
+      <svg width="393" height="52" viewBox="0 0 361 62" preserveAspectRatio="none"
+           style="display:block;margin-top:6px;opacity:.9">
+        <defs><linearGradient id="hg1" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="var(--accent)" stop-opacity=".22"/>
+          <stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>
+        <path d="{{S1_HR_A}}" fill="url(#hg1)"/>
+        <path d="{{S1_HR_D}}" fill="none" stroke="var(--accent)" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round" opacity=".8"/>
+      </svg>
+
+      <!-- streak: dense, tight, the rhythm counterweight -->
+      <div class="pad" style="display:flex;align-items:center;justify-content:space-between;margin-top:20px">
+        <div class="streak">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i class="now"></i>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:5px">
+          <span class="big" style="font-size:22px;color:var(--accent)">18</span>
+          <span class="lbl" style="font-size:10px">day streak</span>
+        </div>
+      </div>
+
+      <div class="pad" style="margin-top:18px;padding-bottom:10px">
+        <div class="stats" style="padding-top:16px;border-top:.5px solid var(--hairline)">
+          <div style="padding-left:0"><div class="v">8,412</div><div class="k">Steps</div></div>
+          <div><div class="v">7.42<span style="font-size:11px;opacity:.5"> km</span></div><div class="k">Distance</div></div>
+          <div><div class="v">54</div><div class="k">Rest HR</div></div>
+          <div style="padding-right:0"><div class="v">7:12</div><div class="k">Sleep</div></div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="dock">
+      <a aria-current="page"><svg class="i i--sm"><use href="#ic-flame"/></svg>Today</a>
+      <a><svg class="i i--sm"><use href="#ic-dumbbell"/></svg>Train</a>
+      <a><svg class="i i--sm"><use href="#ic-cal"/></svg>History</a>
+      <a><svg class="i i--sm"><use href="#ic-person"/></svg>You</a>
+    </nav>
+  </div>
+  <div class="homebar"></div>
+</div>

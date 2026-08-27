@@ -1,0 +1,232 @@
+<style>
+/* ================= FitnessPro — dark-committed app layer =================
+   Identity lock: near-black ground · no cards (rings & zone bands are the
+   surfaces) · chrome docked or absent · oversized rounded numerals = the type
+   story · high-chroma lime accent.                                          */
+.ios{
+  --accent:#3DDC84; --accent-dim:#16653A; --accent-lift:#94ECBB;
+  --z1:#5E7C99; --z2:#3E9FA8; --z3:#7FB03F; --z4:#D9922C; --z5:#C0392B;
+  /* dark-locked: FitnessPro ships one ground. No light variant. */
+  --ink:#F2F5EF; --ink-2:rgba(242,245,239,.58); --ink-3:rgba(242,245,239,.32);
+  --surface:#07090A; --surface-el:#111416;
+  --hairline:rgba(242,245,239,.13);
+  --accent-soft:color-mix(in srgb,var(--accent) 14%,transparent);
+  --gain:#4ADE80; --loss:#E2564A;
+}
+.statusbar,.navbar{flex:none}
+.stack{position:absolute;inset:0;display:flex;flex-direction:column}
+.scroll{flex:1;overflow:hidden;position:relative}
+.pad{padding-left:var(--margin);padding-right:var(--margin)}
+
+/* status bar glyphs */
+.sb-sig{display:flex;align-items:flex-end;gap:2px;height:11px}
+.sb-sig i{width:3px;background:currentColor;border-radius:1px;display:block}
+.sb-sig i:nth-child(1){height:4px}.sb-sig i:nth-child(2){height:6px}
+.sb-sig i:nth-child(3){height:8.5px}.sb-sig i:nth-child(4){height:11px}
+.sb-bat{width:25px;height:12px;border:1.1px solid currentColor;border-radius:3.4px;
+        opacity:.9;position:relative;padding:1.4px}
+.sb-bat::after{content:"";position:absolute;right:-3px;top:3.6px;width:1.6px;height:4.4px;
+        border-radius:0 1px 1px 0;background:currentColor;opacity:.5}
+.sb-bat b{display:block;height:100%;width:78%;background:currentColor;border-radius:1.6px}
+
+/* ---------- THE TYPE STORY: oversized rounded numerals ---------- */
+.big{font-family:var(--f-round);font-variant-numeric:tabular-nums;font-weight:700;
+     letter-spacing:-.045em;line-height:.88}
+.big .u{font-size:.30em;font-weight:600;letter-spacing:.06em;opacity:.55;
+        vertical-align:.44em;margin-left:.10em;font-variant-numeric:normal}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+         color:var(--ink-3)}
+.lbl{font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+     color:var(--ink-2)}
+
+/* ---------- rings: a surface, never a card ---------- */
+.ring circle{fill:none;stroke-linecap:round}
+.ring .trk{stroke:color-mix(in srgb,var(--accent) 13%,transparent)}
+.mini-ring circle{fill:none;stroke-linecap:round;stroke-width:6}
+
+/* ---------- HR zone band ---------- */
+.zband{display:flex;height:34px;border-radius:var(--r-chip);overflow:hidden;gap:2px}
+.zband i{display:block;height:100%;border-radius:2px}
+.zkeys{display:flex;margin-top:9px}
+.zkeys div{text-align:left}
+.zkeys .zn{font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--ink-3)}
+.zkeys .zt{font-size:12px;font-variant-numeric:tabular-nums;color:var(--ink-2);margin-top:2px}
+
+/* ---------- streak dots ---------- */
+.streak{display:flex;gap:9px;align-items:center}
+.streak i{width:19px;height:19px;border-radius:10px;display:block;background:var(--accent)}
+.streak i.off{background:transparent;box-shadow:inset 0 0 0 1.5px var(--hairline)}
+.streak i.now{box-shadow:0 0 0 2.5px var(--surface),0 0 0 4.5px var(--accent)}
+
+/* ---------- dense stat strip (rhythm counterweight to the giant ring) ---- */
+.stats{display:flex}
+.stats>div{flex:1;padding:0 10px}
+.stats>div+div{border-left:.5px solid var(--hairline)}
+.stats .v{font-family:var(--f-round);font-variant-numeric:tabular-nums;font-size:19px;
+          font-weight:700;letter-spacing:-.02em}
+.stats .k{font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;
+          color:var(--ink-3);margin-top:4px}
+
+/* ---------- docked chrome (NOT a floating glass pill) ---------- */
+.dock{flex:none;height:76px;padding:9px 6px 0;display:flex;justify-content:space-around;
+      border-top:.5px solid var(--hairline);background:var(--surface);position:relative;z-index:5}
+.dock a{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;
+        font-weight:600;letter-spacing:.03em;color:var(--ink-3);min-width:44px;
+        text-decoration:none;padding-top:4px}
+.dock a[aria-current]{color:var(--accent)}
+.homebar{background:var(--ink);opacity:.30}
+
+/* ---------- history rows: HR trace bleeds behind the row ---------- */
+.hrow{position:relative;display:flex;align-items:center;gap:13px;
+      padding:14px var(--margin) 30px;min-height:88px;overflow:hidden}
+.hrow+.hrow{border-top:.5px solid var(--hairline)}
+.hrow .trace{position:absolute;left:0;right:0;bottom:0;height:32px;pointer-events:none}
+.hrow .bd{flex:1;min-width:0;position:relative}
+.hrow .n1{font-size:16.5px;font-weight:600;letter-spacing:-.2px;
+          white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hrow .n2{font-size:12.5px;color:var(--ink-2);margin-top:3px;font-variant-numeric:tabular-nums}
+.hrow .tr{position:relative;text-align:right;flex:none}
+.hrow .tv{font-family:var(--f-round);font-variant-numeric:tabular-nums;font-size:17px;
+          font-weight:700;letter-spacing:-.03em}
+.hrow .tk{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-top:3px}
+.wk-hd{display:flex;justify-content:space-between;align-items:baseline;
+       padding:24px var(--margin) 9px}
+.wk-hd b{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.wk-hd em{font-style:normal;font-size:12.5px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+
+/* ---------- set / rep grid ---------- */
+.grid{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.grid th{font-size:10px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+         color:var(--ink-3);text-align:right;padding:0 0 8px}
+.grid th:first-child{text-align:left}
+.grid td{padding:10px 0;font-size:16px;text-align:right;
+         border-top:.5px solid var(--hairline);font-family:var(--f-round);font-weight:600}
+.grid td:first-child{text-align:left;font-size:13px;color:var(--ink-3);font-weight:700;
+                     letter-spacing:.04em;font-family:var(--f-sys)}
+.grid tr.done td{opacity:.38}
+.grid tr.now td{color:var(--accent)}
+.grid tr.now td:first-child{color:var(--accent);position:relative}
+.grid tr.next td{opacity:.55}
+.grid .ck{width:26px}
+
+/* ---------- ruler picker (the input control) ---------- */
+.ruler{position:relative;height:58px;overflow:hidden;
+       -webkit-mask:linear-gradient(90deg,transparent,#000 16%,#000 84%,transparent);
+       mask:linear-gradient(90deg,transparent,#000 16%,#000 84%,transparent)}
+.ruler .cursor{position:absolute;left:50%;top:0;width:2.5px;height:38px;margin-left:-1.25px;
+               background:var(--accent);border-radius:2px}
+.stepper{display:flex;align-items:center;gap:2px;height:46px;border-radius:var(--r-ctl);
+         background:rgba(242,245,239,.07);padding:3px}
+.stepper b{flex:1;text-align:center;font-family:var(--f-round);font-size:20px;font-weight:700;
+           font-variant-numeric:tabular-nums}
+.stepper span{width:52px;font-size:22px;font-weight:500;display:grid;place-items:center;border-radius:9px;
+              background:rgba(242,245,239,.08);height:100%;color:var(--ink)}
+.cta{height:54px;border-radius:var(--r-ctl);background:var(--accent);color:#07090A;
+     display:flex;align-items:center;justify-content:center;gap:8px;
+     font-size:17px;font-weight:700;letter-spacing:-.2px}
+.restbar{height:5px;border-radius:3px;background:rgba(242,245,239,.10);overflow:hidden}
+.restbar i{display:block;height:100%;border-radius:3px;background:var(--accent)}
+
+/* ---------- s3 immersive: zone glow is the only depth ---------- */
+.glow{position:absolute;inset:0;pointer-events:none;
+      background:radial-gradient(112% 46% at 50% 0%,color-mix(in srgb,var(--accent) 20%,transparent) 0%,color-mix(in srgb,var(--accent) 5%,transparent) 42%,transparent 72%),
+                 radial-gradient(90% 34% at 50% 100%,color-mix(in srgb,var(--z4) 14%,transparent) 0%,transparent 68%)}
+.livedot{width:8px;height:8px;border-radius:5px;background:var(--z3);
+         box-shadow:0 0 0 4px color-mix(in srgb,var(--z3) 22%,transparent)}
+.metrics3{display:flex;padding:0 var(--margin)}
+.metrics3>div{flex:1}
+.metrics3>div+div{border-left:.5px solid var(--hairline);padding-left:15px}
+.metrics3>div:not(:last-child){padding-right:15px}
+.metrics3 .v{font-family:var(--f-round);font-variant-numeric:tabular-nums;font-size:26px;
+             font-weight:700;letter-spacing:-.035em}
+.metrics3 .k{font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);margin-top:5px}
+.ctrl{position:absolute;left:50%;transform:translateX(-50%);bottom:30px;height:62px;
+      border-radius:31px;display:flex;align-items:center;gap:6px;padding:6px;z-index:6}
+.ctrl .b{width:50px;height:50px;border-radius:25px;display:grid;place-items:center;color:var(--ink)}
+.ctrl .b--stop{width:104px;border-radius:25px;background:var(--accent);color:#07090A;
+               font-size:15px;font-weight:700;letter-spacing:-.1px}
+
+/* ---------- s5 celebration: the app inverts ---------- */
+.flood{position:absolute;inset:0;background:var(--accent);color:#07090A;
+       --ink:#07090A;--ink-2:rgba(7,9,10,.62);--ink-3:rgba(7,9,10,.42);
+       --hairline:rgba(7,9,10,.20)}
+.flood .homebar{background:#07090A;opacity:.30}
+.pr-line{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600}
+.oline{display:flex;align-items:center;justify-content:center;height:46px;border-radius:23px;
+       box-shadow:inset 0 0 0 1.5px rgba(7,9,10,.30);font-size:15px;font-weight:700}
+.dark-cta{height:54px;border-radius:27px;background:#07090A;color:var(--accent);
+          display:flex;align-items:center;justify-content:center;gap:8px;
+          font-size:17px;font-weight:700}
+
+/* ---------- s6 profile ---------- */
+.mono-av{width:74px;height:74px;border-radius:37px;display:grid;place-items:center;flex:none;
+         font-family:var(--f-round);font-size:26px;font-weight:700;letter-spacing:-.5px;
+         color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent)}
+.prow{display:flex;align-items:center;gap:12px;padding:13px var(--margin);min-height:52px}
+.prow+.prow{border-top:.5px solid var(--hairline)}
+.prow .lb{flex:1;font-size:16px;letter-spacing:-.1px}
+.prow .val{font-size:15px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.prow .chev{color:var(--ink-3);flex:none}
+.prow .ic{width:26px;color:var(--ink-2);flex:none;display:grid;place-items:center}
+.tgl{width:51px;height:31px;border-radius:16px;background:var(--accent);position:relative;flex:none}
+.tgl::after{content:"";position:absolute;top:2px;left:22px;width:27px;height:27px;border-radius:14px;
+            background:#07090A}
+.tgl--off{background:rgba(242,245,239,.18)}
+.tgl--off::after{left:2px;background:#F2F5EF}
+.prlist .prr{display:flex;align-items:baseline;gap:12px;padding:11px var(--margin)}
+.prlist .prr+.prr{border-top:.5px solid var(--hairline)}
+.prlist .nm{flex:1;font-size:15px}
+.prlist .wt{width:118px;text-align:right;font-family:var(--f-round);font-size:16px;font-weight:700;
+            font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.prlist .dt{font-size:11.5px;color:var(--ink-3);width:62px;text-align:right;font-variant-numeric:tabular-nums}
+
+/* vertical zone bar — the row's leading element (zone vocabulary, new form) */
+.zbar{width:5px;height:46px;border-radius:3px;overflow:hidden;display:flex;
+      flex-direction:column;flex:none}
+.zbar i{display:block;width:100%}
+/* filter chips */
+.chips{display:flex;gap:7px;padding:2px var(--margin) 0}
+.chips span{height:30px;padding:0 14px;display:grid;place-items:center;border-radius:15px;
+            font-size:13.5px;font-weight:600;color:var(--ink-2);
+            box-shadow:inset 0 0 0 1px var(--hairline)}
+.chips span[data-on]{background:var(--accent);color:#07090A;box-shadow:none}
+
+/* pace ladder — the dense counterweight to the 104pt elapsed numeral */
+.ladder{padding:0 var(--margin)}
+.lad{display:flex;align-items:center;gap:11px;height:22px}
+.lad .km{width:40px;white-space:nowrap;font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--ink-3)}
+.lad .bar{flex:1;height:5px;border-radius:3px;background:rgba(242,245,239,.07);overflow:hidden}
+.lad .bar i{display:block;height:100%;border-radius:3px}
+.lad .pc{width:44px;text-align:right;font-size:12.5px;font-variant-numeric:tabular-nums;
+         font-family:var(--f-round);font-weight:600}
+
+/* ---------- exercise demo: two public-domain frames crossfaded into a rep ---- */
+.demo{position:relative;overflow:hidden;flex:none;background:#0D1210;
+      box-shadow:inset 0 0 0 .5px var(--hairline)}
+.demo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.demo .f2{opacity:0}
+@media (prefers-reduced-motion:no-preference){
+  .demo .f2{animation:rep 2.6s ease-in-out infinite alternate}
+}
+@keyframes rep{0%,16%{opacity:0}84%,100%{opacity:1}}
+.demo .tag{position:absolute;left:0;bottom:0;right:0;height:38%;
+           background:linear-gradient(to top,rgba(7,9,10,.85),transparent)}
+
+/* exercise rows — full-bleed, hairline separated, never a card */
+.exr{display:flex;align-items:center;gap:14px;padding:10px var(--margin);min-height:71px}
+.exr+.exr{border-top:.5px solid var(--hairline)}
+.exr .bd{flex:1;min-width:0}
+.exr .n1{font-size:16px;font-weight:600;letter-spacing:-.2px;
+         white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.exr .n2{font-size:12.5px;color:var(--ink-2);margin-top:4px;font-variant-numeric:tabular-nums}
+.exr .tr{flex:none;text-align:right;font-variant-numeric:tabular-nums}
+.exr .tv{font-family:var(--f-round);font-size:15.5px;font-weight:700;letter-spacing:-.03em}
+.exr .tk{font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin-top:3px}
+.exr--now{background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 9%,transparent),transparent 62%);
+          box-shadow:inset 3px 0 0 var(--accent);min-height:92px}
+.exr--done .demo{opacity:.42}
+.exr--done .n1{color:var(--ink-2)}
+.setdots{display:flex;gap:4px;margin-top:7px}
+.setdots i{width:15px;height:4px;border-radius:2px;background:rgba(242,245,239,.16);display:block}
+.setdots i.on{background:var(--accent)}
+</style>
