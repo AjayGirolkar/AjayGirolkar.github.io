@@ -1,0 +1,968 @@
+<title>WealthKit Fintech Canvas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=Literata:opsz,wght@7..72,400;7..72,500&display=swap">
+<style>
+/* ---------- tokens ---------- */
+.ios{
+  --w:393px; --h:852px;
+
+  /* type */
+  --f-sys:-apple-system,"SF Pro Text","SF Pro Display","Helvetica Neue",system-ui,sans-serif;
+  --f-round:-apple-system,"SF Pro Rounded","SF Pro Display",system-ui,sans-serif;
+  --t-large:34px; --t-title:22px; --t-head:17px; --t-body:17px;
+  --t-sec:15px; --t-cap:13px; --t-tab:11px;
+
+  /* space scale */
+  --s1:2px;--s2:4px;--s3:8px;--s4:12px;--s5:16px;--s6:20px;--s7:24px;--s8:32px;--s9:40px;--s10:56px;
+  --margin:16px;
+
+  /* concentric radii */
+  --r-sheet:38px; --r-card:20px; --r-ctl:12px; --r-chip:8px;
+
+  /* light palette */
+  --ink:#000; --ink-2:rgba(60,60,67,.60); --ink-3:rgba(60,60,67,.30);
+  --surface:#F2F2F7; --surface-el:#FFF; --hairline:rgba(60,60,67,.14);
+  --accent:#0A7E76;                     /* override per app — never purple */
+  --accent-soft:color-mix(in srgb,var(--accent) 12%,transparent);
+  --gain:#1C8C4B; --loss:#C2382F; --warn:#B26A00;
+  --glass-blur:24px; --glass-sat:180%;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .ios{
+    --ink:#FFF; --ink-2:rgba(235,235,245,.60); --ink-3:rgba(235,235,245,.30);
+    --surface:#000; --surface-el:#1C1C1E; --hairline:rgba(235,235,245,.16);
+    --gain:#30D158; --loss:#FF453A; --warn:#FF9F0A;
+  }
+}
+[data-theme="dark"] .ios{
+  --ink:#FFF; --ink-2:rgba(235,235,245,.60); --ink-3:rgba(235,235,245,.30);
+  --surface:#000; --surface-el:#1C1C1E; --hairline:rgba(235,235,245,.16);
+  --gain:#30D158; --loss:#FF453A; --warn:#FF9F0A;
+}
+
+/* ---------- device shell ---------- */
+.ios{
+  width:var(--w); height:var(--h); position:relative; overflow:hidden;
+  border-radius:var(--r-sheet); background:var(--surface); color:var(--ink);
+  font-family:var(--f-sys); font-size:var(--t-body); line-height:1.29;
+  -webkit-font-smoothing:antialiased;
+}
+.ios *{box-sizing:border-box}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.ios svg text{font-family:var(--f-sys)}
+.ios svg text.rnd{font-family:var(--f-round)}   /* rounded design, monetary figures only */
+.money{font-family:var(--f-round);font-variant-numeric:tabular-nums}
+
+/* ---------- glass (chrome only) ---------- */
+.glass{
+  background:rgba(255,255,255,.55);
+  backdrop-filter:blur(var(--glass-blur)) saturate(var(--glass-sat));
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(var(--glass-sat));
+  border:.5px solid rgba(255,255,255,.60);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.70),inset 0 -1px 0 rgba(255,255,255,.15),
+             0 8px 24px rgba(0,0,0,.10);
+}
+[data-theme="dark"] .glass{
+  background:rgba(28,28,30,.55); border-color:rgba(255,255,255,.12);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 -1px 0 rgba(255,255,255,.04),
+             0 8px 28px rgba(0,0,0,.40);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .glass{
+    background:rgba(28,28,30,.55); border-color:rgba(255,255,255,.12);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 -1px 0 rgba(255,255,255,.04),
+               0 8px 28px rgba(0,0,0,.40);
+  }
+}
+.glass--rim{position:relative}
+.glass--rim::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;padding:.5px;pointer-events:none;
+  background:linear-gradient(145deg,rgba(255,255,255,.85),rgba(255,255,255,.15) 38%,rgba(255,255,255,0) 62%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+}
+@media (prefers-reduced-transparency:reduce){
+  .glass{background:var(--surface-el);backdrop-filter:none;-webkit-backdrop-filter:none;
+         box-shadow:0 1px 0 rgba(0,0,0,.08)}
+  .glass--rim::after{display:none}
+}
+
+/* ---------- chrome ---------- */
+.statusbar{
+  height:59px;display:flex;align-items:flex-end;justify-content:space-between;
+  padding:0 22px 8px;font-size:15px;font-weight:600;letter-spacing:.2px;position:relative;z-index:5;
+}
+.statusbar .glyphs{display:flex;gap:5px;align-items:center}
+.island{position:absolute;top:11px;left:50%;transform:translateX(-50%);
+        width:125px;height:36px;border-radius:18px;background:#000;z-index:6}
+
+.navbar{height:44px;display:flex;align-items:center;justify-content:space-between;
+        padding:0 var(--margin);font-size:var(--t-head);font-weight:600}
+.navbar--large{display:block;height:auto;padding:4px var(--margin) 8px}
+.navbar--large h1{font-size:var(--t-large);font-weight:700;letter-spacing:-.5px;margin:0}
+
+.tabbar{
+  position:absolute;left:21px;right:21px;bottom:21px;height:56px;border-radius:28px;
+  display:flex;align-items:center;justify-content:space-around;z-index:5;
+}
+.tabitem{display:flex;flex-direction:column;align-items:center;gap:3px;
+         font-size:var(--t-tab);color:var(--ink-2);min-width:44px}
+.tabitem[aria-current]{color:var(--accent)}
+
+.homebar{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);
+         width:140px;height:5px;border-radius:3px;background:var(--ink);opacity:.28;z-index:7}
+
+/* ---------- content primitives ---------- */
+.card{background:var(--surface-el);border-radius:var(--r-card);padding:var(--s6)}
+.hair{height:.5px;background:var(--hairline);border:0;margin:0}
+.chip{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 10px;
+      border-radius:var(--r-chip);font-size:var(--t-cap);font-weight:600}
+.chip--gain{color:var(--gain);background:color-mix(in srgb,var(--gain) 12%,transparent)}
+.chip--loss{color:var(--loss);background:color-mix(in srgb,var(--loss) 12%,transparent)}
+.row{display:flex;align-items:center;gap:var(--s4);padding:var(--s4) var(--margin)}
+.row .lead{width:40px;height:40px;border-radius:20px;display:grid;place-items:center;flex:none}
+.row .body{flex:1;min-width:0}
+.row .t1{font-size:var(--t-body)}
+.row .t2{font-size:var(--t-cap);color:var(--ink-2);margin-top:1px}
+.row .trail{text-align:right}
+.sec-hd{font-size:var(--t-cap);font-weight:600;letter-spacing:.4px;text-transform:uppercase;
+        color:var(--ink-2);padding:var(--s7) var(--margin) var(--s3)}
+.i{width:24px;height:24px;display:inline-block;vertical-align:-5px;
+   stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.i--sm{width:20px;height:20px;stroke-width:1.8}
+.i--fill{fill:currentColor;stroke:none}
+</style>
+
+<!-- ---------- icon sprite: <svg class="i"><use href="#ic-house"/></svg> ---------- -->
+<svg id="ios-icons" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="ic-chev-l" viewBox="0 0 24 24"><path d="M15 5 8.5 12 15 19"/></symbol>
+<symbol id="ic-chev-r" viewBox="0 0 24 24"><path d="M9 5l6.5 7L9 19"/></symbol>
+<symbol id="ic-chev-d" viewBox="0 0 24 24"><path d="M5 9.5 12 16l7-6.5"/></symbol>
+<symbol id="ic-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="ic-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="ic-more" viewBox="0 0 24 24"><circle cx="5.5" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="18.5" cy="12" r="1.5" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.2"/><path d="M15.2 15.2 20 20"/></symbol>
+<symbol id="ic-filter" viewBox="0 0 24 24"><path d="M3.5 7h17M3.5 12h17M3.5 17h17"/><circle cx="9" cy="7" r="2.1" fill="var(--surface,#fff)"/><circle cx="15" cy="12" r="2.1" fill="var(--surface,#fff)"/><circle cx="7" cy="17" r="2.1" fill="var(--surface,#fff)"/></symbol>
+<symbol id="ic-bell" viewBox="0 0 24 24"><path d="M12 3.4c-3.1 0-5.1 2.1-5.1 5.2 0 4.1-1.6 5.3-1.6 6.2h13.4c0-.9-1.6-2.1-1.6-6.2 0-3.1-2-5.2-5.1-5.2Z"/><path d="M10 18.3a2 2 0 0 0 4 0"/></symbol>
+<symbol id="ic-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.6"/><g stroke-width="2.6"><path d="M18 12h2.5M16.24 7.76 18.01 5.99M12 6V3.5M7.76 7.76 5.99 5.99M6 12H3.5M7.76 16.24 5.99 18.01M12 18v2.5M16.24 16.24 18.01 18.01"/></g></symbol>
+<symbol id="ic-arr-u" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+<symbol id="ic-arr-d" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+<symbol id="ic-arr-ur" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+<symbol id="ic-check" viewBox="0 0 24 24"><path d="m5 12.5 4.8 4.8L19 6.7"/></symbol>
+<symbol id="ic-share" viewBox="0 0 24 24"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M7 10.5H5.4a1.4 1.4 0 0 0-1.4 1.4v7.7A1.4 1.4 0 0 0 5.4 21h13.2a1.4 1.4 0 0 0 1.4-1.4v-7.7a1.4 1.4 0 0 0-1.4-1.4H17"/></symbol>
+<symbol id="ic-trash" viewBox="0 0 24 24"><path d="M4.5 6.5h15M9.5 6.5v-2h5v2M6.8 6.5l1 13h8.4l1-13"/></symbol>
+<symbol id="ic-lock" viewBox="0 0 24 24"><rect x="5" y="10.4" width="14" height="9.6" rx="2.4"/><path d="M8.4 10.4V8a3.6 3.6 0 0 1 7.2 0v2.4"/></symbol>
+<symbol id="ic-faceid" viewBox="0 0 24 24"><path d="M3.5 8V5.6A2.1 2.1 0 0 1 5.6 3.5H8M16 3.5h2.4a2.1 2.1 0 0 1 2.1 2.1V8M20.5 16v2.4a2.1 2.1 0 0 1-2.1 2.1H16M8 20.5H5.6a2.1 2.1 0 0 1-2.1-2.1V16"/><path d="M8.6 9.4v1.8M15.4 9.4v1.8M12 9.6v3.9h-1.2M9 15.8a4.2 4.2 0 0 0 6 0"/></symbol>
+<symbol id="ic-house" viewBox="0 0 24 24"><path d="M3.4 11 12 4l8.6 7v8.6a1.2 1.2 0 0 1-1.2 1.2H4.6a1.2 1.2 0 0 1-1.2-1.2Z"/></symbol>
+<symbol id="ic-pie" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><path d="M12 3.8V12h8.2"/></symbol>
+<symbol id="ic-card" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.6"/><path d="M3 10h18"/></symbol>
+<symbol id="ic-person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.7"/><path d="M4.8 20.2a7.2 7.2 0 0 1 14.4 0"/></symbol>
+<symbol id="ic-bag" viewBox="0 0 24 24"><path d="M5.6 8h12.8l.9 12.4H4.7Z"/><path d="M9 8V6.4a3 3 0 0 1 6 0V8"/></symbol>
+<symbol id="ic-heart" viewBox="0 0 24 24"><path d="M12 20.3C5 15.6 3.2 12.5 3.2 9.4A4.7 4.7 0 0 1 12 7.2a4.7 4.7 0 0 1 8.8 2.2c0 3.1-1.8 6.2-8.8 10.9Z"/></symbol>
+<symbol id="ic-msg" viewBox="0 0 24 24"><path d="M20.6 11.4c0 4-3.9 7.2-8.6 7.2a11 11 0 0 1-2.3-.2l-4.2 2.1 1.1-3.6c-2.1-1.3-3.2-3.3-3.2-5.5 0-4 3.9-7.2 8.6-7.2s8.6 3.2 8.6 7.2Z"/></symbol>
+<symbol id="ic-bookmark" viewBox="0 0 24 24"><path d="M6.6 3.8h10.8v16.4L12 16.2l-5.4 4Z"/></symbol>
+<symbol id="ic-bolt" viewBox="0 0 24 24"><path d="M13.6 3 6 13.4h4.6L10.4 21 18 10.6h-4.6Z"/></symbol>
+<symbol id="ic-flame" viewBox="0 0 24 24"><path d="M12 3.4c3.1 3 4.9 5.6 4.9 8.6a4.9 4.9 0 0 1-9.8 0c0-1.9.8-3.4 1.7-4.5.1 1.5.8 2.4 1.8 2.4 1.6 0 2.2-2.8 1.4-6.5Z"/></symbol>
+<symbol id="ic-dumbbell" viewBox="0 0 24 24"><path d="M8.6 12h6.8"/><rect x="5.6" y="8.2" width="3" height="7.6" rx="1.3"/><rect x="15.4" y="8.2" width="3" height="7.6" rx="1.3"/><path d="M3.4 10.2v3.6M20.6 10.2v3.6"/></symbol>
+<symbol id="ic-cal" viewBox="0 0 24 24"><rect x="3.4" y="5.4" width="17.2" height="15.2" rx="2.6"/><path d="M3.4 10h17.2M8 3.4v4M16 3.4v4"/></symbol>
+<symbol id="ic-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><path d="M12 6.8V12l3.6 2.4"/></symbol>
+<symbol id="ic-camera" viewBox="0 0 24 24"><path d="M4.2 8.6h3.1L8.9 6h6.2l1.6 2.6h3.1a1.3 1.3 0 0 1 1.3 1.3v8.5a1.3 1.3 0 0 1-1.3 1.3H4.2a1.3 1.3 0 0 1-1.3-1.3V9.9a1.3 1.3 0 0 1 1.3-1.3Z"/><circle cx="12" cy="13.8" r="3.4"/></symbol>
+<symbol id="ic-photo" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.6"/><path d="M4.2 18.4 8.8 13.2 12 16l2.8-2.6 5 5.2"/><circle cx="8.4" cy="9.6" r="1.6"/></symbol>
+<symbol id="ic-clip" viewBox="0 0 24 24"><path d="M17.6 9.2 10.1 16.7a3.1 3.1 0 0 1-4.4-4.4l8.2-8.2a2.1 2.1 0 0 1 3 3l-8.2 8.2a1 1 0 0 1-1.5-1.5l7.4-7.4"/></symbol>
+<symbol id="ic-mic" viewBox="0 0 24 24"><rect x="9.4" y="3" width="5.2" height="11" rx="2.6"/><path d="M6 11.4a6 6 0 0 0 12 0M12 17.4V21"/></symbol>
+<symbol id="ic-send" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M12 16.4V7.9M8.6 11.3 12 7.9l3.4 3.4"/></symbol>
+<symbol id="ic-stop" viewBox="0 0 24 24"><rect x="6.6" y="6.6" width="10.8" height="10.8" rx="2.6" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-play" viewBox="0 0 24 24"><path d="M8.4 5.4 18.6 12 8.4 18.6Z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-star" viewBox="0 0 24 24"><path d="m12 3.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9-5.3-2.9-5.3 2.9 1.1-5.9-4.3-4.1 5.9-.8Z"/></symbol>
+<symbol id="ic-eye" viewBox="0 0 24 24"><path d="M2.6 12S6.4 6 12 6s9.4 6 9.4 6-3.8 6-9.4 6-9.4-6-9.4-6Z"/><circle cx="12" cy="12" r="2.8"/></symbol>
+<symbol id="ic-eye-off" viewBox="0 0 24 24"><path d="M4 4l16 16"/><path d="M9.5 9.6A2.8 2.8 0 0 0 12 14.8c.7 0 1.4-.3 1.9-.7"/><path d="M6.4 6.9C4.1 8.6 2.6 12 2.6 12s3.8 6 9.4 6c1.5 0 2.8-.4 4-1M17.1 15A14 14 0 0 0 21.4 12S17.6 6 12 6c-.7 0-1.4.1-2 .3"/></symbol>
+<symbol id="ic-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-grid" viewBox="0 0 24 24"><rect x="3.6" y="3.6" width="7.2" height="7.2" rx="2"/><rect x="13.2" y="3.6" width="7.2" height="7.2" rx="2"/><rect x="3.6" y="13.2" width="7.2" height="7.2" rx="2"/><rect x="13.2" y="13.2" width="7.2" height="7.2" rx="2"/></symbol>
+</defs></svg>
+
+<style>
+/* ---------- WealthKit: fintech app layer ---------- */
+.ios{--accent:#0F7B6C;--accent-2:#0B5F55;}
+[data-theme="dark"] .ios,
+.ios[data-theme="dark"]{--accent:#2FBFA8;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ios{--accent:#2FBFA8}}
+
+.statusbar,.navbar{flex:none}
+.stack{position:absolute;inset:0;display:flex;flex-direction:column}
+.scroll{flex:1;overflow:hidden;position:relative}
+.pad{padding-left:var(--margin);padding-right:var(--margin)}
+
+/* status bar glyphs */
+.sb-sig{display:flex;align-items:flex-end;gap:2px;height:11px}
+.sb-sig i{width:3px;background:currentColor;border-radius:1px;display:block}
+.sb-sig i:nth-child(1){height:4px}.sb-sig i:nth-child(2){height:6px}
+.sb-sig i:nth-child(3){height:8.5px}.sb-sig i:nth-child(4){height:11px}
+.sb-bat{width:25px;height:12px;border:1.1px solid currentColor;border-radius:3.4px;
+        opacity:.9;position:relative;padding:1.4px}
+.sb-bat::after{content:"";position:absolute;right:-3px;top:3.6px;width:1.6px;height:4.4px;
+        border-radius:0 1px 1px 0;background:currentColor;opacity:.5}
+.sb-bat b{display:block;height:100%;width:72%;background:currentColor;border-radius:1.6px}
+
+/* hero money figure */
+.hero-amt{font-family:var(--f-round);font-variant-numeric:tabular-nums;
+          font-size:52px;font-weight:700;letter-spacing:-2px;line-height:1}
+.hero-amt .cur{font-size:30px;font-weight:600;letter-spacing:-1px;vertical-align:5px;opacity:.55}
+.hero-amt .dec{font-size:30px;opacity:.4}
+
+/* delta pill */
+.pill{display:inline-flex;align-items:center;gap:3px;height:24px;padding:0 8px 0 6px;
+      border-radius:var(--r-chip);font-size:13px;font-weight:600;font-variant-numeric:tabular-nums}
+.pill svg{width:13px;height:13px;stroke-width:2.6}
+.pill--gain{color:var(--gain);background:color-mix(in srgb,var(--gain) 13%,transparent)}
+.pill--loss{color:var(--loss);background:color-mix(in srgb,var(--loss) 13%,transparent)}
+
+/* segmented range control */
+.seg{display:flex;gap:2px;background:color-mix(in srgb,var(--ink) 6%,transparent);
+     border-radius:var(--r-ctl);padding:2px}
+.seg span{flex:1;text-align:center;font-size:13px;font-weight:500;color:var(--ink-2);
+          padding:5px 0;border-radius:9px}
+.seg span[data-on]{background:var(--surface-el);color:var(--ink);font-weight:600;
+                   box-shadow:0 1px 3px rgba(0,0,0,.10)}
+
+/* allocation donut */
+.donut{transform:rotate(-90deg)}
+.donut circle{fill:none;stroke-linecap:butt}
+.alloc-key{display:flex;align-items:center;gap:7px;font-size:13px;padding:5px 0}
+.alloc-key .dot{width:8px;height:8px;border-radius:3px;flex:none}
+.alloc-key .nm{flex:1;color:var(--ink-2)}
+.alloc-key .pc{font-weight:600;font-variant-numeric:tabular-nums}
+
+/* ledger + holding rows */
+.mono{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;flex:none;
+      font-size:13px;font-weight:700;letter-spacing:-.3px}
+.lrow{display:flex;align-items:center;gap:12px;padding:11px var(--margin);min-height:56px}
+.lrow .bd{flex:1;min-width:0}
+.lrow .n1{font-size:16px;letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lrow .n2{font-size:12.5px;color:var(--ink-2);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lrow .tr{text-align:right;font-variant-numeric:tabular-nums;flex:none}
+.lrow .amt{font-size:16px;font-weight:600;letter-spacing:-.3px}
+.lrow .sub{font-size:12px;color:var(--ink-2);margin-top:2px}
+.grp{background:var(--surface-el);border-radius:var(--r-card);overflow:hidden}
+.grp .lrow+.lrow{border-top:.5px solid var(--hairline)}
+.day-hd{display:flex;justify-content:space-between;align-items:baseline;
+        padding:15px var(--margin) 7px;font-size:13px;font-weight:600;color:var(--ink-2)}
+.day-hd em{font-style:normal;font-weight:500;font-variant-numeric:tabular-nums;opacity:.75}
+
+/* keypad */
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:10px 8px}
+.keys button{all:unset;height:52px;display:grid;place-items:center;border-radius:var(--r-ctl);
+             font-size:27px;font-weight:400;letter-spacing:-.5px;color:var(--ink);
+             font-variant-numeric:tabular-nums;cursor:default}
+.keys button.k-alt{font-size:22px}
+.cta{height:52px;border-radius:26px;background:var(--accent);color:#fff;display:flex;
+     align-items:center;justify-content:center;gap:8px;font-size:17px;font-weight:600}
+
+/* progress ring (goal) */
+.ring circle{fill:none;stroke-linecap:round}
+</style>
+<style>
+/* ---------- screen-3 immersive hero ---------- */
+.hero-dark{background:#0B1412;color:#FFF;position:relative;
+  --ink:#FFF;--ink-2:rgba(235,235,245,.62);--ink-3:rgba(235,235,245,.34);--accent:#2FBFA8}
+.hero-dark .seg{background:rgba(255,255,255,.10)}
+.hero-dark .seg span{color:rgba(235,235,245,.62)}
+.hero-dark .seg span[data-on]{background:rgba(255,255,255,.92);color:#0B1412;box-shadow:none}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr}
+.stat-grid>div{padding:11px 0}
+.stat-grid>div:nth-child(odd){padding-right:14px;border-right:.5px solid var(--hairline)}
+.stat-grid>div:nth-child(even){padding-left:14px}
+.stat-grid>div:nth-child(-n+4){border-bottom:.5px solid var(--hairline)}
+.stat-grid .k{font-size:12.5px;color:var(--ink-2)}
+.stat-grid .v{font-size:16px;font-weight:600;font-variant-numeric:tabular-nums;margin-top:3px;letter-spacing:-.2px}
+.actionbar{position:absolute;left:21px;right:21px;bottom:21px;height:60px;border-radius:30px;
+  display:flex;align-items:center;gap:8px;padding:6px;z-index:5}
+.actionbar .b{flex:1;height:48px;border-radius:24px;display:grid;place-items:center;
+  font-size:17px;font-weight:600;letter-spacing:-.2px}
+.actionbar .b--buy{background:var(--accent);color:#fff}
+.actionbar .b--sell{color:var(--ink)}
+</style>
+<style>
+/* ---------- s4 order sheet ---------- */
+.scrim{position:absolute;inset:0;background:#0B1412}
+.scrim .blurstrip{position:absolute;inset:0;filter:blur(18px) saturate(120%);opacity:.55}
+.sheet{position:absolute;left:0;right:0;bottom:0;top:104px;background:var(--surface-el);
+  border-radius:var(--r-sheet) var(--r-sheet) 0 0;overflow:hidden;
+  box-shadow:0 -12px 40px rgba(0,0,0,.35)}
+.grabber{width:36px;height:5px;border-radius:3px;background:var(--ink);opacity:.18;
+  margin:8px auto 0}
+.quick{display:flex;gap:8px}
+.quick span{flex:1;height:34px;border-radius:var(--r-ctl);display:grid;place-items:center;
+  font-size:14px;font-weight:600;background:color-mix(in srgb,var(--ink) 6%,transparent)}
+.quick span[data-on]{background:var(--accent-soft);color:var(--accent)}
+.inforow{display:flex;justify-content:space-between;align-items:center;
+  font-size:14.5px;padding:11px 0}
+.inforow .k{color:var(--ink-2)}
+.inforow .v{font-weight:600;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:3px}
+
+/* ---------- s5 celebration ---------- */
+.celebrate{position:absolute;inset:0;
+  background:radial-gradient(120% 70% at 50% 8%,color-mix(in srgb,var(--accent) 22%,transparent) 0%,transparent 62%),var(--surface)}
+.ghost{height:50px;border-radius:25px;display:grid;place-items:center;font-size:17px;
+  font-weight:600;color:var(--accent);background:var(--accent-soft)}
+
+/* ---------- s6 settings ---------- */
+.inset{background:var(--surface-el);border-radius:var(--r-card);overflow:hidden}
+.srow{display:flex;align-items:center;gap:12px;padding:12px var(--s5);min-height:48px}
+.srow+.srow{border-top:.5px solid var(--hairline)}
+.srow .ic{width:29px;height:29px;border-radius:8px;display:grid;place-items:center;
+  color:#fff;flex:none}
+.srow .lb{flex:1;font-size:16.5px;letter-spacing:-.2px}
+.srow .val{font-size:15px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.srow .chev{color:var(--ink-3);flex:none}
+.tgl{width:51px;height:31px;border-radius:16px;background:var(--accent);position:relative;flex:none}
+.tgl::after{content:"";position:absolute;top:2px;left:22px;width:27px;height:27px;border-radius:14px;
+  background:#fff;box-shadow:0 2px 5px rgba(0,0,0,.22)}
+.tgl--off{background:color-mix(in srgb,var(--ink) 16%,transparent)}
+.tgl--off::after{left:2px}
+</style>
+
+<style>
+:root{
+  --p-bg:#E9EAEC; --p-surface:#FFFFFF; --p-ink:#141A19; --p-ink-2:#5D6866;
+  --p-line:rgba(20,26,25,.12); --p-accent:#0F7B6C; --p-accent-soft:rgba(15,123,108,.10);
+  --p-ok:#1C8C4B; --p-na:#7C8481;
+  --p-disp:"Archivo","Helvetica Neue",sans-serif;
+  --p-body:"Literata",Georgia,serif;
+  --p-mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --p-bg:#0D1211; --p-surface:#161D1B; --p-ink:#EDF1F0; --p-ink-2:#96A29F;
+    --p-line:rgba(237,241,240,.14); --p-accent:#2FBFA8; --p-accent-soft:rgba(47,191,168,.14);
+    --p-ok:#30D158; --p-na:#8A9491;
+  }
+}
+:root[data-theme="dark"]{
+  --p-bg:#0D1211; --p-surface:#161D1B; --p-ink:#EDF1F0; --p-ink-2:#96A29F;
+  --p-line:rgba(237,241,240,.14); --p-accent:#2FBFA8; --p-accent-soft:rgba(47,191,168,.14);
+  --p-ok:#30D158; --p-na:#8A9491;
+}
+body{background:var(--p-bg);color:var(--p-ink);font-family:var(--p-body);
+  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;margin:0}
+.p-wrap{max-width:1180px;margin:0 auto;padding:56px 28px 80px;
+  display:flex;flex-direction:column;gap:44px}
+.p-eyebrow{font-family:var(--p-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--p-accent);margin:0 0 10px}
+h1{font-family:var(--p-disp);font-weight:700;font-size:clamp(38px,6vw,60px);
+  letter-spacing:-.035em;line-height:1;margin:0;text-wrap:balance}
+.p-sub{color:var(--p-ink-2);max-width:62ch;margin:14px 0 0;font-size:17px}
+.p-tokens{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--p-line);
+  border-radius:14px;overflow:hidden;background:var(--p-surface)}
+.p-tok{flex:1 1 172px;padding:15px 18px;border-right:1px solid var(--p-line)}
+.p-tok:last-child{border-right:0}
+.p-tok dt{font-family:var(--p-mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--p-ink-2)}
+.p-tok dd{font-family:var(--p-mono);font-size:14px;margin:6px 0 0;
+  display:flex;align-items:center;gap:8px;font-variant-numeric:tabular-nums}
+.p-swatch{width:15px;height:15px;border-radius:5px;background:#0F7B6C;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.16);flex:none}
+.p-rail{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:40px 34px;padding:4px 0 8px}
+.p-board{margin:0;display:flex;flex-direction:column;gap:16px;min-width:0}
+.p-cap{min-height:132px}
+.p-num{font-family:var(--p-mono);font-size:11px;letter-spacing:.1em;color:var(--p-accent);
+  display:block;margin-bottom:7px}
+.p-cap h3{font-family:var(--p-disp);font-weight:700;font-size:21px;letter-spacing:-.02em;
+  margin:0 0 9px;text-wrap:balance}
+.p-cap p{margin:0 0 7px;font-size:13.5px;line-height:1.5;color:var(--p-ink-2)}
+.p-lbl{font-family:var(--p-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--p-ink);display:block;margin-bottom:2px}
+.p-dev{width:340px;height:737px;border-radius:33px;overflow:hidden;
+  box-shadow:0 1px 2px rgba(0,0,0,.10),0 18px 44px rgba(0,0,0,.16);
+  outline:1px solid var(--p-line);outline-offset:-1px}
+.p-dev .ios{transform:scale(.865);transform-origin:top left}
+h2{font-family:var(--p-disp);font-weight:700;font-size:26px;letter-spacing:-.025em;margin:0 0 6px}
+.p-tablewrap{overflow-x:auto;border:1px solid var(--p-line);border-radius:14px;background:var(--p-surface)}
+table{border-collapse:collapse;width:100%;min-width:620px}
+th,td{text-align:left;padding:12px 18px;border-bottom:1px solid var(--p-line);font-size:14.5px;vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font-family:var(--p-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--p-ink-2);font-weight:500}
+td:first-child{font-family:var(--p-disp);font-weight:500;white-space:nowrap}
+td:last-child{color:var(--p-ink-2)}
+.p-v{font-family:var(--p-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+  padding:3px 8px;border-radius:6px}
+.p-v--pass{color:var(--p-ok);background:color-mix(in srgb,var(--p-ok) 13%,transparent)}
+.p-v--na{color:var(--p-na);background:color-mix(in srgb,var(--p-na) 15%,transparent)}
+.p-note{font-family:var(--p-mono);font-size:12.5px;color:var(--p-ink-2);line-height:1.7;
+  border-left:2px solid var(--p-accent);padding-left:16px}
+.p-themebar{display:flex;align-items:center;gap:10px;margin-top:22px}
+.p-themebar span{font-family:var(--p-mono);font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--p-ink-2)}
+.p-seg{display:flex;gap:2px;background:var(--p-surface);border:1px solid var(--p-line);
+  border-radius:9px;padding:2px}
+.p-seg button{font-family:var(--p-mono);font-size:12px;color:var(--p-ink-2);
+  background:none;border:0;border-radius:7px;padding:5px 13px;cursor:pointer}
+.p-seg button[aria-pressed="true"]{background:var(--p-accent-soft);color:var(--p-accent)}
+.p-seg button:focus-visible{outline:2px solid var(--p-accent);outline-offset:1px}
+@media (max-width:640px){.p-wrap{padding:36px 18px 60px}}
+</style>
+
+<div class="p-wrap">
+  <header>
+    <p class="p-eyebrow">Session 2 · Fintech · review gate</p>
+    <h1>WealthKit</h1>
+    <p class="p-sub">Six iOS 26 artboards, one per archetype in the portfolio grid — no two share a
+      layout skeleton.
+      Screens are live HTML at 393 × 852, so text stays sharp at any zoom and both themes
+      are painted from tokens — switch below and the six screens follow.</p>
+    <div class="p-themebar">
+      <span>Theme</span>
+      <div class="p-seg" role="group" aria-label="Theme">
+        <button type="button" data-t="auto" aria-pressed="true">Auto</button>
+        <button type="button" data-t="light" aria-pressed="false">Light</button>
+        <button type="button" data-t="dark" aria-pressed="false">Dark</button>
+      </div>
+    </div>
+  </header>
+
+  <dl class="p-tokens">
+    <div class="p-tok"><dt>Accent</dt><dd><span class="p-swatch"></span>#0F7B6C</dd></div>
+    <div class="p-tok"><dt>Dark accent</dt><dd><span class="p-swatch" style="background:#2FBFA8"></span>#2FBFA8</dd></div>
+    <div class="p-tok"><dt>Canvas</dt><dd>393 × 852 @3×</dd></div>
+    <div class="p-tok"><dt>Radii</dt><dd>38 · 20 · 12 · 8</dd></div>
+    <div class="p-tok"><dt>Glass</dt><dd>chrome only, 1 layer</dd></div>
+    <div class="p-tok"><dt>Icons</dt><dd>43 inline SVG</dd></div>
+  </dl>
+
+  <div class="p-rail">
+<figure class="p-board">
+  <figcaption class="p-cap">
+    <span class="p-num">01</span>
+    <h3>Data-dense dashboard</h3>
+    <p class="p-bold"><span class="p-lbl">Bold move</span>Oversized portfolio figure over an edge-to-edge intraday sparkline</p>
+    <p class="p-widg"><span class="p-lbl">Widgets</span>Hero figure · sparkline · allocation donut · ledger rows</p>
+  </figcaption>
+  <div class="p-dev"><div class="ios">
+  <div class="island"></div>
+  <div class="stack">
+  <div class="statusbar"><span>9:41</span><span class="glyphs">
+    <span class="sb-sig"><i></i><i></i><i></i><i></i></span>
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><path d="M8.5 10.6 10.7 8.3a3.1 3.1 0 0 0-4.4 0ZM4.6 6.7l1.3 1.3a4.9 4.9 0 0 1 5.2 0l1.3-1.3a6.7 6.7 0 0 0-7.8 0ZM1.6 3.6 2.9 5a9.3 9.3 0 0 1 11.2 0l1.3-1.4a11.1 11.1 0 0 0-13.8 0Z"/></svg>
+    <span class="sb-bat"><b></b></span></span></div>
+    <div class="navbar">
+      <span style="display:flex;align-items:center;gap:5px">Portfolio
+        <svg class="i i--sm" style="opacity:.4"><use href="#ic-chev-d"/></svg></span>
+      <span style="display:flex;align-items:center;gap:14px">
+        <svg class="i"><use href="#ic-bell"/></svg>
+        <span class="mono" style="width:30px;height:30px;border-radius:15px;background:var(--accent);color:#fff;font-size:12px">AG</span>
+      </span>
+    </div>
+
+    <div class="scroll">
+      <!-- BOLD MOVE: oversized value + edge-to-edge sparkline -->
+      <div class="pad" style="padding-top:10px">
+        <div style="font-size:13px;color:var(--ink-2);letter-spacing:.2px">Total value</div>
+        <div class="hero-amt" style="margin-top:6px"><span class="cur">₹</span>18,42,650<span class="dec">.40</span></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:11px">
+          <span class="pill pill--gain"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>₹24,180</span>
+          <span class="num" style="font-size:13px;font-weight:600;color:var(--gain)">+1.33%</span>
+          <span style="font-size:13px;color:var(--ink-3)">Today</span>
+        </div>
+      </div>
+
+      <svg width="393" height="110" viewBox="0 0 393 132" style="display:block;margin-top:6px">
+        <defs><linearGradient id="fg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="var(--gain)" stop-opacity=".30"/>
+          <stop offset="1" stop-color="var(--gain)" stop-opacity=".02"/></linearGradient></defs>
+        <path d="M0.0,121.6 C1.4,120.0 5.7,113.5 8.6,112.1 C11.4,110.6 14.3,112.4 17.2,112.8 C20.0,113.3 22.9,112.7 25.7,114.8 C28.6,116.9 31.5,123.6 34.3,125.4 C37.2,127.3 40.0,128.9 42.9,126.0 C45.7,123.1 48.6,112.5 51.5,108.1 C54.3,103.8 57.2,104.0 60.0,99.8 C62.9,95.6 65.8,86.7 68.6,82.9 C71.5,79.1 74.3,79.3 77.2,77.0 C80.1,74.6 82.9,71.2 85.8,69.0 C88.6,66.8 91.5,61.3 94.4,63.9 C97.2,66.6 100.1,84.0 102.9,85.1 C105.8,86.2 108.7,74.6 111.5,70.6 C114.4,66.6 117.2,64.2 120.1,61.1 C122.9,57.9 125.8,49.6 128.7,51.6 C131.5,53.6 134.4,65.9 137.2,73.1 C140.1,80.4 143.0,89.9 145.8,95.3 C148.7,100.7 151.5,103.0 154.4,105.4 C157.3,107.8 160.1,110.0 163.0,109.6 C165.8,109.1 168.7,104.3 171.6,102.9 C174.4,101.5 177.3,103.0 180.1,101.1 C183.0,99.2 185.9,91.9 188.7,91.4 C191.6,90.9 194.4,98.1 197.3,98.0 C200.1,98.0 203.0,93.8 205.9,91.3 C208.7,88.9 211.6,83.5 214.4,83.4 C217.3,83.2 220.2,93.5 223.0,90.3 C225.9,87.0 228.7,72.6 231.6,63.7 C234.5,54.9 237.3,44.9 240.2,37.2 C243.0,29.6 245.9,19.9 248.8,17.8 C251.6,15.6 254.5,21.8 257.3,24.2 C260.2,26.6 263.1,30.5 265.9,32.3 C268.8,34.1 271.6,34.5 274.5,34.8 C277.3,35.0 280.2,35.9 283.1,33.8 C285.9,31.8 288.8,25.3 291.6,22.4 C294.5,19.5 297.4,16.7 300.2,16.4 C303.1,16.0 305.9,17.8 308.8,20.3 C311.7,22.9 314.5,28.9 317.4,31.6 C320.2,34.3 323.1,39.0 326.0,36.5 C328.8,34.1 331.7,18.5 334.5,16.7 C337.4,14.9 340.3,25.3 343.1,25.8 C346.0,26.3 348.8,22.3 351.7,19.9 C354.5,17.5 357.4,9.6 360.3,11.3 C363.1,13.1 366.0,27.6 368.8,30.2 C371.7,32.8 374.6,31.1 377.4,27.1 C380.3,23.0 384.6,9.5 386.0,6.0 L386.0,132 L0.0,132 Z" fill="url(#fg)"/>
+        <path d="M0.0,121.6 C1.4,120.0 5.7,113.5 8.6,112.1 C11.4,110.6 14.3,112.4 17.2,112.8 C20.0,113.3 22.9,112.7 25.7,114.8 C28.6,116.9 31.5,123.6 34.3,125.4 C37.2,127.3 40.0,128.9 42.9,126.0 C45.7,123.1 48.6,112.5 51.5,108.1 C54.3,103.8 57.2,104.0 60.0,99.8 C62.9,95.6 65.8,86.7 68.6,82.9 C71.5,79.1 74.3,79.3 77.2,77.0 C80.1,74.6 82.9,71.2 85.8,69.0 C88.6,66.8 91.5,61.3 94.4,63.9 C97.2,66.6 100.1,84.0 102.9,85.1 C105.8,86.2 108.7,74.6 111.5,70.6 C114.4,66.6 117.2,64.2 120.1,61.1 C122.9,57.9 125.8,49.6 128.7,51.6 C131.5,53.6 134.4,65.9 137.2,73.1 C140.1,80.4 143.0,89.9 145.8,95.3 C148.7,100.7 151.5,103.0 154.4,105.4 C157.3,107.8 160.1,110.0 163.0,109.6 C165.8,109.1 168.7,104.3 171.6,102.9 C174.4,101.5 177.3,103.0 180.1,101.1 C183.0,99.2 185.9,91.9 188.7,91.4 C191.6,90.9 194.4,98.1 197.3,98.0 C200.1,98.0 203.0,93.8 205.9,91.3 C208.7,88.9 211.6,83.5 214.4,83.4 C217.3,83.2 220.2,93.5 223.0,90.3 C225.9,87.0 228.7,72.6 231.6,63.7 C234.5,54.9 237.3,44.9 240.2,37.2 C243.0,29.6 245.9,19.9 248.8,17.8 C251.6,15.6 254.5,21.8 257.3,24.2 C260.2,26.6 263.1,30.5 265.9,32.3 C268.8,34.1 271.6,34.5 274.5,34.8 C277.3,35.0 280.2,35.9 283.1,33.8 C285.9,31.8 288.8,25.3 291.6,22.4 C294.5,19.5 297.4,16.7 300.2,16.4 C303.1,16.0 305.9,17.8 308.8,20.3 C311.7,22.9 314.5,28.9 317.4,31.6 C320.2,34.3 323.1,39.0 326.0,36.5 C328.8,34.1 331.7,18.5 334.5,16.7 C337.4,14.9 340.3,25.3 343.1,25.8 C346.0,26.3 348.8,22.3 351.7,19.9 C354.5,17.5 357.4,9.6 360.3,11.3 C363.1,13.1 366.0,27.6 368.8,30.2 C371.7,32.8 374.6,31.1 377.4,27.1 C380.3,23.0 384.6,9.5 386.0,6.0" fill="none" stroke="var(--gain)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="386.0" cy="6.0" r="7" fill="var(--gain)" opacity=".18"/>
+        <circle cx="386.0" cy="6.0" r="3.2" fill="var(--gain)"/>
+      </svg>
+
+      <div class="pad" style="margin-top:10px">
+        <div class="seg"><span data-on>1D</span><span>1W</span><span>1M</span><span>6M</span><span>1Y</span><span>ALL</span></div>
+      </div>
+
+      <div class="pad" style="margin-top:20px">
+        <div class="card" style="display:flex;gap:18px;align-items:center;padding:14px 20px">
+          <svg class="donut" width="104" height="104" viewBox="0 0 104 104" style="flex:none">
+            <circle cx="52" cy="52" r="44" stroke="#0F7B6C" stroke-width="10" stroke-dasharray="168.4 108.1"/>
+            <circle cx="52" cy="52" r="44" stroke="#2FA396" stroke-width="10" stroke-dasharray="46.8 229.7" stroke-dashoffset="-171.4"/>
+            <circle cx="52" cy="52" r="44" stroke="#93CEC5" stroke-width="10" stroke-dasharray="30.2 246.3" stroke-dashoffset="-221.2"/>
+            <circle cx="52" cy="52" r="44" stroke="rgba(120,124,130,.45)" stroke-width="10" stroke-dasharray="19.1 257.4" stroke-dashoffset="-254.4"/>
+            <g transform="rotate(90 52 52)">
+              <text x="52" y="50" text-anchor="middle" class="rnd" font-size="21" font-weight="700" fill="var(--ink)" letter-spacing="-.5">62%</text>
+              <text x="52" y="65" text-anchor="middle" font-size="11" fill="var(--ink-2)">Equity</text>
+            </g>
+          </svg>
+          <div style="flex:1">
+            <div class="alloc-key"><i class="dot" style="background:#0F7B6C"></i><span class="nm">Equity</span><span class="pc">62%</span></div>
+            <div class="alloc-key"><i class="dot" style="background:#2FA396"></i><span class="nm">Debt</span><span class="pc">18%</span></div>
+            <div class="alloc-key"><i class="dot" style="background:#93CEC5"></i><span class="nm">Gold</span><span class="pc">12%</span></div>
+            <div class="alloc-key"><i class="dot" style="background:rgba(120,124,130,.45)"></i><span class="nm">Cash</span><span class="pc">8%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:baseline;padding:18px 16px 8px">
+        <span style="font-size:20px;font-weight:700;letter-spacing:-.4px">Holdings</span>
+        <span style="font-size:15px;color:var(--accent);font-weight:500">See all</span>
+      </div>
+      <div class="pad"><div class="grp">
+        <div class="lrow"><span class="mono" style="background:#0B4E8A;color:#fff">HD</span>
+          <span class="bd"><div class="n1">HDFC Bank</div><div class="n2 num">18 shares · ₹1,702.40</div></span>
+          <svg width="40" height="22" style="flex:none;margin-right:2px"><path d="M0.0,19.0 C0.3,18.6 1.3,16.6 1.9,16.4 C2.5,16.1 3.2,17.6 3.8,17.4 C4.4,17.2 5.1,15.6 5.7,15.2 C6.3,14.8 7.0,15.1 7.6,15.0 C8.3,15.0 8.9,15.6 9.5,14.9 C10.2,14.3 10.8,11.9 11.4,11.1 C12.1,10.3 12.7,10.5 13.3,10.2 C14.0,10.0 14.6,10.1 15.2,9.7 C15.9,9.3 16.5,8.6 17.1,7.9 C17.8,7.1 18.4,5.8 19.0,5.2 C19.7,4.7 20.3,5.1 21.0,4.7 C21.6,4.3 22.2,3.1 22.9,3.0 C23.5,2.9 24.1,4.0 24.8,4.2 C25.4,4.4 26.0,4.2 26.7,4.2 C27.3,4.3 27.9,4.1 28.6,4.4 C29.2,4.8 29.8,5.6 30.5,6.3 C31.1,6.9 31.7,7.7 32.4,8.4 C33.0,9.1 33.7,10.3 34.3,10.7 C34.9,11.1 35.6,10.6 36.2,10.5 C36.8,10.5 37.5,10.3 38.1,10.3 C38.7,10.2 39.7,10.2 40.0,10.2" fill="none" stroke="var(--gain)" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <span class="tr"><div class="amt">₹4,12,980</div><div class="sub" style="color:var(--gain)">+1.84%</div></span></div>
+        <div class="lrow"><span class="mono" style="background:#1F3A5F;color:#fff">PP</span>
+          <span class="bd"><div class="n1">PPFAS Flexi Cap</div><div class="n2 num">Direct · Growth</div></span>
+          <svg width="40" height="22" style="flex:none;margin-right:2px"><path d="M0.0,19.0 C0.3,18.8 1.3,18.4 1.9,17.8 C2.5,17.2 3.2,15.5 3.8,15.2 C4.4,14.9 5.1,15.4 5.7,16.0 C6.3,16.5 7.0,18.2 7.6,18.6 C8.3,19.0 8.9,18.6 9.5,18.4 C10.2,18.1 10.8,17.6 11.4,16.9 C12.1,16.2 12.7,14.2 13.3,14.1 C14.0,14.0 14.6,15.7 15.2,16.5 C15.9,17.3 16.5,18.9 17.1,19.0 C17.8,19.1 18.4,17.6 19.0,17.1 C19.7,16.5 20.3,16.5 21.0,15.6 C21.6,14.8 22.2,12.9 22.9,11.8 C23.5,10.7 24.1,9.7 24.8,9.2 C25.4,8.7 26.0,9.0 26.7,9.1 C27.3,9.1 27.9,10.3 28.6,9.3 C29.2,8.3 29.8,4.0 30.5,3.0 C31.1,2.0 31.7,3.0 32.4,3.3 C33.0,3.6 33.7,4.1 34.3,4.7 C34.9,5.4 35.6,6.7 36.2,7.0 C36.8,7.3 37.5,6.6 38.1,6.4 C38.7,6.2 39.7,5.8 40.0,5.7" fill="none" stroke="var(--gain)" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <span class="tr"><div class="amt">₹3,86,420</div><div class="sub" style="color:var(--gain)">+0.91%</div></span></div>
+        <div class="lrow"><span class="mono" style="background:#0E2A47;color:#fff">RI</span>
+          <span class="bd"><div class="n1">Reliance</div><div class="n2 num">92 shares · ₹2,979.90</div></span>
+          <svg width="40" height="22" style="flex:none;margin-right:2px"><path d="M0.0,3.0 C0.3,3.4 1.3,5.1 1.9,5.4 C2.5,5.7 3.2,4.2 3.8,4.8 C4.4,5.4 5.1,8.2 5.7,9.0 C6.3,9.8 7.0,8.9 7.6,9.7 C8.3,10.5 8.9,13.2 9.5,13.7 C10.2,14.2 10.8,12.6 11.4,12.5 C12.1,12.3 12.7,12.9 13.3,12.6 C14.0,12.4 14.6,11.0 15.2,11.0 C15.9,10.9 16.5,12.1 17.1,12.2 C17.8,12.4 18.4,12.0 19.0,12.1 C19.7,12.2 20.3,12.6 21.0,13.0 C21.6,13.4 22.2,14.3 22.9,14.6 C23.5,14.9 24.1,14.4 24.8,14.8 C25.4,15.3 26.0,16.6 26.7,17.2 C27.3,17.7 27.9,18.1 28.6,18.2 C29.2,18.2 29.8,17.6 30.5,17.6 C31.1,17.5 31.7,17.7 32.4,17.9 C33.0,18.2 33.7,19.3 34.3,19.0 C34.9,18.7 35.6,16.6 36.2,16.2 C36.8,15.8 37.5,16.3 38.1,16.6 C38.7,16.9 39.7,17.7 40.0,17.9" fill="none" stroke="var(--loss)" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <span class="tr"><div class="amt">₹2,74,150</div><div class="sub" style="color:var(--loss)">−0.62%</div></span></div>
+      </div></div>
+      <div style="height:110px"></div>
+    </div>
+  </div>
+
+  <nav class="tabbar glass glass--rim">
+    <a class="tabitem" aria-current="page"><svg class="i"><use href="#ic-pie"/></svg>Portfolio</a>
+    <a class="tabitem"><svg class="i"><use href="#ic-card"/></svg>Spend</a>
+    <a class="tabitem"><svg class="i"><use href="#ic-target"/></svg>Goals</a>
+    <a class="tabitem"><svg class="i"><use href="#ic-person"/></svg>You</a>
+  </nav>
+  <div class="homebar"></div>
+</div>
+</div>
+</figure><figure class="p-board">
+  <figcaption class="p-cap">
+    <span class="p-num">02</span>
+    <h3>Rich scrolling feed</h3>
+    <p class="p-bold"><span class="p-lbl">Bold move</span>14-week spend histogram with only the current month in accent</p>
+    <p class="p-widg"><span class="p-lbl">Widgets</span>Category-coloured merchant tiles · day totals · tabular amounts</p>
+  </figcaption>
+  <div class="p-dev"><div class="ios">
+  <div class="island"></div>
+  <div class="stack">
+  <div class="statusbar"><span>9:41</span><span class="glyphs">
+    <span class="sb-sig"><i></i><i></i><i></i><i></i></span>
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><path d="M8.5 10.6 10.7 8.3a3.1 3.1 0 0 0-4.4 0ZM4.6 6.7l1.3 1.3a4.9 4.9 0 0 1 5.2 0l1.3-1.3a6.7 6.7 0 0 0-7.8 0ZM1.6 3.6 2.9 5a9.3 9.3 0 0 1 11.2 0l1.3-1.4a11.1 11.1 0 0 0-13.8 0Z"/></svg>
+    <span class="sb-bat"><b></b></span></span></div>
+
+    <div class="navbar navbar--large" style="padding-top:2px;display:flex;align-items:flex-end;justify-content:space-between">
+      <h1>Spend</h1>
+      <span style="display:flex;align-items:center;gap:16px;padding-bottom:5px">
+        <svg class="i"><use href="#ic-search"/></svg>
+        <svg class="i"><use href="#ic-filter"/></svg></span>
+    </div>
+
+    <div class="scroll">
+      <!-- BOLD MOVE: 14-week spend bars, current week accented -->
+      <div class="pad" style="padding-top:6px">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between">
+          <div>
+            <div style="font-size:13px;color:var(--ink-2)">August so far</div>
+            <div class="money" style="font-size:34px;font-weight:700;letter-spacing:-1.1px;margin-top:3px">₹48,320</div>
+          </div>
+          <span class="pill pill--gain" style="margin-bottom:5px">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>12% vs Jul</span>
+        </div>
+        <svg width="361" height="52" viewBox="0 0 361 52" style="display:block;margin-top:12px"><rect x="0.0" y="19.5" width="16" height="32.5" rx="5" fill="color-mix(in srgb,var(--ink) 10%,transparent)"/><rect x="25.8" y="22.8" width="16" height="29.2" rx="5" fill="color-mix(in srgb,var(--ink) 10%,transparent)"/><rect x="51.6" y="31.4" width="16" height="20.6" rx="5" fill="color-mix(in srgb,var(--ink) 10%,transparent)"/><rect x="77.4" y="4.9" width="16" height="47.1" rx="5" fill="color-mix(in srgb,var(--ink) 10%,transparent)"/><rect x="103.2" y="36.2" width="16" height="15.8" rx="5" fill="color-mix(in srgb,var(--ink) 10%,transparent)"/><rect x="129.0" y="18.1" width="16" height="33.9" rx="5" fill="color-mix(in srgb,var(--ink) 10%,transparent)"/><rect x="154.8" y="3.7" width="16" height="48.3" rx="5" fill="color-mix(in srgb,var(--ink) 10%,transparent)"/><rect x="180.6" y="33.5" width="16" height="18.5" rx="5" fill="color-mix(in srgb,var(--ink) 10%,transparent)"/><rect x="206.4" y="16.2" width="16" height="35.8" rx="5" fill="color-mix(in srgb,var(--ink) 10%,transparent)"/><rect x="232.2" y="14.0" width="16" height="38.0" rx="5" fill="color-mix(in srgb,var(--ink) 10%,transparent)"/><rect x="258.0" y="34.9" width="16" height="17.1" rx="5" fill="color-mix(in srgb,var(--ink) 10%,transparent)"/><rect x="283.8" y="22.6" width="16" height="29.4" rx="5" fill="color-mix(in srgb,var(--ink) 10%,transparent)"/><rect x="309.6" y="4.2" width="16" height="47.8" rx="5" fill="color-mix(in srgb,var(--ink) 10%,transparent)"/><rect x="335.4" y="21.8" width="16" height="30.2" rx="5" fill="var(--accent)"/></svg>
+        <div class="num" style="display:flex;justify-content:space-between;font-size:11px;color:var(--ink-3);margin-top:5px">
+          <span>May</span><span>Jun</span><span>Jul</span><span>Aug</span></div>
+      </div>
+
+      <div class="day-hd"><span>Today</span><em>−₹1,097</em></div>
+      <div class="pad"><div class="grp">
+        <div class="lrow"><span class="mono" style="background:#FC8019;color:#fff">SW</span>
+          <span class="bd"><div class="n1">Swiggy</div><div class="n2">Food &amp; dining · 1:12 PM</div></span>
+          <span class="tr"><div class="amt num">−₹486</div></span></div>
+        <div class="lrow"><span class="mono" style="background:#F7CB46;color:#3A2E00">BL</span>
+          <span class="bd"><div class="n1">Blinkit</div><div class="n2">Groceries · 11:04 AM</div></span>
+          <span class="tr"><div class="amt num">−₹761</div></span></div>
+        <div class="lrow"><span class="mono" style="background:#0D2B3E;color:#fff">CR</span>
+          <span class="bd"><div class="n1">CRED</div><div class="n2">Cashback · 9:38 AM</div></span>
+          <span class="tr"><div class="amt num" style="color:var(--gain)">+₹150</div></span></div>
+      </div></div>
+
+      <div class="day-hd"><span>Yesterday</span><em>−₹3,829</em></div>
+      <div class="pad"><div class="grp">
+        <div class="lrow"><span class="mono" style="background:#111;color:#fff">UB</span>
+          <span class="bd"><div class="n1">Uber</div><div class="n2">Travel · 8:41 PM</div></span>
+          <span class="tr"><div class="amt num">−₹312</div></span></div>
+        <div class="lrow"><span class="mono" style="background:#0B5A9E;color:#fff">CM</span>
+          <span class="bd"><div class="n1">Croma</div><div class="n2">Electronics · 6:15 PM</div></span>
+          <span class="tr"><div class="amt num">−₹3,199</div></span></div>
+        <div class="lrow"><span class="mono" style="background:#0F7B4A;color:#fff">AP</span>
+          <span class="bd"><div class="n1">Apollo Pharmacy</div><div class="n2">Health · 12:26 PM</div></span>
+          <span class="tr"><div class="amt num">−₹318</div></span></div>
+      </div></div>
+
+      <div class="day-hd"><span>Mon, 24 Aug</span><em>−₹649</em></div>
+      <div class="pad"><div class="grp">
+        <div class="lrow"><span class="mono" style="background:#1B3A6B;color:#fff">IR</span>
+          <span class="bd"><div class="n1">IRCTC</div><div class="n2">Travel · 7:02 PM</div></span>
+          <span class="tr"><div class="amt num">−₹649</div></span></div>
+      </div></div>
+      <div style="height:120px"></div>
+    </div>
+  </div>
+
+  <nav class="tabbar glass glass--rim">
+    <a class="tabitem"><svg class="i"><use href="#ic-pie"/></svg>Portfolio</a>
+    <a class="tabitem" aria-current="page"><svg class="i"><use href="#ic-card"/></svg>Spend</a>
+    <a class="tabitem"><svg class="i"><use href="#ic-target"/></svg>Goals</a>
+    <a class="tabitem"><svg class="i"><use href="#ic-person"/></svg>You</a>
+  </nav>
+  <div class="homebar"></div>
+</div>
+</div>
+</figure><figure class="p-board">
+  <figcaption class="p-cap">
+    <span class="p-num">03</span>
+    <h3>Immersive detail</h3>
+    <p class="p-bold"><span class="p-lbl">Bold move</span>Full-bleed ink hero — the 1Y chart owns the top 40% of the screen</p>
+    <p class="p-widg"><span class="p-lbl">Widgets</span>Ink hero · 1Y area chart · stat grid · position P&L</p>
+  </figcaption>
+  <div class="p-dev"><div class="ios">
+  <div class="island"></div>
+  <div class="stack">
+    <!-- BOLD MOVE: full-bleed ink hero, 1Y chart owns the top half -->
+    <div class="hero-dark" style="padding-bottom:14px">
+  <div class="statusbar"><span>9:41</span><span class="glyphs">
+    <span class="sb-sig"><i></i><i></i><i></i><i></i></span>
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><path d="M8.5 10.6 10.7 8.3a3.1 3.1 0 0 0-4.4 0ZM4.6 6.7l1.3 1.3a4.9 4.9 0 0 1 5.2 0l1.3-1.3a6.7 6.7 0 0 0-7.8 0ZM1.6 3.6 2.9 5a9.3 9.3 0 0 1 11.2 0l1.3-1.4a11.1 11.1 0 0 0-13.8 0Z"/></svg>
+    <span class="sb-bat"><b></b></span></span></div>
+
+      <div class="navbar" style="font-weight:500">
+        <svg class="i"><use href="#ic-chev-l"/></svg>
+        <span style="text-align:center;line-height:1.15">
+          <div style="font-size:15px;font-weight:600;letter-spacing:.2px">RELIANCE</div>
+          <div style="font-size:11px;color:var(--ink-2)">NSE · Equity</div></span>
+        <svg class="i"><use href="#ic-star"/></svg>
+      </div>
+
+      <div class="pad" style="padding-top:8px">
+        <div class="hero-amt" style="font-size:38px;letter-spacing:-1.2px"><span class="cur">₹</span>2,979<span class="dec">.90</span></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:9px">
+          <span class="pill pill--gain"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>₹463.55</span>
+          <span class="num" style="font-size:13px;font-weight:600;color:var(--gain)">+18.42%</span>
+          <span style="font-size:13px;color:var(--ink-3)">1 year</span>
+        </div>
+      </div>
+
+      <svg width="393" height="178" viewBox="0 0 393 178" style="display:block;margin-top:6px">
+        <defs><linearGradient id="hg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2FBFA8" stop-opacity=".34"/>
+          <stop offset="1" stop-color="#2FBFA8" stop-opacity="0"/></linearGradient></defs>
+        <line x1="0" y1="124" x2="393" y2="124" stroke="rgba(255,255,255,.13)" stroke-width="1" stroke-dasharray="2 4"/>
+        <path d="M0.0,170.0 C0.8,168.0 3.1,159.5 4.6,158.2 C6.2,157.0 7.7,161.0 9.3,162.6 C10.8,164.2 12.3,167.7 13.9,167.8 C15.4,167.9 17.0,166.6 18.5,163.3 C20.0,160.0 21.6,151.5 23.1,148.2 C24.7,144.8 26.2,142.8 27.8,143.2 C29.3,143.6 30.8,148.6 32.4,150.6 C33.9,152.5 35.5,154.3 37.0,154.8 C38.6,155.3 40.1,155.2 41.6,153.4 C43.2,151.6 44.7,146.0 46.3,144.2 C47.8,142.4 49.3,142.5 50.9,142.4 C52.4,142.3 54.0,143.3 55.5,143.4 C57.1,143.6 58.6,143.9 60.1,143.4 C61.7,142.8 63.2,140.0 64.8,140.2 C66.3,140.3 67.9,143.9 69.4,144.2 C70.9,144.6 72.5,143.3 74.0,142.4 C75.6,141.4 77.1,141.5 78.7,138.4 C80.2,135.3 81.7,126.2 83.3,123.5 C84.8,120.8 86.4,123.9 87.9,122.1 C89.4,120.2 91.0,112.8 92.5,112.3 C94.1,111.8 95.6,119.2 97.2,118.8 C98.7,118.4 100.2,111.9 101.8,109.9 C103.3,107.9 104.9,106.8 106.4,106.6 C108.0,106.5 109.5,109.0 111.0,109.1 C112.6,109.3 114.1,109.2 115.7,107.4 C117.2,105.5 118.7,99.4 120.3,98.0 C121.8,96.5 123.4,100.3 124.9,98.7 C126.5,97.1 128.0,92.4 129.5,88.1 C131.1,83.9 132.6,78.4 134.2,73.2 C135.7,68.0 137.3,62.5 138.8,57.1 C140.3,51.7 141.9,41.9 143.4,40.8 C145.0,39.6 146.5,49.4 148.0,50.1 C149.6,50.7 151.1,45.1 152.7,44.9 C154.2,44.7 155.8,50.0 157.3,48.9 C158.8,47.8 160.4,40.6 161.9,38.3 C163.5,36.1 165.0,36.7 166.6,35.5 C168.1,34.3 169.6,33.1 171.2,31.3 C172.7,29.6 174.3,25.5 175.8,25.0 C177.3,24.4 178.9,28.2 180.4,28.2 C182.0,28.2 183.5,24.9 185.1,25.1 C186.6,25.3 188.1,32.3 189.7,29.5 C191.2,26.7 192.8,11.5 194.3,8.4 C195.9,5.2 197.4,10.4 198.9,10.4 C200.5,10.3 202.0,6.0 203.6,8.0 C205.1,10.0 206.7,18.0 208.2,22.3 C209.7,26.5 211.3,30.8 212.8,33.6 C214.4,36.4 215.9,39.7 217.4,39.1 C219.0,38.4 220.5,32.8 222.1,29.7 C223.6,26.6 225.2,22.8 226.7,20.5 C228.2,18.2 229.8,15.9 231.3,15.7 C232.9,15.5 234.4,14.7 236.0,19.4 C237.5,24.1 239.0,38.6 240.6,43.8 C242.1,49.1 243.7,48.8 245.2,50.9 C246.7,53.0 248.3,56.5 249.8,56.3 C251.4,56.2 252.9,49.9 254.5,49.9 C256.0,50.0 257.5,56.3 259.1,56.7 C260.6,57.0 262.2,54.7 263.7,52.2 C265.3,49.6 266.8,43.5 268.3,41.4 C269.9,39.4 271.4,41.1 273.0,39.9 C274.5,38.7 276.0,35.4 277.6,34.0 C279.1,32.7 280.7,31.3 282.2,31.5 C283.8,31.7 285.3,30.4 286.8,35.5 C288.4,40.5 289.9,56.2 291.5,62.0 C293.0,67.9 294.6,69.5 296.1,70.6 C297.6,71.7 299.2,66.9 300.7,68.6 C302.3,70.3 303.8,78.3 305.3,80.8 C306.9,83.3 308.4,83.8 310.0,83.6 C311.5,83.4 313.1,82.7 314.6,79.8 C316.1,76.9 317.7,66.9 319.2,66.2 C320.8,65.6 322.3,74.0 323.9,76.1 C325.4,78.2 326.9,78.9 328.5,78.6 C330.0,78.4 331.6,76.4 333.1,74.6 C334.7,72.8 336.2,67.4 337.7,68.0 C339.3,68.5 340.8,79.3 342.4,77.9 C343.9,76.6 345.4,62.0 347.0,59.8 C348.5,57.7 350.1,66.0 351.6,64.9 C353.2,63.8 354.7,55.3 356.2,53.3 C357.8,51.3 359.3,54.0 360.9,52.9 C362.4,51.9 364.0,51.0 365.5,47.2 C367.0,43.4 368.6,34.4 370.1,30.1 C371.7,25.8 373.2,23.4 374.7,21.4 C376.3,19.4 377.8,17.4 379.4,18.0 C380.9,18.6 383.2,23.9 384.0,25.1 L384.0,214 L0.0,214 Z" fill="url(#hg)"/>
+        <path d="M0.0,170.0 C0.8,168.0 3.1,159.5 4.6,158.2 C6.2,157.0 7.7,161.0 9.3,162.6 C10.8,164.2 12.3,167.7 13.9,167.8 C15.4,167.9 17.0,166.6 18.5,163.3 C20.0,160.0 21.6,151.5 23.1,148.2 C24.7,144.8 26.2,142.8 27.8,143.2 C29.3,143.6 30.8,148.6 32.4,150.6 C33.9,152.5 35.5,154.3 37.0,154.8 C38.6,155.3 40.1,155.2 41.6,153.4 C43.2,151.6 44.7,146.0 46.3,144.2 C47.8,142.4 49.3,142.5 50.9,142.4 C52.4,142.3 54.0,143.3 55.5,143.4 C57.1,143.6 58.6,143.9 60.1,143.4 C61.7,142.8 63.2,140.0 64.8,140.2 C66.3,140.3 67.9,143.9 69.4,144.2 C70.9,144.6 72.5,143.3 74.0,142.4 C75.6,141.4 77.1,141.5 78.7,138.4 C80.2,135.3 81.7,126.2 83.3,123.5 C84.8,120.8 86.4,123.9 87.9,122.1 C89.4,120.2 91.0,112.8 92.5,112.3 C94.1,111.8 95.6,119.2 97.2,118.8 C98.7,118.4 100.2,111.9 101.8,109.9 C103.3,107.9 104.9,106.8 106.4,106.6 C108.0,106.5 109.5,109.0 111.0,109.1 C112.6,109.3 114.1,109.2 115.7,107.4 C117.2,105.5 118.7,99.4 120.3,98.0 C121.8,96.5 123.4,100.3 124.9,98.7 C126.5,97.1 128.0,92.4 129.5,88.1 C131.1,83.9 132.6,78.4 134.2,73.2 C135.7,68.0 137.3,62.5 138.8,57.1 C140.3,51.7 141.9,41.9 143.4,40.8 C145.0,39.6 146.5,49.4 148.0,50.1 C149.6,50.7 151.1,45.1 152.7,44.9 C154.2,44.7 155.8,50.0 157.3,48.9 C158.8,47.8 160.4,40.6 161.9,38.3 C163.5,36.1 165.0,36.7 166.6,35.5 C168.1,34.3 169.6,33.1 171.2,31.3 C172.7,29.6 174.3,25.5 175.8,25.0 C177.3,24.4 178.9,28.2 180.4,28.2 C182.0,28.2 183.5,24.9 185.1,25.1 C186.6,25.3 188.1,32.3 189.7,29.5 C191.2,26.7 192.8,11.5 194.3,8.4 C195.9,5.2 197.4,10.4 198.9,10.4 C200.5,10.3 202.0,6.0 203.6,8.0 C205.1,10.0 206.7,18.0 208.2,22.3 C209.7,26.5 211.3,30.8 212.8,33.6 C214.4,36.4 215.9,39.7 217.4,39.1 C219.0,38.4 220.5,32.8 222.1,29.7 C223.6,26.6 225.2,22.8 226.7,20.5 C228.2,18.2 229.8,15.9 231.3,15.7 C232.9,15.5 234.4,14.7 236.0,19.4 C237.5,24.1 239.0,38.6 240.6,43.8 C242.1,49.1 243.7,48.8 245.2,50.9 C246.7,53.0 248.3,56.5 249.8,56.3 C251.4,56.2 252.9,49.9 254.5,49.9 C256.0,50.0 257.5,56.3 259.1,56.7 C260.6,57.0 262.2,54.7 263.7,52.2 C265.3,49.6 266.8,43.5 268.3,41.4 C269.9,39.4 271.4,41.1 273.0,39.9 C274.5,38.7 276.0,35.4 277.6,34.0 C279.1,32.7 280.7,31.3 282.2,31.5 C283.8,31.7 285.3,30.4 286.8,35.5 C288.4,40.5 289.9,56.2 291.5,62.0 C293.0,67.9 294.6,69.5 296.1,70.6 C297.6,71.7 299.2,66.9 300.7,68.6 C302.3,70.3 303.8,78.3 305.3,80.8 C306.9,83.3 308.4,83.8 310.0,83.6 C311.5,83.4 313.1,82.7 314.6,79.8 C316.1,76.9 317.7,66.9 319.2,66.2 C320.8,65.6 322.3,74.0 323.9,76.1 C325.4,78.2 326.9,78.9 328.5,78.6 C330.0,78.4 331.6,76.4 333.1,74.6 C334.7,72.8 336.2,67.4 337.7,68.0 C339.3,68.5 340.8,79.3 342.4,77.9 C343.9,76.6 345.4,62.0 347.0,59.8 C348.5,57.7 350.1,66.0 351.6,64.9 C353.2,63.8 354.7,55.3 356.2,53.3 C357.8,51.3 359.3,54.0 360.9,52.9 C362.4,51.9 364.0,51.0 365.5,47.2 C367.0,43.4 368.6,34.4 370.1,30.1 C371.7,25.8 373.2,23.4 374.7,21.4 C376.3,19.4 377.8,17.4 379.4,18.0 C380.9,18.6 383.2,23.9 384.0,25.1" fill="none" stroke="#2FBFA8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="384.0" cy="25.1" r="9" fill="#2FBFA8" opacity=".20"/>
+        <circle cx="384.0" cy="25.1" r="3.4" fill="#2FBFA8"/>
+        <text x="12" y="120" font-size="10" fill="rgba(255,255,255,.40)">₹2,516</text>
+      </svg>
+
+      <div class="pad" style="margin-top:2px">
+        <div class="seg"><span>1D</span><span>1W</span><span>1M</span><span>6M</span><span data-on>1Y</span><span>ALL</span></div>
+      </div>
+    </div>
+
+    <div class="scroll" style="background:var(--surface)">
+      <div class="pad" style="padding-top:16px">
+        <div class="card" style="padding:4px 20px 8px">
+          <div class="stat-grid">
+            <div><div class="k">Open</div><div class="v">₹2,998.40</div></div>
+            <div><div class="k">Prev close</div><div class="v">₹2,998.55</div></div>
+            <div><div class="k">Day range</div><div class="v">2,961 – 3,004</div></div>
+            <div><div class="k">52-wk high</div><div class="v">₹3,217.90</div></div>
+            <div><div class="k">Market cap</div><div class="v">₹20.16L Cr</div></div>
+            <div><div class="k">P / E</div><div class="v">28.4</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec-hd">Your position</div>
+      <div class="pad"><div class="card" style="padding:16px 20px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline">
+          <span style="font-size:15px;color:var(--ink-2)">92 shares · avg ₹2,640.20</span>
+          <span class="num" style="font-size:19px;font-weight:700;letter-spacing:-.4px">₹2,74,150</span>
+        </div>
+        <hr class="hair" style="margin:13px 0">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:15px;color:var(--ink-2)">Unrealised P&amp;L</span>
+          <span style="display:flex;align-items:baseline;gap:8px">
+            <span class="num" style="font-size:17px;font-weight:600;color:var(--gain)">+₹31,270</span>
+            <span class="chip chip--gain num">+12.86%</span></span>
+        </div>
+      </div></div>
+      <div style="height:120px"></div>
+    </div>
+  </div>
+
+  <div class="actionbar glass glass--rim">
+    <span class="b b--sell">Sell</span>
+    <span class="b b--buy">Buy</span>
+  </div>
+  <div class="homebar"></div>
+</div>
+</div>
+</figure><figure class="p-board">
+  <figcaption class="p-cap">
+    <span class="p-num">04</span>
+    <h3>Input moment</h3>
+    <p class="p-bold"><span class="p-lbl">Bold move</span>₹45,000 set at 46px with a live caret; keypad fills the sheet</p>
+    <p class="p-widg"><span class="p-lbl">Widgets</span>Order sheet (38pt) · quick-amount chips · custom keypad</p>
+  </figcaption>
+  <div class="p-dev"><div class="ios">
+  <div class="scrim">
+    <div class="blurstrip">
+      <svg width="393" height="200" viewBox="0 0 393 178" style="position:absolute;top:-10px">
+        <path d="M0.0,170.0 C0.8,168.0 3.1,159.5 4.6,158.2 C6.2,157.0 7.7,161.0 9.3,162.6 C10.8,164.2 12.3,167.7 13.9,167.8 C15.4,167.9 17.0,166.6 18.5,163.3 C20.0,160.0 21.6,151.5 23.1,148.2 C24.7,144.8 26.2,142.8 27.8,143.2 C29.3,143.6 30.8,148.6 32.4,150.6 C33.9,152.5 35.5,154.3 37.0,154.8 C38.6,155.3 40.1,155.2 41.6,153.4 C43.2,151.6 44.7,146.0 46.3,144.2 C47.8,142.4 49.3,142.5 50.9,142.4 C52.4,142.3 54.0,143.3 55.5,143.4 C57.1,143.6 58.6,143.9 60.1,143.4 C61.7,142.8 63.2,140.0 64.8,140.2 C66.3,140.3 67.9,143.9 69.4,144.2 C70.9,144.6 72.5,143.3 74.0,142.4 C75.6,141.4 77.1,141.5 78.7,138.4 C80.2,135.3 81.7,126.2 83.3,123.5 C84.8,120.8 86.4,123.9 87.9,122.1 C89.4,120.2 91.0,112.8 92.5,112.3 C94.1,111.8 95.6,119.2 97.2,118.8 C98.7,118.4 100.2,111.9 101.8,109.9 C103.3,107.9 104.9,106.8 106.4,106.6 C108.0,106.5 109.5,109.0 111.0,109.1 C112.6,109.3 114.1,109.2 115.7,107.4 C117.2,105.5 118.7,99.4 120.3,98.0 C121.8,96.5 123.4,100.3 124.9,98.7 C126.5,97.1 128.0,92.4 129.5,88.1 C131.1,83.9 132.6,78.4 134.2,73.2 C135.7,68.0 137.3,62.5 138.8,57.1 C140.3,51.7 141.9,41.9 143.4,40.8 C145.0,39.6 146.5,49.4 148.0,50.1 C149.6,50.7 151.1,45.1 152.7,44.9 C154.2,44.7 155.8,50.0 157.3,48.9 C158.8,47.8 160.4,40.6 161.9,38.3 C163.5,36.1 165.0,36.7 166.6,35.5 C168.1,34.3 169.6,33.1 171.2,31.3 C172.7,29.6 174.3,25.5 175.8,25.0 C177.3,24.4 178.9,28.2 180.4,28.2 C182.0,28.2 183.5,24.9 185.1,25.1 C186.6,25.3 188.1,32.3 189.7,29.5 C191.2,26.7 192.8,11.5 194.3,8.4 C195.9,5.2 197.4,10.4 198.9,10.4 C200.5,10.3 202.0,6.0 203.6,8.0 C205.1,10.0 206.7,18.0 208.2,22.3 C209.7,26.5 211.3,30.8 212.8,33.6 C214.4,36.4 215.9,39.7 217.4,39.1 C219.0,38.4 220.5,32.8 222.1,29.7 C223.6,26.6 225.2,22.8 226.7,20.5 C228.2,18.2 229.8,15.9 231.3,15.7 C232.9,15.5 234.4,14.7 236.0,19.4 C237.5,24.1 239.0,38.6 240.6,43.8 C242.1,49.1 243.7,48.8 245.2,50.9 C246.7,53.0 248.3,56.5 249.8,56.3 C251.4,56.2 252.9,49.9 254.5,49.9 C256.0,50.0 257.5,56.3 259.1,56.7 C260.6,57.0 262.2,54.7 263.7,52.2 C265.3,49.6 266.8,43.5 268.3,41.4 C269.9,39.4 271.4,41.1 273.0,39.9 C274.5,38.7 276.0,35.4 277.6,34.0 C279.1,32.7 280.7,31.3 282.2,31.5 C283.8,31.7 285.3,30.4 286.8,35.5 C288.4,40.5 289.9,56.2 291.5,62.0 C293.0,67.9 294.6,69.5 296.1,70.6 C297.6,71.7 299.2,66.9 300.7,68.6 C302.3,70.3 303.8,78.3 305.3,80.8 C306.9,83.3 308.4,83.8 310.0,83.6 C311.5,83.4 313.1,82.7 314.6,79.8 C316.1,76.9 317.7,66.9 319.2,66.2 C320.8,65.6 322.3,74.0 323.9,76.1 C325.4,78.2 326.9,78.9 328.5,78.6 C330.0,78.4 331.6,76.4 333.1,74.6 C334.7,72.8 336.2,67.4 337.7,68.0 C339.3,68.5 340.8,79.3 342.4,77.9 C343.9,76.6 345.4,62.0 347.0,59.8 C348.5,57.7 350.1,66.0 351.6,64.9 C353.2,63.8 354.7,55.3 356.2,53.3 C357.8,51.3 359.3,54.0 360.9,52.9 C362.4,51.9 364.0,51.0 365.5,47.2 C367.0,43.4 368.6,34.4 370.1,30.1 C371.7,25.8 373.2,23.4 374.7,21.4 C376.3,19.4 377.8,17.4 379.4,18.0 C380.9,18.6 383.2,23.9 384.0,25.1 L384.0,214 L0.0,214 Z" fill="#2FBFA8" fill-opacity=".22"/>
+        <path d="M0.0,170.0 C0.8,168.0 3.1,159.5 4.6,158.2 C6.2,157.0 7.7,161.0 9.3,162.6 C10.8,164.2 12.3,167.7 13.9,167.8 C15.4,167.9 17.0,166.6 18.5,163.3 C20.0,160.0 21.6,151.5 23.1,148.2 C24.7,144.8 26.2,142.8 27.8,143.2 C29.3,143.6 30.8,148.6 32.4,150.6 C33.9,152.5 35.5,154.3 37.0,154.8 C38.6,155.3 40.1,155.2 41.6,153.4 C43.2,151.6 44.7,146.0 46.3,144.2 C47.8,142.4 49.3,142.5 50.9,142.4 C52.4,142.3 54.0,143.3 55.5,143.4 C57.1,143.6 58.6,143.9 60.1,143.4 C61.7,142.8 63.2,140.0 64.8,140.2 C66.3,140.3 67.9,143.9 69.4,144.2 C70.9,144.6 72.5,143.3 74.0,142.4 C75.6,141.4 77.1,141.5 78.7,138.4 C80.2,135.3 81.7,126.2 83.3,123.5 C84.8,120.8 86.4,123.9 87.9,122.1 C89.4,120.2 91.0,112.8 92.5,112.3 C94.1,111.8 95.6,119.2 97.2,118.8 C98.7,118.4 100.2,111.9 101.8,109.9 C103.3,107.9 104.9,106.8 106.4,106.6 C108.0,106.5 109.5,109.0 111.0,109.1 C112.6,109.3 114.1,109.2 115.7,107.4 C117.2,105.5 118.7,99.4 120.3,98.0 C121.8,96.5 123.4,100.3 124.9,98.7 C126.5,97.1 128.0,92.4 129.5,88.1 C131.1,83.9 132.6,78.4 134.2,73.2 C135.7,68.0 137.3,62.5 138.8,57.1 C140.3,51.7 141.9,41.9 143.4,40.8 C145.0,39.6 146.5,49.4 148.0,50.1 C149.6,50.7 151.1,45.1 152.7,44.9 C154.2,44.7 155.8,50.0 157.3,48.9 C158.8,47.8 160.4,40.6 161.9,38.3 C163.5,36.1 165.0,36.7 166.6,35.5 C168.1,34.3 169.6,33.1 171.2,31.3 C172.7,29.6 174.3,25.5 175.8,25.0 C177.3,24.4 178.9,28.2 180.4,28.2 C182.0,28.2 183.5,24.9 185.1,25.1 C186.6,25.3 188.1,32.3 189.7,29.5 C191.2,26.7 192.8,11.5 194.3,8.4 C195.9,5.2 197.4,10.4 198.9,10.4 C200.5,10.3 202.0,6.0 203.6,8.0 C205.1,10.0 206.7,18.0 208.2,22.3 C209.7,26.5 211.3,30.8 212.8,33.6 C214.4,36.4 215.9,39.7 217.4,39.1 C219.0,38.4 220.5,32.8 222.1,29.7 C223.6,26.6 225.2,22.8 226.7,20.5 C228.2,18.2 229.8,15.9 231.3,15.7 C232.9,15.5 234.4,14.7 236.0,19.4 C237.5,24.1 239.0,38.6 240.6,43.8 C242.1,49.1 243.7,48.8 245.2,50.9 C246.7,53.0 248.3,56.5 249.8,56.3 C251.4,56.2 252.9,49.9 254.5,49.9 C256.0,50.0 257.5,56.3 259.1,56.7 C260.6,57.0 262.2,54.7 263.7,52.2 C265.3,49.6 266.8,43.5 268.3,41.4 C269.9,39.4 271.4,41.1 273.0,39.9 C274.5,38.7 276.0,35.4 277.6,34.0 C279.1,32.7 280.7,31.3 282.2,31.5 C283.8,31.7 285.3,30.4 286.8,35.5 C288.4,40.5 289.9,56.2 291.5,62.0 C293.0,67.9 294.6,69.5 296.1,70.6 C297.6,71.7 299.2,66.9 300.7,68.6 C302.3,70.3 303.8,78.3 305.3,80.8 C306.9,83.3 308.4,83.8 310.0,83.6 C311.5,83.4 313.1,82.7 314.6,79.8 C316.1,76.9 317.7,66.9 319.2,66.2 C320.8,65.6 322.3,74.0 323.9,76.1 C325.4,78.2 326.9,78.9 328.5,78.6 C330.0,78.4 331.6,76.4 333.1,74.6 C334.7,72.8 336.2,67.4 337.7,68.0 C339.3,68.5 340.8,79.3 342.4,77.9 C343.9,76.6 345.4,62.0 347.0,59.8 C348.5,57.7 350.1,66.0 351.6,64.9 C353.2,63.8 354.7,55.3 356.2,53.3 C357.8,51.3 359.3,54.0 360.9,52.9 C362.4,51.9 364.0,51.0 365.5,47.2 C367.0,43.4 368.6,34.4 370.1,30.1 C371.7,25.8 373.2,23.4 374.7,21.4 C376.3,19.4 377.8,17.4 379.4,18.0 C380.9,18.6 383.2,23.9 384.0,25.1" fill="none" stroke="#2FBFA8" stroke-width="3"/>
+      </svg>
+    </div>
+  </div>
+  <div class="island"></div>
+<div style="color:#fff;position:relative;z-index:6">  <div class="statusbar"><span>9:41</span><span class="glyphs">
+    <span class="sb-sig"><i></i><i></i><i></i><i></i></span>
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><path d="M8.5 10.6 10.7 8.3a3.1 3.1 0 0 0-4.4 0ZM4.6 6.7l1.3 1.3a4.9 4.9 0 0 1 5.2 0l1.3-1.3a6.7 6.7 0 0 0-7.8 0ZM1.6 3.6 2.9 5a9.3 9.3 0 0 1 11.2 0l1.3-1.4a11.1 11.1 0 0 0-13.8 0Z"/></svg>
+    <span class="sb-bat"><b></b></span></span></div>
+</div>
+
+  <!-- BOLD MOVE: order sheet where the amount is the entire top third -->
+  <div class="sheet">
+    <div class="grabber"></div>
+    <div class="navbar" style="height:50px">
+      <span style="width:24px"></span>
+      <span style="font-size:17px;font-weight:600">Buy RELIANCE</span>
+      <svg class="i" style="color:var(--ink-3)"><use href="#ic-x"/></svg>
+    </div>
+
+    <div class="pad">
+      <div class="seg" style="margin-bottom:20px"><span data-on>Delivery</span><span>Intraday</span><span>MTF</span></div>
+
+      <div style="text-align:center">
+        <div style="font-size:13px;color:var(--ink-2)">Amount to invest</div>
+        <div class="hero-amt" style="font-size:46px;margin-top:6px;letter-spacing:-1.6px">
+          <span class="cur">₹</span>45,000<span style="display:inline-block;width:2.5px;height:38px;background:var(--accent);border-radius:2px;vertical-align:-4px;margin-left:3px"></span></div>
+        <div class="num" style="font-size:13.5px;color:var(--ink-2);margin-top:8px">≈ 15 shares at ₹2,979.90 · ₹1,301.50 left over</div>
+      </div>
+
+      <div class="quick" style="margin-top:18px">
+        <span>₹10,000</span><span>₹25,000</span><span data-on>₹45,000</span><span>Max</span>
+      </div>
+
+      <hr class="hair" style="margin:16px 0 4px">
+      <div class="inforow"><span class="k">Order type</span>
+        <span class="v">Market <svg class="i i--sm" style="color:var(--ink-3)"><use href="#ic-chev-r"/></svg></span></div>
+      <div class="inforow" style="padding-top:0"><span class="k">Available margin</span>
+        <span class="v">₹1,24,860.00</span></div>
+
+      <div class="keys" style="margin-top:14px">
+        <button>1</button><button>2</button><button>3</button>
+        <button>4</button><button>5</button><button>6</button>
+        <button>7</button><button>8</button><button>9</button>
+        <button class="k-alt">.</button><button>0</button>
+        <button class="k-alt"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink-2)"><path d="M9 5h9.6A1.9 1.9 0 0 1 20.5 6.9v10.2A1.9 1.9 0 0 1 18.6 19H9L3.2 12.6a.9.9 0 0 1 0-1.2Z"/><path d="M11.6 9.6 16.4 14.4M16.4 9.6 11.6 14.4"/></svg></button>
+      </div>
+
+      <div class="cta" style="margin-top:16px">Review order</div>
+      <div class="num" style="text-align:center;font-size:12px;color:var(--ink-3);margin-top:9px">
+        Settles T+1 · Brokerage ₹0 on delivery</div>
+    </div>
+  </div>
+  <div class="homebar"></div>
+</div>
+</div>
+</figure><figure class="p-board">
+  <figcaption class="p-cap">
+    <span class="p-num">05</span>
+    <h3>Celebration state</h3>
+    <p class="p-bold"><span class="p-lbl">Bold move</span>A single 236pt ring closing at 100% with a check at 12 o'clock</p>
+    <p class="p-widg"><span class="p-lbl">Widgets</span>Goal ring · confetti · contribution split · next-goal nudge</p>
+  </figcaption>
+  <div class="p-dev"><div class="ios">
+  <div class="celebrate"></div>
+  <div class="island"></div>
+  <div class="stack">
+  <div class="statusbar"><span>9:41</span><span class="glyphs">
+    <span class="sb-sig"><i></i><i></i><i></i><i></i></span>
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><path d="M8.5 10.6 10.7 8.3a3.1 3.1 0 0 0-4.4 0ZM4.6 6.7l1.3 1.3a4.9 4.9 0 0 1 5.2 0l1.3-1.3a6.7 6.7 0 0 0-7.8 0ZM1.6 3.6 2.9 5a9.3 9.3 0 0 1 11.2 0l1.3-1.4a11.1 11.1 0 0 0-13.8 0Z"/></svg>
+    <span class="sb-bat"><b></b></span></span></div>
+
+    <div class="navbar">
+      <svg class="i" style="color:var(--ink-2)"><use href="#ic-x"/></svg>
+      <span></span>
+      <svg class="i" style="color:var(--ink-2)"><use href="#ic-share"/></svg>
+    </div>
+
+    <div class="scroll" style="display:flex;flex-direction:column;align-items:center">
+      <svg width="393" height="320" viewBox="0 0 393 320" style="position:absolute;top:-30px;left:0;pointer-events:none"><rect x="93.9" y="38.1" width="6.6" height="9.9" rx="2.5" fill="#C9A227" opacity="0.65" transform="rotate(-52 97.2 43.1)"/><rect x="113.3" y="297.1" width="5.2" height="12.1" rx="2.5" fill="#2FA396" opacity="0.77" transform="rotate(-17 116.0 303.1)"/><rect x="17.3" y="195.1" width="6.0" height="10.6" rx="2.5" fill="#93CEC5" opacity="0.68" transform="rotate(-40 20.4 200.4)"/><rect x="328.3" y="33.3" width="7.4" height="13.0" rx="2.5" fill="#2FA396" opacity="0.51" transform="rotate(1 332.1 39.8)"/><rect x="305.7" y="283.1" width="8.4" height="9.0" rx="2.5" fill="#93CEC5" opacity="0.78" transform="rotate(-25 309.9 287.6)"/><rect x="66.7" y="97.1" width="8.3" height="9.3" rx="2.5" fill="#93CEC5" opacity="0.63" transform="rotate(-54 70.8 101.7)"/><rect x="32.2" y="274.8" width="7.5" height="11.6" rx="2.5" fill="#C9A227" opacity="0.74" transform="rotate(-38 36.0 280.6)"/><rect x="337.2" y="37.5" width="5.2" height="10.4" rx="2.5" fill="#0B5F55" opacity="0.79" transform="rotate(32 339.8 42.7)"/><rect x="52.5" y="280.9" width="6.2" height="9.2" rx="2.5" fill="#0F7B6C" opacity="0.80" transform="rotate(-17 55.5 285.5)"/><rect x="355.5" y="222.6" width="8.8" height="9.1" rx="2.5" fill="#2FA396" opacity="0.75" transform="rotate(-25 359.9 227.1)"/><rect x="114.8" y="63.9" width="6.8" height="9.8" rx="2.5" fill="#2FA396" opacity="0.55" transform="rotate(-14 118.2 68.8)"/><rect x="11.4" y="21.1" width="5.7" height="13.7" rx="2.5" fill="#93CEC5" opacity="0.66" transform="rotate(-16 14.3 27.9)"/><rect x="341.6" y="41.2" width="5.2" height="13.4" rx="2.5" fill="#2FA396" opacity="0.67" transform="rotate(11 344.2 47.9)"/><rect x="125.0" y="18.4" width="8.3" height="10.8" rx="2.5" fill="#2FA396" opacity="0.61" transform="rotate(60 129.2 23.8)"/><rect x="21.4" y="131.0" width="6.0" height="14.3" rx="2.5" fill="#C9A227" opacity="0.48" transform="rotate(40 24.4 138.2)"/><rect x="21.4" y="82.0" width="7.1" height="13.6" rx="2.5" fill="#93CEC5" opacity="0.46" transform="rotate(-10 24.9 88.8)"/><rect x="26.7" y="279.0" width="7.3" height="14.9" rx="2.5" fill="#0F7B6C" opacity="0.62" transform="rotate(-12 30.3 286.5)"/><rect x="41.8" y="69.6" width="8.5" height="14.4" rx="2.5" fill="#93CEC5" opacity="0.53" transform="rotate(51 46.1 76.8)"/><rect x="320.5" y="89.8" width="7.5" height="10.1" rx="2.5" fill="#0B5F55" opacity="0.46" transform="rotate(-13 324.3 94.9)"/><rect x="360.5" y="202.8" width="5.2" height="10.0" rx="2.5" fill="#0B5F55" opacity="0.61" transform="rotate(16 363.2 207.8)"/></svg>
+
+      <!-- BOLD MOVE: a single 236pt ring closing at 100% -->
+      <svg class="ring" width="236" height="236" viewBox="0 0 236 236" style="margin-top:34px">
+        <circle cx="118" cy="118" r="104" stroke="color-mix(in srgb,var(--accent) 14%,transparent)" stroke-width="18"/>
+        <circle cx="118" cy="118" r="104" stroke="var(--accent)" stroke-width="18" stroke-dasharray="653.5 0"/>
+        <circle cx="118" cy="14" r="15" fill="var(--accent)"/>
+        <path d="m112 14.2 4 4 7.6-8.2" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <g>
+          <text x="118" y="102" text-anchor="middle" font-size="13" fill="var(--ink-2)">Emergency Fund</text>
+          <text x="118" y="146" text-anchor="middle" class="rnd" font-size="38" font-weight="700" fill="var(--ink)" letter-spacing="-1.4">₹5,00,000</text>
+          <text x="118" y="168" text-anchor="middle" font-size="13" font-weight="600" fill="var(--accent)">100% funded</text>
+        </g>
+      </svg>
+
+      <div class="pad" style="text-align:center;margin-top:24px">
+        <div style="font-size:28px;font-weight:700;letter-spacing:-.8px;line-height:1.15">Goal complete.</div>
+        <div style="font-size:16px;color:var(--ink-2);margin-top:9px;line-height:1.4">
+          You finished 11 months ahead of plan —<br>₹4,000 a month for 26 months.</div>
+      </div>
+
+      <div class="pad" style="width:100%;margin-top:22px">
+        <div class="card" style="padding:14px 18px;display:flex;justify-content:space-between;text-align:center">
+          <span><div class="num" style="font-size:19px;font-weight:700;letter-spacing:-.3px">26</div>
+            <div style="font-size:12px;color:var(--ink-2);margin-top:2px">months</div></span>
+          <span style="width:.5px;background:var(--hairline)"></span>
+          <span><div class="num" style="font-size:19px;font-weight:700;letter-spacing:-.3px">₹1,04,000</div>
+            <div style="font-size:12px;color:var(--ink-2);margin-top:2px">you contributed</div></span>
+          <span style="width:.5px;background:var(--hairline)"></span>
+          <span><div class="num" style="font-size:19px;font-weight:700;letter-spacing:-.3px;color:var(--gain)">₹36,000</div>
+            <div style="font-size:12px;color:var(--ink-2);margin-top:2px">interest</div></span>
+        </div>
+      </div>
+
+      <div class="pad" style="width:100%;margin-top:20px">
+        <div class="sec-hd" style="padding:0 0 8px">Up next</div>
+        <div class="card" style="padding:14px 16px;display:flex;align-items:center;gap:13px">
+          <span class="mono" style="width:38px;height:38px;border-radius:12px;background:var(--accent-soft);color:var(--accent)">
+            <svg class="i i--sm"><use href="#ic-target"/></svg></span>
+          <span style="flex:1;min-width:0">
+            <div style="font-size:16px;letter-spacing:-.2px">Kerala trip, Dec 2027</div>
+            <div style="font-size:12.5px;color:var(--ink-2);margin-top:2px">₹1,20,000 · suggested ₹5,000/mo</div></span>
+          <svg class="i i--sm" style="color:var(--ink-3)"><use href="#ic-chev-r"/></svg>
+        </div>
+      </div>
+
+      <div class="pad" style="width:100%;margin-top:auto;padding-bottom:26px">
+        <div class="cta">Start your next goal</div>
+        <div class="ghost" style="margin-top:10px">Share milestone</div>
+      </div>
+    </div>
+  </div>
+  <div class="homebar"></div>
+</div>
+</div>
+</figure><figure class="p-board">
+  <figcaption class="p-cap">
+    <span class="p-num">06</span>
+    <h3>Profile / settings</h3>
+    <p class="p-bold"><span class="p-lbl">Bold move</span>Deliberately quiet — only the identity block carries weight</p>
+    <p class="p-widg"><span class="p-lbl">Widgets</span>Inset grouped lists · native toggles · KYC status chip</p>
+  </figcaption>
+  <div class="p-dev"><div class="ios">
+  <div class="island"></div>
+  <div class="stack">
+  <div class="statusbar"><span>9:41</span><span class="glyphs">
+    <span class="sb-sig"><i></i><i></i><i></i><i></i></span>
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><path d="M8.5 10.6 10.7 8.3a3.1 3.1 0 0 0-4.4 0ZM4.6 6.7l1.3 1.3a4.9 4.9 0 0 1 5.2 0l1.3-1.3a6.7 6.7 0 0 0-7.8 0ZM1.6 3.6 2.9 5a9.3 9.3 0 0 1 11.2 0l1.3-1.4a11.1 11.1 0 0 0-13.8 0Z"/></svg>
+    <span class="sb-bat"><b></b></span></span></div>
+
+    <div class="navbar navbar--large" style="padding-top:2px"><h1>You</h1></div>
+
+    <div class="scroll">
+      <!-- BOLD MOVE (quiet by design): identity block carries the only weight -->
+      <div class="pad" style="padding-top:6px">
+        <div class="card" style="padding:18px 20px;display:flex;align-items:center;gap:15px">
+          <span class="mono" style="width:56px;height:56px;border-radius:20px;background:var(--accent);color:#fff;font-size:20px">AG</span>
+          <span style="flex:1;min-width:0">
+            <div style="font-size:19px;font-weight:600;letter-spacing:-.3px">Ajay Girolkar</div>
+            <div style="font-size:13.5px;color:var(--ink-2);margin-top:2px">ajaygirolkar@gmail.com</div>
+            <div style="margin-top:7px"><span class="chip chip--gain">
+              <svg class="i" style="width:12px;height:12px;stroke-width:2.6"><use href="#ic-check"/></svg>KYC verified</span></div>
+          </span>
+        </div>
+      </div>
+
+      <div class="sec-hd">Account</div>
+      <div class="pad"><div class="inset">
+        <div class="srow"><span class="ic" style="background:#0F7B6C"><svg class="i i--sm"><use href="#ic-card"/></svg></span>
+          <span class="lb">Bank accounts</span><span class="val">HDFC ••4821</span>
+          <svg class="i i--sm chev"><use href="#ic-chev-r"/></svg></div>
+        <div class="srow"><span class="ic" style="background:#1F6FB2"><svg class="i i--sm"><use href="#ic-person"/></svg></span>
+          <span class="lb">Nominee</span><span class="val">1 added</span>
+          <svg class="i i--sm chev"><use href="#ic-chev-r"/></svg></div>
+        <div class="srow"><span class="ic" style="background:#5B6570"><svg class="i i--sm"><use href="#ic-bookmark"/></svg></span>
+          <span class="lb">Reports &amp; statements</span>
+          <svg class="i i--sm chev"><use href="#ic-chev-r"/></svg></div>
+      </div></div>
+
+      <div class="sec-hd">Security</div>
+      <div class="pad"><div class="inset">
+        <div class="srow"><span class="ic" style="background:#0B5F55"><svg class="i i--sm"><use href="#ic-faceid"/></svg></span>
+          <span class="lb">Unlock with Face&nbsp;ID</span><span class="tgl"></span></div>
+        <div class="srow"><span class="ic" style="background:#5B6570"><svg class="i i--sm"><use href="#ic-lock"/></svg></span>
+          <span class="lb">Hide balances</span><span class="tgl tgl--off"></span></div>
+        <div class="srow"><span class="ic" style="background:#3A4550"><svg class="i i--sm"><use href="#ic-grid"/></svg></span>
+          <span class="lb">Trusted devices</span><span class="val">2</span>
+          <svg class="i i--sm chev"><use href="#ic-chev-r"/></svg></div>
+      </div></div>
+
+      <div class="sec-hd">Preferences</div>
+      <div class="pad"><div class="inset">
+        <div class="srow"><span class="ic" style="background:#2FA396"><svg class="i i--sm"><use href="#ic-bell"/></svg></span>
+          <span class="lb">Notifications</span><span class="val">Price alerts</span>
+          <svg class="i i--sm chev"><use href="#ic-chev-r"/></svg></div>
+        <div class="srow"><span class="ic" style="background:#5B6570"><svg class="i i--sm"><use href="#ic-eye"/></svg></span>
+          <span class="lb">Appearance</span><span class="val">Automatic</span>
+          <svg class="i i--sm chev"><use href="#ic-chev-r"/></svg></div>
+      </div></div>
+
+      <div style="height:120px"></div>
+    </div>
+  </div>
+
+  <nav class="tabbar glass glass--rim">
+    <a class="tabitem"><svg class="i"><use href="#ic-pie"/></svg>Portfolio</a>
+    <a class="tabitem"><svg class="i"><use href="#ic-card"/></svg>Spend</a>
+    <a class="tabitem"><svg class="i"><use href="#ic-target"/></svg>Goals</a>
+    <a class="tabitem" aria-current="page"><svg class="i"><use href="#ic-person"/></svg>You</a>
+  </nav>
+  <div class="homebar"></div>
+</div>
+</div>
+</figure>
+  </div>
+
+  <section>
+    <h2>Self-audit — the seven anti-generic rules</h2>
+    <p class="p-sub" style="margin:0 0 18px">Scored before publishing, per the skill's workflow.</p>
+    <div class="p-tablewrap"><table>
+      <thead><tr><th>Rule</th><th>Verdict</th><th>Evidence</th></tr></thead>
+      <tbody><tr><td>Concentric radii</td><td><span class="p-v p-v--pass">pass</span></td><td>sheet 38 → card 20 → control 12 → chip 8; no radius reused across levels</td></tr><tr><td>Rhythm, not uniform spacing</td><td><span class="p-v p-v--pass">pass</span></td><td>4/8 inside rows, 18–24 between sections; density visibly varies per screen</td></tr><tr><td>One accent, not purple</td><td><span class="p-v p-v--pass">pass</span></td><td>#0F7B6C throughout (#2FBFA8 in dark). Green/red confined to numbers and deltas</td></tr><tr><td>Plausible specific data</td><td><span class="p-v p-v--pass">pass</span></td><td>RELIANCE at ₹2,979.90, HDFC Bank 18 shares, Swiggy 1:12 PM; day totals sum correctly</td></tr><tr><td>One bold move per screen</td><td><span class="p-v p-v--pass">pass</span></td><td>Listed per artboard above; everything else held quiet</td></tr><tr><td>Domain vocabulary</td><td><span class="p-v p-v--pass">pass</span></td><td>Sparkline, allocation donut, ledger row, delta pill, order pad — no generic cards</td></tr><tr><td>Real imagery</td><td><span class="p-v p-v--n/a">n/a</span></td><td>Fintech carries no photography; brand monograms stand in for logos, no grey placeholders</td></tr></tbody>
+    </table></div>
+  </section>
+
+  <p class="p-note">PNG exports @3× (1179 × 2556) →
+    PortfolioProjectWebApp/assets/app-screenshots/wealthkit/v2/ (light) and /dark/<br>
+    Source artboards → PortfolioProjectWebApp/design-canvas/fintech/<br>
+    Gate question: does this read as a real product, or as a template?</p>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement, seg=document.querySelector(".p-seg");
+  function apply(t){
+    if(t==="auto") root.removeAttribute("data-theme"); else root.dataset.theme=t;
+    seg.querySelectorAll("button").forEach(function(b){
+      b.setAttribute("aria-pressed", String(b.dataset.t===t));
+    });
+    try{ localStorage.setItem("wk-theme", t); }catch(e){}
+  }
+  var saved="auto";
+  try{ saved=localStorage.getItem("wk-theme")||"auto"; }catch(e){}
+  apply(saved);
+  seg.addEventListener("click", function(e){
+    var b=e.target.closest("button"); if(b) apply(b.dataset.t);
+  });
+})();
+</script>

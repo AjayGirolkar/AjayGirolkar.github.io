@@ -1,0 +1,93 @@
+<div class="ios">
+  <div class="island"></div>
+  <div class="stack">
+  <div class="statusbar"><span>9:41</span><span class="glyphs">
+    <span class="sb-sig"><i></i><i></i><i></i><i></i></span>
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><path d="M8.5 10.6 10.7 8.3a3.1 3.1 0 0 0-4.4 0ZM4.6 6.7l1.3 1.3a4.9 4.9 0 0 1 5.2 0l1.3-1.3a6.7 6.7 0 0 0-7.8 0ZM1.6 3.6 2.9 5a9.3 9.3 0 0 1 11.2 0l1.3-1.4a11.1 11.1 0 0 0-13.8 0Z"/></svg>
+    <span class="sb-bat"><b></b></span></span></div>
+    <div class="navbar">
+      <span style="display:flex;align-items:center;gap:5px">Portfolio
+        <svg class="i i--sm" style="opacity:.4"><use href="#ic-chev-d"/></svg></span>
+      <span style="display:flex;align-items:center;gap:14px">
+        <svg class="i"><use href="#ic-bell"/></svg>
+        <span class="mono" style="width:30px;height:30px;border-radius:15px;background:var(--accent);color:#fff;font-size:12px">AG</span>
+      </span>
+    </div>
+
+    <div class="scroll">
+      <!-- BOLD MOVE: oversized value + edge-to-edge sparkline -->
+      <div class="pad" style="padding-top:10px">
+        <div style="font-size:13px;color:var(--ink-2);letter-spacing:.2px">Total value</div>
+        <div class="hero-amt" style="margin-top:6px"><span class="cur">₹</span>18,42,650<span class="dec">.40</span></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:11px">
+          <span class="pill pill--gain"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>₹24,180</span>
+          <span class="num" style="font-size:13px;font-weight:600;color:var(--gain)">+1.33%</span>
+          <span style="font-size:13px;color:var(--ink-3)">Today</span>
+        </div>
+      </div>
+
+      <svg width="393" height="110" viewBox="0 0 393 132" style="display:block;margin-top:6px">
+        <defs><linearGradient id="fg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="var(--gain)" stop-opacity=".30"/>
+          <stop offset="1" stop-color="var(--gain)" stop-opacity=".02"/></linearGradient></defs>
+        <path d="{{SPARK_A}}" fill="url(#fg)"/>
+        <path d="{{SPARK_D}}" fill="none" stroke="var(--gain)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="{{SPARK_X}}" cy="{{SPARK_Y}}" r="7" fill="var(--gain)" opacity=".18"/>
+        <circle cx="{{SPARK_X}}" cy="{{SPARK_Y}}" r="3.2" fill="var(--gain)"/>
+      </svg>
+
+      <div class="pad" style="margin-top:10px">
+        <div class="seg"><span data-on>1D</span><span>1W</span><span>1M</span><span>6M</span><span>1Y</span><span>ALL</span></div>
+      </div>
+
+      <div class="pad" style="margin-top:20px">
+        <div class="card" style="display:flex;gap:18px;align-items:center;padding:14px 20px">
+          <svg class="donut" width="104" height="104" viewBox="0 0 104 104" style="flex:none">
+            <circle cx="52" cy="52" r="44" stroke="#0F7B6C" stroke-width="10" stroke-dasharray="168.4 108.1"/>
+            <circle cx="52" cy="52" r="44" stroke="#2FA396" stroke-width="10" stroke-dasharray="46.8 229.7" stroke-dashoffset="-171.4"/>
+            <circle cx="52" cy="52" r="44" stroke="#93CEC5" stroke-width="10" stroke-dasharray="30.2 246.3" stroke-dashoffset="-221.2"/>
+            <circle cx="52" cy="52" r="44" stroke="rgba(120,124,130,.45)" stroke-width="10" stroke-dasharray="19.1 257.4" stroke-dashoffset="-254.4"/>
+            <g transform="rotate(90 52 52)">
+              <text x="52" y="50" text-anchor="middle" class="rnd" font-size="21" font-weight="700" fill="var(--ink)" letter-spacing="-.5">62%</text>
+              <text x="52" y="65" text-anchor="middle" font-size="11" fill="var(--ink-2)">Equity</text>
+            </g>
+          </svg>
+          <div style="flex:1">
+            <div class="alloc-key"><i class="dot" style="background:#0F7B6C"></i><span class="nm">Equity</span><span class="pc">62%</span></div>
+            <div class="alloc-key"><i class="dot" style="background:#2FA396"></i><span class="nm">Debt</span><span class="pc">18%</span></div>
+            <div class="alloc-key"><i class="dot" style="background:#93CEC5"></i><span class="nm">Gold</span><span class="pc">12%</span></div>
+            <div class="alloc-key"><i class="dot" style="background:rgba(120,124,130,.45)"></i><span class="nm">Cash</span><span class="pc">8%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:baseline;padding:18px 16px 8px">
+        <span style="font-size:20px;font-weight:700;letter-spacing:-.4px">Holdings</span>
+        <span style="font-size:15px;color:var(--accent);font-weight:500">See all</span>
+      </div>
+      <div class="pad"><div class="grp">
+        <div class="lrow"><span class="mono" style="background:#0B4E8A;color:#fff">HD</span>
+          <span class="bd"><div class="n1">HDFC Bank</div><div class="n2 num">18 shares · ₹1,702.40</div></span>
+          <svg width="40" height="22" style="flex:none;margin-right:2px"><path d="{{MINI_M1}}" fill="none" stroke="var(--gain)" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <span class="tr"><div class="amt">₹4,12,980</div><div class="sub" style="color:var(--gain)">+1.84%</div></span></div>
+        <div class="lrow"><span class="mono" style="background:#1F3A5F;color:#fff">PP</span>
+          <span class="bd"><div class="n1">PPFAS Flexi Cap</div><div class="n2 num">Direct · Growth</div></span>
+          <svg width="40" height="22" style="flex:none;margin-right:2px"><path d="{{MINI_M2}}" fill="none" stroke="var(--gain)" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <span class="tr"><div class="amt">₹3,86,420</div><div class="sub" style="color:var(--gain)">+0.91%</div></span></div>
+        <div class="lrow"><span class="mono" style="background:#0E2A47;color:#fff">RI</span>
+          <span class="bd"><div class="n1">Reliance</div><div class="n2 num">92 shares · ₹2,979.90</div></span>
+          <svg width="40" height="22" style="flex:none;margin-right:2px"><path d="{{MINI_M3}}" fill="none" stroke="var(--loss)" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <span class="tr"><div class="amt">₹2,74,150</div><div class="sub" style="color:var(--loss)">−0.62%</div></span></div>
+      </div></div>
+      <div style="height:110px"></div>
+    </div>
+  </div>
+
+  <nav class="tabbar glass glass--rim">
+    <a class="tabitem" aria-current="page"><svg class="i"><use href="#ic-pie"/></svg>Portfolio</a>
+    <a class="tabitem"><svg class="i"><use href="#ic-card"/></svg>Spend</a>
+    <a class="tabitem"><svg class="i"><use href="#ic-target"/></svg>Goals</a>
+    <a class="tabitem"><svg class="i"><use href="#ic-person"/></svg>You</a>
+  </nav>
+  <div class="homebar"></div>
+</div>
