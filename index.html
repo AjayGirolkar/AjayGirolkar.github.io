@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="styles.css?v=20260413-v2" />
     <!-- Preload above-the-fold hero images so they paint instantly -->
     <link rel="preload" as="image" href="assets/ajay-profile.jpg?v=20260412" fetchpriority="high" />
-    <link rel="preload" as="image" href="assets/app-screenshots/wealthkit/screen-1.webp" />
-    <link rel="preload" as="image" href="assets/app-screenshots/payswift/screen-1.webp" />
+    <link rel="preload" as="image" href="assets/app-screenshots/wealthkit/v2/web/01-dashboard.webp" />
+    <link rel="preload" as="image" href="assets/app-screenshots/nativeaistudio/v1/web/03-answer.webp" />
   </head>
   <body>
 
@@ -100,16 +100,16 @@
             <div class="hero-phone-float">
               <div class="iphone-frame">
                 <div class="iphone-screen">
-                  <img src="assets/app-screenshots/wealthkit/screen-1.webp" alt="WealthKit portfolio app" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+                  <img src="assets/app-screenshots/wealthkit/v2/web/01-dashboard.webp" alt="WealthKit net worth dashboard" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
                 </div>
               </div>
             </div>
 
-            <!-- Secondary phone — PaySwift (peeking behind) -->
+            <!-- Secondary phone — NativeAIStudio (peeking behind) -->
             <div class="hero-phone-secondary">
               <div class="iphone-frame iphone-sm">
                 <div class="iphone-screen">
-                  <img src="assets/app-screenshots/payswift/screen-1.webp" alt="PaySwift payments app" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+                  <img src="assets/app-screenshots/nativeaistudio/v1/web/03-answer.webp" alt="NativeAIStudio streaming answer" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
                 </div>
               </div>
             </div>
@@ -345,15 +345,15 @@
           <div class="section-heading center reveal">
             <p class="eyebrow">Architecture Reference Projects</p>
             <h2>Real SwiftUI code — patterns I use in production.</h2>
-            <p class="section-sub">These are architectural showcase projects demonstrating production patterns across FinTech, Payments, E-Commerce, Social, and App Store domains. Full SwiftUI source shared during discovery calls.</p>
+            <p class="section-sub">Five reference apps across investing, training, commerce, social and AI — each designed to iOS 26, and each deliberately built to read as a different product rather than one template in five colours. Every app links to its own design canvas.</p>
           </div>
 
           <div class="app-tabs reveal">
             <button class="app-tab active" data-app="wealthkit">WealthKit</button>
-            <button class="app-tab" data-app="payswift">PaySwift</button>
-            <button class="app-tab" data-app="shopeasy">ShopEase</button>
+            <button class="app-tab" data-app="fitnesspro">FitnessPro</button>
+            <button class="app-tab" data-app="shopease">ShopEase</button>
             <button class="app-tab" data-app="socialflow">SocialFlow</button>
-            <button class="app-tab" data-app="appmarket">AppMarket</button>
+            <button class="app-tab" data-app="nativeaistudio">NativeAIStudio</button>
           </div>
 
           <div class="app-demo-grid reveal">
@@ -364,205 +364,202 @@
                 <div class="iphone-frame iphone-lg">
                   <div class="iphone-screen">
                     <div class="screenshot-carousel">
-                      <div class="sc-slide active"><img src="assets/app-screenshots/wealthkit/screen-1.webp" alt="WealthKit portfolio overview" loading="eager"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/screen-2.webp" alt="WealthKit portfolio detail" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/screen-3.webp" alt="WealthKit mutual funds" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/screen-4.webp" alt="WealthKit alerts" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/screen-5.webp" alt="WealthKit profile" loading="lazy"></div>
+                      <div class="sc-slide active"><img src="assets/app-screenshots/wealthkit/v2/web/01-dashboard.webp" alt="WealthKit — net worth dashboard" loading="eager" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/v2/web/02-spend-feed.webp" alt="WealthKit — spend feed" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/v2/web/03-holding-detail.webp" alt="WealthKit — holding detail with chart" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/v2/web/04-buy-order.webp" alt="WealthKit — buy order keypad" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/v2/web/05-goal-complete.webp" alt="WealthKit — goal reached" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/v2/web/06-profile.webp" alt="WealthKit — account and security" loading="lazy" width="786" height="1704"></div>
                     </div>
                   </div>
                 </div>
                 <div class="carousel-dots"></div>
               </div>
               <div class="app-demo-info">
-                <p class="eyebrow">Investment Portfolio Tracker</p>
+                <p class="eyebrow">Investing · FinTech</p>
                 <h3>WealthKit</h3>
                 <div class="app-scara">
-                  <p><strong>Problem:</strong> Most fintech apps hardcode their screen states — every UI change requires an app update. WealthKit demonstrates a server-driven architecture where new investment flows ship from the backend without a release.</p>
-                  <p><strong>Result:</strong> Real-time portfolio donut chart, live stock P&amp;L, mutual fund discovery — all zero hardcoded screen states.</p>
+                  <p><strong>Problem:</strong> Most investing apps hardcode their screen states, so every layout change needs an App Store release. WealthKit is built server-driven: the backend describes the flow, the client renders it.</p>
+                  <p><strong>Result:</strong> A net-worth hero, an allocation ring and a tabular ledger that all read at a glance — and a light grey ground with inset grouped cards, the most native surface Apple ships.</p>
                 </div>
                 <ul class="app-features">
-                  <li>Server-driven UI — flows configured from backend</li>
-                  <li>Real-time portfolio donut chart with AAPL, NVDA, MSFT, TSLA</li>
-                  <li>Mutual funds browser — Equity, Debt, Hybrid, Index, ELSS</li>
-                  <li>Secure Keychain + Face ID biometric auth</li>
-                  <li>Background data sync with Combine pipelines</li>
+                  <li>Server-driven UI — new flows ship without a release</li>
+                  <li>Allocation donut and 40×16pt sparklines drawn in Swift Charts</li>
+                  <li>Amount keypad with count-up animation and a masked privacy state</li>
+                  <li>Keychain + Face ID, with a real Reduce Transparency fallback</li>
+                  <li>Light and dark sets, both signed off</li>
                 </ul>
                 <div class="app-tech">
-                  <span>Swift</span><span>SwiftUI</span><span>Combine</span><span>Charts</span><span>Core Data</span><span>REST API</span><span>Keychain</span>
+                  <span>Swift</span><span>SwiftUI</span><span>Swift Charts</span><span>Combine</span><span>Core Data</span><span>Keychain</span><span>Deep teal #0F7B6C</span>
                 </div>
                 <div class="app-links">
-                  <a href="https://github.com/AjayGirolkar" target="_blank" rel="noreferrer" class="app-link-github">View Source on GitHub →</a>
-                  <span class="app-link-badge">SwiftUI source shared on discovery call</span>
+                  <a href="https://claude.ai/code/artifact/c423cb7c-7e64-4eca-bc19-51f675d0048b" target="_blank" rel="noreferrer" class="app-link-github">Open the design canvas →</a>
+                  <span class="app-link-badge">Artboards, divergence table and the seven-rule audit</span>
                 </div>
               </div>
             </div>
 
-            <!-- PaySwift -->
-            <div class="app-demo" data-app="payswift">
+            <!-- FitnessPro -->
+            <div class="app-demo" data-app="fitnesspro">
               <div class="app-demo-phone">
                 <div class="iphone-frame iphone-lg">
                   <div class="iphone-screen">
                     <div class="screenshot-carousel">
-                      <div class="sc-slide active"><img src="assets/app-screenshots/payswift/screen-1.webp" alt="PaySwift home dashboard" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/payswift/screen-2.webp" alt="PaySwift send money" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/payswift/screen-3.webp" alt="PaySwift scan and pay" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/payswift/screen-4.webp" alt="PaySwift transactions" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/payswift/screen-5.webp" alt="PaySwift cards" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/payswift/screen-6.webp" alt="PaySwift profile" loading="lazy"></div>
+                      <div class="sc-slide active"><img src="assets/app-screenshots/fitnesspro/v1/web/01-today.webp" alt="FitnessPro — today's rings" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/fitnesspro/v1/web/02-history.webp" alt="FitnessPro — workout history" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/fitnesspro/v1/web/03-active-workout.webp" alt="FitnessPro — active workout" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/fitnesspro/v1/web/04-set-logger.webp" alt="FitnessPro — set logger" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/fitnesspro/v1/web/05-streak-closed.webp" alt="FitnessPro — streak celebration" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/fitnesspro/v1/web/06-you.webp" alt="FitnessPro — athlete profile" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/fitnesspro/v1/web/07-workout-detail.webp" alt="FitnessPro — workout detail" loading="lazy" width="786" height="1704"></div>
                     </div>
                   </div>
                 </div>
                 <div class="carousel-dots"></div>
               </div>
               <div class="app-demo-info">
-                <p class="eyebrow">Digital Payments &amp; UPI</p>
-                <h3>PaySwift</h3>
+                <p class="eyebrow">Training · Health</p>
+                <h3>FitnessPro</h3>
                 <div class="app-scara">
-                  <p><strong>Problem:</strong> Payment apps need a trust-first UX — users must feel every rupee is safe. PaySwift prioritises security-at-glance design: Face ID entry, encrypted transaction state, and a QR scanner that validates before it pays.</p>
-                  <p><strong>Result:</strong> Send, receive, and scan-to-pay flows secured end-to-end with Secure Enclave and biometric auth — no plaintext values ever leave the device.</p>
+                  <p><strong>Problem:</strong> A training app is read mid-set, one-handed, with about two seconds of attention. Anything that needs a second look has already failed.</p>
+                  <p><strong>Result:</strong> Dark-locked by design, with no cards at all — the rings and the heart-rate zone bands are the surfaces. One giant metric, then a dense set grid, and nothing in between.</p>
                 </div>
                 <ul class="app-features">
-                  <li>Wallet + bank balance dashboard in one view</li>
-                  <li>Send money, add money, Scan &amp; Pay (QR)</li>
-                  <li>Transaction history with category tagging</li>
-                  <li>Face ID / Touch ID authentication gate</li>
-                  <li>Secure Enclave key storage — no plaintext on disk</li>
+                  <li>Progress rings, HR zone bands and a vertical zone bar</li>
+                  <li>Set/rep grid, weight ruler and rest timer as first-class controls</li>
+                  <li>Exercise demos: two public-domain frames crossfaded, gated behind prefers-reduced-motion</li>
+                  <li>Consistency matrix and pace ladder for the history screen</li>
+                  <li>Accent derives from one hex — the whole zone ramp re-maps with it</li>
                 </ul>
                 <div class="app-tech">
-                  <span>Swift</span><span>SwiftUI</span><span>Secure Enclave</span><span>LocalAuthentication</span><span>AVFoundation</span><span>UPI API</span>
+                  <span>Swift</span><span>SwiftUI</span><span>HealthKit</span><span>async/await</span><span>Swift Charts</span><span>WidgetKit</span><span>Mint #3DDC84 on near-black</span>
                 </div>
                 <div class="app-links">
-                  <a href="https://github.com/ajaygirolkar" target="_blank" rel="noreferrer" class="app-link-github">View GitHub →</a>
-                  <span class="app-link-badge">Security writeup on request</span>
+                  <a href="https://claude.ai/code/artifact/89d0c446-ee86-47df-a5ed-a62adc53c939" target="_blank" rel="noreferrer" class="app-link-github">Open the design canvas →</a>
+                  <span class="app-link-badge">Artboards, divergence table and the seven-rule audit</span>
                 </div>
               </div>
             </div>
 
             <!-- ShopEase -->
-            <div class="app-demo" data-app="shopeasy">
+            <div class="app-demo" data-app="shopease">
               <div class="app-demo-phone">
                 <div class="iphone-frame iphone-lg">
                   <div class="iphone-screen">
                     <div class="screenshot-carousel">
-                      <div class="sc-slide active"><img src="assets/app-screenshots/shopeasy/screen-1.webp" alt="ShopEase home feed" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/shopeasy/screen-2.webp" alt="ShopEase categories" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/shopeasy/screen-3.webp" alt="ShopEase product detail" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/shopeasy/screen-4.webp" alt="ShopEase wishlist" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/shopeasy/screen-5.webp" alt="ShopEase cart" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/shopeasy/screen-6.webp" alt="ShopEase checkout" loading="lazy"></div>
+                      <div class="sc-slide active"><img src="assets/app-screenshots/shopease/v1/web/01-shop.webp" alt="ShopEase — shop front" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/shopease/v1/web/02-ceramics.webp" alt="ShopEase — ceramics category" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/shopease/v1/web/03-product.webp" alt="ShopEase — product detail" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/shopease/v1/web/04-checkout.webp" alt="ShopEase — checkout" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/shopease/v1/web/05-empty-bag.webp" alt="ShopEase — empty bag" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/shopease/v1/web/06-account.webp" alt="ShopEase — orders and addresses" loading="lazy" width="786" height="1704"></div>
                     </div>
                   </div>
                 </div>
                 <div class="carousel-dots"></div>
               </div>
               <div class="app-demo-info">
-                <p class="eyebrow">E-Commerce Platform</p>
+                <p class="eyebrow">Commerce · Editorial retail</p>
                 <h3>ShopEase</h3>
                 <div class="app-scara">
-                  <p><strong>Problem:</strong> Shopping apps live or die by their browse-to-checkout speed. ShopEase demonstrates an architecture where category browsing, product listings, and cart state all persist across sessions — no lost carts on app relaunch.</p>
-                  <p><strong>Result:</strong> Persistent cart, offline-ready product cache, and Apple Pay one-tap checkout — engineered to minimise drop-off at every funnel step.</p>
+                  <p><strong>Problem:</strong> Marketplace apps all converge on the same look: a dense grid, a red sale badge, a card around everything. That template makes every product look like every other product.</p>
+                  <p><strong>Result:</strong> A curated-objects shop set on warm paper, in an editorial register — photography sits directly on the ground with no container, prices are ink, and the accent is reserved for a markdown. The chrome is a text-only dock; the whole app has exactly one glass element.</p>
                 </div>
                 <ul class="app-features">
-                  <li>Dynamic promotions banner (Mega Sale, Up to 70% OFF)</li>
-                  <li>Category grid — Electronics, Fashion, Grocery, Beauty, Sports</li>
-                  <li>Today's Deals with discount badges and pricing</li>
-                  <li>Persistent cart with Core Data — survives app restart</li>
-                  <li>Apple Pay one-tap checkout integration</li>
+                  <li>Eighteen CC0 object plates, licence asserted per item at download</li>
+                  <li>Studio backdrops knocked out and recomposited onto the app's own paper</li>
+                  <li>Size run with sold-out struck through, glaze swatch row, sticky glass buy bar</li>
+                  <li>Fraunces display over a system sans, with .19em uppercase labels</li>
+                  <li>Light-locked: the warm sand ground is the identity, so there is no dark set</li>
                 </ul>
                 <div class="app-tech">
-                  <span>Swift</span><span>SwiftUI</span><span>Core Data</span><span>REST API</span><span>Apple Pay</span><span>StoreKit</span>
+                  <span>Swift</span><span>SwiftUI</span><span>async/await</span><span>Nuke-free image pipeline</span><span>StoreKit 2</span><span>Core Data</span><span>Oxblood #8A3418 on warm sand</span>
                 </div>
                 <div class="app-links">
-                  <a href="https://github.com/ajaygirolkar" target="_blank" rel="noreferrer" class="app-link-github">View GitHub →</a>
-                  <span class="app-link-badge">Code available on request</span>
+                  <a href="https://claude.ai/code/artifact/df0ae719-e3cc-4449-bd33-980386ffd4a5" target="_blank" rel="noreferrer" class="app-link-github">Open the design canvas →</a>
+                  <span class="app-link-badge">Artboards, divergence table and the seven-rule audit</span>
                 </div>
               </div>
             </div>
 
             <!-- SocialFlow -->
             <div class="app-demo" data-app="socialflow">
-              <div class="app-demo-phone socialflow-demo-phone">
-                <p class="socialflow-gallery-label">14 screens across Feed · Profile · Reels · Stories · DMs</p>
-                <div class="socialflow-gallery">
-                  <img src="assets/app-screenshots/socialflow/screen-1.webp" alt="SocialFlow profile and reels" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-2.webp" alt="SocialFlow feed and discovery" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-3.webp" alt="SocialFlow posts and detail" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-4.webp" alt="SocialFlow dark feed" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-5.webp" alt="SocialFlow trending and profile" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-6.webp" alt="SocialFlow messages" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-7.webp" alt="SocialFlow search" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-8.webp" alt="SocialFlow stories and notifications" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-9.webp" alt="SocialFlow topics feed" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-10.webp" alt="SocialFlow story viewer" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-11.webp" alt="SocialFlow stories and profiles grid" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-12.webp" alt="SocialFlow creator tools" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-13.webp" alt="SocialFlow notifications" loading="lazy">
-                  <img src="assets/app-screenshots/socialflow/screen-14.webp" alt="SocialFlow settings" loading="lazy">
-                </div>
-              </div>
-              <div class="app-demo-info">
-                <p class="eyebrow">Social Media Platform</p>
-                <h3>SocialFlow</h3>
-                <div class="app-scara">
-                  <p><strong>Problem:</strong> Social apps are the hardest category to build — real-time feeds, live stories, short-form video, DMs, and algorithmic discovery all need to feel instant and never glitch. SocialFlow demonstrates the full surface area.</p>
-                  <p><strong>Result:</strong> A feature-complete social platform with home feed, reels, stories, profile gallery, messaging, and creator tools — dark &amp; light modes, smooth transitions throughout.</p>
-                </div>
-                <ul class="app-features">
-                  <li>Algorithmic home feed with infinite scroll</li>
-                  <li>Short-form video (Reels) with AVFoundation player</li>
-                  <li>Stories — 24-hour ephemeral content with viewer tracking</li>
-                  <li>Real-time DMs via WebSocket</li>
-                  <li>Creator tools — post composer, caption, hashtags</li>
-                  <li>Profile grid, follow graph, and notification centre</li>
-                </ul>
-                <div class="app-tech">
-                  <span>Swift</span><span>SwiftUI</span><span>AVFoundation</span><span>WebSocket</span><span>Firebase</span><span>Push Notifications</span><span>Core Data</span>
-                </div>
-                <div class="app-links">
-                  <a href="https://github.com/AjayGirolkar" target="_blank" rel="noreferrer" class="app-link-github">View Source on GitHub →</a>
-                  <span class="app-link-badge">SwiftUI source shared on discovery call</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- AppMarket -->
-            <div class="app-demo" data-app="appmarket">
               <div class="app-demo-phone">
                 <div class="iphone-frame iphone-lg">
                   <div class="iphone-screen">
                     <div class="screenshot-carousel">
-                      <div class="sc-slide active"><img src="assets/app-screenshots/appmarket/screen-1.webp" alt="AppMarket Today feed" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/appmarket/screen-2.webp" alt="AppMarket Top Charts" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/appmarket/screen-3.webp" alt="AppMarket Search" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/appmarket/screen-4.webp" alt="AppMarket app detail" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/appmarket/screen-5.webp" alt="AppMarket Arcade" loading="lazy"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/appmarket/screen-6.webp" alt="AppMarket account" loading="lazy"></div>
+                      <div class="sc-slide active"><img src="assets/app-screenshots/socialflow/v1/web/01-feed.webp" alt="SocialFlow — home feed" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/socialflow/v1/web/02-post.webp" alt="SocialFlow — post detail" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/socialflow/v1/web/03-compose.webp" alt="SocialFlow — compose" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/socialflow/v1/web/04-explore.webp" alt="SocialFlow — explore mosaic" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/socialflow/v1/web/05-empty.webp" alt="SocialFlow — quiet feed empty state" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/socialflow/v1/web/06-profile.webp" alt="SocialFlow — profile grid" loading="lazy" width="786" height="1704"></div>
                     </div>
                   </div>
                 </div>
                 <div class="carousel-dots"></div>
               </div>
               <div class="app-demo-info">
-                <p class="eyebrow">App Discovery Platform</p>
-                <h3>AppMarket</h3>
+                <p class="eyebrow">Social · Creator</p>
+                <h3>SocialFlow</h3>
                 <div class="app-scara">
-                  <p><strong>Problem:</strong> App stores need to surface the right app to the right user — editorial curation (Today, New &amp; Noteworthy), chart rankings, and universal search all need to feel instant and render without layout shift.</p>
-                  <p><strong>Result:</strong> A full-fidelity App Store clone with Today editorial feed, Top Charts, category search, and in-app purchase flows — powered by StoreKit 2 and CloudKit sync.</p>
+                  <p><strong>Problem:</strong> A social feed is judged on the photography, and most designs bury it: a card, a border, a radius and a shadow around every post, and the picture ends up as an illustration inside a UI.</p>
+                  <p><strong>Result:</strong> Pure mono, black ground, and no containers and no radius anywhere on content. Media runs edge to edge, grids run at 1pt gutters, and the only colour on the screen is the photography.</p>
                 </div>
                 <ul class="app-features">
-                  <li>Today editorial feed — App of the Day, curated stories</li>
-                  <li>Top Charts with Free / Paid / Grossing categories</li>
-                  <li>Universal search with Top Results and category filters</li>
-                  <li>App detail pages with ratings, screenshots, reviews</li>
-                  <li>StoreKit 2 — in-app purchase &amp; subscription management</li>
+                  <li>Forty-two CC0 frames, licence asserted per item, on one shared grade</li>
+                  <li>Story rail: 2.5pt gradient ring unseen, hairline seen</li>
+                  <li>Chrome that dissolves on scroll, with a compose pill instead of a plus-in-a-circle</li>
+                  <li>1pt-gutter mosaic with a 2×2 anchor tile</li>
+                  <li>Inter Tight set tight and large — and nothing is ever uppercased</li>
                 </ul>
                 <div class="app-tech">
-                  <span>Swift</span><span>UIKit</span><span>SwiftUI</span><span>StoreKit 2</span><span>CloudKit</span><span>Core Data</span>
+                  <span>Swift</span><span>SwiftUI</span><span>async/await</span><span>AVFoundation</span><span>Nuke</span><span>Core Data</span><span>Hot pink #FF2E63 on black</span>
                 </div>
                 <div class="app-links">
-                  <a href="https://github.com/ajaygirolkar" target="_blank" rel="noreferrer" class="app-link-github">View GitHub →</a>
-                  <span class="app-link-badge">Code available on request</span>
+                  <a href="https://claude.ai/code/artifact/c8514ab0-449b-4812-9f8a-a0219748e4a1" target="_blank" rel="noreferrer" class="app-link-github">Open the design canvas →</a>
+                  <span class="app-link-badge">Artboards, divergence table and the seven-rule audit</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- NativeAIStudio -->
+            <div class="app-demo" data-app="nativeaistudio">
+              <div class="app-demo-phone">
+                <div class="iphone-frame iphone-lg">
+                  <div class="iphone-screen">
+                    <div class="screenshot-carousel">
+                      <div class="sc-slide active"><img src="assets/app-screenshots/nativeaistudio/v1/web/01-studio.webp" alt="NativeAIStudio — studio home with model picker" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/nativeaistudio/v1/web/02-conversations.webp" alt="NativeAIStudio — conversation list" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/nativeaistudio/v1/web/03-answer.webp" alt="NativeAIStudio — streaming answer" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/nativeaistudio/v1/web/04-compose.webp" alt="NativeAIStudio — compose with tool run" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/nativeaistudio/v1/web/05-first-run.webp" alt="NativeAIStudio — first run" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="assets/app-screenshots/nativeaistudio/v1/web/06-settings.webp" alt="NativeAIStudio — model and privacy" loading="lazy" width="786" height="1704"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-dots"></div>
+              </div>
+              <div class="app-demo-info">
+                <p class="eyebrow">AI · Productivity</p>
+                <h3>NativeAIStudio</h3>
+                <div class="app-scara">
+                  <p><strong>Problem:</strong> Every AI client currently looks the same: a purple gradient, a sparkle on every button, a chat bubble around the assistant's text, and three bouncing dots standing in for work being done.</p>
+                  <p><strong>Result:</strong> Warm ink, no tab bar, and message turns instead of cards — the user's turn is compact and right-inset, the assistant's is full width with no container at all, and that asymmetry is the whole design. Glass appears on three things across six screens.</p>
+                </div>
+                <ul class="app-features">
+                  <li>Streaming response with a soft caret — no typewriter jitter, no bouncing dots</li>
+                  <li>Tool-run chips with icon, name, argument and duration; running is a progress underline</li>
+                  <li>Source citations as a superscript numeral with a row beneath</li>
+                  <li>Composer that grows to five lines, with the send fill earned by being non-empty</li>
+                  <li>Prose is IBM Plex Sans; every machine-generated fact is IBM Plex Mono</li>
+                </ul>
+                <div class="app-tech">
+                  <span>Swift</span><span>SwiftUI</span><span>async/await</span><span>AsyncSequence streaming</span><span>SwiftData</span><span>Keychain</span><span>Citrine #DFC069 on warm ink</span>
+                </div>
+                <div class="app-links">
+                  <a href="https://claude.ai/code/artifact/f2ba2b4e-628c-431a-aad8-19c68f8e7bbf" target="_blank" rel="noreferrer" class="app-link-github">Open the design canvas →</a>
+                  <span class="app-link-badge">Artboards, divergence table and the seven-rule audit</span>
                 </div>
               </div>
             </div>
@@ -913,7 +910,7 @@
             <article class="panel proof-card">
               <div class="proof-icon">⌥</div>
               <h3>Demo App Code</h3>
-              <p>All five portfolio demo apps (WealthKit, PaySwift, ShopEase, SocialFlow, AppMarket) are available as private GitHub repos and shared during discovery calls.</p>
+              <p>All five reference apps (WealthKit, FitnessPro, ShopEase, SocialFlow, NativeAIStudio) are available as private GitHub repos and shared during discovery calls.</p>
               <span class="proof-badge">Code available on request</span>
             </article>
           </div>
