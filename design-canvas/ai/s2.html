@@ -1,0 +1,70 @@
+<!-- 02 · List archetype — "Conversations".
+     Deliberately NOT s1's list. s1 is a compact one-line index with a right-hand mono
+     column; this is a reading list — a two-line excerpt of the answer under each title
+     and a mono provenance line under that, grouped by day. Bold move: the excerpt is the
+     row, so the list reads as prose rather than as metadata. -->
+<div class="ios">
+<div class="stack">
+  {{SB}}
+
+  <div class="navbar navbar--large" style="padding-top:2px">
+    <h1 style="font-size:30px;font-weight:600;letter-spacing:-.02em">Conversations</h1>
+  </div>
+  <div class="pad" style="padding-top:10px;padding-bottom:12px;flex:none">
+    <div class="srch"><svg class="i"><use href="#ic-search"/></svg><span>Search 214 conversations</span></div>
+  </div>
+  <div style="display:flex;gap:7px;padding:0 20px 4px;flex:none">
+    <span class="m" style="height:26px;padding:0 11px;border-radius:8px;background:var(--accent);
+      color:var(--on-accent);display:inline-flex;align-items:center;letter-spacing:.01em">all</span>
+    <span class="m" style="height:26px;padding:0 11px;border-radius:8px;
+      border:.5px solid var(--hairline);display:inline-flex;align-items:center">pinned</span>
+    <span class="m" style="height:26px;padding:0 11px;border-radius:8px;
+      border:.5px solid var(--hairline);display:inline-flex;align-items:center">shared</span>
+    <span class="m" style="height:26px;padding:0 11px;border-radius:8px;
+      border:.5px solid var(--hairline);display:inline-flex;align-items:center">archived</span>
+  </div>
+
+  <div class="scroll">
+    <p class="grp">TODAY</p>
+    <div class="lrow" style="display:block">
+      <p class="t1" style="font-size:16.5px;font-weight:600;letter-spacing:-.012em">SwiftUI List drops frames while filtering</p>
+      <p style="font-size:14.5px;color:var(--ink-2);line-height:1.5;margin-top:4px">
+        Three costs are stacking, and only the third is really about the filter. The
+        expensive half is that <code>id: \.self</code> re-identifies every row…</p>
+      <p class="m" style="margin-top:7px">opus 5 · 14 turns · 31.2k · 2h ago</p>
+    </div>
+    <div class="lrow" style="display:block">
+      <p class="t1" style="font-size:16.5px;font-weight:600;letter-spacing:-.012em">Core Data → SwiftData migration plan</p>
+      <p style="font-size:14.5px;color:var(--ink-2);line-height:1.5;margin-top:4px">
+        Keep the old store readable through one release. Write to both, read from
+        SwiftData, and only drop the NSPersistentContainer once…</p>
+      <p class="m" style="margin-top:7px">sonnet 5 · 6 turns · 9.4k · 5h ago</p>
+    </div>
+
+    <p class="grp">YESTERDAY</p>
+    <div class="lrow" style="display:block">
+      <p class="t1" style="font-size:15px;font-weight:600;letter-spacing:-.008em">118 ms hitch on the TabView switch</p>
+      <p style="font-size:13.5px;color:var(--ink-2);line-height:1.44;margin-top:3px">
+        Instruments points at the image decode, not layout. The thumbnails are 4032 px…</p>
+      <p class="m" style="margin-top:6px">opus 5 · 22 turns · 47.8k</p>
+    </div>
+    <div class="lrow" style="display:block">
+      <p class="t1" style="font-size:15px;font-weight:600;letter-spacing:-.008em">Actor reentrancy in the sync queue</p>
+      <p style="font-size:13.5px;color:var(--ink-2);line-height:1.44;margin-top:3px">
+        An actor is not a lock — it only guarantees one caller at a time between awaits…</p>
+      <p class="m" style="margin-top:6px">sonnet 5 · 9 turns · 15.1k</p>
+    </div>
+
+    <p class="grp">EARLIER THIS WEEK</p>
+    <div class="lrow"><div class="g"><p class="t1">SPM binary target fails codesign on CI</p></div>
+      <span class="tr">mon</span></div>
+    <div class="lrow"><div class="g"><p class="t1">Swift 6 strict concurrency: 41 warnings left</p></div>
+      <span class="tr">thu</span></div>
+    <div class="lrow" style="border-bottom:.5px solid var(--hairline)">
+      <div class="g"><p class="t1">Preview crashes with “Cannot preview in this file”</p></div>
+      <span class="tr">wed</span></div>
+  </div>
+  <div class="fade-b" style="height:96px"></div>
+</div>
+<div class="homebar"></div>
+</div>

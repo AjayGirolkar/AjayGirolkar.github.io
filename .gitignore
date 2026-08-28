@@ -18,3 +18,8 @@ __pycache__/
 # App screenshots — only the web-optimised webp are served; PNG sources
 # and proof sheets stay local
 assets/app-screenshots/**/*.png
+
+# Design-canvas scratch — raw source photos and grading experiments
+design-canvas/*/src/
+design-canvas/*/_cand.*
+design-canvas/*/_graded.*

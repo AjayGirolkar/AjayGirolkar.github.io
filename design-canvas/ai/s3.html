@@ -1,0 +1,74 @@
+<!-- 03 · Immersive detail archetype — the streaming answer. The set's hero.
+     Bold move: the answer is the screen, floor to ceiling, with no container of any kind
+     around it — the ONLY bounded surfaces are the user's own turn and the code block, and
+     they read as two different objects. The one glass element is the stop button.
+     Rule 7 here is real CONTENT: a real SwiftUI performance question with a real,
+     correct, specific answer, real API names, real source domains, compiling Swift. -->
+<div class="ios">
+<div class="stack">
+  {{SB}}
+
+  <div class="navbar">
+    <svg class="i" style="color:var(--ink-2)"><use href="#ic-chev-l"/></svg>
+    <span style="font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+      max-width:230px">SwiftUI List drops frames</span>
+    <svg class="i" style="color:var(--ink-2)"><use href="#ic-more"/></svg>
+  </div>
+
+  <div class="scroll pad" style="padding-top:8px">
+
+    <!-- user turn: compact, right-inset, on a plate, tail corner. -->
+    <div class="turn-u">60 → 38 fps the moment I type. 4,200 rows, filter in
+      <code style="background:rgba(245,242,237,.10)">body</code>. What is costing me?</div>
+
+    <p class="who" style="margin:19px 0 12px">ASSISTANT · OPUS 5</p>
+
+    <!-- citations: they arrive with the retrieval, before the prose, so they sit above it.
+         The numeral is the mark — letter-monogram tiles are spent by fintech. -->
+    <div style="margin:0 0 16px">
+      <div class="src" style="border-top:0;padding-top:0"><span class="n">1</span><div class="g">
+        <p class="d">Demystify SwiftUI performance</p>
+        <p class="p">developer.apple.com · WWDC23-10160</p></div>
+        <svg class="i i--sm" style="color:var(--ink-3)"><use href="#ic-arr-ur"/></svg></div>
+      <div class="src"><span class="n">2</span><div class="g">
+        <p class="d">List identity and diffing cost</p>
+        <p class="p">forums.swift.org · swiftui · 41 replies</p></div>
+        <svg class="i i--sm" style="color:var(--ink-3)"><use href="#ic-arr-ur"/></svg></div>
+    </div>
+
+    <!-- assistant turn: full width, no plate, no radius, no border. -->
+    <div class="turn-a">
+      <p class="step" style="margin-bottom:13px !important"><i>1</i>The filter runs inside
+        <code>body</code> — O(n) on the main thread before SwiftUI diffs anything.</p>
+
+      <p class="step"><i>2</i>Value identity rebuilds every row.<sup class="c1">1</sup></p>
+      <p>With <code>id: \.self</code> the identity <em>is</em> the value, so rows are
+        torn down and rebuilt rather than moved.</p>
+
+      <div class="code" style="margin:2px 0 13px">
+        <div class="cbar"><svg class="i" style="width:12px;height:12px;stroke-width:1.8"><use href="#ic-doc"/></svg>
+          FeedModel.swift · swift</div>
+<pre><span class="k">@Observable final class</span> <span class="t">FeedModel</span> {
+  <span class="k">private(set) var</span> visible: [<span class="t">Post</span>] = []
+  <span class="k">func</span> <span class="f">search</span>(_ q: <span class="t">String</span>) <span class="k">async</span> {
+    <span class="k">try</span>? <span class="k">await</span> <span class="t">Task</span>.sleep(<span class="k">for</span>: .milliseconds(<span class="s">250</span>))
+    visible = <span class="k">await</span> index.matches(q)   <span class="c">// off main</span>
+  }
+}</pre>
+      </div>
+
+      <p class="step"><i>3</i>You search on every character.<sup class="c1">2</sup></p>
+      <p style="margin-bottom:0">~38k comparisons nobody ever sees.
+        Debounce<span class="caret"></span></p>
+    </div>
+
+  </div>
+  <div class="fade-b" style="height:112px"></div>
+</div>
+
+<!-- the one glass element on this screen. Composer is gone while generating. -->
+<div class="stop glass glass--rim">
+  <svg class="i"><use href="#ic-stop"/></svg>Stop
+</div>
+<div class="homebar"></div>
+</div>

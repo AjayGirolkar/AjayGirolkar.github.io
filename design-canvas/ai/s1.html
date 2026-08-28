@@ -1,0 +1,108 @@
+<!-- 01 · Dashboard archetype — "Studio", the workspace front door.
+     Bold move: the model picker is OPEN, anchored to the mono model chip in the resume
+     block rather than to the nav title, so the hero line stays readable above it. It is
+     the screen's only glass and the only crafted surface; everything else is 15.5px or
+     smaller. A menu-open state is also the kind of screen most portfolios never draw. -->
+<div class="ios">
+<div class="stack">
+  {{SB}}
+
+  <div class="navbar">
+    <svg class="i" style="color:var(--ink-2)"><use href="#ic-sessions"/></svg>
+    <span>Studio</span>
+    <svg class="i" style="color:var(--ink-2)"><use href="#ic-plus"/></svg>
+  </div>
+
+  <div class="scroll">
+    <!-- resume block: mono machine facts, prose title, prose excerpt -->
+    <div class="pad" style="padding-top:10px;padding-bottom:16px">
+      <p class="m" style="text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px">
+        RESUMING · 2H AGO</p>
+      <p class="ttl" style="margin:0 0 6px">SwiftUI List drops frames while filtering</p>
+      <p class="sub" style="margin:0 0 13px">You asked why 4,200 rows fall to 38 fps on
+        every keystroke. I had just finished reading <code>FeedView.swift</code>.</p>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="comp-mdl" style="display:inline-flex;align-items:center;gap:5px;height:26px;
+          padding:0 9px;border-radius:8px;background:rgba(245,242,237,.07);
+          font-family:var(--f-mono);font-size:11px;color:var(--ink-2)">opus 5
+          <svg class="i" style="width:12px;height:12px;stroke-width:2.2"><use href="#ic-chev-d"/></svg>
+        </span>
+        <span class="m">14 turns</span><span class="m">31.2k tokens</span>
+      </div>
+    </div>
+
+    <p class="grp" style="padding-top:2px">RECENT</p>
+    <div class="lrow">
+      <div class="g"><p class="t1">Core Data → SwiftData migration plan</p>
+        <p class="t2">Staged migration keeps the old store readable until…</p></div>
+      <span class="tr">sonnet 5<br>yest</span>
+    </div>
+    <div class="lrow">
+      <div class="g"><p class="t1">118 ms hitch on the TabView switch</p>
+        <p class="t2">Instruments points at the image decode, not layout…</p></div>
+      <span class="tr">opus 5<br>yest</span>
+    </div>
+    <div class="lrow">
+      <div class="g"><p class="t1">Decoding a heterogeneous JSON array</p>
+        <p class="t2">A type-erased box with an enum discriminator is…</p></div>
+      <span class="tr">haiku 4.5<br>tue</span>
+    </div>
+    <div class="lrow">
+      <div class="g"><p class="t1">SPM binary target fails codesign on CI</p>
+        <p class="t2">The xcframework is signed, the bundle inside it is…</p></div>
+      <span class="tr">opus 5<br>mon</span>
+    </div>
+    <div class="lrow">
+      <div class="g"><p class="t1">Actor reentrancy in the sync queue</p>
+        <p class="t2">The await suspends, a second caller enters, and the…</p></div>
+      <span class="tr">sonnet 5<br>fri</span>
+    </div>
+    <div class="lrow">
+      <div class="g"><p class="t1">Why does <code>@MainActor</code> not silence this?</p>
+        <p class="t2">The closure escapes to a nonisolated context, so the…</p></div>
+      <span class="tr">opus 5<br>thu</span>
+    </div>
+    <div class="lrow">
+      <div class="g"><p class="t1">Swift 6 strict concurrency: 41 warnings left</p>
+        <p class="t2">Twenty-nine are the same global var. Fix that first…</p></div>
+      <span class="tr">opus 5<br>thu</span>
+    </div>
+    <div class="lrow">
+      <div class="g"><p class="t1">Preview crashes with “Cannot preview in this file”</p>
+        <p class="t2">The provider builds the whole target, so a failure in…</p></div>
+      <span class="tr">haiku 4.5<br>wed</span>
+    </div>
+  </div>
+
+  <!-- pinned foot: the machine's own accounting, in mono, on a hairline. No card. -->
+  <div style="flex:none;border-top:.5px solid var(--hairline);padding:14px 20px 26px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline">
+      <span class="m" style="text-transform:uppercase;letter-spacing:.06em">CONTEXT USED</span>
+      <span class="m m--lg" style="color:var(--ink-2)">31.2k / 200k</span>
+    </div>
+    <div style="height:2px;background:rgba(245,242,237,.10);margin-top:9px;border-radius:1px">
+      <div style="height:2px;width:15.6%;background:var(--accent);border-radius:1px"></div>
+    </div>
+  </div>
+</div>
+
+<div class="menu-scrim"></div>
+<!-- the one glass layer on this screen -->
+<div class="menu glass glass--rim" style="left:20px;right:92px;top:281px">
+  <div class="mi">
+    <div class="g"><p class="nm">Opus 5 <span class="m">200k</span></p>
+      <p class="cp">Deepest reasoning. Long agentic runs.</p></div>
+    <svg class="ck i"><use href="#ic-check"/></svg>
+  </div>
+  <div class="mi">
+    <div class="g"><p class="nm">Sonnet 5 <span class="m">200k</span></p>
+      <p class="cp">Balanced. The everyday default.</p></div>
+  </div>
+  <div class="mi">
+    <div class="g"><p class="nm">Haiku 4.5 <span class="m">200k</span></p>
+      <p class="cp">Fastest. Short, well-scoped turns.</p></div>
+  </div>
+</div>
+
+<div class="homebar"></div>
+</div>

@@ -1,0 +1,56 @@
+<!-- S2 · Post detail — immersive full-bleed.
+     Bold move: the photograph is the screen. Floor to ceiling, no margin, no radius, no
+     container; the only UI is two gradient scrims and one oversized like count set at
+     36px. Chrome has fully dissolved -- there is no tab rail and no compose pill here. -->
+<div class="ios"><div class="island"></div>
+  <img class="media" src="{{IM_HERO}}" alt=""
+       style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+
+  <div class="scrim-t"></div>
+  <div class="stack">
+{{SB}}
+    <div class="by" style="height:44px">
+      <svg class="i" style="margin-right:2px"><use href="#ic-chev-l"/></svg>
+      <img src="{{AV_ELENA}}" alt="" style="width:26px;height:26px">
+      <span class="grow"><span class="hnd">{{HD_ELENA}}</span></span>
+      <svg class="i i--sm"><use href="#ic-more"/></svg>
+    </div>
+  </div>
+
+  <div class="scrim" style="height:392px"></div>
+  <div style="position:absolute;left:0;right:0;bottom:0;padding:0 var(--margin) 30px">
+    <!-- the count is the loudest thing on the screen after the photograph -->
+    <div style="display:flex;align-items:flex-end;gap:22px;margin-bottom:16px">
+      <span>
+        <svg class="i i--fill on" style="width:27px;height:27px;display:block;margin-bottom:2px"><use href="#ic-heart"/></svg>
+        <span class="num" style="font-size:36px;font-weight:600;letter-spacing:-.045em;line-height:1">{{LI_HERO}}</span>
+      </span>
+      <span style="padding-bottom:5px">
+        <svg class="i" style="width:23px;height:23px;display:block;color:var(--ink-2);margin-bottom:3px"><use href="#ic-msg"/></svg>
+        <span class="num sub" style="font-size:15px">{{CO_HERO}}</span>
+      </span>
+      <span style="padding-bottom:5px">
+        <svg class="i" style="width:23px;height:23px;display:block;color:var(--ink-2);margin-bottom:3px"><use href="#ic-send"/></svg>
+        <span class="num sub" style="font-size:15px">{{SH_HERO}}</span>
+      </span>
+      <span class="sp" style="flex:1"></span>
+      <svg class="i" style="color:var(--ink-2);padding-bottom:8px"><use href="#ic-bookmark"/></svg>
+    </div>
+
+    <p class="cap" style="margin:0 0 12px;font-size:17px;line-height:1.3">
+      <b>{{HD_ELENA}}</b> {{CAP_HERO}}</p>
+
+    <div class="sub" style="display:flex;gap:10px;align-items:center;font-size:13px">
+      <span>{{PL_HERO}}</span><span class="dim">·</span><span class="num dim">{{WH_HERO}}</span>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:9px;margin-top:18px">
+      <img src="{{AV_TAREK}}" alt="" style="width:26px;height:26px;border-radius:50%;object-fit:cover">
+      <span class="cap" style="font-size:14.5px;flex:1;min-width:0;overflow:hidden;
+            text-overflow:ellipsis;white-space:nowrap"><b>{{HD_TAREK}}</b>
+        <span class="sub">the second frame is the one, trust me</span></span>
+      <span class="num dim" style="font-size:12.5px">2h</span>
+    </div>
+  </div>
+  <div class="homebar"></div>
+</div>

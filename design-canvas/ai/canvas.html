@@ -1,0 +1,1127 @@
+<title>NativeAIStudio Artboards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<!-- KIT-START -->
+
+<style>
+/* ---------- tokens ---------- */
+.ios{
+  --w:393px; --h:852px;
+
+  /* type */
+  --f-sys:-apple-system,"SF Pro Text","SF Pro Display","Helvetica Neue",system-ui,sans-serif;
+  --f-round:-apple-system,"SF Pro Rounded","SF Pro Display",system-ui,sans-serif;
+  --t-large:34px; --t-title:22px; --t-head:17px; --t-body:17px;
+  --t-sec:15px; --t-cap:13px; --t-tab:11px;
+
+  /* space scale */
+  --s1:2px;--s2:4px;--s3:8px;--s4:12px;--s5:16px;--s6:20px;--s7:24px;--s8:32px;--s9:40px;--s10:56px;
+  --margin:16px;
+
+  /* concentric radii */
+  --r-sheet:38px; --r-card:20px; --r-ctl:12px; --r-chip:8px;
+
+  /* light palette */
+  --ink:#000; --ink-2:rgba(60,60,67,.60); --ink-3:rgba(60,60,67,.30);
+  --surface:#F2F2F7; --surface-el:#FFF; --hairline:rgba(60,60,67,.14);
+  --accent:#0A7E76;                     /* override per app — never purple */
+  --accent-soft:color-mix(in srgb,var(--accent) 12%,transparent);
+  --gain:#1C8C4B; --loss:#C2382F; --warn:#B26A00;
+  --glass-blur:24px; --glass-sat:180%;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .ios{
+    --ink:#FFF; --ink-2:rgba(235,235,245,.60); --ink-3:rgba(235,235,245,.30);
+    --surface:#000; --surface-el:#1C1C1E; --hairline:rgba(235,235,245,.16);
+    --gain:#30D158; --loss:#FF453A; --warn:#FF9F0A;
+  }
+}
+[data-theme="dark"] .ios{
+  --ink:#FFF; --ink-2:rgba(235,235,245,.60); --ink-3:rgba(235,235,245,.30);
+  --surface:#000; --surface-el:#1C1C1E; --hairline:rgba(235,235,245,.16);
+  --gain:#30D158; --loss:#FF453A; --warn:#FF9F0A;
+}
+
+/* ---------- device shell ---------- */
+.ios{
+  width:var(--w); height:var(--h); position:relative; overflow:hidden;
+  border-radius:var(--r-sheet); background:var(--surface); color:var(--ink);
+  font-family:var(--f-sys); font-size:var(--t-body); line-height:1.29;
+  -webkit-font-smoothing:antialiased;
+}
+.ios *{box-sizing:border-box}
+/* Block margins. The browser's 1em <p> margin silently inflates every prose row by ~32pt,
+   and it went unnoticed through S2-S5 because those domains never used a bare <p>. The
+   first long-form register (S6) hit it immediately. Reset it here, not per app. */
+.ios p,.ios h1,.ios h2,.ios h3,.ios h4,.ios ul,.ios ol,.ios pre,.ios figure{margin:0}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.ios svg text{font-family:var(--f-sys)}
+.ios svg text.rnd{font-family:var(--f-round)}   /* rounded design, monetary figures only */
+.money{font-family:var(--f-round);font-variant-numeric:tabular-nums}
+
+/* ---------- glass (chrome only) ---------- */
+.glass{
+  background:rgba(255,255,255,.55);
+  backdrop-filter:blur(var(--glass-blur)) saturate(var(--glass-sat));
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(var(--glass-sat));
+  border:.5px solid rgba(255,255,255,.60);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.70),inset 0 -1px 0 rgba(255,255,255,.15),
+             0 8px 24px rgba(0,0,0,.10);
+}
+[data-theme="dark"] .glass{
+  background:rgba(28,28,30,.55); border-color:rgba(255,255,255,.12);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 -1px 0 rgba(255,255,255,.04),
+             0 8px 28px rgba(0,0,0,.40);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .glass{
+    background:rgba(28,28,30,.55); border-color:rgba(255,255,255,.12);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 -1px 0 rgba(255,255,255,.04),
+               0 8px 28px rgba(0,0,0,.40);
+  }
+}
+.glass--rim{position:relative}
+.glass--rim::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;padding:.5px;pointer-events:none;
+  background:linear-gradient(145deg,rgba(255,255,255,.85),rgba(255,255,255,.15) 38%,rgba(255,255,255,0) 62%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+}
+@media (prefers-reduced-transparency:reduce){
+  .glass{background:var(--surface-el);backdrop-filter:none;-webkit-backdrop-filter:none;
+         box-shadow:0 1px 0 rgba(0,0,0,.08)}
+  .glass--rim::after{display:none}
+}
+
+/* ---------- chrome ---------- */
+.statusbar{
+  height:59px;display:flex;align-items:flex-end;justify-content:space-between;
+  padding:0 22px 8px;font-size:15px;font-weight:600;letter-spacing:.2px;position:relative;z-index:5;
+}
+.statusbar .glyphs{display:flex;gap:5px;align-items:center}
+.island{position:absolute;top:11px;left:50%;transform:translateX(-50%);
+        width:125px;height:36px;border-radius:18px;background:#000;z-index:6}
+
+/* Status-bar glyphs. Device chrome, so it belongs here rather than in an app layer --
+   fintech, fitness and commerce each hand-copied this block before it was hoisted.
+   Canonical markup (paste as the first child of the screen's flex stack):
+
+   <div class="statusbar"><span>9:41</span><span class="glyphs">
+     <span class="sb-sig"><i></i><i></i><i></i><i></i></span>
+     <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><path d="M8.5 10.6 10.7 8.3a3.1 3.1 0 0 0-4.4 0ZM4.6 6.7l1.3 1.3a4.9 4.9 0 0 1 5.2 0l1.3-1.3a6.7 6.7 0 0 0-7.8 0ZM1.6 3.6 2.9 5a9.3 9.3 0 0 1 11.2 0l1.3-1.4a11.1 11.1 0 0 0-13.8 0Z"/></svg>
+     <span class="sb-bat"><b></b></span></span></div>
+*/
+.sb-sig{display:flex;align-items:flex-end;gap:2px;height:11px}
+.sb-sig i{width:3px;background:currentColor;border-radius:1px;display:block}
+.sb-sig i:nth-child(1){height:4px}.sb-sig i:nth-child(2){height:6px}
+.sb-sig i:nth-child(3){height:8.5px}.sb-sig i:nth-child(4){height:11px}
+.sb-bat{width:25px;height:12px;border:1.1px solid currentColor;border-radius:3.4px;
+        opacity:.9;position:relative;padding:1.4px}
+.sb-bat::after{content:"";position:absolute;right:-3px;top:3.6px;width:1.6px;height:4.4px;
+        border-radius:0 1px 1px 0;background:currentColor;opacity:.5}
+.sb-bat b{display:block;height:100%;width:80%;background:currentColor;border-radius:1.6px}
+
+.navbar{height:44px;display:flex;align-items:center;justify-content:space-between;
+        padding:0 var(--margin);font-size:var(--t-head);font-weight:600}
+.navbar--large{display:block;height:auto;padding:4px var(--margin) 8px}
+.navbar--large h1{font-size:var(--t-large);font-weight:700;letter-spacing:-.5px;margin:0}
+
+.tabbar{
+  position:absolute;left:21px;right:21px;bottom:21px;height:56px;border-radius:28px;
+  display:flex;align-items:center;justify-content:space-around;z-index:5;
+}
+.tabitem{display:flex;flex-direction:column;align-items:center;gap:3px;
+         font-size:var(--t-tab);color:var(--ink-2);min-width:44px}
+.tabitem[aria-current]{color:var(--accent)}
+
+.homebar{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);
+         width:140px;height:5px;border-radius:3px;background:var(--ink);opacity:.28;z-index:7}
+
+/* ---------- content primitives ---------- */
+.card{background:var(--surface-el);border-radius:var(--r-card);padding:var(--s6)}
+.hair{height:.5px;background:var(--hairline);border:0;margin:0}
+.chip{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 10px;
+      border-radius:var(--r-chip);font-size:var(--t-cap);font-weight:600}
+.chip--gain{color:var(--gain);background:color-mix(in srgb,var(--gain) 12%,transparent)}
+.chip--loss{color:var(--loss);background:color-mix(in srgb,var(--loss) 12%,transparent)}
+.row{display:flex;align-items:center;gap:var(--s4);padding:var(--s4) var(--margin)}
+.row .lead{width:40px;height:40px;border-radius:20px;display:grid;place-items:center;flex:none}
+.row .body{flex:1;min-width:0}
+.row .t1{font-size:var(--t-body)}
+.row .t2{font-size:var(--t-cap);color:var(--ink-2);margin-top:1px}
+.row .trail{text-align:right}
+.sec-hd{font-size:var(--t-cap);font-weight:600;letter-spacing:.4px;text-transform:uppercase;
+        color:var(--ink-2);padding:var(--s7) var(--margin) var(--s3)}
+.i{width:24px;height:24px;display:inline-block;vertical-align:-5px;
+   stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.i--sm{width:20px;height:20px;stroke-width:1.8}
+.i--fill{fill:currentColor;stroke:none}
+</style>
+
+<!-- ---------- icon sprite: <svg class="i"><use href="#ic-house"/></svg> ---------- -->
+<svg id="ios-icons" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="ic-chev-l" viewBox="0 0 24 24"><path d="M15 5 8.5 12 15 19"/></symbol>
+<symbol id="ic-chev-r" viewBox="0 0 24 24"><path d="M9 5l6.5 7L9 19"/></symbol>
+<symbol id="ic-chev-d" viewBox="0 0 24 24"><path d="M5 9.5 12 16l7-6.5"/></symbol>
+<symbol id="ic-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="ic-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="ic-more" viewBox="0 0 24 24"><circle cx="5.5" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="18.5" cy="12" r="1.5" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.2"/><path d="M15.2 15.2 20 20"/></symbol>
+<symbol id="ic-filter" viewBox="0 0 24 24"><path d="M3.5 7h17M3.5 12h17M3.5 17h17"/><circle cx="9" cy="7" r="2.1" fill="var(--surface,#fff)"/><circle cx="15" cy="12" r="2.1" fill="var(--surface,#fff)"/><circle cx="7" cy="17" r="2.1" fill="var(--surface,#fff)"/></symbol>
+<symbol id="ic-bell" viewBox="0 0 24 24"><path d="M12 3.4c-3.1 0-5.1 2.1-5.1 5.2 0 4.1-1.6 5.3-1.6 6.2h13.4c0-.9-1.6-2.1-1.6-6.2 0-3.1-2-5.2-5.1-5.2Z"/><path d="M10 18.3a2 2 0 0 0 4 0"/></symbol>
+<symbol id="ic-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.6"/><g stroke-width="2.6"><path d="M18 12h2.5M16.24 7.76 18.01 5.99M12 6V3.5M7.76 7.76 5.99 5.99M6 12H3.5M7.76 16.24 5.99 18.01M12 18v2.5M16.24 16.24 18.01 18.01"/></g></symbol>
+<symbol id="ic-arr-u" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+<symbol id="ic-arr-d" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+<symbol id="ic-arr-ur" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+<symbol id="ic-check" viewBox="0 0 24 24"><path d="m5 12.5 4.8 4.8L19 6.7"/></symbol>
+<symbol id="ic-share" viewBox="0 0 24 24"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M7 10.5H5.4a1.4 1.4 0 0 0-1.4 1.4v7.7A1.4 1.4 0 0 0 5.4 21h13.2a1.4 1.4 0 0 0 1.4-1.4v-7.7a1.4 1.4 0 0 0-1.4-1.4H17"/></symbol>
+<symbol id="ic-trash" viewBox="0 0 24 24"><path d="M4.5 6.5h15M9.5 6.5v-2h5v2M6.8 6.5l1 13h8.4l1-13"/></symbol>
+<symbol id="ic-lock" viewBox="0 0 24 24"><rect x="5" y="10.4" width="14" height="9.6" rx="2.4"/><path d="M8.4 10.4V8a3.6 3.6 0 0 1 7.2 0v2.4"/></symbol>
+<symbol id="ic-faceid" viewBox="0 0 24 24"><path d="M3.5 8V5.6A2.1 2.1 0 0 1 5.6 3.5H8M16 3.5h2.4a2.1 2.1 0 0 1 2.1 2.1V8M20.5 16v2.4a2.1 2.1 0 0 1-2.1 2.1H16M8 20.5H5.6a2.1 2.1 0 0 1-2.1-2.1V16"/><path d="M8.6 9.4v1.8M15.4 9.4v1.8M12 9.6v3.9h-1.2M9 15.8a4.2 4.2 0 0 0 6 0"/></symbol>
+<symbol id="ic-house" viewBox="0 0 24 24"><path d="M3.4 11 12 4l8.6 7v8.6a1.2 1.2 0 0 1-1.2 1.2H4.6a1.2 1.2 0 0 1-1.2-1.2Z"/></symbol>
+<symbol id="ic-pie" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><path d="M12 3.8V12h8.2"/></symbol>
+<symbol id="ic-card" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.6"/><path d="M3 10h18"/></symbol>
+<symbol id="ic-person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.7"/><path d="M4.8 20.2a7.2 7.2 0 0 1 14.4 0"/></symbol>
+<symbol id="ic-bag" viewBox="0 0 24 24"><path d="M5.6 8h12.8l.9 12.4H4.7Z"/><path d="M9 8V6.4a3 3 0 0 1 6 0V8"/></symbol>
+<symbol id="ic-heart" viewBox="0 0 24 24"><path d="M12 20.3C5 15.6 3.2 12.5 3.2 9.4A4.7 4.7 0 0 1 12 7.2a4.7 4.7 0 0 1 8.8 2.2c0 3.1-1.8 6.2-8.8 10.9Z"/></symbol>
+<symbol id="ic-msg" viewBox="0 0 24 24"><path d="M20.6 11.4c0 4-3.9 7.2-8.6 7.2a11 11 0 0 1-2.3-.2l-4.2 2.1 1.1-3.6c-2.1-1.3-3.2-3.3-3.2-5.5 0-4 3.9-7.2 8.6-7.2s8.6 3.2 8.6 7.2Z"/></symbol>
+<symbol id="ic-bookmark" viewBox="0 0 24 24"><path d="M6.6 3.8h10.8v16.4L12 16.2l-5.4 4Z"/></symbol>
+<symbol id="ic-bolt" viewBox="0 0 24 24"><path d="M13.6 3 6 13.4h4.6L10.4 21 18 10.6h-4.6Z"/></symbol>
+<symbol id="ic-flame" viewBox="0 0 24 24"><path d="M12 3.4c3.1 3 4.9 5.6 4.9 8.6a4.9 4.9 0 0 1-9.8 0c0-1.9.8-3.4 1.7-4.5.1 1.5.8 2.4 1.8 2.4 1.6 0 2.2-2.8 1.4-6.5Z"/></symbol>
+<symbol id="ic-dumbbell" viewBox="0 0 24 24"><path d="M8.6 12h6.8"/><rect x="5.6" y="8.2" width="3" height="7.6" rx="1.3"/><rect x="15.4" y="8.2" width="3" height="7.6" rx="1.3"/><path d="M3.4 10.2v3.6M20.6 10.2v3.6"/></symbol>
+<symbol id="ic-cal" viewBox="0 0 24 24"><rect x="3.4" y="5.4" width="17.2" height="15.2" rx="2.6"/><path d="M3.4 10h17.2M8 3.4v4M16 3.4v4"/></symbol>
+<symbol id="ic-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><path d="M12 6.8V12l3.6 2.4"/></symbol>
+<symbol id="ic-camera" viewBox="0 0 24 24"><path d="M4.2 8.6h3.1L8.9 6h6.2l1.6 2.6h3.1a1.3 1.3 0 0 1 1.3 1.3v8.5a1.3 1.3 0 0 1-1.3 1.3H4.2a1.3 1.3 0 0 1-1.3-1.3V9.9a1.3 1.3 0 0 1 1.3-1.3Z"/><circle cx="12" cy="13.8" r="3.4"/></symbol>
+<symbol id="ic-photo" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.6"/><path d="M4.2 18.4 8.8 13.2 12 16l2.8-2.6 5 5.2"/><circle cx="8.4" cy="9.6" r="1.6"/></symbol>
+<symbol id="ic-clip" viewBox="0 0 24 24"><path d="M17.6 9.2 10.1 16.7a3.1 3.1 0 0 1-4.4-4.4l8.2-8.2a2.1 2.1 0 0 1 3 3l-8.2 8.2a1 1 0 0 1-1.5-1.5l7.4-7.4"/></symbol>
+<symbol id="ic-mic" viewBox="0 0 24 24"><rect x="9.4" y="3" width="5.2" height="11" rx="2.6"/><path d="M6 11.4a6 6 0 0 0 12 0M12 17.4V21"/></symbol>
+<symbol id="ic-send" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M12 16.4V7.9M8.6 11.3 12 7.9l3.4 3.4"/></symbol>
+<symbol id="ic-stop" viewBox="0 0 24 24"><rect x="6.6" y="6.6" width="10.8" height="10.8" rx="2.6" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-play" viewBox="0 0 24 24"><path d="M8.4 5.4 18.6 12 8.4 18.6Z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-star" viewBox="0 0 24 24"><path d="m12 3.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9-5.3-2.9-5.3 2.9 1.1-5.9-4.3-4.1 5.9-.8Z"/></symbol>
+<symbol id="ic-eye" viewBox="0 0 24 24"><path d="M2.6 12S6.4 6 12 6s9.4 6 9.4 6-3.8 6-9.4 6-9.4-6-9.4-6Z"/><circle cx="12" cy="12" r="2.8"/></symbol>
+<symbol id="ic-eye-off" viewBox="0 0 24 24"><path d="M4 4l16 16"/><path d="M9.5 9.6A2.8 2.8 0 0 0 12 14.8c.7 0 1.4-.3 1.9-.7"/><path d="M6.4 6.9C4.1 8.6 2.6 12 2.6 12s3.8 6 9.4 6c1.5 0 2.8-.4 4-1M17.1 15A14 14 0 0 0 21.4 12S17.6 6 12 6c-.7 0-1.4.1-2 .3"/></symbol>
+<symbol id="ic-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-grid" viewBox="0 0 24 24"><rect x="3.6" y="3.6" width="7.2" height="7.2" rx="2"/><rect x="13.2" y="3.6" width="7.2" height="7.2" rx="2"/><rect x="3.6" y="13.2" width="7.2" height="7.2" rx="2"/><rect x="13.2" y="13.2" width="7.2" height="7.2" rx="2"/></symbol>
+</defs></svg>
+<!-- KIT-END -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ NativeAIStudio — "ink transcript" register, app layer ============
+   Identity lock (domain-patterns.md): ground INK · containers are MESSAGE TURNS, not
+   cards -- user compact and right-inset, assistant full-width and airy, and that
+   asymmetry is the entire container model · glass on the COMPOSER and the STOP BUTTON
+   only, so there is no tab bar anywhere in the app · mono for machine facts against an
+   airy sans body · long-form vertical rhythm.
+
+   Every selector below is scoped under .ios on purpose. Fintech/fitness/commerce/social
+   all left their app layer unscoped and each review page then had to prefix its own
+   classes to stop .cap / .media / .row leaking into the embedded screens. Scoping here
+   fixes it at the source -- fold this back into the skill.                          */
+
+.ios{
+  /* ---- ground: warm ink. Deliberately NOT black. The four spent grounds are
+     #F2F2F7 (fintech), #07090A (fitness, cold), #F4EFE7 (commerce), #000 (social).
+     #131211 is warm, and visibly lifted off black -- printed page, inverted.    */
+  --surface:#131211; --surface-el:#201D1B; --surface-sunk:#0B0A09;
+  --ink:#F5F2ED; --ink-2:rgba(245,242,237,.62); --ink-3:rgba(245,242,237,.36);
+  --hairline:rgba(245,242,237,.13);
+
+  /* ---- accent: citrine brass. hue 46 deg.
+     Clears teal 172, mint 147, oxblood 15, social pink 345 -- and it is the one band
+     no major AI product occupies (Claude terracotta ~18, ChatGPT mono green,
+     Perplexity teal, Gemini blue-violet). Never purple, never a gradient.        */
+  --accent:#DFC069;
+  --accent-dim:rgba(223,192,105,.42);
+  --accent-soft:rgba(223,192,105,.13);
+  --on-accent:#17140F;                 /* the only ink allowed on top of the accent */
+
+  --f-sys:"IBM Plex Sans",-apple-system,"SF Pro Text",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --margin:20px;                       /* airy: 20, not the 16 everyone else runs */
+  --t-body:16px;
+}
+/* dark-locked. Ink IS the identity; a light NativeAIStudio would be a different product
+   and would also land on top of ShopEase's paper. Re-pin the kit's light tokens AND its
+   light .glass -- ShopEase and SocialFlow each learned that the tokens alone are not
+   enough and the one glass element flips ground under you. */
+[data-theme="light"] .ios,
+:root:not([data-theme="dark"]) .ios{
+  --ink:#F5F2ED; --ink-2:rgba(245,242,237,.62); --ink-3:rgba(245,242,237,.36);
+  --surface:#131211; --surface-el:#201D1B; --hairline:rgba(245,242,237,.13);
+}
+.ios .glass,[data-theme="light"] .ios .glass,
+:root:not([data-theme="dark"]) .ios .glass{
+  background:rgba(38,34,31,.56);border-color:rgba(255,247,232,.13);
+  box-shadow:inset 0 1px 0 rgba(255,247,232,.17),inset 0 -1px 0 rgba(255,247,232,.05),
+             0 14px 40px rgba(0,0,0,.62);
+}
+@media (prefers-reduced-transparency:reduce){
+  .ios .glass{background:#26221F;backdrop-filter:none;-webkit-backdrop-filter:none;
+              box-shadow:0 0 0 .5px rgba(255,247,232,.16)}
+}
+
+.ios{font-size:var(--t-body);line-height:1.56}   /* long-form leading, app-wide */
+/* The primitives kit does not reset block margins, and every earlier domain got away
+   with it because nothing used a bare <p>. This register is all prose, so the browser's
+   1em paragraph margin was silently inflating every row by ~32pt. Reset it here. */
+.ios p,.ios h1,.ios h2,.ios h3,.ios ul,.ios ol,.ios pre{margin:0}
+.ios .stack{position:absolute;inset:0;display:flex;flex-direction:column}
+.ios .scroll{flex:1;overflow:hidden;position:relative}
+.ios .pad{padding-left:var(--margin);padding-right:var(--margin)}
+.ios .statusbar,.ios .navbar{flex:none}
+.ios .statusbar{color:var(--ink)}
+
+/* ---------- THE TYPE RULE: prose is sans, every machine-generated fact is mono ----------
+   Fintech = SF + rounded money. Fitness = oversized rounded numerals. Commerce = Fraunces
+   + .19em uppercase labels. Social = Inter Tight, tight and large, never uppercased.
+   AI = IBM Plex Sans set AIRY (1.62 leading, tracking at or near zero -- the exact
+   opposite of social's -.035em) with IBM Plex Mono carrying anything the machine
+   produced: model names, durations, token counts, timestamps, paths, code.        */
+.ios .ttl{font-size:21px;font-weight:600;letter-spacing:-.012em;line-height:1.24}
+.ios .ttl--xl{font-size:32px;font-weight:400;letter-spacing:-.022em;line-height:1.24}
+.ios .hd{font-size:16px;font-weight:600;letter-spacing:-.006em}
+.ios .sub{font-size:14px;color:var(--ink-2);line-height:1.5;letter-spacing:0}
+.ios .m{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.005em;color:var(--ink-3);
+        font-variant-numeric:tabular-nums}
+.ios .m--lg{font-size:12.5px}
+.ios .dim{color:var(--ink-3)}
+.ios .on{color:var(--accent)}
+.ios .num{font-variant-numeric:tabular-nums}
+
+/* ---------- container model: MESSAGE TURNS ----------
+   user  = compact, right-inset, on a lifted plate, tight leading, tail corner
+   asst  = full width, NO plate, NO radius, NO border, airy leading
+   The asymmetry is the whole thing. There is not a single .card in this app.     */
+.ios .turn-u{margin:0 0 0 76px;background:var(--surface-el);
+  border-radius:20px 20px 7px 20px;padding:11px 15px 12px;
+  font-size:15.5px;line-height:1.42;letter-spacing:-.004em}
+.ios .turn-a{margin:0;padding:0;background:none;border:0;border-radius:0}
+.ios .turn-a p{margin:0 0 13px}
+.ios .turn-a p:last-child{margin-bottom:0}
+/* uppercase mono at .06em -- a terminal header, NOT commerce's .19em editorial label.
+   Commerce owns wide-tracked uppercase sans; social owns "never uppercase". Tight mono
+   caps are the third position and read as machine output. */
+.ios .who{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-3);display:flex;align-items:center;gap:7px}
+.ios .who::after{content:"";flex:1;height:1px;background:var(--hairline)}
+.ios .step{font-weight:600;letter-spacing:-.006em;margin-bottom:3px !important}
+.ios .step i{font-style:normal;font-family:var(--f-mono);font-weight:400;
+  color:var(--accent);margin-right:9px;font-size:14px}
+.ios .turn-a b{font-weight:600}
+.ios code{font-family:var(--f-mono);font-size:.86em;background:rgba(245,242,237,.07);
+  border-radius:4px;padding:1.5px 4.5px;letter-spacing:-.01em}
+
+/* ---------- streaming caret: a soft block, no jitter, no bouncing dots ---------- */
+.ios .caret{display:inline-block;width:2.5px;height:17px;vertical-align:-3px;
+  margin-left:2px;background:var(--accent);border-radius:1.5px;
+  box-shadow:0 0 9px rgba(223,192,105,.55)}
+
+/* ---------- code block: the AI domain's photography. Real code or nothing. ---------- */
+.ios .code{background:var(--surface-sunk);border-radius:var(--r-ctl);
+  border:.5px solid var(--hairline);overflow:hidden}
+.ios .code .cbar{display:flex;align-items:center;gap:8px;padding:8px 12px;
+  border-bottom:.5px solid var(--hairline);font-family:var(--f-mono);font-size:10.5px;
+  color:var(--ink-3);letter-spacing:.04em}
+.ios .code pre{margin:0;padding:10px 12px 12px;font-family:var(--f-mono);font-size:10.8px;
+  line-height:1.62;letter-spacing:-.012em;color:var(--ink);white-space:pre;overflow:hidden}
+.ios .k{color:#C88FA8}.ios .t{color:#7FB6C4}.ios .s{color:var(--accent)}
+.ios .c{color:var(--ink-3)}.ios .f{color:#E0C7A0}
+
+/* ---------- source citation: superscript numeral + a row beneath ----------
+   NO letter-monogram tiles -- fintech spent those. The numeral is the mark.     */
+.ios sup.c1{font-family:var(--f-mono);font-size:9.5px;color:var(--accent);
+  vertical-align:super;line-height:0;margin-left:1.5px;letter-spacing:.02em}
+.ios .src{display:flex;align-items:center;gap:11px;padding:8px 0;
+  border-top:.5px solid var(--hairline)}
+.ios .src .n{font-family:var(--f-mono);font-size:10.5px;color:var(--accent);width:16px;flex:none}
+.ios .src .g{flex:1;min-width:0}
+.ios .src .d{font-size:13.5px;line-height:1.32;letter-spacing:-.004em;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.ios .src .p{font-family:var(--f-mono);font-size:10.5px;color:var(--ink-3);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+
+/* ---------- tool-run chip: collapsed pill, icon + name + duration ----------
+   Running state is a progress underline, never a spinner and never bouncing dots --
+   and it has to read correctly as a still, because renders run reduced-motion.  */
+.ios .tool{display:flex;align-items:center;gap:9px;height:34px;padding:0 12px;
+  border-radius:var(--r-chip);border:.5px solid var(--hairline);
+  background:rgba(245,242,237,.035);position:relative;overflow:hidden}
+.ios .tool .i{width:15px;height:15px;stroke-width:1.6;color:var(--ink-3);flex:none}
+.ios .tool .nm{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-2);
+  letter-spacing:-.005em;white-space:nowrap}
+.ios .tool .ar{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);flex:1;
+  min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ios .tool .du{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);
+  font-variant-numeric:tabular-nums;flex:none}
+.ios .tool--run{border-color:var(--accent-dim);background:var(--accent-soft)}
+.ios .tool--run .i,.ios .tool--run .nm{color:var(--accent)}
+.ios .tool--run::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;
+  width:62%;background:var(--accent)}
+.ios .tool .ok{color:var(--accent);width:13px;height:13px;stroke-width:2.2;flex:none}
+
+/* ---------- composer: the app's one piece of chrome, and it is glass ---------- */
+.ios .comp{position:absolute;left:14px;right:14px;bottom:24px;z-index:6;
+  border-radius:24px;padding:11px 11px 10px 16px}
+.ios .comp--tall{border-radius:var(--r-card)}
+.ios .comp .txt{font-size:16px;line-height:1.46;letter-spacing:-.004em;color:var(--ink)}
+.ios .comp .ph{color:var(--ink-3)}
+.ios .comp .bar{display:flex;align-items:center;gap:10px;margin-top:9px}
+.ios .comp .bar .i{width:21px;height:21px;color:var(--ink-3);stroke-width:1.6}
+.ios .comp .mdl{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;
+  border-radius:var(--r-chip);background:rgba(245,242,237,.07);
+  font-family:var(--f-mono);font-size:11px;color:var(--ink-2)}
+.ios .comp .mdl .i{width:13px;height:13px;stroke-width:2}
+.ios .comp .grow{flex:1}
+.ios .send{width:34px;height:34px;border-radius:17px;display:grid;place-items:center;
+  flex:none;background:var(--accent);color:var(--on-accent)}
+.ios .send--off{background:rgba(245,242,237,.10);color:var(--ink-3)}
+.ios .send .i{width:19px;height:19px;stroke-width:2}
+
+/* ---------- stop button: the streaming screen's one glass element ---------- */
+.ios .stop{position:absolute;left:50%;transform:translateX(-50%);bottom:32px;z-index:6;
+  height:44px;padding:0 18px 0 15px;border-radius:22px;display:flex;align-items:center;
+  gap:9px;font-size:14.5px;font-weight:600;letter-spacing:-.006em;color:var(--ink)}
+.ios .stop .i{width:17px;height:17px;color:var(--accent)}
+
+/* ---------- menu (model picker): a menu, never a segmented control ---------- */
+.ios .menu{position:absolute;z-index:7;border-radius:var(--r-card);overflow:hidden;
+  padding:4px 0}
+.ios .menu .mi{display:flex;align-items:flex-start;gap:10px;padding:9px 11px 10px}
+.ios .menu .mi+.mi{border-top:.5px solid var(--hairline)}
+.ios .menu .mi .g{flex:1;min-width:0}
+.ios .menu .mi .nm{font-size:15px;font-weight:600;letter-spacing:-.008em;line-height:1.3;
+  display:flex;align-items:baseline;gap:7px}
+.ios .menu .mi .cp{font-size:12px;color:var(--ink-2);line-height:1.34;margin-top:2px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ios .menu .mi .ck{width:16px;height:16px;color:var(--accent);flex:none;
+  stroke-width:2.4;margin-top:3px}
+/* no tint on the selected row -- iOS marks it with the checkmark alone */
+.ios .menu-scrim{position:absolute;inset:0;z-index:6;background:rgba(11,10,9,.44)}
+
+/* ---------- rows: hairline-ruled, full bleed. NEVER an inset grouped card. ---------- */
+.ios .lrow{display:flex;align-items:flex-start;gap:12px;padding:11px var(--margin) 12px;
+  border-top:.5px solid var(--hairline)}
+.ios .lrow .g{flex:1;min-width:0}
+.ios .lrow .t1{font-size:15.5px;font-weight:600;letter-spacing:-.008em;line-height:1.3;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ios .lrow .t2{font-size:13.5px;color:var(--ink-2);line-height:1.34;margin-top:2px;
+  display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.ios .lrow .tr{font-family:var(--f-mono);font-size:10.5px;color:var(--ink-3);flex:none;
+  padding-top:2px;line-height:1.45;text-align:right;font-variant-numeric:tabular-nums}
+.ios .lrow .i{width:20px;height:20px;color:var(--ink-3);flex:none;margin-top:1px}
+.ios .grp{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-3);padding:22px var(--margin) 8px}
+
+/* ---------- switch + search ---------- */
+.ios .sw{width:50px;height:30px;border-radius:15px;background:rgba(245,242,237,.13);
+  flex:none;position:relative}
+.ios .sw::after{content:"";position:absolute;top:2.5px;left:2.5px;width:25px;height:25px;
+  border-radius:13px;background:#F5F2ED}
+.ios .sw--on{background:var(--accent)}
+.ios .sw--on::after{left:22.5px;background:var(--on-accent)}
+.ios .srch{display:flex;align-items:center;gap:8px;height:38px;border-radius:var(--r-ctl);
+  background:rgba(245,242,237,.07);padding:0 11px;color:var(--ink-3);font-size:15.5px}
+.ios .srch .i{width:18px;height:18px}
+
+/* ---------- misc ---------- */
+.ios .hair{height:.5px;background:var(--hairline);border:0;margin:0}
+.ios .fade-b{position:absolute;left:0;right:0;bottom:0;height:132px;pointer-events:none;
+  z-index:5;background:linear-gradient(to top,#131211 22%,rgba(19,18,17,.72) 58%,rgba(19,18,17,0))}
+.ios .fade-t{position:absolute;left:0;right:0;top:0;height:96px;pointer-events:none;z-index:4;
+  background:linear-gradient(to bottom,#131211 40%,rgba(19,18,17,0))}
+.ios .homebar{background:var(--ink);opacity:.26}
+</style>
+
+<!-- Four symbols the primitives sprite does not carry, on the same 24-grid / 1.7-stroke
+     geometry. Deliberately no sparkle glyph: a sparkle on an AI button is the domain's
+     single most-used cliche. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="ic-doc" viewBox="0 0 24 24"><path d="M6 3.4h7.6L18.6 8.4v12.2H6Z"/><path d="M13.4 3.6v5.1h5"/><path d="M9 13h6.2M9 16.4h4.2"/></symbol>
+<symbol id="ic-term" viewBox="0 0 24 24"><rect x="3" y="4.6" width="18" height="14.8" rx="2.6"/><path d="M7.4 10.2 10.2 12.9 7.4 15.6M12.6 16h4.2"/></symbol>
+<symbol id="ic-sessions" viewBox="0 0 24 24"><path d="M4 6.6h8M4 12h13M4 17.4h8"/><circle cx="19" cy="6.6" r="1.4" fill="currentColor" stroke="none"/><circle cx="19" cy="17.4" r="1.4" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-model" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.1"/><circle cx="12" cy="4.4" r="1.9"/><circle cx="18.6" cy="15.8" r="1.9"/><circle cx="5.4" cy="15.8" r="1.9"/><path d="M12 6.3v2.6M14.7 13.6l2.2 1.3M9.3 13.6l-2.2 1.3"/></symbol>
+</defs></svg>
+
+<style>
+/* ---------- software keyboard ----------
+   Drawn rather than implied. The input archetype is supposed to prove control design,
+   and a composer floating over empty ground does not prove it. Keys are warm-ink, not
+   the stock iOS grey, so the keyboard belongs to this app rather than to the OS. */
+.ios .kb{position:absolute;left:0;right:0;bottom:0;z-index:7;height:262px;
+  background:#1B1917;padding:9px 3px 0;display:flex;flex-direction:column;gap:11px}
+.ios .kb .kr{display:flex;gap:6px;justify-content:center}
+.ios .kb .k{height:43px;flex:1;border-radius:5px;background:#3A3532;display:grid;
+  place-items:center;font-size:22px;font-weight:400;color:var(--ink);
+  box-shadow:0 1px 0 rgba(0,0,0,.55)}
+.ios .kb .k--wide{flex:1.5;background:#2A2624;font-size:15px}
+.ios .kb .k--sp{flex:5;background:#3A3532;font-size:15px;color:var(--ink-2)}
+.ios .kb .k--go{flex:1.9;background:var(--accent);color:var(--on-accent);font-size:15px;font-weight:600}
+.ios .kb .kr--in{padding:0 20px}
+.ios .kb .k .i{width:20px;height:20px;stroke-width:1.9}
+.ios .kb .kbar{display:flex;align-items:center;justify-content:space-between;
+  padding:0 12px 2px;height:20px}
+</style>
+
+<style>
+/* NativeAIStudio is ink-locked, so this review page commits to the same warm ink and
+   paints every colour explicitly rather than inheriting the viewer's ground.
+   app.html's selectors ARE scoped under .ios in this domain (the first one that is), but
+   the p- prefix is kept anyway: the kit's own .card / .row / .chip are not scoped, and an
+   unprefixed rule here would still leak into the six embedded screens. */
+:root{
+  --g-bg:#0E0D0C; --g-panel:#181615; --g-card:#131211;
+  --g-ink:#F5F2ED; --g-ink-2:rgba(245,242,237,.62); --g-ink-3:rgba(245,242,237,.36);
+  --g-rule:rgba(245,242,237,.14); --g-accent:#DFC069; --g-on:#17140F;
+  --g-body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --g-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,monospace;
+}
+html{background:var(--g-bg)}
+body{background:var(--g-bg);color:var(--g-ink);font-family:var(--g-body);
+  font-size:16px;line-height:1.6;margin:0;-webkit-font-smoothing:antialiased}
+.p-wrap{max-width:1240px;margin:0 auto;padding:0 26px 96px;
+  display:flex;flex-direction:column;gap:64px}
+.p-wrap h1,.p-wrap h2,.p-wrap h3{font-family:var(--g-body);font-weight:600;
+  letter-spacing:-.028em}
+.p-wrap table{border-collapse:collapse}
+
+.p-head{padding:60px 0 34px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,330px);
+  gap:44px;align-items:end;border-bottom:1px solid var(--g-rule)}
+.p-eyebrow{font-family:var(--g-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--g-accent);margin:0 0 18px}
+.p-wrap h1{font-size:clamp(50px,8.4vw,96px);letter-spacing:-.042em;line-height:.95;
+  margin:0;font-weight:600;text-wrap:balance}
+.p-wrap h1 em{font-style:normal;color:var(--g-accent)}
+.p-lede{color:var(--g-ink-2);margin:0;font-size:16px;max-width:46ch}
+
+.p-spec{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));
+  gap:1px;background:var(--g-rule);border:1px solid var(--g-rule)}
+.p-spec>div{background:var(--g-bg);padding:16px 18px}
+.p-spec dt{font-family:var(--g-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--g-ink-3);margin:0}
+.p-spec dd{font-family:var(--g-mono);font-size:13px;margin:8px 0 0;color:var(--g-ink);
+  display:flex;align-items:center;gap:8px;font-variant-numeric:tabular-nums}
+.p-chip{width:14px;height:14px;flex:none;background:var(--g-accent);border-radius:7px}
+
+.p-rail{display:grid;grid-template-columns:repeat(auto-fit,minmax(316px,1fr));gap:52px 30px}
+.p-board{margin:0;display:flex;flex-direction:column;gap:20px;min-width:0}
+.p-cap{min-height:224px;border-top:2px solid var(--g-accent);padding-top:14px}
+.p-kicker{font-family:var(--g-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--g-ink-2);margin:0 0 10px;display:flex;gap:10px;align-items:baseline}
+.p-num{color:var(--g-accent)}
+.p-cap h3{font-size:27px;margin:0 0 10px;line-height:1.08}
+.p-bold{margin:0 0 10px;font-size:14.5px;line-height:1.52;color:var(--g-ink)}
+.p-widg{margin:0;font-family:var(--g-mono);font-size:11.5px;line-height:1.65;color:var(--g-ink-3)}
+.p-dev{width:340px;height:737px;overflow:hidden;border-radius:33px;
+  outline:1px solid var(--g-rule);outline-offset:-1px;
+  box-shadow:0 24px 60px rgba(0,0,0,.7)}
+.p-dev .ios{transform:scale(.865);transform-origin:top left}
+
+.p-sec{display:flex;flex-direction:column;gap:18px}
+.p-wrap h2{font-size:31px;margin:0;line-height:1.1}
+.p-sub{margin:0;color:var(--g-ink-2);font-size:15.5px;max-width:72ch}
+.p-tablewrap{overflow-x:auto;border:1px solid var(--g-rule);background:var(--g-card)}
+.p-tablewrap table{width:100%;min-width:1080px}
+.p-tablewrap th,.p-tablewrap td{text-align:left;padding:14px 18px;
+  border-bottom:1px solid var(--g-rule);font-size:14px;vertical-align:top;line-height:1.52}
+.p-tablewrap tr:last-child td{border-bottom:0}
+.p-tablewrap th{font-family:var(--g-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--g-ink-3);font-weight:400;background:var(--g-panel)}
+.p-tablewrap td:first-child{font-size:15px;font-weight:600;letter-spacing:-.02em;color:var(--g-ink)}
+.p-tablewrap td:last-child{color:var(--g-ink)}
+.p-was{color:var(--g-ink-3)}
+.p-v{font-family:var(--g-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  padding:4px 9px;display:inline-block}
+.p-v--pass{color:var(--g-on);background:var(--g-accent)}
+.p-note{font-family:var(--g-mono);font-size:12.5px;color:var(--g-ink-2);line-height:1.9;
+  border-left:2px solid var(--g-accent);padding:2px 0 2px 18px;margin:0}
+.p-note b{color:var(--g-ink);font-weight:500}
+@media (max-width:680px){
+  .p-head{grid-template-columns:1fr;gap:24px}
+  .p-wrap{padding:0 18px 64px;gap:48px}
+}
+</style>
+
+<div class="p-wrap">
+  <header class="p-head">
+    <div>
+      <p class="p-eyebrow">Session 6 · AI · review gate · rev 1 · closes the set</p>
+      <h1>NativeAI<em>Studio</em></h1>
+    </div>
+    <p class="p-lede">Six iOS 26 artboards, no two sharing a layout skeleton.
+      Every screen is live HTML at 393 × 852 — type stays sharp at any zoom.</p>
+  </header>
+
+  <dl class="p-spec">
+    <div><dt>Accent</dt><dd><span class="p-chip"></span>#DFC069</dd></div>
+    <div><dt>Ground</dt><dd>#131211 · locked</dd></div>
+    <div><dt>Canvas</dt><dd>393 × 852 @3×</dd></div>
+    <div><dt>Radii</dt><dd>24 · 20 · 12 · 8 · 7 · 5</dd></div>
+    <div><dt>Glass</dt><dd>3 elements, 1 per screen</dd></div>
+    <div><dt>Type</dt><dd>Plex Sans + Plex Mono</dd></div>
+  </dl>
+
+  <div class="p-rail">
+<figure class="p-board">
+  <figcaption class="p-cap">
+    <p class="p-kicker"><span class="p-num">01</span>Dashboard</p>
+    <h3>Studio</h3>
+    <p class="p-bold">The model picker is open. It is the screen's only glass, the only crafted surface, and a menu-open state is the kind of screen most portfolios never draw</p>
+    <p class="p-widg">Model picker menu · resume block · hairline recents · context ledger</p>
+  </figcaption>
+  <div class="p-dev"><!-- 01 · Dashboard archetype — "Studio", the workspace front door.
+     Bold move: the model picker is OPEN, anchored to the mono model chip in the resume
+     block rather than to the nav title, so the hero line stays readable above it. It is
+     the screen's only glass and the only crafted surface; everything else is 15.5px or
+     smaller. A menu-open state is also the kind of screen most portfolios never draw. -->
+<div class="ios">
+<div class="stack">
+  <div class="island"></div><div class="statusbar"><span>9:41</span><span class="glyphs"><span class="sb-sig"><i></i><i></i><i></i><i></i></span><svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><path d="M8.5 10.6 10.7 8.3a3.1 3.1 0 0 0-4.4 0ZM4.6 6.7l1.3 1.3a4.9 4.9 0 0 1 5.2 0l1.3-1.3a6.7 6.7 0 0 0-7.8 0ZM1.6 3.6 2.9 5a9.3 9.3 0 0 1 11.2 0l1.3-1.4a11.1 11.1 0 0 0-13.8 0Z"/></svg><span class="sb-bat"><b></b></span></span></div>
+
+  <div class="navbar">
+    <svg class="i" style="color:var(--ink-2)"><use href="#ic-sessions"/></svg>
+    <span>Studio</span>
+    <svg class="i" style="color:var(--ink-2)"><use href="#ic-plus"/></svg>
+  </div>
+
+  <div class="scroll">
+    <!-- resume block: mono machine facts, prose title, prose excerpt -->
+    <div class="pad" style="padding-top:10px;padding-bottom:16px">
+      <p class="m" style="text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px">
+        RESUMING · 2H AGO</p>
+      <p class="ttl" style="margin:0 0 6px">SwiftUI List drops frames while filtering</p>
+      <p class="sub" style="margin:0 0 13px">You asked why 4,200 rows fall to 38 fps on
+        every keystroke. I had just finished reading <code>FeedView.swift</code>.</p>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="comp-mdl" style="display:inline-flex;align-items:center;gap:5px;height:26px;
+          padding:0 9px;border-radius:8px;background:rgba(245,242,237,.07);
+          font-family:var(--f-mono);font-size:11px;color:var(--ink-2)">opus 5
+          <svg class="i" style="width:12px;height:12px;stroke-width:2.2"><use href="#ic-chev-d"/></svg>
+        </span>
+        <span class="m">14 turns</span><span class="m">31.2k tokens</span>
+      </div>
+    </div>
+
+    <p class="grp" style="padding-top:2px">RECENT</p>
+    <div class="lrow">
+      <div class="g"><p class="t1">Core Data → SwiftData migration plan</p>
+        <p class="t2">Staged migration keeps the old store readable until…</p></div>
+      <span class="tr">sonnet 5<br>yest</span>
+    </div>
+    <div class="lrow">
+      <div class="g"><p class="t1">118 ms hitch on the TabView switch</p>
+        <p class="t2">Instruments points at the image decode, not layout…</p></div>
+      <span class="tr">opus 5<br>yest</span>
+    </div>
+    <div class="lrow">
+      <div class="g"><p class="t1">Decoding a heterogeneous JSON array</p>
+        <p class="t2">A type-erased box with an enum discriminator is…</p></div>
+      <span class="tr">haiku 4.5<br>tue</span>
+    </div>
+    <div class="lrow">
+      <div class="g"><p class="t1">SPM binary target fails codesign on CI</p>
+        <p class="t2">The xcframework is signed, the bundle inside it is…</p></div>
+      <span class="tr">opus 5<br>mon</span>
+    </div>
+    <div class="lrow">
+      <div class="g"><p class="t1">Actor reentrancy in the sync queue</p>
+        <p class="t2">The await suspends, a second caller enters, and the…</p></div>
+      <span class="tr">sonnet 5<br>fri</span>
+    </div>
+    <div class="lrow">
+      <div class="g"><p class="t1">Why does <code>@MainActor</code> not silence this?</p>
+        <p class="t2">The closure escapes to a nonisolated context, so the…</p></div>
+      <span class="tr">opus 5<br>thu</span>
+    </div>
+    <div class="lrow">
+      <div class="g"><p class="t1">Swift 6 strict concurrency: 41 warnings left</p>
+        <p class="t2">Twenty-nine are the same global var. Fix that first…</p></div>
+      <span class="tr">opus 5<br>thu</span>
+    </div>
+    <div class="lrow">
+      <div class="g"><p class="t1">Preview crashes with “Cannot preview in this file”</p>
+        <p class="t2">The provider builds the whole target, so a failure in…</p></div>
+      <span class="tr">haiku 4.5<br>wed</span>
+    </div>
+  </div>
+
+  <!-- pinned foot: the machine's own accounting, in mono, on a hairline. No card. -->
+  <div style="flex:none;border-top:.5px solid var(--hairline);padding:14px 20px 26px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline">
+      <span class="m" style="text-transform:uppercase;letter-spacing:.06em">CONTEXT USED</span>
+      <span class="m m--lg" style="color:var(--ink-2)">31.2k / 200k</span>
+    </div>
+    <div style="height:2px;background:rgba(245,242,237,.10);margin-top:9px;border-radius:1px">
+      <div style="height:2px;width:15.6%;background:var(--accent);border-radius:1px"></div>
+    </div>
+  </div>
+</div>
+
+<div class="menu-scrim"></div>
+<!-- the one glass layer on this screen -->
+<div class="menu glass glass--rim" style="left:20px;right:92px;top:281px">
+  <div class="mi">
+    <div class="g"><p class="nm">Opus 5 <span class="m">200k</span></p>
+      <p class="cp">Deepest reasoning. Long agentic runs.</p></div>
+    <svg class="ck i"><use href="#ic-check"/></svg>
+  </div>
+  <div class="mi">
+    <div class="g"><p class="nm">Sonnet 5 <span class="m">200k</span></p>
+      <p class="cp">Balanced. The everyday default.</p></div>
+  </div>
+  <div class="mi">
+    <div class="g"><p class="nm">Haiku 4.5 <span class="m">200k</span></p>
+      <p class="cp">Fastest. Short, well-scoped turns.</p></div>
+  </div>
+</div>
+
+<div class="homebar"></div>
+</div>
+</div>
+</figure><figure class="p-board">
+  <figcaption class="p-cap">
+    <p class="p-kicker"><span class="p-num">02</span>List</p>
+    <h3>Conversations</h3>
+    <p class="p-bold">Recency decides weight: today's threads carry a three-line excerpt at 16.5px, yesterday's two at 15px, earlier this week is a bare title. The list decays as you scroll</p>
+    <p class="p-widg">Search · filter chips · day groups · excerpt rows · mono provenance</p>
+  </figcaption>
+  <div class="p-dev"><!-- 02 · List archetype — "Conversations".
+     Deliberately NOT s1's list. s1 is a compact one-line index with a right-hand mono
+     column; this is a reading list — a two-line excerpt of the answer under each title
+     and a mono provenance line under that, grouped by day. Bold move: the excerpt is the
+     row, so the list reads as prose rather than as metadata. -->
+<div class="ios">
+<div class="stack">
+  <div class="island"></div><div class="statusbar"><span>9:41</span><span class="glyphs"><span class="sb-sig"><i></i><i></i><i></i><i></i></span><svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><path d="M8.5 10.6 10.7 8.3a3.1 3.1 0 0 0-4.4 0ZM4.6 6.7l1.3 1.3a4.9 4.9 0 0 1 5.2 0l1.3-1.3a6.7 6.7 0 0 0-7.8 0ZM1.6 3.6 2.9 5a9.3 9.3 0 0 1 11.2 0l1.3-1.4a11.1 11.1 0 0 0-13.8 0Z"/></svg><span class="sb-bat"><b></b></span></span></div>
+
+  <div class="navbar navbar--large" style="padding-top:2px">
+    <h1 style="font-size:30px;font-weight:600;letter-spacing:-.02em">Conversations</h1>
+  </div>
+  <div class="pad" style="padding-top:10px;padding-bottom:12px;flex:none">
+    <div class="srch"><svg class="i"><use href="#ic-search"/></svg><span>Search 214 conversations</span></div>
+  </div>
+  <div style="display:flex;gap:7px;padding:0 20px 4px;flex:none">
+    <span class="m" style="height:26px;padding:0 11px;border-radius:8px;background:var(--accent);
+      color:var(--on-accent);display:inline-flex;align-items:center;letter-spacing:.01em">all</span>
+    <span class="m" style="height:26px;padding:0 11px;border-radius:8px;
+      border:.5px solid var(--hairline);display:inline-flex;align-items:center">pinned</span>
+    <span class="m" style="height:26px;padding:0 11px;border-radius:8px;
+      border:.5px solid var(--hairline);display:inline-flex;align-items:center">shared</span>
+    <span class="m" style="height:26px;padding:0 11px;border-radius:8px;
+      border:.5px solid var(--hairline);display:inline-flex;align-items:center">archived</span>
+  </div>
+
+  <div class="scroll">
+    <p class="grp">TODAY</p>
+    <div class="lrow" style="display:block">
+      <p class="t1" style="font-size:16.5px;font-weight:600;letter-spacing:-.012em">SwiftUI List drops frames while filtering</p>
+      <p style="font-size:14.5px;color:var(--ink-2);line-height:1.5;margin-top:4px">
+        Three costs are stacking, and only the third is really about the filter. The
+        expensive half is that <code>id: \.self</code> re-identifies every row…</p>
+      <p class="m" style="margin-top:7px">opus 5 · 14 turns · 31.2k · 2h ago</p>
+    </div>
+    <div class="lrow" style="display:block">
+      <p class="t1" style="font-size:16.5px;font-weight:600;letter-spacing:-.012em">Core Data → SwiftData migration plan</p>
+      <p style="font-size:14.5px;color:var(--ink-2);line-height:1.5;margin-top:4px">
+        Keep the old store readable through one release. Write to both, read from
+        SwiftData, and only drop the NSPersistentContainer once…</p>
+      <p class="m" style="margin-top:7px">sonnet 5 · 6 turns · 9.4k · 5h ago</p>
+    </div>
+
+    <p class="grp">YESTERDAY</p>
+    <div class="lrow" style="display:block">
+      <p class="t1" style="font-size:15px;font-weight:600;letter-spacing:-.008em">118 ms hitch on the TabView switch</p>
+      <p style="font-size:13.5px;color:var(--ink-2);line-height:1.44;margin-top:3px">
+        Instruments points at the image decode, not layout. The thumbnails are 4032 px…</p>
+      <p class="m" style="margin-top:6px">opus 5 · 22 turns · 47.8k</p>
+    </div>
+    <div class="lrow" style="display:block">
+      <p class="t1" style="font-size:15px;font-weight:600;letter-spacing:-.008em">Actor reentrancy in the sync queue</p>
+      <p style="font-size:13.5px;color:var(--ink-2);line-height:1.44;margin-top:3px">
+        An actor is not a lock — it only guarantees one caller at a time between awaits…</p>
+      <p class="m" style="margin-top:6px">sonnet 5 · 9 turns · 15.1k</p>
+    </div>
+
+    <p class="grp">EARLIER THIS WEEK</p>
+    <div class="lrow"><div class="g"><p class="t1">SPM binary target fails codesign on CI</p></div>
+      <span class="tr">mon</span></div>
+    <div class="lrow"><div class="g"><p class="t1">Swift 6 strict concurrency: 41 warnings left</p></div>
+      <span class="tr">thu</span></div>
+    <div class="lrow" style="border-bottom:.5px solid var(--hairline)">
+      <div class="g"><p class="t1">Preview crashes with “Cannot preview in this file”</p></div>
+      <span class="tr">wed</span></div>
+  </div>
+  <div class="fade-b" style="height:96px"></div>
+</div>
+<div class="homebar"></div>
+</div>
+</div>
+</figure><figure class="p-board">
+  <figcaption class="p-cap">
+    <p class="p-kicker"><span class="p-num">03</span>Immersive detail</p>
+    <h3>Streaming answer</h3>
+    <p class="p-bold">The answer is the screen, floor to ceiling, with no container around it. The only two bounded surfaces are the user's own turn and the code block — and they read as different objects</p>
+    <p class="p-widg">User turn · citations · numbered steps · code block · soft caret · glass stop</p>
+  </figcaption>
+  <div class="p-dev"><!-- 03 · Immersive detail archetype — the streaming answer. The set's hero.
+     Bold move: the answer is the screen, floor to ceiling, with no container of any kind
+     around it — the ONLY bounded surfaces are the user's own turn and the code block, and
+     they read as two different objects. The one glass element is the stop button.
+     Rule 7 here is real CONTENT: a real SwiftUI performance question with a real,
+     correct, specific answer, real API names, real source domains, compiling Swift. -->
+<div class="ios">
+<div class="stack">
+  <div class="island"></div><div class="statusbar"><span>9:41</span><span class="glyphs"><span class="sb-sig"><i></i><i></i><i></i><i></i></span><svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><path d="M8.5 10.6 10.7 8.3a3.1 3.1 0 0 0-4.4 0ZM4.6 6.7l1.3 1.3a4.9 4.9 0 0 1 5.2 0l1.3-1.3a6.7 6.7 0 0 0-7.8 0ZM1.6 3.6 2.9 5a9.3 9.3 0 0 1 11.2 0l1.3-1.4a11.1 11.1 0 0 0-13.8 0Z"/></svg><span class="sb-bat"><b></b></span></span></div>
+
+  <div class="navbar">
+    <svg class="i" style="color:var(--ink-2)"><use href="#ic-chev-l"/></svg>
+    <span style="font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+      max-width:230px">SwiftUI List drops frames</span>
+    <svg class="i" style="color:var(--ink-2)"><use href="#ic-more"/></svg>
+  </div>
+
+  <div class="scroll pad" style="padding-top:8px">
+
+    <!-- user turn: compact, right-inset, on a plate, tail corner. -->
+    <div class="turn-u">60 → 38 fps the moment I type. 4,200 rows, filter in
+      <code style="background:rgba(245,242,237,.10)">body</code>. What is costing me?</div>
+
+    <p class="who" style="margin:19px 0 12px">ASSISTANT · OPUS 5</p>
+
+    <!-- citations: they arrive with the retrieval, before the prose, so they sit above it.
+         The numeral is the mark — letter-monogram tiles are spent by fintech. -->
+    <div style="margin:0 0 16px">
+      <div class="src" style="border-top:0;padding-top:0"><span class="n">1</span><div class="g">
+        <p class="d">Demystify SwiftUI performance</p>
+        <p class="p">developer.apple.com · WWDC23-10160</p></div>
+        <svg class="i i--sm" style="color:var(--ink-3)"><use href="#ic-arr-ur"/></svg></div>
+      <div class="src"><span class="n">2</span><div class="g">
+        <p class="d">List identity and diffing cost</p>
+        <p class="p">forums.swift.org · swiftui · 41 replies</p></div>
+        <svg class="i i--sm" style="color:var(--ink-3)"><use href="#ic-arr-ur"/></svg></div>
+    </div>
+
+    <!-- assistant turn: full width, no plate, no radius, no border. -->
+    <div class="turn-a">
+      <p class="step" style="margin-bottom:13px !important"><i>1</i>The filter runs inside
+        <code>body</code> — O(n) on the main thread before SwiftUI diffs anything.</p>
+
+      <p class="step"><i>2</i>Value identity rebuilds every row.<sup class="c1">1</sup></p>
+      <p>With <code>id: \.self</code> the identity <em>is</em> the value, so rows are
+        torn down and rebuilt rather than moved.</p>
+
+      <div class="code" style="margin:2px 0 13px">
+        <div class="cbar"><svg class="i" style="width:12px;height:12px;stroke-width:1.8"><use href="#ic-doc"/></svg>
+          FeedModel.swift · swift</div>
+<pre><span class="k">@Observable final class</span> <span class="t">FeedModel</span> {
+  <span class="k">private(set) var</span> visible: [<span class="t">Post</span>] = []
+  <span class="k">func</span> <span class="f">search</span>(_ q: <span class="t">String</span>) <span class="k">async</span> {
+    <span class="k">try</span>? <span class="k">await</span> <span class="t">Task</span>.sleep(<span class="k">for</span>: .milliseconds(<span class="s">250</span>))
+    visible = <span class="k">await</span> index.matches(q)   <span class="c">// off main</span>
+  }
+}</pre>
+      </div>
+
+      <p class="step"><i>3</i>You search on every character.<sup class="c1">2</sup></p>
+      <p style="margin-bottom:0">~38k comparisons nobody ever sees.
+        Debounce<span class="caret"></span></p>
+    </div>
+
+  </div>
+  <div class="fade-b" style="height:112px"></div>
+</div>
+
+<!-- the one glass element on this screen. Composer is gone while generating. -->
+<div class="stop glass glass--rim">
+  <svg class="i"><use href="#ic-stop"/></svg>Stop
+</div>
+<div class="homebar"></div>
+</div>
+</div>
+</figure><figure class="p-board">
+  <figcaption class="p-cap">
+    <p class="p-kicker"><span class="p-num">04</span>Input moment</p>
+    <h3>Compose + tool run</h3>
+    <p class="p-bold">The composer has actually grown, to five real lines of a real follow-up with a caret in it, and the keyboard is drawn rather than implied — in the app's warm ink, not the stock iOS grey</p>
+    <p class="p-widg">Tool-run chips · running underline · attachment pill · glass composer · keyboard</p>
+  </figcaption>
+  <div class="p-dev"><!-- 04 · Input moment archetype — composing a follow-up while a tool run is still going.
+     Bold move: the composer has actually grown, to five real lines of a real question,
+     with a caret in it — and the keyboard is drawn rather than implied, in the app's own
+     warm ink rather than the stock iOS grey. The composer is this screen's one glass. -->
+<div class="ios">
+<div class="stack">
+  <div class="island"></div><div class="statusbar"><span>9:41</span><span class="glyphs"><span class="sb-sig"><i></i><i></i><i></i><i></i></span><svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><path d="M8.5 10.6 10.7 8.3a3.1 3.1 0 0 0-4.4 0ZM4.6 6.7l1.3 1.3a4.9 4.9 0 0 1 5.2 0l1.3-1.3a6.7 6.7 0 0 0-7.8 0ZM1.6 3.6 2.9 5a9.3 9.3 0 0 1 11.2 0l1.3-1.4a11.1 11.1 0 0 0-13.8 0Z"/></svg><span class="sb-bat"><b></b></span></span></div>
+
+  <div class="navbar">
+    <svg class="i" style="color:var(--ink-2)"><use href="#ic-chev-l"/></svg>
+    <span style="font-size:15px">SwiftUI List drops frames</span>
+    <svg class="i" style="color:var(--ink-2)"><use href="#ic-more"/></svg>
+  </div>
+
+  <div class="scroll pad" style="padding-top:6px">
+    <p class="who" style="margin:0 0 12px">ASSISTANT · OPUS 5 · WORKING</p>
+
+    <!-- tool-run chips: icon + name + argument + duration. Two settled, one running.
+         The running state is a progress underline — never a spinner, and never three
+         bouncing dots, which is this domain's most-worn cliché. -->
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div class="tool"><svg class="i"><use href="#ic-doc"/></svg>
+        <span class="nm">read_file</span>
+        <span class="ar">FeedView.swift:118</span>
+        <span class="du">0.2s</span>
+        <svg class="ok i"><use href="#ic-check"/></svg></div>
+      <div class="tool"><svg class="i"><use href="#ic-search"/></svg>
+        <span class="nm">web_search</span>
+        <span class="ar">“swiftui list diffing cost”</span>
+        <span class="du">1.4s</span>
+        <svg class="ok i"><use href="#ic-check"/></svg></div>
+      <div class="tool tool--run"><svg class="i"><use href="#ic-term"/></svg>
+        <span class="nm">swift_build</span>
+        <span class="ar">Debug · iPhone 16</span>
+        <span class="du">8.4s</span></div>
+    </div>
+
+    <p style="margin-top:16px;color:var(--ink-2);font-size:15px;line-height:1.5">
+      Building against your own target, so the debounce actually compiles before I claim
+      it does. Two warnings so far and both are pre-existing — the unused
+      <code>oldValue</code> in <code>didSet</code>, and the deprecated
+      <code>onChange(of:perform:)</code> at line 62.</p>
+    <p style="margin-top:13px;color:var(--ink-2);font-size:15px;line-height:1.5">
+      While that runs: the debounce belongs in the model, not the view, or cancellation
+      races the keystroke that started it.</p>
+  </div>
+  <div class="fade-b" style="height:162px;bottom:262px"></div>
+</div>
+
+<!-- the composer: the app's one piece of chrome, grown to five lines, and the one
+     glass surface on this screen. Accent fill on send only because it is non-empty. -->
+<div class="comp comp--tall glass glass--rim" style="bottom:274px">
+  <div style="display:flex;align-items:center;gap:7px;height:28px;padding:0 9px 0 7px;
+    border-radius:8px;background:rgba(245,242,237,.08);width:max-content;margin-bottom:9px">
+    <svg class="i" style="width:14px;height:14px;color:var(--ink-3);stroke-width:1.7"><use href="#ic-doc"/></svg>
+    <span class="m" style="color:var(--ink-2)">FeedView.swift · 214 lines</span>
+    <svg class="i" style="width:12px;height:12px;color:var(--ink-3);stroke-width:2"><use href="#ic-x"/></svg>
+  </div>
+  <div class="txt">Before it finishes — is <code>index.matches</code> safe to call from a
+    detached task, or do I need the actor to own the index?<span class="caret"></span></div>
+  <div class="bar">
+    <svg class="i"><use href="#ic-clip"/></svg>
+    <span class="mdl">opus 5 <svg class="i"><use href="#ic-chev-d"/></svg></span>
+    <span class="grow"></span>
+    <span class="m">124 / 200k</span>
+    <span class="send"><svg class="i"><use href="#ic-arr-u"/></svg></span>
+  </div>
+</div>
+
+<div class="kb">
+  <div class="kr"><span class="k">q</span><span class="k">w</span><span class="k">e</span><span class="k">r</span><span class="k">t</span><span class="k">y</span><span class="k">u</span><span class="k">i</span><span class="k">o</span><span class="k">p</span></div>
+  <div class="kr kr--in"><span class="k">a</span><span class="k">s</span><span class="k">d</span><span class="k">f</span><span class="k">g</span><span class="k">h</span><span class="k">j</span><span class="k">k</span><span class="k">l</span></div>
+  <div class="kr">
+    <span class="k k--wide"><svg class="i"><use href="#ic-arr-u"/></svg></span>
+    <span class="k">z</span><span class="k">x</span><span class="k">c</span><span class="k">v</span><span class="k">b</span><span class="k">n</span><span class="k">m</span>
+    <span class="k k--wide"><svg class="i"><use href="#ic-chev-l"/></svg></span>
+  </div>
+  <div class="kr">
+    <span class="k k--wide">123</span>
+    <span class="k k--wide"><svg class="i"><use href="#ic-mic"/></svg></span>
+    <span class="k k--sp">space</span>
+    <span class="k k--go">send</span>
+  </div>
+</div>
+<div class="homebar"></div>
+</div>
+</div>
+</figure><figure class="p-board">
+  <figcaption class="p-cap">
+    <p class="p-kicker"><span class="p-num">05</span>Empty / first run</p>
+    <h3>First run</h3>
+    <p class="p-bold">One 32px sentence with nothing beside it. No illustration, no robot, no sparkle — the three starters are three questions someone would genuinely type at 9am on a Tuesday</p>
+    <p class="p-widg">Display sentence · starter rows · privacy foot · inert composer</p>
+  </figcaption>
+  <div class="p-dev"><!-- 05 · Empty / first-run archetype — the screen most portfolios skip.
+     Bold move: one 32px sentence with nothing beside it. No illustration, no robot, no
+     sparkle: in this domain the thing that has to be real is the CONTENT, so the three
+     starters are three questions someone would genuinely type at 9am on a Tuesday. -->
+<div class="ios">
+<div class="stack">
+  <div class="island"></div><div class="statusbar"><span>9:41</span><span class="glyphs"><span class="sb-sig"><i></i><i></i><i></i><i></i></span><svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><path d="M8.5 10.6 10.7 8.3a3.1 3.1 0 0 0-4.4 0ZM4.6 6.7l1.3 1.3a4.9 4.9 0 0 1 5.2 0l1.3-1.3a6.7 6.7 0 0 0-7.8 0ZM1.6 3.6 2.9 5a9.3 9.3 0 0 1 11.2 0l1.3-1.4a11.1 11.1 0 0 0-13.8 0Z"/></svg><span class="sb-bat"><b></b></span></span></div>
+
+  <div class="navbar">
+    <span></span>
+    <span class="m" style="text-transform:uppercase;letter-spacing:.06em">FIRST RUN</span>
+    <span class="m" style="color:var(--ink-2);font-size:13px">Skip</span>
+  </div>
+
+  <div class="scroll pad" style="padding-top:52px">
+    <p class="ttl--xl" style="margin-bottom:16px">Point it at real<br>code and ask a<br>real question.</p>
+    <p style="font-size:15px;color:var(--ink-2);line-height:1.52;max-width:31ch">
+      It reads the files you attach, runs only the tools you allow, and shows you the
+      source of anything it claims.</p>
+
+    <p class="grp" style="padding-left:0;padding-top:32px">TRY ONE OF THESE</p>
+    <div class="lrow" style="padding-left:0;padding-right:0">
+      <div class="g"><p class="t1" style="white-space:normal">Why does this view redraw on every keystroke?</p></div>
+      <span class="m" style="padding-top:3px">swift</span>
+    </div>
+    <div class="lrow" style="padding-left:0;padding-right:0">
+      <div class="g"><p class="t1" style="white-space:normal">Diff these two Instruments traces and tell me what regressed</p></div>
+      <span class="m" style="padding-top:3px">profile</span>
+    </div>
+    <div class="lrow" style="padding-left:0;padding-right:0;border-bottom:.5px solid var(--hairline)">
+      <div class="g"><p class="t1" style="white-space:normal">Turn this JSON response into Codable structs</p></div>
+      <span class="m" style="padding-top:3px">codegen</span>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:9px;margin-top:34px">
+      <svg class="i i--sm" style="color:var(--ink-3);margin-top:1px"><use href="#ic-lock"/></svg>
+      <p class="m" style="line-height:1.62;color:var(--ink-3)">Nothing leaves the device<br>until you send a turn.</p>
+    </div>
+  </div>
+</div>
+
+<!-- empty composer: send is inert until there is something to send -->
+<div class="comp glass glass--rim">
+  <div style="display:flex;align-items:center;gap:10px">
+    <svg class="i" style="width:21px;height:21px;color:var(--ink-3)"><use href="#ic-clip"/></svg>
+    <span class="txt ph grow" style="flex:1">Ask anything…</span>
+    <span class="send send--off"><svg class="i"><use href="#ic-arr-u"/></svg></span>
+  </div>
+</div>
+<div class="homebar"></div>
+</div>
+</div>
+</figure><figure class="p-board">
+  <figcaption class="p-cap">
+    <p class="p-kicker"><span class="p-num">06</span>Profile / settings</p>
+    <h3>Model & privacy</h3>
+    <p class="p-bold">The restraint screen. Full-bleed hairline rows, never an inset grouped card, and the only red in the whole app is on one row. The picker returns here as a list rather than a menu</p>
+    <p class="p-widg">Model list + prices · switches · destructive row · mono build footer</p>
+  </figcaption>
+  <div class="p-dev"><!-- 06 · Profile / settings archetype — model and privacy.
+     Restraint screen. Full-bleed hairline rows, never an inset grouped card (fintech
+     spent those). The model picker appears here as a LIST rather than as s1's floating
+     menu — same widget, the two surfaces it legitimately has. No glass on this screen
+     at all: there is no composer and nothing is generating. -->
+<div class="ios">
+<div class="stack">
+  <div class="island"></div><div class="statusbar"><span>9:41</span><span class="glyphs"><span class="sb-sig"><i></i><i></i><i></i><i></i></span><svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><path d="M8.5 10.6 10.7 8.3a3.1 3.1 0 0 0-4.4 0ZM4.6 6.7l1.3 1.3a4.9 4.9 0 0 1 5.2 0l1.3-1.3a6.7 6.7 0 0 0-7.8 0ZM1.6 3.6 2.9 5a9.3 9.3 0 0 1 11.2 0l1.3-1.4a11.1 11.1 0 0 0-13.8 0Z"/></svg><span class="sb-bat"><b></b></span></span></div>
+
+  <div class="navbar navbar--large" style="padding-top:2px">
+    <h1 style="font-size:30px;font-weight:600;letter-spacing:-.02em">Settings</h1>
+  </div>
+
+  <div class="scroll">
+    <p class="grp" style="padding-top:14px">MODEL</p>
+    <div class="lrow" style="align-items:center;box-shadow:inset 2px 0 0 var(--accent)">
+      <div class="g"><p class="t1" style="display:flex;align-items:baseline;gap:7px">Opus 5
+        <span class="m">200k · $15/M out</span></p>
+        <p class="t2" style="-webkit-line-clamp:2;white-space:normal">Deepest reasoning. Holds a long agentic run together.</p></div>
+      <svg class="i i--sm" style="color:var(--accent);stroke-width:2.4"><use href="#ic-check"/></svg>
+    </div>
+    <div class="lrow" style="align-items:center">
+      <div class="g"><p class="t1" style="display:flex;align-items:baseline;gap:7px">Sonnet 5
+        <span class="m">200k · $3/M out</span></p>
+        <p class="t2" style="-webkit-line-clamp:2;white-space:normal">Balanced. The everyday default for code review.</p></div>
+    </div>
+    <div class="lrow" style="align-items:center;border-bottom:.5px solid var(--hairline)">
+      <div class="g"><p class="t1" style="display:flex;align-items:baseline;gap:7px">Haiku 4.5
+        <span class="m">200k · $0.4/M out</span></p>
+        <p class="t2" style="-webkit-line-clamp:2;white-space:normal">Fastest and cheapest. Short, well-scoped turns.</p></div>
+    </div>
+
+    <p class="grp">PRIVACY</p>
+    <div class="lrow" style="align-items:center">
+      <div class="g"><p class="t1" style="white-space:normal">Train on my conversations</p>
+        <p class="t2" style="white-space:normal">Off. Turns are dropped after the session ends.</p></div>
+      <span class="sw"></span>
+    </div>
+    <div class="lrow" style="align-items:center">
+      <div class="g"><p class="t1" style="white-space:normal">Local retrieval only</p>
+        <p class="t2" style="white-space:normal">Files are read locally and never uploaded.</p></div>
+      <span class="sw sw--on"></span>
+    </div>
+    <div class="lrow" style="align-items:center;border-bottom:.5px solid var(--hairline)">
+      <div class="g"><p class="t1" style="white-space:normal">Allow web search</p>
+        <p class="t2" style="white-space:normal">Queries are sent without your file contents.</p></div>
+      <span class="sw sw--on"></span>
+    </div>
+
+    <p class="grp">DATA</p>
+    <div class="lrow" style="align-items:center">
+      <div class="g"><p class="t1">Export all conversations</p></div>
+      <span class="m">214 · 41.2 MB</span>
+      <svg class="i i--sm" style="color:var(--ink-3);margin-left:2px"><use href="#ic-chev-r"/></svg>
+    </div>
+    <div class="lrow" style="align-items:center;border-bottom:.5px solid var(--hairline)">
+      <div class="g"><p class="t1" style="color:var(--loss)">Delete all conversations</p></div>
+    </div>
+
+    <p class="m" style="padding:22px 20px 30px;line-height:1.7">
+      NativeAIStudio 2.4.1 (3187)<br>opus-5 · sonnet-5 · haiku-4.5<br>
+      Retention 30 days · region eu-west</p>
+  </div>
+</div>
+<div class="homebar"></div>
+</div>
+</div>
+</figure>
+  </div>
+
+  <section class="p-sec">
+    <h2>How it diverges from the four apps already built</h2>
+    <p class="p-sub">The S2 gate approved the process, not the visuals — each app has to read as a
+      different product rather than a recolour. Four domains are spent, so this one has to hold
+      against all four at once, on every axis, not just on hue.</p>
+    <div class="p-tablewrap"><table>
+      <thead><tr><th>Axis</th><th>Fintech</th><th>Fitness</th><th>Commerce</th><th>Social</th><th>AI · this session</th></tr></thead>
+      <tbody><tr><td>Ground</td><td class="p-was">Light grey #F2F2F7</td><td class="p-was">Near-black #07090A</td><td class="p-was">Warm sand #F4EFE7</td><td class="p-was">Pure black #000</td><td>Warm ink #131211, locked. Deliberately not black — it is visibly lifted off SocialFlow's #000 and warm where FitnessPro's near-black is cold. A printed page, inverted.</td></tr><tr><td>Container model</td><td class="p-was">Inset grouped cards</td><td class="p-was">No cards; rings and zone bands are the surfaces</td><td class="p-was">No containers; photographs sit on the ground at radius 12</td><td class="p-was">No containers and no radius; media is edge to edge</td><td>Message turns. The user's turn is compact, right-inset 76pt, on a lifted plate with a 7pt tail corner; the assistant's is full width with no plate, no border and no radius at all. The asymmetry is the entire container model, and there is not one card in the app.</td></tr><tr><td>Chrome</td><td class="p-was">Floating glass pill tab bar on every screen</td><td class="p-was">Docked icon bar, absent during a workout</td><td class="p-was">Text-only dock, one glass buy bar</td><td class="p-was">Disappears on scroll; a floating compose pill</td><td>There is no tab bar. Navigation is a plain hairline top bar. Glass appears on exactly three things across six screens — the model menu, the composer, the stop button — and never two at once.</td></tr><tr><td>Type personality</td><td class="p-was">SF Text, rounded reserved for money</td><td class="p-was">Oversized rounded numerals</td><td class="p-was">Fraunces display + .19em uppercase labels</td><td class="p-was">Inter Tight, tight and large, never uppercased</td><td>IBM Plex Sans set airy — 16px body, 1.56 leading, tracking at or near zero, the opposite of SocialFlow's −.035em — against IBM Plex Mono carrying every machine-generated fact: model names, durations, token counts, paths, code. Prose is sans; the machine is mono. Mono caps are tracked .06em, a terminal header, not ShopEase's .19em editorial label.</td></tr><tr><td>Density signature</td><td class="p-was">One hero number, then dense tabular rows</td><td class="p-was">Extreme alternation</td><td class="p-was">Image-led and sparse, 20pt gutters</td><td class="p-was">Quiet and even; the photography carries the variance</td><td>Long-form vertical rhythm at a 20pt margin. Reading measure is ~34 characters, paragraphs are 13pt apart, and density is set by recency and by turn ownership rather than by section.</td></tr><tr><td>Accent</td><td class="p-was">Deep teal #0F7B6C</td><td class="p-was">Mint #3DDC84</td><td class="p-was">Oxblood #8A3418</td><td class="p-was">Hot pink #FF2E63</td><td>Citrine brass #DFC069 — one flat colour, never a gradient, and never purple, which is the AI house style this domain had to avoid hardest.</td></tr></tbody>
+    </table></div>
+    <p class="p-note">Also avoided, as the earlier domains have spent them:
+      <b>inset grouped card lists</b>, a <b>floating glass pill tab bar</b>,
+      <b>letter-monogram tiles</b>, the <b>sparkline + allocation-donut pair</b>,
+      a <b>tabular hero number</b> as the opening move, an <b>icon dock</b>,
+      <b>.19em uppercase editorial labels</b>, and <b>edge-to-edge photography</b>.<br>
+      AI clichés avoided: <b>purple or blue gradients</b> anywhere, a <b>sparkle glyph</b>
+      on any button — there is deliberately no sparkle in the icon sheet — a <b>robot avatar</b>,
+      <b>“AI is thinking…” with three bouncing dots</b>, a <b>chat bubble around the assistant's
+      text</b> (bubbles belong to the user turn only), and <b>“Hello! How can I help you today?”</b>.</p>
+  </section>
+
+  <section class="p-sec">
+    <h2>Self-audit · the seven rules</h2>
+    <p class="p-sub">Scored before publishing, per the skill's workflow.</p>
+    <div class="p-tablewrap"><table>
+      <thead><tr><th>Rule</th><th>Verdict</th><th>Evidence</th></tr></thead>
+      <tbody><tr><td>Concentric radii</td><td><span class="p-v p-v--pass">pass</span></td><td>Menu 20 → its rows 0 with hairline dividers; composer 20 (tall) / 24 (single-line) → attachment pill 8 → send 17; code block 12 → its header rule 0; stop pill 22; tool chip 8; keyboard key 5. Message turns take 20/20/7/20 — the 7pt tail corner is the only asymmetric radius in the app and it exists to point the turn at its author.</td></tr><tr><td>Rhythm, not uniform spacing</td><td><span class="p-v p-v--pass">pass</span></td><td>02 is the clearest case: 16.5px title + three-line excerpt for today, 15px + two lines for yesterday, bare 15.5px title for earlier — row heights run 118 / 96 / 44. 03 alternates a 96pt user turn, 8pt gaps inside the citation pair, 13pt between paragraphs and 3pt between a step and its body. Gutters are 20 at the margin, 8 within a chip stack.</td></tr><tr><td>One accent, not purple</td><td><span class="p-v p-v--pass">pass</span></td><td>Citrine brass #DFC069, hue 46°. It clears WealthKit's teal by 126°, FitnessPro's mint by 101°, ShopEase's oxblood by 31° and SocialFlow's pink by 61°, and it is the one band no major AI product occupies — Claude is terracotta, ChatGPT mono green, Perplexity teal, Gemini blue-violet. Never a gradient. Per screen it appears on at most: the caret, one filled send, the citation numerals, the step numerals and one checkmark. Screen 02 spends it on a single filter chip; screen 03 has no filled control at all.</td></tr><tr><td>Plausible specific data</td><td><span class="p-v p-v--pass">pass</span></td><td>The transcript is one real SwiftUI performance question with a real, correct answer: filtering inside body, value identity forcing a rebuild, and .searchable firing per character. The Swift compiles. Token counts scale with turn counts (14 turns / 31.2k, 22 / 47.8k, 6 / 9.4k), tool durations are ordered read < search < build (0.2s / 1.4s / 8.4s), the composer's counter reads 124 for a 124-character draft, and 214 conversations at 41.2 MB is 197 KB each.</td></tr><tr><td>One bold move per screen</td><td><span class="p-v p-v--pass">pass</span></td><td>Named per artboard above. Each is the only oversized or the only crafted element on its screen; everything else drops to 16.5px or less.</td></tr><tr><td>Domain vocabulary</td><td><span class="p-v p-v--pass">pass</span></td><td>Streaming response with a soft caret and no typewriter jitter; tool-run chips with icon, name, argument and duration, where running is a progress underline rather than a spinner; source citations as a superscript numeral with a row beneath; a model picker that is a menu on 01 and a list on 06, never a segmented control; a composer that grows to five lines with the accent fill earned by being non-empty; and message turns instead of cards. No card appears anywhere in the app.</td></tr><tr><td>Real imagery</td><td><span class="p-v p-v--pass">pass</span></td><td>AI screens have no photography, so rule 7's answer is real CONTENT. Real API names (Task.sleep(for:), Task.isCancelled, @Observable, id: \.self), a real WWDC session number, real source domains, real model names and prices, real file paths and line numbers, real build diagnostics. Not one 'Hello! How can I help you today?' anywhere — that sentence is what kills an AI screenshot.</td></tr></tbody>
+    </table></div>
+  </section>
+
+  <section class="p-sec">
+    <h2>Rule 7 without photography</h2>
+    <p class="p-sub">Every earlier domain answered “real imagery” with real licence-verified
+      photographs. An AI product has none — so the thing that has to be real is the content, and
+      it is the single highest-risk item in the whole session. A mockup chat that says
+      “Hello! How can I help you today?” is dead on the slide.</p>
+    <p class="p-note">The transcript is one real question — <b>a SwiftUI List dropping to 38 fps
+      while filtering 4,200 rows</b> — with a real, correct, three-part answer: the filter running
+      inside <b>body</b>, <b>id: \.self</b> forcing a teardown instead of a move, and
+      <b>.searchable</b> firing on every character. The Swift in the code block compiles.<br>
+      The citations point at a real WWDC session and a real forum; the tool chips name real tools
+      with ordered durations; the diagnostics name a real deprecation. The model names, context
+      windows and per-million prices are the ones a 2026 build would actually show.<br>
+      This is also why the icon sheet has no sparkle: four extra symbols were drawn for this
+      domain — <b>doc</b>, <b>terminal</b>, <b>sessions</b>, <b>model</b> — and a sparkle was
+      deliberately not one of them.</p>
+  </section>
+
+  <p class="p-note">Source artboards → <b>PortfolioProjectWebApp/design-canvas/ai/</b><br>
+    PNG exports @3× (1179 × 2556) → <b>assets/app-screenshots/nativeaistudio/v1/</b><br>
+    One ground only: warm ink is the AI identity lock, so there is no light set to review.<br>
+    Gate question: does this read as a fifth product — and does the set of five read as one
+    designer with five briefs, rather than one template in five colours?</p>
+</div>

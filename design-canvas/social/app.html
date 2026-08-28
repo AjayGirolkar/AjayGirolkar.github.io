@@ -1,0 +1,143 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ================= SocialFlow — mono-committed app layer =================
+   Identity lock: PURE MONO ground (black) · NO containers and NO radius on content --
+   media runs edge to edge, the profile grid has 1pt gutters and square corners ·
+   chrome disappears on scroll, and the one thing that floats is a compose PILL, never
+   a plus-in-a-circle · type-led feed: larger body, tighter leading, no uppercase labels ·
+   quiet even density -- all the variance comes from the photography.
+
+   Dark-locked on purpose. The lock says "pure mono, black or white"; black is the
+   ground that makes the photography the only colour on the screen, and a white social
+   app would land on top of ShopEase's paper. One ground, deliberately -- same call
+   FitnessPro made, opposite call ShopEase made.                                     */
+.ios{
+  --ink:#FFF; --ink-2:rgba(235,235,245,.62); --ink-3:rgba(235,235,245,.34);
+  --surface:#000; --surface-el:#0E0E10; --hairline:rgba(235,235,245,.14);
+  --accent:#FF2E63;                     /* hot. PRIMARY ACTION ONLY -- see below. */
+  --accent-soft:color-mix(in srgb,var(--accent) 16%,transparent);
+  --f-sys:"Inter Tight",-apple-system,"SF Pro Text",system-ui,sans-serif;
+  --margin:16px;
+  --t-body:17px;                        /* type-led: body runs a notch larger */
+}
+/* light request falls back to the same black -- one ground, deliberately */
+[data-theme="light"] .ios{--ink:#FFF;--ink-2:rgba(235,235,245,.62);--ink-3:rgba(235,235,245,.34);
+  --surface:#000;--surface-el:#0E0E10;--hairline:rgba(235,235,245,.14)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .ios{
+  --ink:#FFF;--ink-2:rgba(235,235,245,.62);--ink-3:rgba(235,235,245,.34);
+  --surface:#000;--surface-el:#0E0E10;--hairline:rgba(235,235,245,.14)}}
+/* ...and the kit's LIGHT .glass has to be re-pinned too. ShopEase learned this the other
+   way round: pin only the tokens and the one glass element flips ground under you.     */
+.ios .glass{background:rgba(22,22,24,.52);border-color:rgba(255,255,255,.14);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset 0 -1px 0 rgba(255,255,255,.05),
+             0 10px 30px rgba(0,0,0,.55)}
+@media (prefers-reduced-transparency:reduce){.ios .glass{background:#141416;
+  backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:0 0 0 .5px rgba(255,255,255,.14)}}
+
+.stack{position:absolute;inset:0;display:flex;flex-direction:column}
+.scroll{flex:1;overflow:hidden;position:relative}
+.pad{padding-left:var(--margin);padding-right:var(--margin)}
+.statusbar,.navbar{flex:none}
+.statusbar{color:#FFF}
+
+/* ---------- THE TYPE STORY: one tight grotesk, no uppercase anywhere ----------
+   Fintech is SF + rounded money, fitness is oversized rounded numerals, commerce is an
+   editorial serif with uppercase tracked labels. Social gets Inter Tight set tight and
+   large, and a rule the other three do not have: nothing is ever uppercased.        */
+.ios{font-feature-settings:"cv05" 1,"ss03" 1}
+.ttl{font-size:26px;font-weight:700;letter-spacing:-.035em;line-height:1.04}
+.ttl--xl{font-size:40px;letter-spacing:-.042em;line-height:.99}
+.hd{font-size:17px;font-weight:600;letter-spacing:-.02em}
+.hnd{font-size:15px;font-weight:600;letter-spacing:-.015em}
+.cap{font-size:16px;font-weight:400;letter-spacing:-.014em;line-height:1.26;color:var(--ink)}
+.cap b{font-weight:600}
+.sub{font-size:13.5px;font-weight:400;letter-spacing:-.008em;color:var(--ink-2)}
+.dim{color:var(--ink-3)}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+
+/* accent discipline: the hot pink is the PRIMARY ACTION and nothing else.
+   It appears at most twice per screen -- a Follow/Share/Post control, and the liked
+   heart. Never on a count, never on a label, never as a section tint.  */
+.act{background:var(--accent);color:#fff;border:none;font-family:inherit;
+     font-size:15px;font-weight:600;letter-spacing:-.01em}
+.on{color:var(--accent)}
+.ghost{background:none;color:var(--ink);border:.5px solid var(--hairline);font-family:inherit;
+       font-size:14.5px;font-weight:600;letter-spacing:-.01em}
+
+/* ---------- media: edge to edge, radius ZERO ---------- */
+.media{display:block;width:100%;border-radius:0;background:#0A0A0B}
+.bleed{margin-left:calc(-1*var(--margin));margin-right:calc(-1*var(--margin))}
+
+/* ---------- story rail ---------- */
+.rail{display:flex;gap:14px;overflow:hidden;padding:2px var(--margin) 0}
+.st{flex:none;width:62px;text-align:center}
+.st .ring{width:62px;height:62px;border-radius:50%;padding:2.5px;
+          background:conic-gradient(from 200deg,#FF2E63,#FF9F45,#FF2E63)}
+.st--seen .ring{background:none;box-shadow:inset 0 0 0 1px rgba(235,235,245,.26)}
+.st--seen img{opacity:.62}
+.st .ring img{width:100%;height:100%;border-radius:50%;display:block;object-fit:cover;
+              border:2px solid #000}
+.st span{display:block;margin-top:6px;font-size:11.5px;letter-spacing:-.01em;color:var(--ink-2);
+         overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.st--me{position:relative}
+.st--me .ring{background:none;box-shadow:inset 0 0 0 1px rgba(235,235,245,.20)}
+.st--me .plus{position:absolute;right:-1px;top:40px;width:20px;height:20px;border-radius:50%;
+     background:var(--accent);border:2px solid #000;display:grid;place-items:center;color:#fff}
+
+/* ---------- media post ---------- */
+.by{display:flex;align-items:center;gap:9px;height:46px;padding:0 var(--margin)}
+.by img{width:30px;height:30px;border-radius:50%;object-fit:cover;flex:none}
+.by .grow{flex:1;min-width:0}
+.eng{display:flex;align-items:center;gap:20px;padding:11px var(--margin) 0}
+.eng .g{display:flex;align-items:center;gap:6px;font-size:13.5px;color:var(--ink-2)}
+.eng .i{width:23px;height:23px;stroke-width:1.55}
+.eng .sp{flex:1}
+.post{padding-bottom:24px}
+.post .cap{padding:9px var(--margin) 0}
+
+/* ---------- compose pill: the ONLY floating chrome, and never a plus-in-circle ---------- */
+.pill{position:absolute;left:16px;right:16px;bottom:26px;height:52px;border-radius:26px;z-index:6;
+      display:flex;align-items:center;gap:10px;padding:0 8px 0 16px}
+.pill .ph{flex:1;font-size:15.5px;color:var(--ink-3);letter-spacing:-.01em}
+.pill .go{width:38px;height:38px;border-radius:19px;display:grid;place-items:center;flex:none}
+
+/* ---------- chrome that disappears: a hairline glyph rail, no glass, no labels ---------- */
+.rail-tabs{display:flex;align-items:center;justify-content:space-between;
+           padding:12px var(--margin) 0;height:52px;flex:none}
+.rail-tabs .i{width:25px;height:25px;color:var(--ink-3)}
+.rail-tabs [aria-current] .i{color:var(--ink)}
+.rail-tabs img{width:25px;height:25px;border-radius:50%;object-fit:cover;
+               box-shadow:0 0 0 1.5px var(--ink)}
+
+/* ---------- mosaic + profile grid: 1pt gutters, square corners ---------- */
+.mos{display:grid;grid-template-columns:repeat(3,1fr);gap:1px}
+.mos img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1}
+.mos .x2{grid-column:span 2;grid-row:span 2}
+.mos .x2 img{aspect-ratio:1}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px}
+.g3 img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+
+/* Chrome "disappears" -- so the content has to disappear under it too. Without this the
+   next post's byline sits half-behind the compose pill and reads as a layout bug. */
+.fade-b{position:absolute;left:0;right:0;bottom:0;height:116px;pointer-events:none;z-index:5;
+        background:linear-gradient(to top,#000 12%,rgba(0,0,0,.74) 46%,rgba(0,0,0,0))}
+
+/* ---------- scrim for type over photography ---------- */
+.scrim{position:absolute;left:0;right:0;bottom:0;
+       background:linear-gradient(to top,rgba(0,0,0,.95) 4%,rgba(0,0,0,.80) 34%,rgba(0,0,0,.30) 74%,rgba(0,0,0,0))}
+.scrim-t{position:absolute;left:0;right:0;top:0;height:190px;
+       background:linear-gradient(to bottom,rgba(0,0,0,.72),rgba(0,0,0,0))}
+
+/* ---------- search field (explore) ---------- */
+.srch{display:flex;align-items:center;gap:8px;height:38px;border-radius:19px;
+      background:rgba(235,235,245,.10);padding:0 12px;color:var(--ink-3);font-size:15.5px}
+
+/* ---------- suggestion row (empty state) ---------- */
+.sug{display:flex;align-items:center;gap:12px;padding:12px var(--margin)}
+.sug img{width:46px;height:46px;border-radius:50%;object-fit:cover;flex:none}
+.sug .grow{flex:1;min-width:0}
+.sug button{height:32px;padding:0 16px;border-radius:16px}
+.hair-t{border-top:.5px solid var(--hairline)}
+</style>

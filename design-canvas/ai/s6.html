@@ -1,0 +1,66 @@
+<!-- 06 · Profile / settings archetype — model and privacy.
+     Restraint screen. Full-bleed hairline rows, never an inset grouped card (fintech
+     spent those). The model picker appears here as a LIST rather than as s1's floating
+     menu — same widget, the two surfaces it legitimately has. No glass on this screen
+     at all: there is no composer and nothing is generating. -->
+<div class="ios">
+<div class="stack">
+  {{SB}}
+
+  <div class="navbar navbar--large" style="padding-top:2px">
+    <h1 style="font-size:30px;font-weight:600;letter-spacing:-.02em">Settings</h1>
+  </div>
+
+  <div class="scroll">
+    <p class="grp" style="padding-top:14px">MODEL</p>
+    <div class="lrow" style="align-items:center;box-shadow:inset 2px 0 0 var(--accent)">
+      <div class="g"><p class="t1" style="display:flex;align-items:baseline;gap:7px">Opus 5
+        <span class="m">200k · $15/M out</span></p>
+        <p class="t2" style="-webkit-line-clamp:2;white-space:normal">Deepest reasoning. Holds a long agentic run together.</p></div>
+      <svg class="i i--sm" style="color:var(--accent);stroke-width:2.4"><use href="#ic-check"/></svg>
+    </div>
+    <div class="lrow" style="align-items:center">
+      <div class="g"><p class="t1" style="display:flex;align-items:baseline;gap:7px">Sonnet 5
+        <span class="m">200k · $3/M out</span></p>
+        <p class="t2" style="-webkit-line-clamp:2;white-space:normal">Balanced. The everyday default for code review.</p></div>
+    </div>
+    <div class="lrow" style="align-items:center;border-bottom:.5px solid var(--hairline)">
+      <div class="g"><p class="t1" style="display:flex;align-items:baseline;gap:7px">Haiku 4.5
+        <span class="m">200k · $0.4/M out</span></p>
+        <p class="t2" style="-webkit-line-clamp:2;white-space:normal">Fastest and cheapest. Short, well-scoped turns.</p></div>
+    </div>
+
+    <p class="grp">PRIVACY</p>
+    <div class="lrow" style="align-items:center">
+      <div class="g"><p class="t1" style="white-space:normal">Train on my conversations</p>
+        <p class="t2" style="white-space:normal">Off. Turns are dropped after the session ends.</p></div>
+      <span class="sw"></span>
+    </div>
+    <div class="lrow" style="align-items:center">
+      <div class="g"><p class="t1" style="white-space:normal">Local retrieval only</p>
+        <p class="t2" style="white-space:normal">Files are read locally and never uploaded.</p></div>
+      <span class="sw sw--on"></span>
+    </div>
+    <div class="lrow" style="align-items:center;border-bottom:.5px solid var(--hairline)">
+      <div class="g"><p class="t1" style="white-space:normal">Allow web search</p>
+        <p class="t2" style="white-space:normal">Queries are sent without your file contents.</p></div>
+      <span class="sw sw--on"></span>
+    </div>
+
+    <p class="grp">DATA</p>
+    <div class="lrow" style="align-items:center">
+      <div class="g"><p class="t1">Export all conversations</p></div>
+      <span class="m">214 · 41.2 MB</span>
+      <svg class="i i--sm" style="color:var(--ink-3);margin-left:2px"><use href="#ic-chev-r"/></svg>
+    </div>
+    <div class="lrow" style="align-items:center;border-bottom:.5px solid var(--hairline)">
+      <div class="g"><p class="t1" style="color:var(--loss)">Delete all conversations</p></div>
+    </div>
+
+    <p class="m" style="padding:22px 20px 30px;line-height:1.7">
+      NativeAIStudio 2.4.1 (3187)<br>opus-5 · sonnet-5 · haiku-4.5<br>
+      Retention 30 days · region eu-west</p>
+  </div>
+</div>
+<div class="homebar"></div>
+</div>

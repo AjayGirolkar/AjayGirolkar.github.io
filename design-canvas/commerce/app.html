@@ -1,0 +1,191 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet">
+<style>
+/* ================= ShopEase — paper-committed app layer =================
+   Identity lock: warm sand ground · NO containers (photography sits directly on the
+   ground) · chrome nearly invisible, one glass buy bar and nothing else · uppercase
+   wide-tracked labels against an editorial display face · image-led and sparse.
+
+   Light-locked on purpose. Paper IS the identity here the same way near-black is
+   FitnessPro's, so there is no dark set; the divergence axis the identity lock names
+   for commerce is the ground, and inverting it would hand the app back to the pack.  */
+.ios{
+  --paper:#F4EFE7;                      /* page ground, a shade above the plate ground */
+  --plate:#EEE8DE;                      /* == objects.py SAND_TOP, so photos have no seam */
+  --ink:#201B15; --ink-2:rgba(32,27,21,.56); --ink-3:rgba(32,27,21,.33);
+  --hairline:rgba(32,27,21,.14);
+  --accent:#8A3418;                     /* oxblood. Price and primary action only. */
+  --accent-soft:color-mix(in srgb,var(--accent) 10%,transparent);
+  --surface:var(--paper); --surface-el:var(--paper);
+  --f-disp:"Fraunces","Iowan Old Style",Palatino,Georgia,serif;
+  --margin:20px;                        /* generous gutter: sparse is the brief */
+}
+/* dark request falls back to the same paper — one ground, deliberately */
+[data-theme="dark"] .ios{--ink:#201B15;--ink-2:rgba(32,27,21,.56);--ink-3:rgba(32,27,21,.33);
+  --hairline:rgba(32,27,21,.14);--surface:var(--paper);--surface-el:var(--paper)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ios{
+  --ink:#201B15;--ink-2:rgba(32,27,21,.56);--ink-3:rgba(32,27,21,.33);
+  --hairline:rgba(32,27,21,.14);--surface:var(--paper);--surface-el:var(--paper)}}
+
+.stack{position:absolute;inset:0;display:flex;flex-direction:column}
+.scroll{flex:1;overflow:hidden;position:relative}
+.pad{padding-left:var(--margin);padding-right:var(--margin)}
+.statusbar,.navbar{flex:none}
+
+/* status bar glyphs */
+.sb-sig{display:flex;align-items:flex-end;gap:2px;height:11px}
+.sb-sig i{width:3px;background:currentColor;border-radius:1px;display:block}
+.sb-sig i:nth-child(1){height:4px}.sb-sig i:nth-child(2){height:6px}
+.sb-sig i:nth-child(3){height:8.5px}.sb-sig i:nth-child(4){height:11px}
+.sb-bat{width:25px;height:12px;border:1.1px solid currentColor;border-radius:3.4px;
+        opacity:.9;position:relative;padding:1.4px}
+.sb-bat::after{content:"";position:absolute;right:-3px;top:3.6px;width:1.6px;height:4.4px;
+        border-radius:0 1px 1px 0;background:currentColor;opacity:.5}
+.sb-bat b{display:block;height:100%;width:82%;background:currentColor;border-radius:1.6px}
+
+/* ---------- THE TYPE STORY: editorial display + wide-tracked uppercase ---------- */
+.dsp{font-family:var(--f-disp);font-weight:400;letter-spacing:-.012em;line-height:1.03}
+.dsp--l{font-weight:300}
+.lbl{font-size:10px;font-weight:600;letter-spacing:.19em;text-transform:uppercase;
+     color:var(--ink-3)}
+.lbl--ink{color:var(--ink-2)}
+.maker{font-size:10.5px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+       color:var(--ink-3)}
+.pname{font-family:var(--f-disp);font-weight:400;font-size:16px;letter-spacing:-.01em;
+       line-height:1.16}
+.price{font-size:13.5px;font-variant-numeric:tabular-nums;letter-spacing:.01em}
+/* accent is savings, not price: a grid where every number is oxblood reads as a
+   clearance rack. Full price stays ink; the accent marks a markdown and the CTA. */
+.price b{font-weight:500}
+.price--sale b{color:var(--accent)}
+.was{color:var(--ink-3);text-decoration:line-through;margin-right:7px;font-weight:400}
+.off{display:inline-block;margin-left:7px;padding:1px 5px;border-radius:var(--r-chip);
+     font-size:10px;font-weight:700;letter-spacing:.04em;
+     background:var(--accent-soft);color:var(--accent);vertical-align:1px}
+
+/* ---------- chrome: as close to absent as a shop can get ---------- */
+.topbar{flex:none;height:44px;display:flex;align-items:center;justify-content:space-between;
+        padding:0 var(--margin);position:relative;z-index:6}
+.wordmark{font-family:var(--f-disp);font-size:17px;font-weight:400;letter-spacing:.30em;
+          text-transform:uppercase;text-indent:.30em}
+.tb-act{display:flex;align-items:center;gap:16px;color:var(--ink)}
+.bagdot{position:relative;display:block;width:22px;height:22px}
+.bagdot b{position:absolute;top:-4px;right:-6px;min-width:15px;height:15px;border-radius:8px;
+          background:var(--accent);color:#F4EFE7;font-size:9.5px;font-weight:700;
+          display:flex;align-items:center;justify-content:center;padding:0 4px;
+          font-variant-numeric:tabular-nums}
+
+/* text-only dock. No icons, no glass, no floating pill — those are spent elsewhere. */
+.dock{flex:none;height:64px;display:flex;justify-content:space-between;align-items:flex-start;
+      padding:14px var(--margin) 0;border-top:.5px solid var(--hairline);
+      background:var(--paper);position:relative;z-index:5}
+.dock a{font-size:9.5px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+        color:var(--ink-3);text-decoration:none;padding:6px 2px 0;min-width:44px;
+        text-align:center;position:relative}
+.dock a[aria-current]{color:var(--ink)}
+.dock a[aria-current]::after{content:"";position:absolute;left:50%;transform:translateX(-50%);
+        top:0;width:15px;height:1.5px;background:var(--ink)}
+.homebar{background:var(--ink);opacity:.26}
+
+/* ---------- photography sits ON the ground: no card, no border ---------- */
+.ph{display:block;width:100%;border-radius:12px;background:var(--plate);object-fit:cover}
+.ph--sq{aspect-ratio:1/1}
+.ph--45{aspect-ratio:4/5}
+.bleed{position:relative;width:100%;display:block;background:var(--plate)}
+.bleed img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* product grid — 2-up, generous gutters, price under image left, no card border */
+.grid{display:grid;grid-template-columns:1fr 1fr;column-gap:14px;row-gap:26px}
+.pcell .pname{margin-top:10px}
+.pcell .maker{margin-top:9px}
+.pcell .price{margin-top:5px}
+.pcell{position:relative}
+.wish{position:absolute;top:9px;right:9px;width:26px;height:26px;color:var(--ink-2);
+      display:flex;align-items:center;justify-content:center}
+
+/* category rail — uppercase words, the only nav besides the dock */
+.rail{display:flex;gap:20px;overflow:hidden;padding:0 var(--margin)}
+.rail a{font-size:11px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;
+        color:var(--ink-3);text-decoration:none;padding-bottom:9px;white-space:nowrap;
+        border-bottom:1.5px solid transparent}
+.rail a[aria-current]{color:var(--ink);border-bottom-color:var(--ink)}
+
+/* ---------- glaze swatch row: material before size ---------- */
+.swatches{display:flex;gap:13px;align-items:center}
+.sw{width:24px;height:24px;border-radius:13px;display:block;position:relative;
+    box-shadow:inset 0 0 0 .5px rgba(32,27,21,.20)}
+.sw[aria-checked="true"]{box-shadow:inset 0 0 0 .5px rgba(32,27,21,.20),
+                                   0 0 0 3px var(--paper),0 0 0 4.2px var(--ink)}
+
+/* ---------- size run: sold-out struck through, never hidden ---------- */
+.sizes{display:flex;gap:8px}
+.sz{flex:1;height:44px;border-radius:var(--r-ctl);display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:2px;
+    box-shadow:inset 0 0 0 .5px var(--hairline);font-size:13px;font-weight:500}
+.sz i{font-style:normal;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
+      color:var(--ink-3)}
+.sz[aria-checked="true"]{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.sz--out{opacity:.35;text-decoration:line-through}
+.sz--out i{text-decoration:none}
+
+/* ---------- the ONE glass element in the whole app ---------- */
+.buybar{position:absolute;left:16px;right:16px;bottom:14px;height:62px;border-radius:19px;
+        display:flex;align-items:center;gap:14px;padding:0 8px 0 18px;z-index:6}
+.buybar .bp{flex:1;min-width:0}
+.buybar .cta{height:46px;border-radius:15px;background:var(--ink);color:var(--paper);
+        display:flex;align-items:center;justify-content:center;padding:0 22px;
+        font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+
+/* ---------- flat editorial buttons everywhere else ---------- */
+.btn{height:52px;border-radius:var(--r-ctl);background:var(--ink);color:var(--paper);
+     display:flex;align-items:center;justify-content:center;gap:9px;
+     font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+.btn--ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 .5px var(--ink)}
+
+/* ---------- bag / order rows: image + type, hairline separated, never a card ------ */
+.brow{display:flex;gap:14px;padding:16px 0;align-items:flex-start}
+.brow+.brow{border-top:.5px solid var(--hairline)}
+.brow .th{width:66px;height:82px;border-radius:9px;flex:none;background:var(--plate);
+          object-fit:cover}
+.brow .bd{flex:1;min-width:0;padding-top:2px}
+.brow .tr{text-align:right;flex:none;padding-top:2px}
+
+/* ---------- dense ledger band: the counterweight to all that air ---------- */
+.tot{display:flex;justify-content:space-between;align-items:baseline;
+     padding:7px 0;font-size:13.5px;font-variant-numeric:tabular-nums}
+.tot span:first-child{color:var(--ink-2)}
+.tot--grand{padding-top:15px;margin-top:8px;border-top:.5px solid var(--hairline)}
+
+/* ---------- stepper ---------- */
+.step{display:inline-flex;align-items:center;gap:0;height:30px;border-radius:9px;
+      box-shadow:inset 0 0 0 .5px var(--hairline);margin-top:9px}
+.step b{width:32px;text-align:center;font-size:13px;font-weight:500;
+        font-variant-numeric:tabular-nums}
+.step a{width:32px;height:30px;display:flex;align-items:center;justify-content:center;
+        color:var(--ink-2)}
+
+/* ---------- settings-ish rows, native idiom, no card ---------- */
+.srow{display:flex;align-items:center;gap:13px;min-height:52px;
+      padding:12px 0;font-size:16px}
+.srow+.srow{border-top:.5px solid var(--hairline)}
+.srow .sv{margin-left:auto;color:var(--ink-3);font-size:14.5px;
+          font-variant-numeric:tabular-nums}
+.srow svg{color:var(--ink-3);flex:none}
+
+/* The kit ships a dark glass variant. This app has no dark ground, so a dark buy bar
+   would float on paper; pin the light one in every scheme. */
+[data-theme="dark"] .ios .glass,
+.ios .glass{background:rgba(255,252,247,.62);border-color:rgba(255,255,255,.72);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85),inset 0 -1px 0 rgba(32,27,21,.06),
+             0 8px 26px rgba(80,64,44,.13)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ios .glass{
+  background:rgba(255,252,247,.62);border-color:rgba(255,255,255,.72);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85),inset 0 -1px 0 rgba(32,27,21,.06),
+             0 8px 26px rgba(80,64,44,.13)}}
+
+/* ---------- caption over photography ---------- */
+.overlay{position:absolute;left:0;right:0;bottom:0;padding:22px var(--margin) 20px;
+         background:linear-gradient(to top,rgba(238,232,222,.97) 34%,rgba(238,232,222,0))}
+.rule{height:.5px;background:var(--hairline);border:0;margin:0}
+</style>

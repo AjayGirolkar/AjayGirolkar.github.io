@@ -1,0 +1,200 @@
+<!-- KIT-START -->
+
+<style>
+/* ---------- tokens ---------- */
+.ios{
+  --w:393px; --h:852px;
+
+  /* type */
+  --f-sys:-apple-system,"SF Pro Text","SF Pro Display","Helvetica Neue",system-ui,sans-serif;
+  --f-round:-apple-system,"SF Pro Rounded","SF Pro Display",system-ui,sans-serif;
+  --t-large:34px; --t-title:22px; --t-head:17px; --t-body:17px;
+  --t-sec:15px; --t-cap:13px; --t-tab:11px;
+
+  /* space scale */
+  --s1:2px;--s2:4px;--s3:8px;--s4:12px;--s5:16px;--s6:20px;--s7:24px;--s8:32px;--s9:40px;--s10:56px;
+  --margin:16px;
+
+  /* concentric radii */
+  --r-sheet:38px; --r-card:20px; --r-ctl:12px; --r-chip:8px;
+
+  /* light palette */
+  --ink:#000; --ink-2:rgba(60,60,67,.60); --ink-3:rgba(60,60,67,.30);
+  --surface:#F2F2F7; --surface-el:#FFF; --hairline:rgba(60,60,67,.14);
+  --accent:#0A7E76;                     /* override per app — never purple */
+  --accent-soft:color-mix(in srgb,var(--accent) 12%,transparent);
+  --gain:#1C8C4B; --loss:#C2382F; --warn:#B26A00;
+  --glass-blur:24px; --glass-sat:180%;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .ios{
+    --ink:#FFF; --ink-2:rgba(235,235,245,.60); --ink-3:rgba(235,235,245,.30);
+    --surface:#000; --surface-el:#1C1C1E; --hairline:rgba(235,235,245,.16);
+    --gain:#30D158; --loss:#FF453A; --warn:#FF9F0A;
+  }
+}
+[data-theme="dark"] .ios{
+  --ink:#FFF; --ink-2:rgba(235,235,245,.60); --ink-3:rgba(235,235,245,.30);
+  --surface:#000; --surface-el:#1C1C1E; --hairline:rgba(235,235,245,.16);
+  --gain:#30D158; --loss:#FF453A; --warn:#FF9F0A;
+}
+
+/* ---------- device shell ---------- */
+.ios{
+  width:var(--w); height:var(--h); position:relative; overflow:hidden;
+  border-radius:var(--r-sheet); background:var(--surface); color:var(--ink);
+  font-family:var(--f-sys); font-size:var(--t-body); line-height:1.29;
+  -webkit-font-smoothing:antialiased;
+}
+.ios *{box-sizing:border-box}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.ios svg text{font-family:var(--f-sys)}
+.ios svg text.rnd{font-family:var(--f-round)}   /* rounded design, monetary figures only */
+.money{font-family:var(--f-round);font-variant-numeric:tabular-nums}
+
+/* ---------- glass (chrome only) ---------- */
+.glass{
+  background:rgba(255,255,255,.55);
+  backdrop-filter:blur(var(--glass-blur)) saturate(var(--glass-sat));
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(var(--glass-sat));
+  border:.5px solid rgba(255,255,255,.60);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.70),inset 0 -1px 0 rgba(255,255,255,.15),
+             0 8px 24px rgba(0,0,0,.10);
+}
+[data-theme="dark"] .glass{
+  background:rgba(28,28,30,.55); border-color:rgba(255,255,255,.12);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 -1px 0 rgba(255,255,255,.04),
+             0 8px 28px rgba(0,0,0,.40);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .glass{
+    background:rgba(28,28,30,.55); border-color:rgba(255,255,255,.12);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 -1px 0 rgba(255,255,255,.04),
+               0 8px 28px rgba(0,0,0,.40);
+  }
+}
+.glass--rim{position:relative}
+.glass--rim::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;padding:.5px;pointer-events:none;
+  background:linear-gradient(145deg,rgba(255,255,255,.85),rgba(255,255,255,.15) 38%,rgba(255,255,255,0) 62%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+}
+@media (prefers-reduced-transparency:reduce){
+  .glass{background:var(--surface-el);backdrop-filter:none;-webkit-backdrop-filter:none;
+         box-shadow:0 1px 0 rgba(0,0,0,.08)}
+  .glass--rim::after{display:none}
+}
+
+/* ---------- chrome ---------- */
+.statusbar{
+  height:59px;display:flex;align-items:flex-end;justify-content:space-between;
+  padding:0 22px 8px;font-size:15px;font-weight:600;letter-spacing:.2px;position:relative;z-index:5;
+}
+.statusbar .glyphs{display:flex;gap:5px;align-items:center}
+.island{position:absolute;top:11px;left:50%;transform:translateX(-50%);
+        width:125px;height:36px;border-radius:18px;background:#000;z-index:6}
+
+/* Status-bar glyphs. Device chrome, so it belongs here rather than in an app layer --
+   fintech, fitness and commerce each hand-copied this block before it was hoisted.
+   Canonical markup (paste as the first child of the screen's flex stack):
+
+   <div class="statusbar"><span>9:41</span><span class="glyphs">
+     <span class="sb-sig"><i></i><i></i><i></i><i></i></span>
+     <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><path d="M8.5 10.6 10.7 8.3a3.1 3.1 0 0 0-4.4 0ZM4.6 6.7l1.3 1.3a4.9 4.9 0 0 1 5.2 0l1.3-1.3a6.7 6.7 0 0 0-7.8 0ZM1.6 3.6 2.9 5a9.3 9.3 0 0 1 11.2 0l1.3-1.4a11.1 11.1 0 0 0-13.8 0Z"/></svg>
+     <span class="sb-bat"><b></b></span></span></div>
+*/
+.sb-sig{display:flex;align-items:flex-end;gap:2px;height:11px}
+.sb-sig i{width:3px;background:currentColor;border-radius:1px;display:block}
+.sb-sig i:nth-child(1){height:4px}.sb-sig i:nth-child(2){height:6px}
+.sb-sig i:nth-child(3){height:8.5px}.sb-sig i:nth-child(4){height:11px}
+.sb-bat{width:25px;height:12px;border:1.1px solid currentColor;border-radius:3.4px;
+        opacity:.9;position:relative;padding:1.4px}
+.sb-bat::after{content:"";position:absolute;right:-3px;top:3.6px;width:1.6px;height:4.4px;
+        border-radius:0 1px 1px 0;background:currentColor;opacity:.5}
+.sb-bat b{display:block;height:100%;width:80%;background:currentColor;border-radius:1.6px}
+
+.navbar{height:44px;display:flex;align-items:center;justify-content:space-between;
+        padding:0 var(--margin);font-size:var(--t-head);font-weight:600}
+.navbar--large{display:block;height:auto;padding:4px var(--margin) 8px}
+.navbar--large h1{font-size:var(--t-large);font-weight:700;letter-spacing:-.5px;margin:0}
+
+.tabbar{
+  position:absolute;left:21px;right:21px;bottom:21px;height:56px;border-radius:28px;
+  display:flex;align-items:center;justify-content:space-around;z-index:5;
+}
+.tabitem{display:flex;flex-direction:column;align-items:center;gap:3px;
+         font-size:var(--t-tab);color:var(--ink-2);min-width:44px}
+.tabitem[aria-current]{color:var(--accent)}
+
+.homebar{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);
+         width:140px;height:5px;border-radius:3px;background:var(--ink);opacity:.28;z-index:7}
+
+/* ---------- content primitives ---------- */
+.card{background:var(--surface-el);border-radius:var(--r-card);padding:var(--s6)}
+.hair{height:.5px;background:var(--hairline);border:0;margin:0}
+.chip{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 10px;
+      border-radius:var(--r-chip);font-size:var(--t-cap);font-weight:600}
+.chip--gain{color:var(--gain);background:color-mix(in srgb,var(--gain) 12%,transparent)}
+.chip--loss{color:var(--loss);background:color-mix(in srgb,var(--loss) 12%,transparent)}
+.row{display:flex;align-items:center;gap:var(--s4);padding:var(--s4) var(--margin)}
+.row .lead{width:40px;height:40px;border-radius:20px;display:grid;place-items:center;flex:none}
+.row .body{flex:1;min-width:0}
+.row .t1{font-size:var(--t-body)}
+.row .t2{font-size:var(--t-cap);color:var(--ink-2);margin-top:1px}
+.row .trail{text-align:right}
+.sec-hd{font-size:var(--t-cap);font-weight:600;letter-spacing:.4px;text-transform:uppercase;
+        color:var(--ink-2);padding:var(--s7) var(--margin) var(--s3)}
+.i{width:24px;height:24px;display:inline-block;vertical-align:-5px;
+   stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.i--sm{width:20px;height:20px;stroke-width:1.8}
+.i--fill{fill:currentColor;stroke:none}
+</style>
+
+<!-- ---------- icon sprite: <svg class="i"><use href="#ic-house"/></svg> ---------- -->
+<svg id="ios-icons" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="ic-chev-l" viewBox="0 0 24 24"><path d="M15 5 8.5 12 15 19"/></symbol>
+<symbol id="ic-chev-r" viewBox="0 0 24 24"><path d="M9 5l6.5 7L9 19"/></symbol>
+<symbol id="ic-chev-d" viewBox="0 0 24 24"><path d="M5 9.5 12 16l7-6.5"/></symbol>
+<symbol id="ic-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="ic-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="ic-more" viewBox="0 0 24 24"><circle cx="5.5" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="18.5" cy="12" r="1.5" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.2"/><path d="M15.2 15.2 20 20"/></symbol>
+<symbol id="ic-filter" viewBox="0 0 24 24"><path d="M3.5 7h17M3.5 12h17M3.5 17h17"/><circle cx="9" cy="7" r="2.1" fill="var(--surface,#fff)"/><circle cx="15" cy="12" r="2.1" fill="var(--surface,#fff)"/><circle cx="7" cy="17" r="2.1" fill="var(--surface,#fff)"/></symbol>
+<symbol id="ic-bell" viewBox="0 0 24 24"><path d="M12 3.4c-3.1 0-5.1 2.1-5.1 5.2 0 4.1-1.6 5.3-1.6 6.2h13.4c0-.9-1.6-2.1-1.6-6.2 0-3.1-2-5.2-5.1-5.2Z"/><path d="M10 18.3a2 2 0 0 0 4 0"/></symbol>
+<symbol id="ic-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.6"/><g stroke-width="2.6"><path d="M18 12h2.5M16.24 7.76 18.01 5.99M12 6V3.5M7.76 7.76 5.99 5.99M6 12H3.5M7.76 16.24 5.99 18.01M12 18v2.5M16.24 16.24 18.01 18.01"/></g></symbol>
+<symbol id="ic-arr-u" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+<symbol id="ic-arr-d" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+<symbol id="ic-arr-ur" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+<symbol id="ic-check" viewBox="0 0 24 24"><path d="m5 12.5 4.8 4.8L19 6.7"/></symbol>
+<symbol id="ic-share" viewBox="0 0 24 24"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M7 10.5H5.4a1.4 1.4 0 0 0-1.4 1.4v7.7A1.4 1.4 0 0 0 5.4 21h13.2a1.4 1.4 0 0 0 1.4-1.4v-7.7a1.4 1.4 0 0 0-1.4-1.4H17"/></symbol>
+<symbol id="ic-trash" viewBox="0 0 24 24"><path d="M4.5 6.5h15M9.5 6.5v-2h5v2M6.8 6.5l1 13h8.4l1-13"/></symbol>
+<symbol id="ic-lock" viewBox="0 0 24 24"><rect x="5" y="10.4" width="14" height="9.6" rx="2.4"/><path d="M8.4 10.4V8a3.6 3.6 0 0 1 7.2 0v2.4"/></symbol>
+<symbol id="ic-faceid" viewBox="0 0 24 24"><path d="M3.5 8V5.6A2.1 2.1 0 0 1 5.6 3.5H8M16 3.5h2.4a2.1 2.1 0 0 1 2.1 2.1V8M20.5 16v2.4a2.1 2.1 0 0 1-2.1 2.1H16M8 20.5H5.6a2.1 2.1 0 0 1-2.1-2.1V16"/><path d="M8.6 9.4v1.8M15.4 9.4v1.8M12 9.6v3.9h-1.2M9 15.8a4.2 4.2 0 0 0 6 0"/></symbol>
+<symbol id="ic-house" viewBox="0 0 24 24"><path d="M3.4 11 12 4l8.6 7v8.6a1.2 1.2 0 0 1-1.2 1.2H4.6a1.2 1.2 0 0 1-1.2-1.2Z"/></symbol>
+<symbol id="ic-pie" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><path d="M12 3.8V12h8.2"/></symbol>
+<symbol id="ic-card" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.6"/><path d="M3 10h18"/></symbol>
+<symbol id="ic-person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.7"/><path d="M4.8 20.2a7.2 7.2 0 0 1 14.4 0"/></symbol>
+<symbol id="ic-bag" viewBox="0 0 24 24"><path d="M5.6 8h12.8l.9 12.4H4.7Z"/><path d="M9 8V6.4a3 3 0 0 1 6 0V8"/></symbol>
+<symbol id="ic-heart" viewBox="0 0 24 24"><path d="M12 20.3C5 15.6 3.2 12.5 3.2 9.4A4.7 4.7 0 0 1 12 7.2a4.7 4.7 0 0 1 8.8 2.2c0 3.1-1.8 6.2-8.8 10.9Z"/></symbol>
+<symbol id="ic-msg" viewBox="0 0 24 24"><path d="M20.6 11.4c0 4-3.9 7.2-8.6 7.2a11 11 0 0 1-2.3-.2l-4.2 2.1 1.1-3.6c-2.1-1.3-3.2-3.3-3.2-5.5 0-4 3.9-7.2 8.6-7.2s8.6 3.2 8.6 7.2Z"/></symbol>
+<symbol id="ic-bookmark" viewBox="0 0 24 24"><path d="M6.6 3.8h10.8v16.4L12 16.2l-5.4 4Z"/></symbol>
+<symbol id="ic-bolt" viewBox="0 0 24 24"><path d="M13.6 3 6 13.4h4.6L10.4 21 18 10.6h-4.6Z"/></symbol>
+<symbol id="ic-flame" viewBox="0 0 24 24"><path d="M12 3.4c3.1 3 4.9 5.6 4.9 8.6a4.9 4.9 0 0 1-9.8 0c0-1.9.8-3.4 1.7-4.5.1 1.5.8 2.4 1.8 2.4 1.6 0 2.2-2.8 1.4-6.5Z"/></symbol>
+<symbol id="ic-dumbbell" viewBox="0 0 24 24"><path d="M8.6 12h6.8"/><rect x="5.6" y="8.2" width="3" height="7.6" rx="1.3"/><rect x="15.4" y="8.2" width="3" height="7.6" rx="1.3"/><path d="M3.4 10.2v3.6M20.6 10.2v3.6"/></symbol>
+<symbol id="ic-cal" viewBox="0 0 24 24"><rect x="3.4" y="5.4" width="17.2" height="15.2" rx="2.6"/><path d="M3.4 10h17.2M8 3.4v4M16 3.4v4"/></symbol>
+<symbol id="ic-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><path d="M12 6.8V12l3.6 2.4"/></symbol>
+<symbol id="ic-camera" viewBox="0 0 24 24"><path d="M4.2 8.6h3.1L8.9 6h6.2l1.6 2.6h3.1a1.3 1.3 0 0 1 1.3 1.3v8.5a1.3 1.3 0 0 1-1.3 1.3H4.2a1.3 1.3 0 0 1-1.3-1.3V9.9a1.3 1.3 0 0 1 1.3-1.3Z"/><circle cx="12" cy="13.8" r="3.4"/></symbol>
+<symbol id="ic-photo" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.6"/><path d="M4.2 18.4 8.8 13.2 12 16l2.8-2.6 5 5.2"/><circle cx="8.4" cy="9.6" r="1.6"/></symbol>
+<symbol id="ic-clip" viewBox="0 0 24 24"><path d="M17.6 9.2 10.1 16.7a3.1 3.1 0 0 1-4.4-4.4l8.2-8.2a2.1 2.1 0 0 1 3 3l-8.2 8.2a1 1 0 0 1-1.5-1.5l7.4-7.4"/></symbol>
+<symbol id="ic-mic" viewBox="0 0 24 24"><rect x="9.4" y="3" width="5.2" height="11" rx="2.6"/><path d="M6 11.4a6 6 0 0 0 12 0M12 17.4V21"/></symbol>
+<symbol id="ic-send" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M12 16.4V7.9M8.6 11.3 12 7.9l3.4 3.4"/></symbol>
+<symbol id="ic-stop" viewBox="0 0 24 24"><rect x="6.6" y="6.6" width="10.8" height="10.8" rx="2.6" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-play" viewBox="0 0 24 24"><path d="M8.4 5.4 18.6 12 8.4 18.6Z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-star" viewBox="0 0 24 24"><path d="m12 3.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9-5.3-2.9-5.3 2.9 1.1-5.9-4.3-4.1 5.9-.8Z"/></symbol>
+<symbol id="ic-eye" viewBox="0 0 24 24"><path d="M2.6 12S6.4 6 12 6s9.4 6 9.4 6-3.8 6-9.4 6-9.4-6-9.4-6Z"/><circle cx="12" cy="12" r="2.8"/></symbol>
+<symbol id="ic-eye-off" viewBox="0 0 24 24"><path d="M4 4l16 16"/><path d="M9.5 9.6A2.8 2.8 0 0 0 12 14.8c.7 0 1.4-.3 1.9-.7"/><path d="M6.4 6.9C4.1 8.6 2.6 12 2.6 12s3.8 6 9.4 6c1.5 0 2.8-.4 4-1M17.1 15A14 14 0 0 0 21.4 12S17.6 6 12 6c-.7 0-1.4.1-2 .3"/></symbol>
+<symbol id="ic-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-grid" viewBox="0 0 24 24"><rect x="3.6" y="3.6" width="7.2" height="7.2" rx="2"/><rect x="13.2" y="3.6" width="7.2" height="7.2" rx="2"/><rect x="3.6" y="13.2" width="7.2" height="7.2" rx="2"/><rect x="13.2" y="13.2" width="7.2" height="7.2" rx="2"/></symbol>
+</defs></svg>
+<!-- KIT-END -->

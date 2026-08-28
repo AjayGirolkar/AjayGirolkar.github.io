@@ -1,0 +1,259 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ NativeAIStudio — "ink transcript" register, app layer ============
+   Identity lock (domain-patterns.md): ground INK · containers are MESSAGE TURNS, not
+   cards -- user compact and right-inset, assistant full-width and airy, and that
+   asymmetry is the entire container model · glass on the COMPOSER and the STOP BUTTON
+   only, so there is no tab bar anywhere in the app · mono for machine facts against an
+   airy sans body · long-form vertical rhythm.
+
+   Every selector below is scoped under .ios on purpose. Fintech/fitness/commerce/social
+   all left their app layer unscoped and each review page then had to prefix its own
+   classes to stop .cap / .media / .row leaking into the embedded screens. Scoping here
+   fixes it at the source -- fold this back into the skill.                          */
+
+.ios{
+  /* ---- ground: warm ink. Deliberately NOT black. The four spent grounds are
+     #F2F2F7 (fintech), #07090A (fitness, cold), #F4EFE7 (commerce), #000 (social).
+     #131211 is warm, and visibly lifted off black -- printed page, inverted.    */
+  --surface:#131211; --surface-el:#201D1B; --surface-sunk:#0B0A09;
+  --ink:#F5F2ED; --ink-2:rgba(245,242,237,.62); --ink-3:rgba(245,242,237,.36);
+  --hairline:rgba(245,242,237,.13);
+
+  /* ---- accent: citrine brass. hue 46 deg.
+     Clears teal 172, mint 147, oxblood 15, social pink 345 -- and it is the one band
+     no major AI product occupies (Claude terracotta ~18, ChatGPT mono green,
+     Perplexity teal, Gemini blue-violet). Never purple, never a gradient.        */
+  --accent:#DFC069;
+  --accent-dim:rgba(223,192,105,.42);
+  --accent-soft:rgba(223,192,105,.13);
+  --on-accent:#17140F;                 /* the only ink allowed on top of the accent */
+
+  --f-sys:"IBM Plex Sans",-apple-system,"SF Pro Text",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --margin:20px;                       /* airy: 20, not the 16 everyone else runs */
+  --t-body:16px;
+}
+/* dark-locked. Ink IS the identity; a light NativeAIStudio would be a different product
+   and would also land on top of ShopEase's paper. Re-pin the kit's light tokens AND its
+   light .glass -- ShopEase and SocialFlow each learned that the tokens alone are not
+   enough and the one glass element flips ground under you. */
+[data-theme="light"] .ios,
+:root:not([data-theme="dark"]) .ios{
+  --ink:#F5F2ED; --ink-2:rgba(245,242,237,.62); --ink-3:rgba(245,242,237,.36);
+  --surface:#131211; --surface-el:#201D1B; --hairline:rgba(245,242,237,.13);
+}
+.ios .glass,[data-theme="light"] .ios .glass,
+:root:not([data-theme="dark"]) .ios .glass{
+  background:rgba(38,34,31,.56);border-color:rgba(255,247,232,.13);
+  box-shadow:inset 0 1px 0 rgba(255,247,232,.17),inset 0 -1px 0 rgba(255,247,232,.05),
+             0 14px 40px rgba(0,0,0,.62);
+}
+@media (prefers-reduced-transparency:reduce){
+  .ios .glass{background:#26221F;backdrop-filter:none;-webkit-backdrop-filter:none;
+              box-shadow:0 0 0 .5px rgba(255,247,232,.16)}
+}
+
+.ios{font-size:var(--t-body);line-height:1.56}   /* long-form leading, app-wide */
+/* The primitives kit does not reset block margins, and every earlier domain got away
+   with it because nothing used a bare <p>. This register is all prose, so the browser's
+   1em paragraph margin was silently inflating every row by ~32pt. Reset it here. */
+.ios p,.ios h1,.ios h2,.ios h3,.ios ul,.ios ol,.ios pre{margin:0}
+.ios .stack{position:absolute;inset:0;display:flex;flex-direction:column}
+.ios .scroll{flex:1;overflow:hidden;position:relative}
+.ios .pad{padding-left:var(--margin);padding-right:var(--margin)}
+.ios .statusbar,.ios .navbar{flex:none}
+.ios .statusbar{color:var(--ink)}
+
+/* ---------- THE TYPE RULE: prose is sans, every machine-generated fact is mono ----------
+   Fintech = SF + rounded money. Fitness = oversized rounded numerals. Commerce = Fraunces
+   + .19em uppercase labels. Social = Inter Tight, tight and large, never uppercased.
+   AI = IBM Plex Sans set AIRY (1.62 leading, tracking at or near zero -- the exact
+   opposite of social's -.035em) with IBM Plex Mono carrying anything the machine
+   produced: model names, durations, token counts, timestamps, paths, code.        */
+.ios .ttl{font-size:21px;font-weight:600;letter-spacing:-.012em;line-height:1.24}
+.ios .ttl--xl{font-size:32px;font-weight:400;letter-spacing:-.022em;line-height:1.24}
+.ios .hd{font-size:16px;font-weight:600;letter-spacing:-.006em}
+.ios .sub{font-size:14px;color:var(--ink-2);line-height:1.5;letter-spacing:0}
+.ios .m{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.005em;color:var(--ink-3);
+        font-variant-numeric:tabular-nums}
+.ios .m--lg{font-size:12.5px}
+.ios .dim{color:var(--ink-3)}
+.ios .on{color:var(--accent)}
+.ios .num{font-variant-numeric:tabular-nums}
+
+/* ---------- container model: MESSAGE TURNS ----------
+   user  = compact, right-inset, on a lifted plate, tight leading, tail corner
+   asst  = full width, NO plate, NO radius, NO border, airy leading
+   The asymmetry is the whole thing. There is not a single .card in this app.     */
+.ios .turn-u{margin:0 0 0 76px;background:var(--surface-el);
+  border-radius:20px 20px 7px 20px;padding:11px 15px 12px;
+  font-size:15.5px;line-height:1.42;letter-spacing:-.004em}
+.ios .turn-a{margin:0;padding:0;background:none;border:0;border-radius:0}
+.ios .turn-a p{margin:0 0 13px}
+.ios .turn-a p:last-child{margin-bottom:0}
+/* uppercase mono at .06em -- a terminal header, NOT commerce's .19em editorial label.
+   Commerce owns wide-tracked uppercase sans; social owns "never uppercase". Tight mono
+   caps are the third position and read as machine output. */
+.ios .who{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-3);display:flex;align-items:center;gap:7px}
+.ios .who::after{content:"";flex:1;height:1px;background:var(--hairline)}
+.ios .step{font-weight:600;letter-spacing:-.006em;margin-bottom:3px !important}
+.ios .step i{font-style:normal;font-family:var(--f-mono);font-weight:400;
+  color:var(--accent);margin-right:9px;font-size:14px}
+.ios .turn-a b{font-weight:600}
+.ios code{font-family:var(--f-mono);font-size:.86em;background:rgba(245,242,237,.07);
+  border-radius:4px;padding:1.5px 4.5px;letter-spacing:-.01em}
+
+/* ---------- streaming caret: a soft block, no jitter, no bouncing dots ---------- */
+.ios .caret{display:inline-block;width:2.5px;height:17px;vertical-align:-3px;
+  margin-left:2px;background:var(--accent);border-radius:1.5px;
+  box-shadow:0 0 9px rgba(223,192,105,.55)}
+
+/* ---------- code block: the AI domain's photography. Real code or nothing. ---------- */
+.ios .code{background:var(--surface-sunk);border-radius:var(--r-ctl);
+  border:.5px solid var(--hairline);overflow:hidden}
+.ios .code .cbar{display:flex;align-items:center;gap:8px;padding:8px 12px;
+  border-bottom:.5px solid var(--hairline);font-family:var(--f-mono);font-size:10.5px;
+  color:var(--ink-3);letter-spacing:.04em}
+.ios .code pre{margin:0;padding:10px 12px 12px;font-family:var(--f-mono);font-size:10.8px;
+  line-height:1.62;letter-spacing:-.012em;color:var(--ink);white-space:pre;overflow:hidden}
+.ios .k{color:#C88FA8}.ios .t{color:#7FB6C4}.ios .s{color:var(--accent)}
+.ios .c{color:var(--ink-3)}.ios .f{color:#E0C7A0}
+
+/* ---------- source citation: superscript numeral + a row beneath ----------
+   NO letter-monogram tiles -- fintech spent those. The numeral is the mark.     */
+.ios sup.c1{font-family:var(--f-mono);font-size:9.5px;color:var(--accent);
+  vertical-align:super;line-height:0;margin-left:1.5px;letter-spacing:.02em}
+.ios .src{display:flex;align-items:center;gap:11px;padding:8px 0;
+  border-top:.5px solid var(--hairline)}
+.ios .src .n{font-family:var(--f-mono);font-size:10.5px;color:var(--accent);width:16px;flex:none}
+.ios .src .g{flex:1;min-width:0}
+.ios .src .d{font-size:13.5px;line-height:1.32;letter-spacing:-.004em;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.ios .src .p{font-family:var(--f-mono);font-size:10.5px;color:var(--ink-3);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+
+/* ---------- tool-run chip: collapsed pill, icon + name + duration ----------
+   Running state is a progress underline, never a spinner and never bouncing dots --
+   and it has to read correctly as a still, because renders run reduced-motion.  */
+.ios .tool{display:flex;align-items:center;gap:9px;height:34px;padding:0 12px;
+  border-radius:var(--r-chip);border:.5px solid var(--hairline);
+  background:rgba(245,242,237,.035);position:relative;overflow:hidden}
+.ios .tool .i{width:15px;height:15px;stroke-width:1.6;color:var(--ink-3);flex:none}
+.ios .tool .nm{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-2);
+  letter-spacing:-.005em;white-space:nowrap}
+.ios .tool .ar{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);flex:1;
+  min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ios .tool .du{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);
+  font-variant-numeric:tabular-nums;flex:none}
+.ios .tool--run{border-color:var(--accent-dim);background:var(--accent-soft)}
+.ios .tool--run .i,.ios .tool--run .nm{color:var(--accent)}
+.ios .tool--run::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;
+  width:62%;background:var(--accent)}
+.ios .tool .ok{color:var(--accent);width:13px;height:13px;stroke-width:2.2;flex:none}
+
+/* ---------- composer: the app's one piece of chrome, and it is glass ---------- */
+.ios .comp{position:absolute;left:14px;right:14px;bottom:24px;z-index:6;
+  border-radius:24px;padding:11px 11px 10px 16px}
+.ios .comp--tall{border-radius:var(--r-card)}
+.ios .comp .txt{font-size:16px;line-height:1.46;letter-spacing:-.004em;color:var(--ink)}
+.ios .comp .ph{color:var(--ink-3)}
+.ios .comp .bar{display:flex;align-items:center;gap:10px;margin-top:9px}
+.ios .comp .bar .i{width:21px;height:21px;color:var(--ink-3);stroke-width:1.6}
+.ios .comp .mdl{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;
+  border-radius:var(--r-chip);background:rgba(245,242,237,.07);
+  font-family:var(--f-mono);font-size:11px;color:var(--ink-2)}
+.ios .comp .mdl .i{width:13px;height:13px;stroke-width:2}
+.ios .comp .grow{flex:1}
+.ios .send{width:34px;height:34px;border-radius:17px;display:grid;place-items:center;
+  flex:none;background:var(--accent);color:var(--on-accent)}
+.ios .send--off{background:rgba(245,242,237,.10);color:var(--ink-3)}
+.ios .send .i{width:19px;height:19px;stroke-width:2}
+
+/* ---------- stop button: the streaming screen's one glass element ---------- */
+.ios .stop{position:absolute;left:50%;transform:translateX(-50%);bottom:32px;z-index:6;
+  height:44px;padding:0 18px 0 15px;border-radius:22px;display:flex;align-items:center;
+  gap:9px;font-size:14.5px;font-weight:600;letter-spacing:-.006em;color:var(--ink)}
+.ios .stop .i{width:17px;height:17px;color:var(--accent)}
+
+/* ---------- menu (model picker): a menu, never a segmented control ---------- */
+.ios .menu{position:absolute;z-index:7;border-radius:var(--r-card);overflow:hidden;
+  padding:4px 0}
+.ios .menu .mi{display:flex;align-items:flex-start;gap:10px;padding:9px 11px 10px}
+.ios .menu .mi+.mi{border-top:.5px solid var(--hairline)}
+.ios .menu .mi .g{flex:1;min-width:0}
+.ios .menu .mi .nm{font-size:15px;font-weight:600;letter-spacing:-.008em;line-height:1.3;
+  display:flex;align-items:baseline;gap:7px}
+.ios .menu .mi .cp{font-size:12px;color:var(--ink-2);line-height:1.34;margin-top:2px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ios .menu .mi .ck{width:16px;height:16px;color:var(--accent);flex:none;
+  stroke-width:2.4;margin-top:3px}
+/* no tint on the selected row -- iOS marks it with the checkmark alone */
+.ios .menu-scrim{position:absolute;inset:0;z-index:6;background:rgba(11,10,9,.44)}
+
+/* ---------- rows: hairline-ruled, full bleed. NEVER an inset grouped card. ---------- */
+.ios .lrow{display:flex;align-items:flex-start;gap:12px;padding:11px var(--margin) 12px;
+  border-top:.5px solid var(--hairline)}
+.ios .lrow .g{flex:1;min-width:0}
+.ios .lrow .t1{font-size:15.5px;font-weight:600;letter-spacing:-.008em;line-height:1.3;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ios .lrow .t2{font-size:13.5px;color:var(--ink-2);line-height:1.34;margin-top:2px;
+  display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.ios .lrow .tr{font-family:var(--f-mono);font-size:10.5px;color:var(--ink-3);flex:none;
+  padding-top:2px;line-height:1.45;text-align:right;font-variant-numeric:tabular-nums}
+.ios .lrow .i{width:20px;height:20px;color:var(--ink-3);flex:none;margin-top:1px}
+.ios .grp{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-3);padding:22px var(--margin) 8px}
+
+/* ---------- switch + search ---------- */
+.ios .sw{width:50px;height:30px;border-radius:15px;background:rgba(245,242,237,.13);
+  flex:none;position:relative}
+.ios .sw::after{content:"";position:absolute;top:2.5px;left:2.5px;width:25px;height:25px;
+  border-radius:13px;background:#F5F2ED}
+.ios .sw--on{background:var(--accent)}
+.ios .sw--on::after{left:22.5px;background:var(--on-accent)}
+.ios .srch{display:flex;align-items:center;gap:8px;height:38px;border-radius:var(--r-ctl);
+  background:rgba(245,242,237,.07);padding:0 11px;color:var(--ink-3);font-size:15.5px}
+.ios .srch .i{width:18px;height:18px}
+
+/* ---------- misc ---------- */
+.ios .hair{height:.5px;background:var(--hairline);border:0;margin:0}
+.ios .fade-b{position:absolute;left:0;right:0;bottom:0;height:132px;pointer-events:none;
+  z-index:5;background:linear-gradient(to top,#131211 22%,rgba(19,18,17,.72) 58%,rgba(19,18,17,0))}
+.ios .fade-t{position:absolute;left:0;right:0;top:0;height:96px;pointer-events:none;z-index:4;
+  background:linear-gradient(to bottom,#131211 40%,rgba(19,18,17,0))}
+.ios .homebar{background:var(--ink);opacity:.26}
+</style>
+
+<!-- Four symbols the primitives sprite does not carry, on the same 24-grid / 1.7-stroke
+     geometry. Deliberately no sparkle glyph: a sparkle on an AI button is the domain's
+     single most-used cliche. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="ic-doc" viewBox="0 0 24 24"><path d="M6 3.4h7.6L18.6 8.4v12.2H6Z"/><path d="M13.4 3.6v5.1h5"/><path d="M9 13h6.2M9 16.4h4.2"/></symbol>
+<symbol id="ic-term" viewBox="0 0 24 24"><rect x="3" y="4.6" width="18" height="14.8" rx="2.6"/><path d="M7.4 10.2 10.2 12.9 7.4 15.6M12.6 16h4.2"/></symbol>
+<symbol id="ic-sessions" viewBox="0 0 24 24"><path d="M4 6.6h8M4 12h13M4 17.4h8"/><circle cx="19" cy="6.6" r="1.4" fill="currentColor" stroke="none"/><circle cx="19" cy="17.4" r="1.4" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-model" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.1"/><circle cx="12" cy="4.4" r="1.9"/><circle cx="18.6" cy="15.8" r="1.9"/><circle cx="5.4" cy="15.8" r="1.9"/><path d="M12 6.3v2.6M14.7 13.6l2.2 1.3M9.3 13.6l-2.2 1.3"/></symbol>
+</defs></svg>
+
+<style>
+/* ---------- software keyboard ----------
+   Drawn rather than implied. The input archetype is supposed to prove control design,
+   and a composer floating over empty ground does not prove it. Keys are warm-ink, not
+   the stock iOS grey, so the keyboard belongs to this app rather than to the OS. */
+.ios .kb{position:absolute;left:0;right:0;bottom:0;z-index:7;height:262px;
+  background:#1B1917;padding:9px 3px 0;display:flex;flex-direction:column;gap:11px}
+.ios .kb .kr{display:flex;gap:6px;justify-content:center}
+.ios .kb .k{height:43px;flex:1;border-radius:5px;background:#3A3532;display:grid;
+  place-items:center;font-size:22px;font-weight:400;color:var(--ink);
+  box-shadow:0 1px 0 rgba(0,0,0,.55)}
+.ios .kb .k--wide{flex:1.5;background:#2A2624;font-size:15px}
+.ios .kb .k--sp{flex:5;background:#3A3532;font-size:15px;color:var(--ink-2)}
+.ios .kb .k--go{flex:1.9;background:var(--accent);color:var(--on-accent);font-size:15px;font-weight:600}
+.ios .kb .kr--in{padding:0 20px}
+.ios .kb .k .i{width:20px;height:20px;stroke-width:1.9}
+.ios .kb .kbar{display:flex;align-items:center;justify-content:space-between;
+  padding:0 12px 2px;height:20px}
+</style>

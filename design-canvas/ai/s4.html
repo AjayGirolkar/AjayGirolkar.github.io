@@ -1,0 +1,86 @@
+<!-- 04 · Input moment archetype — composing a follow-up while a tool run is still going.
+     Bold move: the composer has actually grown, to five real lines of a real question,
+     with a caret in it — and the keyboard is drawn rather than implied, in the app's own
+     warm ink rather than the stock iOS grey. The composer is this screen's one glass. -->
+<div class="ios">
+<div class="stack">
+  {{SB}}
+
+  <div class="navbar">
+    <svg class="i" style="color:var(--ink-2)"><use href="#ic-chev-l"/></svg>
+    <span style="font-size:15px">SwiftUI List drops frames</span>
+    <svg class="i" style="color:var(--ink-2)"><use href="#ic-more"/></svg>
+  </div>
+
+  <div class="scroll pad" style="padding-top:6px">
+    <p class="who" style="margin:0 0 12px">ASSISTANT · OPUS 5 · WORKING</p>
+
+    <!-- tool-run chips: icon + name + argument + duration. Two settled, one running.
+         The running state is a progress underline — never a spinner, and never three
+         bouncing dots, which is this domain's most-worn cliché. -->
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div class="tool"><svg class="i"><use href="#ic-doc"/></svg>
+        <span class="nm">read_file</span>
+        <span class="ar">FeedView.swift:118</span>
+        <span class="du">0.2s</span>
+        <svg class="ok i"><use href="#ic-check"/></svg></div>
+      <div class="tool"><svg class="i"><use href="#ic-search"/></svg>
+        <span class="nm">web_search</span>
+        <span class="ar">“swiftui list diffing cost”</span>
+        <span class="du">1.4s</span>
+        <svg class="ok i"><use href="#ic-check"/></svg></div>
+      <div class="tool tool--run"><svg class="i"><use href="#ic-term"/></svg>
+        <span class="nm">swift_build</span>
+        <span class="ar">Debug · iPhone 16</span>
+        <span class="du">8.4s</span></div>
+    </div>
+
+    <p style="margin-top:16px;color:var(--ink-2);font-size:15px;line-height:1.5">
+      Building against your own target, so the debounce actually compiles before I claim
+      it does. Two warnings so far and both are pre-existing — the unused
+      <code>oldValue</code> in <code>didSet</code>, and the deprecated
+      <code>onChange(of:perform:)</code> at line 62.</p>
+    <p style="margin-top:13px;color:var(--ink-2);font-size:15px;line-height:1.5">
+      While that runs: the debounce belongs in the model, not the view, or cancellation
+      races the keystroke that started it.</p>
+  </div>
+  <div class="fade-b" style="height:162px;bottom:262px"></div>
+</div>
+
+<!-- the composer: the app's one piece of chrome, grown to five lines, and the one
+     glass surface on this screen. Accent fill on send only because it is non-empty. -->
+<div class="comp comp--tall glass glass--rim" style="bottom:274px">
+  <div style="display:flex;align-items:center;gap:7px;height:28px;padding:0 9px 0 7px;
+    border-radius:8px;background:rgba(245,242,237,.08);width:max-content;margin-bottom:9px">
+    <svg class="i" style="width:14px;height:14px;color:var(--ink-3);stroke-width:1.7"><use href="#ic-doc"/></svg>
+    <span class="m" style="color:var(--ink-2)">FeedView.swift · 214 lines</span>
+    <svg class="i" style="width:12px;height:12px;color:var(--ink-3);stroke-width:2"><use href="#ic-x"/></svg>
+  </div>
+  <div class="txt">Before it finishes — is <code>index.matches</code> safe to call from a
+    detached task, or do I need the actor to own the index?<span class="caret"></span></div>
+  <div class="bar">
+    <svg class="i"><use href="#ic-clip"/></svg>
+    <span class="mdl">opus 5 <svg class="i"><use href="#ic-chev-d"/></svg></span>
+    <span class="grow"></span>
+    <span class="m">124 / 200k</span>
+    <span class="send"><svg class="i"><use href="#ic-arr-u"/></svg></span>
+  </div>
+</div>
+
+<div class="kb">
+  <div class="kr"><span class="k">q</span><span class="k">w</span><span class="k">e</span><span class="k">r</span><span class="k">t</span><span class="k">y</span><span class="k">u</span><span class="k">i</span><span class="k">o</span><span class="k">p</span></div>
+  <div class="kr kr--in"><span class="k">a</span><span class="k">s</span><span class="k">d</span><span class="k">f</span><span class="k">g</span><span class="k">h</span><span class="k">j</span><span class="k">k</span><span class="k">l</span></div>
+  <div class="kr">
+    <span class="k k--wide"><svg class="i"><use href="#ic-arr-u"/></svg></span>
+    <span class="k">z</span><span class="k">x</span><span class="k">c</span><span class="k">v</span><span class="k">b</span><span class="k">n</span><span class="k">m</span>
+    <span class="k k--wide"><svg class="i"><use href="#ic-chev-l"/></svg></span>
+  </div>
+  <div class="kr">
+    <span class="k k--wide">123</span>
+    <span class="k k--wide"><svg class="i"><use href="#ic-mic"/></svg></span>
+    <span class="k k--sp">space</span>
+    <span class="k k--go">send</span>
+  </div>
+</div>
+<div class="homebar"></div>
+</div>

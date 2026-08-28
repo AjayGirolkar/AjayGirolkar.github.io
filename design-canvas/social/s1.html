@@ -1,0 +1,69 @@
+<!-- S1 · Home feed — rich scrolling list.
+     Bold move: the first post runs the full width with NO card, no radius and no border,
+     and its caption is set at 18px directly on the black. The photograph and the sentence
+     are the entire composition; every other element on the screen is 13.5px or smaller.
+     Chrome state: SCROLLED — the tab rail is gone, only the compose pill is left. -->
+<div class="ios"><div class="island"></div><div class="stack">
+{{SB}}
+
+  <div class="by" style="height:52px">
+    <span class="ttl" style="flex:1;letter-spacing:-.05em">SocialFlow</span>
+    <svg class="i" style="color:var(--ink-2)"><use href="#ic-heart"/></svg>
+    <svg class="i" style="color:var(--ink-2);margin-left:4px"><use href="#ic-msg"/></svg>
+  </div>
+
+  <!-- story rail: 62pt, 2.5pt gradient ring unseen, plain hairline seen, "you" first -->
+  <div class="rail" style="padding-top:6px;padding-bottom:16px">
+    <div class="st st--me"><div class="ring"><img src="{{AV_YOU}}" alt=""></div>
+      <span class="plus"><svg class="i i--sm" style="width:12px;height:12px;stroke-width:2.6"><use href="#ic-plus"/></svg></span>
+      <span>Your story</span></div>
+    <div class="st"><div class="ring"><img src="{{AV_ELENA}}" alt=""></div><span>{{HD_ELENA}}</span></div>
+    <div class="st"><div class="ring"><img src="{{AV_TAREK}}" alt=""></div><span>{{HD_TAREK}}</span></div>
+    <div class="st"><div class="ring"><img src="{{AV_JUNO}}" alt=""></div><span>{{HD_JUNO}}</span></div>
+    <div class="st st--seen"><div class="ring"><img src="{{AV_RIN}}" alt=""></div><span>{{HD_RIN}}</span></div>
+    <div class="st st--seen"><div class="ring"><img src="{{AV_ANA}}" alt=""></div><span>{{HD_ANA}}</span></div>
+  </div>
+
+  <div class="scroll">
+    <div class="post">
+      <div class="by">
+        <img src="{{AUA_AIR}}" alt="">
+        <span class="grow"><span class="hnd">{{AU_AIR}}</span>
+          <span class="sub dim num" style="margin-left:6px">{{WH_AIR}}</span>
+          <div class="sub" style="font-size:12.5px;margin-top:-1px">{{PL_AIR}}</div></span>
+        <svg class="i i--sm" style="color:var(--ink-3)"><use href="#ic-more"/></svg>
+      </div>
+      <img class="media" src="{{IM_AIR}}" alt="">
+      <div class="eng">
+        <span class="g on"><svg class="i i--fill"><use href="#ic-heart"/></svg><b class="num">{{LI_AIR}}</b></span>
+        <span class="g"><svg class="i"><use href="#ic-msg"/></svg><span class="num">{{CO_AIR}}</span></span>
+        <span class="g"><svg class="i"><use href="#ic-send"/></svg><span class="num">{{SH_AIR}}</span></span>
+        <span class="sp"></span>
+        <svg class="i" style="color:var(--ink-2);width:23px;height:23px"><use href="#ic-bookmark"/></svg>
+      </div>
+      <p class="cap" style="font-size:18px;line-height:1.24;margin:11px 0 0">
+        <b>{{AU_AIR}}</b> {{CAP_AIR}}</p>
+    </div>
+
+    <div class="post">
+      <div class="by">
+        <img src="{{AUA_WHEEL}}" alt="">
+        <span class="grow"><span class="hnd">{{AU_WHEEL}}</span>
+          <span class="sub dim num" style="margin-left:6px">{{WH_WHEEL}}</span>
+          <div class="sub" style="font-size:12.5px;margin-top:-1px">{{PL_WHEEL}}</div></span>
+        <svg class="i i--sm" style="color:var(--ink-3)"><use href="#ic-more"/></svg>
+      </div>
+      <img class="media" src="{{IM_WHEEL}}" alt="">
+    </div>
+  </div>
+
+  <div class="fade-b"></div>
+
+  <!-- the one floating affordance: a pill, never a plus-in-a-circle -->
+  <div class="pill glass glass--rim">
+    <img src="{{AV_YOU}}" alt="" style="width:28px;height:28px;border-radius:50%;object-fit:cover">
+    <span class="ph">Share something</span>
+    <span class="go act" style="border-radius:19px"><svg class="i i--sm"><use href="#ic-camera"/></svg></span>
+  </div>
+  <div class="homebar"></div>
+</div></div>
