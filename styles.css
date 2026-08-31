@@ -21,6 +21,9 @@
   --radius-lg: 26px;
   --radius-md: 20px;
   --max-width: 1220px;
+  /* Top of the page gradient. Was hardcoded #fff, which washed out
+     the first ~450px in dark mode. */
+  --bg-top: #ffffff;
 }
 
 body[data-theme="dark"] {
@@ -41,6 +44,7 @@ body[data-theme="dark"] {
   --accent-soft: #8a7cff;
   --shadow-lg: 0 28px 80px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 18px 48px rgba(0, 0, 0, 0.2);
+  --bg-top: #0d1220;
 }
 
 * {
@@ -57,7 +61,7 @@ body {
   color: var(--text);
   background:
     radial-gradient(circle at top, rgba(107, 124, 255, 0.22), transparent 32%),
-    linear-gradient(180deg, #ffffff 0%, var(--bg) 28%, var(--bg) 100%);
+    linear-gradient(180deg, var(--bg-top) 0%, var(--bg) 28%, var(--bg) 100%);
   transition: background 220ms ease, color 220ms ease;
 }
 
@@ -1844,3 +1848,202 @@ body[data-theme="dark"] .form-contact-chip {
 .case-link span { transition: transform .18s ease; }
 .case-link:hover span { transform: translateX(3px); }
 @media (prefers-reduced-motion: reduce) { .case-link span { transition: none; } }
+
+/* ═══════════════════════════════════════
+   PORTFOLIO ROOT PAGE
+   Used by / only. /hire/ ignores these.
+═══════════════════════════════════════ */
+
+/* Quiet secondary CTA — the portfolio does not sell from the nav */
+.nav-cta-quiet {
+  background: none;
+  box-shadow: none;
+  color: var(--text-soft);
+  border: 1px solid var(--line-strong);
+  font-weight: 600;
+  font-size: .88rem;
+  padding: 0 16px;
+  min-height: 42px;
+}
+.nav-cta-quiet:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ── Compact hero: leaves room for the grid ───────── */
+.hero-compact { padding-top: 24px; padding-bottom: 0; }
+.hero-compact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, .6fr);
+  gap: 34px;
+  align-items: center;
+}
+.hero-compact-copy h1 {
+  max-width: 26ch;
+  font-size: clamp(2rem, 3.4vw, 2.8rem);
+  line-height: 1.06;
+  letter-spacing: -0.04em;
+}
+.hero-compact .hero-summary { margin-top: 18px; font-size: 1.02rem; line-height: 1.7; }
+.hero-compact .hero-actions { margin-top: 26px; }
+.hero-compact .hero-badges { margin-top: 24px; gap: 14px; }
+.hero-compact .hero-badge { padding: 16px 18px; }
+.hero-compact .hero-badge strong { font-size: clamp(1.5rem, 3vw, 2.1rem); }
+.hero-compact .hero-badge span { font-size: .82rem; line-height: 1.45; }
+.hero-compact-card { align-self: center; }
+
+/* ── The work grid ────────────────────────────────── */
+.work-grid-section { padding-top: 26px; padding-bottom: 90px; }
+.work-grid-section .section-heading { margin-bottom: 0; }
+.work-grid-section .section-heading h2 {
+  max-width: 20ch;
+  margin-inline: auto;
+  font-size: clamp(1.9rem, 3.1vw, 2.5rem);
+}
+.work-grid-section .section-sub { max-width: 74ch; margin-inline: auto; }
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 32px;
+}
+.work-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 0;
+  padding: 22px;
+  text-align: left;
+  text-decoration: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow-md);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.work-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent);
+}
+.work-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Thumbnail phone — full device, deliberately small; the big
+   carousel lives in #apps one click away. */
+.work-card-shot {
+  display: block;
+  width: 150px;
+  margin: 0 auto;
+}
+.work-card-shot .iphone-frame {
+  display: block;
+  width: 100%;
+  padding: 8px 7px;
+  border-radius: 26px;
+  box-shadow: 0 0 0 2px #3a3a3c, 0 16px 40px rgba(0,0,0,.32), inset 0 0 0 1px rgba(255,255,255,.05);
+}
+.work-card-shot .iphone-screen {
+  display: block;
+  border-radius: 20px;
+}
+.work-card-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.work-card-meta { display: block; }
+.work-card-meta .eyebrow {
+  display: block;
+  margin-bottom: 8px;
+  font-size: .68rem;
+  letter-spacing: .14em;
+}
+.work-card-name {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -.04em;
+}
+.work-card-line {
+  display: block;
+  color: var(--text-muted);
+  font-size: .93rem;
+  line-height: 1.6;
+}
+.work-card-cue {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: .9rem;
+}
+.work-card:hover .work-card-cue { text-decoration: underline; }
+
+/* The case-study card carries numbers instead of a screenshot */
+.work-card-study {
+  justify-content: center;
+  background: var(--surface-strong);
+}
+.work-card-study .work-card-line { color: var(--text-soft); }
+.work-card-stats {
+  display: grid;
+  gap: 9px;
+  margin-top: 20px;
+}
+.work-card-stats span {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  font-size: .85rem;
+  color: var(--text-muted);
+}
+.work-card-stats strong {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -.04em;
+  color: var(--text);
+}
+
+/* ── Slim contact ─────────────────────────────────── */
+.contact-slim .contact-copy {
+  max-width: 64ch;
+  margin: 0 auto;
+  text-align: center;
+}
+.contact-slim .contact-copy p { color: var(--text-muted); margin-top: 14px; }
+.contact-slim .contact-ctas { justify-content: center; margin-top: 28px; }
+.contact-slim-row { justify-content: center; margin-top: 24px; }
+.contact-hire-note {
+  margin-top: 30px;
+  font-size: .95rem;
+}
+.contact-hire-note a { color: var(--accent); font-weight: 700; }
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 1120px) {
+  .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero-compact-layout { grid-template-columns: 1fr; }
+  .hero-compact-card { max-width: 420px; }
+}
+@media (max-width: 860px) {
+  .hero-compact .hero-badges { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .hero-compact .hero-badge { padding: 14px; }
+}
+@media (max-width: 640px) {
+  .work-grid { grid-template-columns: 1fr; gap: 18px; }
+  .work-card { padding: 18px; }
+  .work-card-shot { width: 168px; }
+  .hero-compact-copy h1 { font-size: clamp(2rem, 8.4vw, 2.6rem); max-width: none; }
+  .hero-compact .hero-badges { grid-template-columns: 1fr; }
+  .contact-slim-row { flex-wrap: wrap; }
+}

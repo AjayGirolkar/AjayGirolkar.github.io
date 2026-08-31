@@ -104,6 +104,24 @@ function initAppTabs() {
   });
 }
 
+/* ── Work grid → app detail (portfolio root page) ─── */
+// The grid cards and the #apps tabs address the same demos by
+// data-app, so a card just drives the existing tab and scrolls.
+function initWorkGrid() {
+  const cards = document.querySelectorAll('.work-card[data-app]');
+  const target = document.getElementById('apps');
+  if (!cards.length || !target) return;
+  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelector(`.app-tab[data-app="${card.dataset.app}"]`)?.click();
+      // Offset for the sticky header so the tab row isn't hidden under it.
+      const top = target.getBoundingClientRect().top + window.scrollY - 84;
+      window.scrollTo({ top, behavior: reduce ? 'auto' : 'smooth' });
+    });
+  });
+}
+
 /* ── Parallax (hero phones) ───────────────────────── */
 function initParallax() {
   const ph = document.querySelector('.hero-phone-float');
@@ -241,6 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTypewriter();
   initCounters();
   initAppTabs();
+  initWorkGrid();
   initScreenshotCarousels();
   initParallax();
   initCalendar();

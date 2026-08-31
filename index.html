@@ -3,22 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ajay Girolkar | Senior iOS Developer · 11 Years</title>
-    <meta name="description" content="Senior iOS Developer with 11 years building high-performance Swift and SwiftUI apps for fintech, banking, and media. Available for freelance." />
-    <meta name="keywords" content="iOS Developer Freelancer, Swift Developer for Hire, Senior iOS Developer, SwiftUI Consultant, iOS App Development" />
-    <meta property="og:title" content="Ajay Girolkar | Senior iOS Developer · 11 Years" />
-    <meta property="og:description" content="Helping startups and businesses turn ideas into polished, production-ready iOS applications." />
+    <title>Ajay Girolkar | iOS Portfolio — Swift &amp; SwiftUI Work</title>
+    <meta name="description" content="Selected iOS work by Ajay Girolkar — 11 years of Swift and SwiftUI across fintech, banking and media. Five reference apps and four production case studies, with real screens." />
+    <meta name="keywords" content="iOS portfolio, Swift developer portfolio, SwiftUI app screenshots, senior iOS engineer, iOS architecture case study" />
+    <link rel="canonical" href="https://ajaygirolkar.github.io/" />
+    <meta property="og:title" content="Ajay Girolkar | iOS Portfolio" />
+    <meta property="og:description" content="Selected iOS work — five reference apps and four production case studies in Swift and SwiftUI." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="assets/ajay-profile.jpg?v=20260412" />
+    <meta property="og:url" content="https://ajaygirolkar.github.io/" />
+    <meta property="og:image" content="https://ajaygirolkar.github.io/assets/ajay-profile.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=20260413-v2" />
-    <!-- Preload above-the-fold hero images so they paint instantly -->
-    <link rel="preload" as="image" href="assets/ajay-profile.jpg?v=20260412" fetchpriority="high" />
-    <link rel="preload" as="image" href="assets/app-screenshots/wealthkit/v2/web/01-dashboard.webp" />
-    <link rel="preload" as="image" href="assets/app-screenshots/shopease/v1/web/03-product.webp" />
+    <link rel="stylesheet" href="/styles.css?v=20260831-split" />
+    <!-- Preload what paints above the fold: the face and the first work card -->
+    <link rel="preload" as="image" href="/assets/ajay-profile.jpg?v=20260412" fetchpriority="high" />
+    <link rel="preload" as="image" href="/assets/app-screenshots/wealthkit/v2/web/01-dashboard.webp" fetchpriority="high" />
   </head>
   <body>
 
@@ -33,44 +34,36 @@
           </span>
         </a>
         <nav class="site-nav" aria-label="Primary">
-          <a href="#services">Services</a>
-          <a href="#work">Work</a>
-          <a href="#apps">Apps</a>
-          <a href="#process">Process</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#booking">Book a Call</a>
+          <a href="#work-grid">Work</a>
+          <a href="#client-work">Client Projects</a>
+          <a href="#skills">Stack</a>
+          <a href="#about">About</a>
           <a href="#contact">Contact</a>
         </nav>
         <div class="nav-actions">
           <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
             <span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span>
           </button>
-          <a class="nav-cta" href="#contact">Hire Me</a>
+          <a class="nav-cta nav-cta-quiet" href="/hire/">Available for work &rarr;</a>
         </div>
       </div>
     </header>
 
     <main>
 
-      <!-- ══ HERO ══════════════════════════════════════════ -->
-      <section class="hero section" id="hero">
+      <!-- ══ HERO — compact, clears the fold for the grid ═══ -->
+      <section class="hero hero-compact section" id="hero">
         <div class="hero-orb hero-orb-a"></div>
         <div class="hero-orb hero-orb-b"></div>
 
-        <div class="container hero-layout reveal">
-
-          <!-- Left: copy -->
-          <div class="hero-copy">
-            <p class="eyebrow">Senior iOS Developer / iOS Architect</p>
-            <h1>I build iOS apps that&nbsp;<span class="typewriter-wrap"><span class="typewriter" id="hero-typewriter"></span><span class="typewriter-cursor" aria-hidden="true">|</span></span></h1>
-            <p class="hero-summary">Helping startups and businesses turn ideas into polished, production-ready iOS applications with Swift, SwiftUI, architecture strategy, and reliable delivery.</p>
+        <div class="container hero-compact-layout reveal">
+          <div class="hero-compact-copy">
+            <p class="eyebrow">Senior iOS Engineer / iOS Architect</p>
+            <h1>Eleven years of iOS, shown as screens rather than adjectives.</h1>
+            <p class="hero-summary">Swift and SwiftUI across retirement fintech, global banking and media streaming. Below: five reference apps built to iOS 26, and four production projects framed by the problem each one solved.</p>
             <div class="hero-actions">
-              <a class="button button-primary" href="#contact">Hire Me</a>
-              <a class="button button-secondary" href="#apps">View My Apps</a>
-            </div>
-            <div class="availability-banner">
-              <span class="avail-dot"></span>
-              <span>Available from May 2026 — <strong>2 project spots remaining for Q2</strong></span>
+              <a class="button button-primary" href="#work-grid">See the work</a>
+              <a class="button button-secondary" href="mailto:ajaygirolkar@gmail.com?subject=iOS%20project">Email me</a>
             </div>
             <div class="hero-badges">
               <article class="hero-badge">
@@ -83,184 +76,370 @@
               </article>
               <article class="hero-badge">
                 <strong data-counter="30" data-suffix="%">30%</strong>
-                <span>Faster delivery via modern workflows</span>
-              </article>
-            </div>
-            <div class="hero-trust">
-              <span>Available for freelance</span>
-              <span>Remote-friendly</span>
-              <span>Architecture to App Store</span>
-            </div>
-          </div>
-
-          <!-- Right: floating iPhones -->
-          <div class="hero-phone-wrap">
-
-            <!-- Primary phone — WealthKit -->
-            <div class="hero-phone-float">
-              <div class="iphone-frame">
-                <div class="iphone-screen">
-                  <img src="assets/app-screenshots/wealthkit/v2/web/01-dashboard.webp" alt="WealthKit net worth dashboard" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-                </div>
-              </div>
-            </div>
-
-            <!-- Secondary phone — ShopEase (peeking behind) -->
-            <div class="hero-phone-secondary">
-              <div class="iphone-frame iphone-sm">
-                <div class="iphone-screen">
-                  <img src="assets/app-screenshots/shopease/v1/web/03-product.webp" alt="ShopEase product detail screen" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-                </div>
-              </div>
-            </div>
-
-            <!-- Profile card -->
-            <aside class="founder-card">
-              <img src="assets/ajay-profile.jpg?v=20260412" alt="Ajay Girolkar" />
-              <div>
-                <h3>Ajay Girolkar</h3>
-                <p>Senior iOS Developer — 11 years shipping apps.</p>
-              </div>
-            </aside>
-
-          </div><!-- /hero-phone-wrap -->
-        </div>
-      </section>
-
-      <!-- ══ METRICS ════════════════════════════════════════ -->
-      <section class="section metrics-section">
-        <div class="container">
-          <div class="metrics-grid">
-            <div class="metric-card reveal">
-              <span class="metric-num" data-counter="11" data-suffix="+">11+</span>
-              <p class="metric-label">Years of iOS Engineering</p>
-            </div>
-            <div class="metric-card reveal">
-              <span class="metric-num" data-counter="20" data-suffix="+">20+</span>
-              <p class="metric-label">iOS Apps Shipped</p>
-            </div>
-            <div class="metric-card reveal">
-              <span class="metric-num" data-counter="4">4</span>
-              <p class="metric-label">Enterprise Clients</p>
-            </div>
-            <div class="metric-card reveal">
-              <span class="metric-num" data-counter="30" data-suffix="%">30%</span>
-              <p class="metric-label">Avg Performance Improvement</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══ TRUST ══════════════════════════════════════════ -->
-      <section class="section trust-section" id="trust">
-        <div class="container reveal">
-          <div class="section-heading center">
-            <p class="eyebrow">Trust &amp; Proof</p>
-            <h2>Built for teams that care about speed, polish, and long-term quality.</h2>
-          </div>
-          <div class="stats-grid">
-            <article class="panel stat-card"><strong>11+</strong><span>Years Experience</span></article>
-            <article class="panel stat-card"><strong>4+</strong><span>Major Apps &amp; Feature Programs</span></article>
-            <article class="panel stat-card"><strong>Enterprise</strong><span>Fintech, Media, and Product Delivery</span></article>
-            <article class="panel stat-card"><strong>End-to-End</strong><span>Architecture, Build, Optimization, Launch</span></article>
-          </div>
-          <div class="logo-strip">
-            <span>FinTech &amp; Banking</span>
-            <span>Enterprise Grade</span>
-            <span>Media Streaming</span>
-            <span>App Store Ready</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══ ABOUT ═══════════════════════════════════════════ -->
-      <section class="section section-soft collapsible-section collapsed" id="about">
-        <div class="container">
-          <div class="collapse-header" role="button" tabindex="0" aria-expanded="false" aria-controls="about-body">
-            <div class="collapse-teaser">
-              <span class="eyebrow">About Me</span>
-              <p class="collapse-summary">Senior iOS engineer, 11+ years — shaped by enterprise fintech and banking delivery.</p>
-            </div>
-            <span class="collapse-chevron" aria-hidden="true">›</span>
-          </div>
-          <div class="collapse-body" id="about-body">
-            <div class="about-layout reveal">
-              <div class="section-heading">
-                <h2>I help ambitious teams turn iOS ideas into dependable products.</h2>
-              </div>
-              <article class="panel story-card">
-                <p class="lead">I'm not just here to write code. I help shape product direction, reduce delivery risk, and create app experiences users trust.</p>
-                <p>Over the last decade, I've worked on enterprise-scale iOS applications, startup-style execution, architecture planning, performance optimization, and production support. That means I can contribute where many freelance developers stop: technical clarity, communication, and long-term product health.</p>
-                <div class="timeline-highlights">
-                  <div><strong>2021 – Present</strong><span>Senior iOS engineering and architecture at a top US retirement platform</span></div>
-                  <div><strong>2019 – 2021</strong><span>Delivery quality, mentoring, and production support at a global banking app</span></div>
-                  <div><strong>2015 – 2019</strong><span>Built strong native iOS foundations across product teams</span></div>
-                </div>
+                <span>Faster landing load, measured in Instruments</span>
               </article>
             </div>
           </div>
+
+          <aside class="founder-card hero-compact-card">
+            <img src="/assets/ajay-profile.jpg?v=20260412" alt="Ajay Girolkar" />
+            <div>
+              <h3>Ajay Girolkar</h3>
+              <p>Swift · SwiftUI · Architecture — Pune, India. Remote-friendly.</p>
+            </div>
+          </aside>
         </div>
       </section>
 
-      <!-- ══ SERVICES ════════════════════════════════════════ -->
-      <section class="section" id="services">
-        <div class="container reveal">
-          <div class="section-heading center">
-            <p class="eyebrow">Services</p>
-            <h2>Clear, premium iOS services for founders, teams, and agencies.</h2>
-          </div>
-          <div class="services-grid">
-            <article class="panel service-card">
-              <p class="card-kicker">01</p>
-              <h3>iOS App Development</h3>
-              <p>Native app development with Swift, SwiftUI, and UIKit for polished production experiences.</p>
-              <span>Best for startups and businesses building new iPhone products.</span>
-            </article>
-            <article class="panel service-card">
-              <p class="card-kicker">02</p>
-              <h3>App Architecture &amp; Refactoring</h3>
-              <p>Stabilize codebases with cleaner structure, better maintainability, and scalable engineering practices.</p>
-              <span>Best for teams outgrowing early-stage code or battling technical debt.</span>
-            </article>
-            <article class="panel service-card">
-              <p class="card-kicker">03</p>
-              <h3>MVP Development</h3>
-              <p>Move from concept to launch-ready iOS MVP with the right tradeoffs, speed, and product focus.</p>
-              <span>Best for founders validating an idea or raising early traction.</span>
-            </article>
-            <article class="panel service-card">
-              <p class="card-kicker">04</p>
-              <h3>Performance Optimization</h3>
-              <p>Improve speed, responsiveness, memory behavior, and user-perceived smoothness across critical flows.</p>
-              <span>Best for apps that feel slow, heavy, or unstable in production.</span>
-            </article>
-            <article class="panel service-card">
-              <p class="card-kicker">05</p>
-              <h3>App Store Launch Support</h3>
-              <p>Prepare your app for release with strong technical readiness, quality checks, and smoother deployment.</p>
-              <span>Best for teams heading toward first launch or important release milestones.</span>
-            </article>
-            <article class="panel service-card">
-              <p class="card-kicker">06</p>
-              <h3>Consulting &amp; Code Reviews</h3>
-              <p>Targeted senior-level guidance to unblock architecture, delivery, or code quality decisions fast.</p>
-              <span>Best for founders, agencies, or internal teams needing expert backup.</span>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══ CASE STUDIES ════════════════════════════════════ -->
-      <section class="section section-dark collapsible-section collapsed collapsible-dark" id="work">
+      <!-- ══ WORK GRID — the payload, above the fold ════════ -->
+      <section class="section work-grid-section" id="work-grid">
         <div class="container">
-          <div class="collapse-header collapse-header-dark" role="button" tabindex="0" aria-expanded="false" aria-controls="work-body">
+          <div class="section-heading center reveal">
+            <p class="eyebrow">Selected Work</p>
+            <h2>Six pieces of work. Pick one.</h2>
+            <p class="section-sub">Five reference apps deliberately built to read as five different products rather than one template in five colours — plus a public-source banking build where every security claim links to running code.</p>
+          </div>
+
+          <div class="work-grid reveal">
+
+            <button class="work-card" type="button" data-app="wealthkit">
+              <span class="work-card-shot">
+                <span class="iphone-frame">
+                  <span class="iphone-screen">
+                    <img src="/assets/app-screenshots/wealthkit/v2/web/01-dashboard.webp" alt="WealthKit — net worth dashboard" width="786" height="1704" />
+                  </span>
+                </span>
+              </span>
+              <span class="work-card-meta">
+                <span class="eyebrow">Investing · FinTech</span>
+                <span class="work-card-name">WealthKit</span>
+                <span class="work-card-line">Server-driven UI — the backend describes the flow, so new screens ship without an App Store release.</span>
+                <span class="work-card-cue">See the screens &rarr;</span>
+              </span>
+            </button>
+
+            <button class="work-card" type="button" data-app="fitnesspro">
+              <span class="work-card-shot">
+                <span class="iphone-frame">
+                  <span class="iphone-screen">
+                    <img src="/assets/app-screenshots/fitnesspro/v1/web/01-today.webp" alt="FitnessPro — today's rings" width="786" height="1704" loading="lazy" />
+                  </span>
+                </span>
+              </span>
+              <span class="work-card-meta">
+                <span class="eyebrow">Training · Health</span>
+                <span class="work-card-name">FitnessPro</span>
+                <span class="work-card-line">Dark-locked and card-free — built to be read one-handed, mid-set, in about two seconds.</span>
+                <span class="work-card-cue">See the screens &rarr;</span>
+              </span>
+            </button>
+
+            <button class="work-card" type="button" data-app="shopease">
+              <span class="work-card-shot">
+                <span class="iphone-frame">
+                  <span class="iphone-screen">
+                    <img src="/assets/app-screenshots/shopease/v1/web/03-product.webp" alt="ShopEase — product detail" width="786" height="1704" loading="lazy" />
+                  </span>
+                </span>
+              </span>
+              <span class="work-card-meta">
+                <span class="eyebrow">Commerce · Editorial retail</span>
+                <span class="work-card-name">ShopEase</span>
+                <span class="work-card-line">Photography sits on warm paper with no container at all. The whole app has exactly one glass element.</span>
+                <span class="work-card-cue">See the screens &rarr;</span>
+              </span>
+            </button>
+
+            <button class="work-card" type="button" data-app="socialflow">
+              <span class="work-card-shot">
+                <span class="iphone-frame">
+                  <span class="iphone-screen">
+                    <img src="/assets/app-screenshots/socialflow/v1/web/01-feed.webp" alt="SocialFlow — home feed" width="786" height="1704" loading="lazy" />
+                  </span>
+                </span>
+              </span>
+              <span class="work-card-meta">
+                <span class="eyebrow">Social · Creator</span>
+                <span class="work-card-name">SocialFlow</span>
+                <span class="work-card-line">Pure mono on black, edge-to-edge media, no radius on content — the only colour is the photography.</span>
+                <span class="work-card-cue">See the screens &rarr;</span>
+              </span>
+            </button>
+
+            <button class="work-card" type="button" data-app="nativeaistudio">
+              <span class="work-card-shot">
+                <span class="iphone-frame">
+                  <span class="iphone-screen">
+                    <img src="/assets/app-screenshots/nativeaistudio/v1/web/03-answer.webp" alt="NativeAIStudio — streaming answer" width="786" height="1704" loading="lazy" />
+                  </span>
+                </span>
+              </span>
+              <span class="work-card-meta">
+                <span class="eyebrow">AI · Productivity</span>
+                <span class="work-card-name">NativeAIStudio</span>
+                <span class="work-card-line">Message turns instead of chat bubbles, streaming with a soft caret. No purple gradient, no bouncing dots.</span>
+                <span class="work-card-cue">See the screens &rarr;</span>
+              </span>
+            </button>
+
+            <a class="work-card work-card-study" href="/case-studies/finvault/">
+              <span class="work-card-meta">
+                <span class="eyebrow">Banking · Public source</span>
+                <span class="work-card-name">FinVault</span>
+                <span class="work-card-line">A full retail-banking iOS app on live Postgres — biometric vault, MFA transfers, wealth analytics — architected so a reviewer can audit the security story in sixty seconds instead of trusting a README.</span>
+                <span class="work-card-stats">
+                  <span><strong>31.7k</strong>lines, 17 modules</span>
+                  <span><strong>94</strong>deterministic tests</span>
+                  <span><strong>0</strong>third-party runtime deps</span>
+                </span>
+                <span class="work-card-cue">Read the full case study &rarr;</span>
+              </span>
+            </a>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ APP DETAIL — driven by the grid above ═══════ -->
+      <section class="section apps-section" id="apps">
+        <div class="container">
+          <div class="section-heading center reveal">
+            <p class="eyebrow">The Screens</p>
+            <h2>Every screen, and the reasoning behind it.</h2>
+            <p class="section-sub">Switch apps with the tabs — each one carries the problem it set out to solve, the result, the frameworks used, and a link to its full design canvas with artboards and the seven-rule audit.</p>
+          </div>
+
+          <div class="app-tabs reveal">
+            <button class="app-tab active" data-app="wealthkit">WealthKit</button>
+            <button class="app-tab" data-app="fitnesspro">FitnessPro</button>
+            <button class="app-tab" data-app="shopease">ShopEase</button>
+            <button class="app-tab" data-app="socialflow">SocialFlow</button>
+            <button class="app-tab" data-app="nativeaistudio">NativeAIStudio</button>
+          </div>
+
+          <div class="app-demo-grid reveal">
+
+            <!-- WealthKit -->
+            <div class="app-demo active" data-app="wealthkit">
+              <div class="app-demo-phone">
+                <div class="iphone-frame iphone-lg">
+                  <div class="iphone-screen">
+                    <div class="screenshot-carousel">
+                      <div class="sc-slide active"><img src="/assets/app-screenshots/wealthkit/v2/web/01-dashboard.webp" alt="WealthKit — net worth dashboard" loading="eager" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/wealthkit/v2/web/02-spend-feed.webp" alt="WealthKit — spend feed" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/wealthkit/v2/web/03-holding-detail.webp" alt="WealthKit — holding detail with chart" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/wealthkit/v2/web/04-buy-order.webp" alt="WealthKit — buy order keypad" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/wealthkit/v2/web/05-goal-complete.webp" alt="WealthKit — goal reached" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/wealthkit/v2/web/06-profile.webp" alt="WealthKit — account and security" loading="lazy" width="786" height="1704"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-dots"></div>
+              </div>
+              <div class="app-demo-info">
+                <p class="eyebrow">Investing · FinTech</p>
+                <h3>WealthKit</h3>
+                <div class="app-scara">
+                  <p><strong>Problem:</strong> Most investing apps hardcode their screen states, so every layout change needs an App Store release. WealthKit is built server-driven: the backend describes the flow, the client renders it.</p>
+                  <p><strong>Result:</strong> A net-worth hero, an allocation ring and a tabular ledger that all read at a glance — and a light grey ground with inset grouped cards, the most native surface Apple ships.</p>
+                </div>
+                <ul class="app-features">
+                  <li>Server-driven UI — new flows ship without a release</li>
+                  <li>Allocation donut and 40×16pt sparklines drawn in Swift Charts</li>
+                  <li>Amount keypad with count-up animation and a masked privacy state</li>
+                  <li>Keychain + Face ID, with a real Reduce Transparency fallback</li>
+                  <li>Light and dark sets, both signed off</li>
+                </ul>
+                <div class="app-tech">
+                  <span>Swift</span><span>SwiftUI</span><span>Swift Charts</span><span>Combine</span><span>Core Data</span><span>Keychain</span><span>Deep teal #0F7B6C</span>
+                </div>
+                <div class="app-links">
+                  <a href="https://claude.ai/code/artifact/c423cb7c-7e64-4eca-bc19-51f675d0048b" target="_blank" rel="noreferrer" class="app-link-github">Open the design canvas →</a>
+                  <span class="app-link-badge">Artboards, divergence table and the seven-rule audit</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- FitnessPro -->
+            <div class="app-demo" data-app="fitnesspro">
+              <div class="app-demo-phone">
+                <div class="iphone-frame iphone-lg">
+                  <div class="iphone-screen">
+                    <div class="screenshot-carousel">
+                      <div class="sc-slide active"><img src="/assets/app-screenshots/fitnesspro/v1/web/01-today.webp" alt="FitnessPro — today's rings" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/fitnesspro/v1/web/02-history.webp" alt="FitnessPro — workout history" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/fitnesspro/v1/web/03-active-workout.webp" alt="FitnessPro — active workout" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/fitnesspro/v1/web/04-set-logger.webp" alt="FitnessPro — set logger" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/fitnesspro/v1/web/05-streak-closed.webp" alt="FitnessPro — streak celebration" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/fitnesspro/v1/web/06-you.webp" alt="FitnessPro — athlete profile" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/fitnesspro/v1/web/07-workout-detail.webp" alt="FitnessPro — workout detail" loading="lazy" width="786" height="1704"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-dots"></div>
+              </div>
+              <div class="app-demo-info">
+                <p class="eyebrow">Training · Health</p>
+                <h3>FitnessPro</h3>
+                <div class="app-scara">
+                  <p><strong>Problem:</strong> A training app is read mid-set, one-handed, with about two seconds of attention. Anything that needs a second look has already failed.</p>
+                  <p><strong>Result:</strong> Dark-locked by design, with no cards at all — the rings and the heart-rate zone bands are the surfaces. One giant metric, then a dense set grid, and nothing in between.</p>
+                </div>
+                <ul class="app-features">
+                  <li>Progress rings, HR zone bands and a vertical zone bar</li>
+                  <li>Set/rep grid, weight ruler and rest timer as first-class controls</li>
+                  <li>Exercise demos: two public-domain frames crossfaded, gated behind prefers-reduced-motion</li>
+                  <li>Consistency matrix and pace ladder for the history screen</li>
+                  <li>Accent derives from one hex — the whole zone ramp re-maps with it</li>
+                </ul>
+                <div class="app-tech">
+                  <span>Swift</span><span>SwiftUI</span><span>HealthKit</span><span>async/await</span><span>Swift Charts</span><span>WidgetKit</span><span>Mint #3DDC84 on near-black</span>
+                </div>
+                <div class="app-links">
+                  <a href="https://claude.ai/code/artifact/89d0c446-ee86-47df-a5ed-a62adc53c939" target="_blank" rel="noreferrer" class="app-link-github">Open the design canvas →</a>
+                  <span class="app-link-badge">Artboards, divergence table and the seven-rule audit</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ShopEase -->
+            <div class="app-demo" data-app="shopease">
+              <div class="app-demo-phone">
+                <div class="iphone-frame iphone-lg">
+                  <div class="iphone-screen">
+                    <div class="screenshot-carousel">
+                      <div class="sc-slide active"><img src="/assets/app-screenshots/shopease/v1/web/01-shop.webp" alt="ShopEase — shop front" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/shopease/v1/web/02-ceramics.webp" alt="ShopEase — ceramics category" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/shopease/v1/web/03-product.webp" alt="ShopEase — product detail" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/shopease/v1/web/04-checkout.webp" alt="ShopEase — checkout" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/shopease/v1/web/05-empty-bag.webp" alt="ShopEase — empty bag" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/shopease/v1/web/06-account.webp" alt="ShopEase — orders and addresses" loading="lazy" width="786" height="1704"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-dots"></div>
+              </div>
+              <div class="app-demo-info">
+                <p class="eyebrow">Commerce · Editorial retail</p>
+                <h3>ShopEase</h3>
+                <div class="app-scara">
+                  <p><strong>Problem:</strong> Marketplace apps all converge on the same look: a dense grid, a red sale badge, a card around everything. That template makes every product look like every other product.</p>
+                  <p><strong>Result:</strong> A curated-objects shop set on warm paper, in an editorial register — photography sits directly on the ground with no container, prices are ink, and the accent is reserved for a markdown. The chrome is a text-only dock; the whole app has exactly one glass element.</p>
+                </div>
+                <ul class="app-features">
+                  <li>Eighteen CC0 object plates, licence asserted per item at download</li>
+                  <li>Studio backdrops knocked out and recomposited onto the app's own paper</li>
+                  <li>Size run with sold-out struck through, glaze swatch row, sticky glass buy bar</li>
+                  <li>Fraunces display over a system sans, with .19em uppercase labels</li>
+                  <li>Light-locked: the warm sand ground is the identity, so there is no dark set</li>
+                </ul>
+                <div class="app-tech">
+                  <span>Swift</span><span>SwiftUI</span><span>async/await</span><span>Nuke-free image pipeline</span><span>StoreKit 2</span><span>Core Data</span><span>Oxblood #8A3418 on warm sand</span>
+                </div>
+                <div class="app-links">
+                  <a href="https://claude.ai/code/artifact/df0ae719-e3cc-4449-bd33-980386ffd4a5" target="_blank" rel="noreferrer" class="app-link-github">Open the design canvas →</a>
+                  <span class="app-link-badge">Artboards, divergence table and the seven-rule audit</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SocialFlow -->
+            <div class="app-demo" data-app="socialflow">
+              <div class="app-demo-phone">
+                <div class="iphone-frame iphone-lg">
+                  <div class="iphone-screen">
+                    <div class="screenshot-carousel">
+                      <div class="sc-slide active"><img src="/assets/app-screenshots/socialflow/v1/web/01-feed.webp" alt="SocialFlow — home feed" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/socialflow/v1/web/02-post.webp" alt="SocialFlow — post detail" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/socialflow/v1/web/03-compose.webp" alt="SocialFlow — compose" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/socialflow/v1/web/04-explore.webp" alt="SocialFlow — explore mosaic" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/socialflow/v1/web/05-empty.webp" alt="SocialFlow — quiet feed empty state" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/socialflow/v1/web/06-profile.webp" alt="SocialFlow — profile grid" loading="lazy" width="786" height="1704"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-dots"></div>
+              </div>
+              <div class="app-demo-info">
+                <p class="eyebrow">Social · Creator</p>
+                <h3>SocialFlow</h3>
+                <div class="app-scara">
+                  <p><strong>Problem:</strong> A social feed is judged on the photography, and most designs bury it: a card, a border, a radius and a shadow around every post, and the picture ends up as an illustration inside a UI.</p>
+                  <p><strong>Result:</strong> Pure mono, black ground, and no containers and no radius anywhere on content. Media runs edge to edge, grids run at 1pt gutters, and the only colour on the screen is the photography.</p>
+                </div>
+                <ul class="app-features">
+                  <li>Forty-two CC0 frames, licence asserted per item, on one shared grade</li>
+                  <li>Story rail: 2.5pt gradient ring unseen, hairline seen</li>
+                  <li>Chrome that dissolves on scroll, with a compose pill instead of a plus-in-a-circle</li>
+                  <li>1pt-gutter mosaic with a 2×2 anchor tile</li>
+                  <li>Inter Tight set tight and large — and nothing is ever uppercased</li>
+                </ul>
+                <div class="app-tech">
+                  <span>Swift</span><span>SwiftUI</span><span>async/await</span><span>AVFoundation</span><span>Nuke</span><span>Core Data</span><span>Hot pink #FF2E63 on black</span>
+                </div>
+                <div class="app-links">
+                  <a href="https://claude.ai/code/artifact/c8514ab0-449b-4812-9f8a-a0219748e4a1" target="_blank" rel="noreferrer" class="app-link-github">Open the design canvas →</a>
+                  <span class="app-link-badge">Artboards, divergence table and the seven-rule audit</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- NativeAIStudio -->
+            <div class="app-demo" data-app="nativeaistudio">
+              <div class="app-demo-phone">
+                <div class="iphone-frame iphone-lg">
+                  <div class="iphone-screen">
+                    <div class="screenshot-carousel">
+                      <div class="sc-slide active"><img src="/assets/app-screenshots/nativeaistudio/v1/web/01-studio.webp" alt="NativeAIStudio — studio home with model picker" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/nativeaistudio/v1/web/02-conversations.webp" alt="NativeAIStudio — conversation list" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/nativeaistudio/v1/web/03-answer.webp" alt="NativeAIStudio — streaming answer" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/nativeaistudio/v1/web/04-compose.webp" alt="NativeAIStudio — compose with tool run" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/nativeaistudio/v1/web/05-first-run.webp" alt="NativeAIStudio — first run" loading="lazy" width="786" height="1704"></div>
+                      <div class="sc-slide"><img src="/assets/app-screenshots/nativeaistudio/v1/web/06-settings.webp" alt="NativeAIStudio — model and privacy" loading="lazy" width="786" height="1704"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-dots"></div>
+              </div>
+              <div class="app-demo-info">
+                <p class="eyebrow">AI · Productivity</p>
+                <h3>NativeAIStudio</h3>
+                <div class="app-scara">
+                  <p><strong>Problem:</strong> Every AI client currently looks the same: a purple gradient, a sparkle on every button, a chat bubble around the assistant's text, and three bouncing dots standing in for work being done.</p>
+                  <p><strong>Result:</strong> Warm ink, no tab bar, and message turns instead of cards — the user's turn is compact and right-inset, the assistant's is full width with no container at all, and that asymmetry is the whole design. Glass appears on three things across six screens.</p>
+                </div>
+                <ul class="app-features">
+                  <li>Streaming response with a soft caret — no typewriter jitter, no bouncing dots</li>
+                  <li>Tool-run chips with icon, name, argument and duration; running is a progress underline</li>
+                  <li>Source citations as a superscript numeral with a row beneath</li>
+                  <li>Composer that grows to five lines, with the send fill earned by being non-empty</li>
+                  <li>Prose is IBM Plex Sans; every machine-generated fact is IBM Plex Mono</li>
+                </ul>
+                <div class="app-tech">
+                  <span>Swift</span><span>SwiftUI</span><span>async/await</span><span>AsyncSequence streaming</span><span>SwiftData</span><span>Keychain</span><span>Citrine #DFC069 on warm ink</span>
+                </div>
+                <div class="app-links">
+                  <a href="https://claude.ai/code/artifact/f2ba2b4e-628c-431a-aad8-19c68f8e7bbf" target="_blank" rel="noreferrer" class="app-link-github">Open the design canvas →</a>
+                  <span class="app-link-badge">Artboards, divergence table and the seven-rule audit</span>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /app-demo-grid -->
+        </div>
+      </section>
+
+      <!-- ══ CLIENT WORK — production case studies ═══════ -->
+      <section class="section section-dark collapsible-section collapsible-dark" id="client-work">
+        <div class="container">
+          <div class="collapse-header collapse-header-dark" role="button" tabindex="0" aria-expanded="true" aria-controls="client-work-body">
             <div class="collapse-teaser">
               <span class="eyebrow">Case Studies</span>
               <p class="collapse-summary">Real work across retirement fintech, global banking, and media streaming — measurable outcomes.</p>
             </div>
             <span class="collapse-chevron" aria-hidden="true">›</span>
           </div>
-          <div class="collapse-body" id="work-body">
+          <div class="collapse-body" id="client-work-body">
             <div class="section-heading center on-dark reveal">
               <h2>Real product work, framed around problems solved and outcomes delivered.</h2>
             </div>
@@ -331,7 +510,7 @@
                     <li>Impact: 31.7k lines across 17 feature modules, 94 deterministic tests, zero third-party runtime dependencies</li>
                   </ul>
                   <p class="case-result">The security table states how far each claim is actually wired — certificate pinning and App Attest ship deliberately inactive, with the blocker named on each.</p>
-                  <p class="case-link-wrap"><a class="case-link" href="case-studies/finvault/">Read the full case study <span aria-hidden="true">&rarr;</span></a></p>
+                  <p class="case-link-wrap"><a class="case-link" href="/case-studies/finvault/">Read the full case study <span aria-hidden="true">&rarr;</span></a></p>
                 </div>
               </article>
             </div>
@@ -339,239 +518,10 @@
         </div>
       </section>
 
-      <!-- ══ FEATURED APPS ══════════════════════════════════ -->
-      <section class="section apps-section" id="apps">
+      <!-- ══ STACK ═══════════════════════════════════════ -->
+      <section class="section section-soft collapsible-section" id="skills">
         <div class="container">
-          <div class="section-heading center reveal">
-            <p class="eyebrow">Architecture Reference Projects</p>
-            <h2>Real SwiftUI code — patterns I use in production.</h2>
-            <p class="section-sub">Five reference apps across investing, training, commerce, social and AI — each designed to iOS 26, and each deliberately built to read as a different product rather than one template in five colours. Every app links to its own design canvas.</p>
-          </div>
-
-          <div class="app-tabs reveal">
-            <button class="app-tab active" data-app="wealthkit">WealthKit</button>
-            <button class="app-tab" data-app="fitnesspro">FitnessPro</button>
-            <button class="app-tab" data-app="shopease">ShopEase</button>
-            <button class="app-tab" data-app="socialflow">SocialFlow</button>
-            <button class="app-tab" data-app="nativeaistudio">NativeAIStudio</button>
-          </div>
-
-          <div class="app-demo-grid reveal">
-
-            <!-- WealthKit -->
-            <div class="app-demo active" data-app="wealthkit">
-              <div class="app-demo-phone">
-                <div class="iphone-frame iphone-lg">
-                  <div class="iphone-screen">
-                    <div class="screenshot-carousel">
-                      <div class="sc-slide active"><img src="assets/app-screenshots/wealthkit/v2/web/01-dashboard.webp" alt="WealthKit — net worth dashboard" loading="eager" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/v2/web/02-spend-feed.webp" alt="WealthKit — spend feed" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/v2/web/03-holding-detail.webp" alt="WealthKit — holding detail with chart" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/v2/web/04-buy-order.webp" alt="WealthKit — buy order keypad" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/v2/web/05-goal-complete.webp" alt="WealthKit — goal reached" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/v2/web/06-profile.webp" alt="WealthKit — account and security" loading="lazy" width="786" height="1704"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-dots"></div>
-              </div>
-              <div class="app-demo-info">
-                <p class="eyebrow">Investing · FinTech</p>
-                <h3>WealthKit</h3>
-                <div class="app-scara">
-                  <p><strong>Problem:</strong> Most investing apps hardcode their screen states, so every layout change needs an App Store release. WealthKit is built server-driven: the backend describes the flow, the client renders it.</p>
-                  <p><strong>Result:</strong> A net-worth hero, an allocation ring and a tabular ledger that all read at a glance — and a light grey ground with inset grouped cards, the most native surface Apple ships.</p>
-                </div>
-                <ul class="app-features">
-                  <li>Server-driven UI — new flows ship without a release</li>
-                  <li>Allocation donut and 40×16pt sparklines drawn in Swift Charts</li>
-                  <li>Amount keypad with count-up animation and a masked privacy state</li>
-                  <li>Keychain + Face ID, with a real Reduce Transparency fallback</li>
-                  <li>Light and dark sets, both signed off</li>
-                </ul>
-                <div class="app-tech">
-                  <span>Swift</span><span>SwiftUI</span><span>Swift Charts</span><span>Combine</span><span>Core Data</span><span>Keychain</span><span>Deep teal #0F7B6C</span>
-                </div>
-                <div class="app-links">
-                  <a href="https://claude.ai/code/artifact/c423cb7c-7e64-4eca-bc19-51f675d0048b" target="_blank" rel="noreferrer" class="app-link-github">Open the design canvas →</a>
-                  <span class="app-link-badge">Artboards, divergence table and the seven-rule audit</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- FitnessPro -->
-            <div class="app-demo" data-app="fitnesspro">
-              <div class="app-demo-phone">
-                <div class="iphone-frame iphone-lg">
-                  <div class="iphone-screen">
-                    <div class="screenshot-carousel">
-                      <div class="sc-slide active"><img src="assets/app-screenshots/fitnesspro/v1/web/01-today.webp" alt="FitnessPro — today's rings" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/fitnesspro/v1/web/02-history.webp" alt="FitnessPro — workout history" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/fitnesspro/v1/web/03-active-workout.webp" alt="FitnessPro — active workout" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/fitnesspro/v1/web/04-set-logger.webp" alt="FitnessPro — set logger" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/fitnesspro/v1/web/05-streak-closed.webp" alt="FitnessPro — streak celebration" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/fitnesspro/v1/web/06-you.webp" alt="FitnessPro — athlete profile" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/fitnesspro/v1/web/07-workout-detail.webp" alt="FitnessPro — workout detail" loading="lazy" width="786" height="1704"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-dots"></div>
-              </div>
-              <div class="app-demo-info">
-                <p class="eyebrow">Training · Health</p>
-                <h3>FitnessPro</h3>
-                <div class="app-scara">
-                  <p><strong>Problem:</strong> A training app is read mid-set, one-handed, with about two seconds of attention. Anything that needs a second look has already failed.</p>
-                  <p><strong>Result:</strong> Dark-locked by design, with no cards at all — the rings and the heart-rate zone bands are the surfaces. One giant metric, then a dense set grid, and nothing in between.</p>
-                </div>
-                <ul class="app-features">
-                  <li>Progress rings, HR zone bands and a vertical zone bar</li>
-                  <li>Set/rep grid, weight ruler and rest timer as first-class controls</li>
-                  <li>Exercise demos: two public-domain frames crossfaded, gated behind prefers-reduced-motion</li>
-                  <li>Consistency matrix and pace ladder for the history screen</li>
-                  <li>Accent derives from one hex — the whole zone ramp re-maps with it</li>
-                </ul>
-                <div class="app-tech">
-                  <span>Swift</span><span>SwiftUI</span><span>HealthKit</span><span>async/await</span><span>Swift Charts</span><span>WidgetKit</span><span>Mint #3DDC84 on near-black</span>
-                </div>
-                <div class="app-links">
-                  <a href="https://claude.ai/code/artifact/89d0c446-ee86-47df-a5ed-a62adc53c939" target="_blank" rel="noreferrer" class="app-link-github">Open the design canvas →</a>
-                  <span class="app-link-badge">Artboards, divergence table and the seven-rule audit</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- ShopEase -->
-            <div class="app-demo" data-app="shopease">
-              <div class="app-demo-phone">
-                <div class="iphone-frame iphone-lg">
-                  <div class="iphone-screen">
-                    <div class="screenshot-carousel">
-                      <div class="sc-slide active"><img src="assets/app-screenshots/shopease/v1/web/01-shop.webp" alt="ShopEase — shop front" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/shopease/v1/web/02-ceramics.webp" alt="ShopEase — ceramics category" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/shopease/v1/web/03-product.webp" alt="ShopEase — product detail" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/shopease/v1/web/04-checkout.webp" alt="ShopEase — checkout" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/shopease/v1/web/05-empty-bag.webp" alt="ShopEase — empty bag" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/shopease/v1/web/06-account.webp" alt="ShopEase — orders and addresses" loading="lazy" width="786" height="1704"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-dots"></div>
-              </div>
-              <div class="app-demo-info">
-                <p class="eyebrow">Commerce · Editorial retail</p>
-                <h3>ShopEase</h3>
-                <div class="app-scara">
-                  <p><strong>Problem:</strong> Marketplace apps all converge on the same look: a dense grid, a red sale badge, a card around everything. That template makes every product look like every other product.</p>
-                  <p><strong>Result:</strong> A curated-objects shop set on warm paper, in an editorial register — photography sits directly on the ground with no container, prices are ink, and the accent is reserved for a markdown. The chrome is a text-only dock; the whole app has exactly one glass element.</p>
-                </div>
-                <ul class="app-features">
-                  <li>Eighteen CC0 object plates, licence asserted per item at download</li>
-                  <li>Studio backdrops knocked out and recomposited onto the app's own paper</li>
-                  <li>Size run with sold-out struck through, glaze swatch row, sticky glass buy bar</li>
-                  <li>Fraunces display over a system sans, with .19em uppercase labels</li>
-                  <li>Light-locked: the warm sand ground is the identity, so there is no dark set</li>
-                </ul>
-                <div class="app-tech">
-                  <span>Swift</span><span>SwiftUI</span><span>async/await</span><span>Nuke-free image pipeline</span><span>StoreKit 2</span><span>Core Data</span><span>Oxblood #8A3418 on warm sand</span>
-                </div>
-                <div class="app-links">
-                  <a href="https://claude.ai/code/artifact/df0ae719-e3cc-4449-bd33-980386ffd4a5" target="_blank" rel="noreferrer" class="app-link-github">Open the design canvas →</a>
-                  <span class="app-link-badge">Artboards, divergence table and the seven-rule audit</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- SocialFlow -->
-            <div class="app-demo" data-app="socialflow">
-              <div class="app-demo-phone">
-                <div class="iphone-frame iphone-lg">
-                  <div class="iphone-screen">
-                    <div class="screenshot-carousel">
-                      <div class="sc-slide active"><img src="assets/app-screenshots/socialflow/v1/web/01-feed.webp" alt="SocialFlow — home feed" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/socialflow/v1/web/02-post.webp" alt="SocialFlow — post detail" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/socialflow/v1/web/03-compose.webp" alt="SocialFlow — compose" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/socialflow/v1/web/04-explore.webp" alt="SocialFlow — explore mosaic" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/socialflow/v1/web/05-empty.webp" alt="SocialFlow — quiet feed empty state" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/socialflow/v1/web/06-profile.webp" alt="SocialFlow — profile grid" loading="lazy" width="786" height="1704"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-dots"></div>
-              </div>
-              <div class="app-demo-info">
-                <p class="eyebrow">Social · Creator</p>
-                <h3>SocialFlow</h3>
-                <div class="app-scara">
-                  <p><strong>Problem:</strong> A social feed is judged on the photography, and most designs bury it: a card, a border, a radius and a shadow around every post, and the picture ends up as an illustration inside a UI.</p>
-                  <p><strong>Result:</strong> Pure mono, black ground, and no containers and no radius anywhere on content. Media runs edge to edge, grids run at 1pt gutters, and the only colour on the screen is the photography.</p>
-                </div>
-                <ul class="app-features">
-                  <li>Forty-two CC0 frames, licence asserted per item, on one shared grade</li>
-                  <li>Story rail: 2.5pt gradient ring unseen, hairline seen</li>
-                  <li>Chrome that dissolves on scroll, with a compose pill instead of a plus-in-a-circle</li>
-                  <li>1pt-gutter mosaic with a 2×2 anchor tile</li>
-                  <li>Inter Tight set tight and large — and nothing is ever uppercased</li>
-                </ul>
-                <div class="app-tech">
-                  <span>Swift</span><span>SwiftUI</span><span>async/await</span><span>AVFoundation</span><span>Nuke</span><span>Core Data</span><span>Hot pink #FF2E63 on black</span>
-                </div>
-                <div class="app-links">
-                  <a href="https://claude.ai/code/artifact/c8514ab0-449b-4812-9f8a-a0219748e4a1" target="_blank" rel="noreferrer" class="app-link-github">Open the design canvas →</a>
-                  <span class="app-link-badge">Artboards, divergence table and the seven-rule audit</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- NativeAIStudio -->
-            <div class="app-demo" data-app="nativeaistudio">
-              <div class="app-demo-phone">
-                <div class="iphone-frame iphone-lg">
-                  <div class="iphone-screen">
-                    <div class="screenshot-carousel">
-                      <div class="sc-slide active"><img src="assets/app-screenshots/nativeaistudio/v1/web/01-studio.webp" alt="NativeAIStudio — studio home with model picker" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/nativeaistudio/v1/web/02-conversations.webp" alt="NativeAIStudio — conversation list" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/nativeaistudio/v1/web/03-answer.webp" alt="NativeAIStudio — streaming answer" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/nativeaistudio/v1/web/04-compose.webp" alt="NativeAIStudio — compose with tool run" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/nativeaistudio/v1/web/05-first-run.webp" alt="NativeAIStudio — first run" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/nativeaistudio/v1/web/06-settings.webp" alt="NativeAIStudio — model and privacy" loading="lazy" width="786" height="1704"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-dots"></div>
-              </div>
-              <div class="app-demo-info">
-                <p class="eyebrow">AI · Productivity</p>
-                <h3>NativeAIStudio</h3>
-                <div class="app-scara">
-                  <p><strong>Problem:</strong> Every AI client currently looks the same: a purple gradient, a sparkle on every button, a chat bubble around the assistant's text, and three bouncing dots standing in for work being done.</p>
-                  <p><strong>Result:</strong> Warm ink, no tab bar, and message turns instead of cards — the user's turn is compact and right-inset, the assistant's is full width with no container at all, and that asymmetry is the whole design. Glass appears on three things across six screens.</p>
-                </div>
-                <ul class="app-features">
-                  <li>Streaming response with a soft caret — no typewriter jitter, no bouncing dots</li>
-                  <li>Tool-run chips with icon, name, argument and duration; running is a progress underline</li>
-                  <li>Source citations as a superscript numeral with a row beneath</li>
-                  <li>Composer that grows to five lines, with the send fill earned by being non-empty</li>
-                  <li>Prose is IBM Plex Sans; every machine-generated fact is IBM Plex Mono</li>
-                </ul>
-                <div class="app-tech">
-                  <span>Swift</span><span>SwiftUI</span><span>async/await</span><span>AsyncSequence streaming</span><span>SwiftData</span><span>Keychain</span><span>Citrine #DFC069 on warm ink</span>
-                </div>
-                <div class="app-links">
-                  <a href="https://claude.ai/code/artifact/f2ba2b4e-628c-431a-aad8-19c68f8e7bbf" target="_blank" rel="noreferrer" class="app-link-github">Open the design canvas →</a>
-                  <span class="app-link-badge">Artboards, divergence table and the seven-rule audit</span>
-                </div>
-              </div>
-            </div>
-
-          </div><!-- /app-demo-grid -->
-        </div>
-      </section>
-
-      <!-- ══ SKILLS ══════════════════════════════════════════ -->
-      <section class="section section-soft collapsible-section collapsed" id="skills">
-        <div class="container">
-          <div class="collapse-header" role="button" tabindex="0" aria-expanded="false" aria-controls="skills-body">
+          <div class="collapse-header" role="button" tabindex="0" aria-expanded="true" aria-controls="skills-body">
             <div class="collapse-teaser">
               <span class="eyebrow">Tech Stack</span>
               <p class="collapse-summary">Swift &amp; SwiftUI (11 yrs) · Architecture · Combine · HealthKit · Swift 6 · SwiftData · Performance Engineering.</p>
@@ -628,384 +578,61 @@
         </div>
       </section>
 
-      <!-- ══ WHY ME ══════════════════════════════════════════ -->
-      <section class="section collapsible-section collapsed" id="why-me">
+      <!-- ══ ABOUT ═══════════════════════════════════════ -->
+      <section class="section section-soft collapsible-section collapsed" id="about">
         <div class="container">
-          <div class="collapse-header" role="button" tabindex="0" aria-expanded="false" aria-controls="why-me-body">
+          <div class="collapse-header" role="button" tabindex="0" aria-expanded="false" aria-controls="about-body">
             <div class="collapse-teaser">
-              <span class="eyebrow">Why Choose Me</span>
-              <p class="collapse-summary">Architecture-first thinking, delivery clarity, and end-to-end ownership.</p>
+              <span class="eyebrow">About Me</span>
+              <p class="collapse-summary">Senior iOS engineer, 11+ years — shaped by enterprise fintech and banking delivery.</p>
             </div>
             <span class="collapse-chevron" aria-hidden="true">›</span>
           </div>
-          <div class="collapse-body" id="why-me-body">
-            <div class="section-heading center reveal">
-              <h2>Senior-level thinking for teams that want more than just implementation.</h2>
-            </div>
-            <div class="value-grid reveal">
-              <article class="panel value-card"><h3>Clean, scalable architecture</h3><p>Build foundations that support future product growth instead of slowing it down.</p></article>
-              <article class="panel value-card"><h3>Performance &amp; UX focus</h3><p>Create app experiences that feel premium, smooth, and trustworthy for users.</p></article>
-              <article class="panel value-card"><h3>Clear communication</h3><p>Stay aligned through thoughtful updates, practical tradeoffs, and transparent delivery.</p></article>
-              <article class="panel value-card"><h3>Startup mindset</h3><p>Move fast where it helps, but make strong technical decisions where it counts.</p></article>
-              <article class="panel value-card"><h3>End-to-end ownership</h3><p>From planning and architecture to shipping, optimization, and support.</p></article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══ PROCESS ═════════════════════════════════════════ -->
-      <section class="section process-section collapsible-section collapsed" id="process">
-        <div class="container">
-          <div class="collapse-header" role="button" tabindex="0" aria-expanded="false" aria-controls="process-body">
-            <div class="collapse-teaser">
-              <span class="eyebrow">Process</span>
-              <p class="collapse-summary">5 steps: Requirement → Architecture → Build → Test → Deliver &amp; Support.</p>
-            </div>
-            <span class="collapse-chevron" aria-hidden="true">›</span>
-          </div>
-          <div class="collapse-body" id="process-body">
-            <div class="section-heading center reveal">
-              <h2>A simple process that reduces risk and keeps delivery moving.</h2>
-            </div>
-            <div class="process-grid reveal">
-              <article class="panel process-card"><strong>01</strong><h3>Requirement Discussion</h3><p>Understand goals, audience, scope, deadlines, and product constraints.</p></article>
-              <article class="panel process-card"><strong>02</strong><h3>Planning &amp; Architecture</h3><p>Define the right technical approach, app structure, and delivery milestones.</p></article>
-              <article class="panel process-card"><strong>03</strong><h3>Development</h3><p>Build features with clean code, clarity, and strong attention to experience quality.</p></article>
-              <article class="panel process-card"><strong>04</strong><h3>Testing &amp; Optimization</h3><p>Validate the app, improve performance, and remove friction before release.</p></article>
-              <article class="panel process-card"><strong>05</strong><h3>Delivery &amp; Support</h3><p>Launch confidently and continue improving where the product needs it most.</p></article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══ TESTIMONIALS ════════════════════════════════════ -->
-      <section class="section section-soft collapsible-section collapsed" id="testimonials">
-        <div class="container">
-          <div class="collapse-header" role="button" tabindex="0" aria-expanded="false" aria-controls="testimonials-body">
-            <div class="collapse-teaser">
-              <span class="eyebrow">Testimonials</span>
-              <p class="collapse-summary">Feedback from product leads, engineering managers, and startup founders.</p>
-            </div>
-            <span class="collapse-chevron" aria-hidden="true">›</span>
-          </div>
-          <div class="collapse-body" id="testimonials-body">
-          <div class="section-heading center reveal">
-            <h2>What product teams say about working together.</h2>
-          </div>
-          <div class="testimonial-grid reveal">
-            <article class="panel quote-card">
-              <div class="quote-avatar" aria-hidden="true">TL</div>
-              <p>"Redesigned our state management layer mid-project with zero disruption to the delivery timeline. That kind of architecture ownership is rare in a contractor."</p>
-              <div class="quote-meta">
-                <span class="quote-role">iOS Tech Lead — FinTech Product Team</span>
-                <span class="quote-date">Q3 2024 · Name available on request</span>
+          <div class="collapse-body" id="about-body">
+            <div class="about-layout reveal">
+              <div class="section-heading">
+                <h2>I help ambitious teams turn iOS ideas into dependable products.</h2>
               </div>
-            </article>
-            <article class="panel quote-card">
-              <div class="quote-avatar" aria-hidden="true">EM</div>
-              <p>"Identified a memory leak in production within hours using monitoring tool correlation our on-call team had been chasing for two days."</p>
-              <div class="quote-meta">
-                <span class="quote-role">Engineering Manager — Mobile Banking</span>
-                <span class="quote-date">Q1 2023 · Name available on request</span>
-              </div>
-            </article>
-            <article class="panel quote-card">
-              <div class="quote-avatar" aria-hidden="true">CTO</div>
-              <p>"Not 'feels faster' — actually 20–30% faster measured in Instruments. That's the difference between senior and mid-level."</p>
-              <div class="quote-meta">
-                <span class="quote-role">CTO — Media Streaming Platform</span>
-                <span class="quote-date">Q4 2021 · Name available on request</span>
-              </div>
-            </article>
-          </div><!-- /testimonial-grid -->
-          </div><!-- /collapse-body -->
-        </div>
-      </section>
-
-      <!-- ══ PRICING V2 ══════════════════════════════════════ -->
-      <section class="section" id="pricing">
-        <div class="container reveal">
-          <div class="section-heading center">
-            <p class="eyebrow">Pricing &amp; Engagement</p>
-            <h2>Transparent pricing. No surprises.</h2>
-            <p class="section-sub">Choose the engagement model that fits your project.</p>
-          </div>
-          <div class="pricing-grid-v2">
-
-            <article class="panel pricing-card-v2">
-              <div class="pricing-tier">Consulting</div>
-              <div class="pricing-amount"><span class="price-num">$150</span><span class="price-unit">/hr</span></div>
-              <p class="pricing-desc">Expert guidance for architecture decisions, code reviews, and delivery unblocking.</p>
-              <div class="pricing-timeline">⏱ Response within 48 hrs · async-friendly</div>
-              <ul class="pricing-features">
-                <li>Architecture review sessions</li>
-                <li>Code quality audit</li>
-                <li>1-on-1 technical sessions</li>
-                <li>Written recommendations</li>
-              </ul>
-              <a class="button button-secondary" href="payment-gateway/index.html?product=iOS+Consulting+Session&sub=1+hour+expert+iOS+guidance&amount=150">Book &amp; Pay</a>
-            </article>
-
-            <article class="panel pricing-card-v2 pricing-featured">
-              <div class="pricing-badge">Most Popular</div>
-              <div class="pricing-tier">Project Build</div>
-              <div class="pricing-amount"><span class="price-num">$5k</span><span class="price-unit">–$50k</span></div>
-              <p class="pricing-desc">Fixed-scope iOS app development from MVP to production-ready App Store launch.</p>
-              <div class="pricing-timeline">⏱ Typical timeline: 4–16 weeks depending on scope</div>
-              <ul class="pricing-features">
-                <li>Full app development</li>
-                <li>Architecture design</li>
-                <li>App Store submission</li>
-                <li>30-day post-launch support</li>
-                <li>Weekly progress updates</li>
-              </ul>
-              <a class="button button-primary" href="payment-gateway/index.html?product=iOS+Project+Build&sub=Full+app+development+%26+launch&amount=5000">Start Payment</a>
-            </article>
-
-            <article class="panel pricing-card-v2">
-              <div class="pricing-tier">Monthly Retainer</div>
-              <div class="pricing-amount"><span class="price-num">$3k</span><span class="price-unit">/mo</span></div>
-              <p class="pricing-desc">Ongoing iOS engineering partnership for teams that need reliable capacity.</p>
-              <div class="pricing-timeline">⏱ Ongoing · 1-week onboarding · cancel anytime</div>
-              <ul class="pricing-features">
-                <li>40 hrs dedicated monthly</li>
-                <li>Priority response</li>
-                <li>Feature delivery + support</li>
-                <li>Architecture ownership</li>
-              </ul>
-              <a class="button button-secondary" href="payment-gateway/index.html?product=Monthly+Retainer&sub=40+hrs+dedicated+iOS+engineering&amount=3000">Pay Retainer</a>
-            </article>
-
-          </div>
-          <p class="pricing-note">All prices in USD. Scope, complexity, and timeline affect final pricing. Discovery calls are free.</p>
-        </div>
-      </section>
-
-      <!-- ══ FAQ ═══════════════════════════════════════════════ -->
-      <section class="section section-soft collapsible-section collapsed" id="faq">
-        <div class="container">
-          <div class="collapse-header" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-body">
-            <div class="collapse-teaser">
-              <span class="eyebrow">FAQ</span>
-              <p class="collapse-summary">NDA · IP ownership · timezones · contracts · what to expect before you hire.</p>
-            </div>
-            <span class="collapse-chevron" aria-hidden="true">›</span>
-          </div>
-          <div class="collapse-body" id="faq-body">
-            <div class="section-heading center reveal">
-              <h2>Common questions answered up front.</h2>
-              <p class="section-sub">These are the questions that matter before signing anything.</p>
-            </div>
-            <div class="faq-grid reveal">
-
-              <details class="panel faq-item">
-                <summary>Do you sign NDAs?</summary>
-                <p>Yes. I sign a mutual NDA before any discovery call where proprietary details are shared. Standard template provided — or use yours.</p>
-              </details>
-
-              <details class="panel faq-item">
-                <summary>Who owns the source code?</summary>
-                <p>You do, 100%, upon final payment. Full IP transfer is included in every project contract. No licensing clauses or usage restrictions.</p>
-              </details>
-
-              <details class="panel faq-item">
-                <summary>What's your typical response time?</summary>
-                <p>Within 24 hours on business days (IST). Retainer clients get priority response — typically within a few hours during working hours.</p>
-              </details>
-
-              <details class="panel faq-item">
-                <summary>Do you work with US or EU timezones?</summary>
-                <p>Yes. I schedule overlap time with US EST/PST and EU CET clients. Morning calls at IST work well for East Coast; evening IST covers West Coast afternoon slots.</p>
-              </details>
-
-              <details class="panel faq-item">
-                <summary>Fixed price or hourly — which is better?</summary>
-                <p>Fixed scope for greenfield MVPs and well-defined features. Hourly for consulting, code reviews, and evolving requirements. I'll recommend the right model after the discovery call.</p>
-              </details>
-
-              <details class="panel faq-item">
-                <summary>What if requirements change mid-project?</summary>
-                <p>Handled via a lightweight change-request process — I scope the delta, estimate the impact on timeline and budget, and we align before proceeding. No surprise invoices.</p>
-              </details>
-
-              <details class="panel faq-item">
-                <summary>Do you work with existing codebases?</summary>
-                <p>Yes — this is a specialty. Legacy Swift/UIKit modernisation, Objective-C migration, architecture refactors, and test coverage uplift on inherited projects are common engagements.</p>
-              </details>
-
-              <details class="panel faq-item">
-                <summary>Can I see code samples before hiring?</summary>
-                <p>Yes. After a discovery call, I share private GitHub repo access for the architecture reference projects. You can evaluate code quality, patterns, and style before committing.</p>
-              </details>
-
-              <details class="panel faq-item">
-                <summary>What happens after launch?</summary>
-                <p>All project builds include 30 days of post-launch support at no extra cost — bug fixes, App Store review responses, and hotfixes. Retainer clients have ongoing coverage.</p>
-              </details>
-
-              <details class="panel faq-item">
-                <summary>Do you work with non-technical founders?</summary>
-                <p>Regularly. I translate requirements into clear scopes, explain trade-offs without jargon, and provide weekly updates in plain language. Technical fluency on your side is not required.</p>
-              </details>
-
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══ BOOKING ═════════════════════════════════════════ -->
-      <section class="section booking-section" id="booking">
-        <div class="container reveal">
-          <div class="booking-shell">
-            <div class="booking-copy">
-              <p class="eyebrow">Book a Free Discovery Call</p>
-              <h2>Let's talk about your project.</h2>
-              <p>30 minutes. No pitch. Just a direct conversation about your iOS app goals, timeline, and whether we're a good fit.</p>
-              <ul class="booking-perks">
-                <li>Free 30-min discovery call</li>
-                <li>Get a rough scope estimate</li>
-                <li>Technical questions answered</li>
-                <li>No commitment required</li>
-              </ul>
-              <div class="payment-logos">
-                <span class="payment-badge">Razorpay</span>
-                <span class="payment-badge">UPI</span>
-                <span class="payment-badge">Apple Pay</span>
-                <span class="payment-badge">Credit / Debit Card</span>
-              </div>
-            </div>
-            <div class="booking-widget panel calendly-panel">
-              <div class="calendly-inline-widget" data-url="https://calendly.com/ajaygirolkar/30min?hide_gdpr_banner=1" style="min-width:280px;height:700px;"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══ PROOF OF WORK ════════════════════════════════════ -->
-      <section class="section section-soft proof-section" id="proof">
-        <div class="container reveal">
-          <div class="section-heading center">
-            <p class="eyebrow">Proof of Work</p>
-            <h2>Real work. Verifiable signals. Not just promises.</h2>
-          </div>
-          <div class="proof-grid">
-            <article class="panel proof-card">
-              <div class="proof-icon">📈</div>
-              <h3>Top US Retirement Platform</h3>
-              <p>iOS engineer on a production app serving millions of retirement account holders. Delivered server-driven architecture, feature ownership across complex investment flows.</p>
-              <span class="proof-badge">Enterprise · Millions of users · Verifiable</span>
-            </article>
-            <article class="panel proof-card">
-              <div class="proof-icon">🏦</div>
-              <h3>Global Banking App</h3>
-              <p>Engineering quality, production monitoring via App Dynamics + Splunk, snapshot test coverage, and Swift-first codebase improvements on a global consumer banking app.</p>
-              <span class="proof-badge">Enterprise · Production monitoring · Verifiable</span>
-            </article>
-            <article class="panel proof-card">
-              <div class="proof-icon">📺</div>
-              <h3>Media Streaming Platform</h3>
-              <p>Performance optimization delivering 20–30% faster landing page load, measured in Instruments. Background-thread migration and Swift modernization of an Objective-C codebase.</p>
-              <span class="proof-badge">Measured outcome · Instruments-verified</span>
-            </article>
-            <article class="panel proof-card">
-              <div class="proof-icon">⌥</div>
-              <h3>Demo App Code</h3>
-              <p>All five reference apps (WealthKit, FitnessPro, ShopEase, SocialFlow, NativeAIStudio) are available as private GitHub repos and shared during discovery calls.</p>
-              <span class="proof-badge">Code available on request</span>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══ GITHUB SHOWCASE ═══════════════════════════════════ -->
-      <section class="section github-section" id="github">
-        <div class="container reveal">
-          <div class="section-heading center">
-            <p class="eyebrow">Open Source &amp; Code Quality</p>
-            <h2>Code you can read before you hire.</h2>
-          </div>
-          <div class="github-grid">
-            <article class="panel github-repo-card">
-              <div class="repo-header">
-                <span class="repo-icon">⌥</span>
-                <div>
-                  <h3>ios-architecture-patterns</h3>
-                  <p>Reference implementations of MVVM, Clean Architecture, and server-driven UI patterns — the same patterns used in real enterprise iOS work.</p>
+              <article class="panel story-card">
+                <p class="lead">I'm not just here to write code. I help shape product direction, reduce delivery risk, and create app experiences users trust.</p>
+                <p>Over the last decade, I've worked on enterprise-scale iOS applications, startup-style execution, architecture planning, performance optimization, and production support. That means I can contribute where many freelance developers stop: technical clarity, communication, and long-term product health.</p>
+                <div class="timeline-highlights">
+                  <div><strong>2021 – Present</strong><span>Senior iOS engineering and architecture at a top US retirement platform</span></div>
+                  <div><strong>2019 – 2021</strong><span>Delivery quality, mentoring, and production support at a global banking app</span></div>
+                  <div><strong>2015 – 2019</strong><span>Built strong native iOS foundations across product teams</span></div>
                 </div>
-              </div>
-              <div class="repo-meta">
-                <span class="repo-lang">Swift</span>
-                <span>Architecture reference</span>
-              </div>
-              <a class="button button-secondary" href="https://github.com/ajaygirolkar" target="_blank" rel="noreferrer">View on GitHub →</a>
-            </article>
-            <article class="panel github-repo-card">
-              <div class="repo-header">
-                <span class="repo-icon">◈</span>
-                <div>
-                  <h3>swiftui-component-library</h3>
-                  <p>Production-grade SwiftUI components: charts, activity rings, card layouts, and animated transitions built for real client use cases.</p>
-                </div>
-              </div>
-              <div class="repo-meta">
-                <span class="repo-lang">SwiftUI</span>
-                <span>Component library</span>
-              </div>
-              <a class="button button-secondary" href="https://github.com/ajaygirolkar" target="_blank" rel="noreferrer">View on GitHub →</a>
-            </article>
-            <article class="panel github-activity-card">
-              <p class="eyebrow">GitHub Activity</p>
-              <p>Consistent commits. Real code. No vanity repos.</p>
-              <a href="https://github.com/ajaygirolkar" target="_blank" rel="noreferrer" class="github-profile-link">github.com/ajaygirolkar →</a>
-            </article>
+              </article>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- ══ CONTACT ═════════════════════════════════════════ -->
-      <section class="section contact-section" id="contact">
+      <!-- ══ CONTACT — slim ══════════════════════════════ -->
+      <section class="section contact-section contact-slim" id="contact">
         <div class="container reveal">
-          <div class="contact-shell">
-            <div class="contact-copy">
-              <p class="eyebrow">Let's Build Your Next iOS App</p>
-              <h2>Need a senior iOS developer who can ship with clarity and confidence?</h2>
-              <p>I'm open to freelance projects, consulting, architecture support, and long-term product collaboration. If you're building something meaningful, let's talk.</p>
-              <div class="contact-links">
-                <a href="mailto:ajaygirolkar@gmail.com">ajaygirolkar@gmail.com</a>
-                <a href="tel:+919420963751">+91-9420963751</a>
-                <a href="https://www.linkedin.com/in/ajaygirolkar" target="_blank" rel="noreferrer">LinkedIn</a>
-                <a href="https://github.com/ajaygirolkar" target="_blank" rel="noreferrer">GitHub</a>
-              </div>
-              <div class="contact-ctas">
-                <a class="button button-primary" href="mailto:ajaygirolkar@gmail.com?subject=Freelance%20iOS%20Project">Email Me</a>
-                <a class="button button-secondary" href="#booking">Schedule a Call</a>
-              </div>
+          <div class="contact-copy center">
+            <p class="eyebrow">Get in touch</p>
+            <h2>If any of this looks like the app you're building, tell me about it.</h2>
+            <p>Fastest reply is email. I read every message and answer within a working day.</p>
+            <div class="contact-ctas">
+              <a class="button button-primary" href="mailto:ajaygirolkar@gmail.com?subject=iOS%20project">ajaygirolkar@gmail.com</a>
+              <a class="button button-secondary" href="https://www.linkedin.com/in/ajaygirolkar" target="_blank" rel="noreferrer">LinkedIn</a>
             </div>
-            <form class="contact-form panel" id="contact-form" action="mailto:ajaygirolkar@gmail.com" method="post" enctype="text/plain">
-              <label><span>Name</span><input type="text" name="name" placeholder="Your name" /></label>
-              <label><span>Email</span><input type="email" name="email" placeholder="you@company.com" /></label>
-              <label><span>Project Description</span><textarea name="project" rows="5" placeholder="Tell me about your app, timeline, and goals."></textarea></label>
-              <button class="button button-primary" type="submit">Send Inquiry</button>
-              <div class="form-divider"><span>or reach me directly</span></div>
-              <div class="form-contact-row">
-                <a class="form-contact-chip" href="mailto:ajaygirolkar@gmail.com">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                  ajaygirolkar@gmail.com
-                </a>
-                <a class="form-contact-chip" href="tel:+919420963751">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.64 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.55 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                  +91-9420963751
-                </a>
-                <a class="form-contact-chip" href="https://www.linkedin.com/in/ajaygirolkar" target="_blank" rel="noreferrer">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                  LinkedIn
-                </a>
-                <a class="form-contact-chip" href="https://github.com/AjayGirolkar" target="_blank" rel="noreferrer">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                  GitHub
-                </a>
-              </div>
-            </form>
+            <div class="form-contact-row contact-slim-row">
+              <a class="form-contact-chip" href="mailto:ajaygirolkar@gmail.com">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                ajaygirolkar@gmail.com
+              </a>
+              <a class="form-contact-chip" href="tel:+919420963751">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.64 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.55 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                +91-9420963751
+              </a>
+              <a class="form-contact-chip" href="https://github.com/AjayGirolkar" target="_blank" rel="noreferrer">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                GitHub
+              </a>
+            </div>
+            <p class="contact-hire-note">Looking for rates, process and availability? <a href="/hire/">See how I work with clients &rarr;</a></p>
           </div>
         </div>
       </section>
@@ -1016,19 +643,18 @@
       <div class="container footer-shell">
         <div class="footer-copy">
           <p>&copy; <span id="year"></span> Ajay Girolkar.</p>
-          <p>Senior iOS freelancer building premium, production-ready app experiences.</p>
+          <p>Senior iOS engineer — Swift, SwiftUI, architecture.</p>
         </div>
         <div class="footer-links">
-          <a href="#services">Services</a>
-          <a href="#apps">Apps</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#booking">Book a Call</a>
+          <a href="#work-grid">Work</a>
+          <a href="#client-work">Client Projects</a>
+          <a href="#skills">Stack</a>
           <a href="#contact">Contact</a>
+          <a href="/hire/">Available for work</a>
         </div>
       </div>
     </footer>
 
-    <script src="script.js?v=20260607-webp"></script>
-    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <script src="/script.js?v=20260831-split"></script>
   </body>
 </html>
