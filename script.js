@@ -255,6 +255,78 @@ function preloadLazyImages() {
   }
 }
 
+/* ── Per-app detail toggle (portfolio page) ───────── */
+// The portfolio page shows every screen at once, so the
+// problem/result copy, feature list and stack live behind a
+// per-app toggle instead of always being on screen.
+function initAppDetailToggles() {
+  document.querySelectorAll('.app-detail-toggle').forEach(btn => {
+    const panel = document.getElementById(btn.getAttribute('aria-controls'));
+    if (!panel) return;
+    const label = btn.querySelector('.adt-text');
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      btn.classList.toggle('open', !open);
+      panel.classList.toggle('open', !open);
+      if (label) label.textContent = open ? 'More details' : 'Hide details';
+    });
+  });
+}
+
+/* ── Screen lightbox (portfolio page) ─────────────── */
+function initScreenLightbox() {
+  const lb = document.getElementById('screen-lightbox');
+  const shots = document.querySelectorAll('.screen-shot-btn');
+  if (!lb || !shots.length) return;
+
+  const img = lb.querySelector('.lb-img');
+  const cap = lb.querySelector('.lb-cap');
+  let group = [];
+  let index = 0;
+  let lastFocus = null;
+
+  function show(i) {
+    if (!group.length) return;
+    index = (i + group.length) % group.length;
+    const btn = group[index];
+    const thumb = btn.querySelector('img');
+    img.src = btn.dataset.full;
+    img.alt = thumb ? thumb.alt : '';
+    cap.textContent = `${btn.dataset.caption} — ${index + 1} of ${group.length}`;
+  }
+
+  function open(btn) {
+    const strip = btn.closest('.screen-strip');
+    group = strip ? Array.from(strip.querySelectorAll('.screen-shot-btn')) : [btn];
+    lastFocus = btn;
+    show(group.indexOf(btn));
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    lb.querySelector('.lb-close').focus();
+  }
+
+  function close() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  }
+
+  shots.forEach(btn => btn.addEventListener('click', () => open(btn)));
+  lb.querySelector('.lb-close').addEventListener('click', close);
+  lb.querySelector('.lb-prev').addEventListener('click', () => show(index - 1));
+  lb.querySelector('.lb-next').addEventListener('click', () => show(index + 1));
+  // Backdrop click closes; clicks on the image or controls don't.
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(index - 1);
+    else if (e.key === 'ArrowRight') show(index + 1);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initTypewriter();
   initCounters();
@@ -264,6 +336,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initParallax();
   initCalendar();
   initCollapsibleSections();
+  initAppDetailToggles();
+  initScreenLightbox();
 });
 
 window.addEventListener('load', preloadLazyImages);

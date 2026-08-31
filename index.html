@@ -16,12 +16,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=20260831-split" />
+    <link rel="stylesheet" href="styles.css?v=20260831-grid" />
     <!-- Preload what paints above the fold: the face and the first work card -->
     <link rel="preload" as="image" href="assets/ajay-profile.jpg?v=20260412" fetchpriority="high" />
     <link rel="preload" as="image" href="assets/app-screenshots/wealthkit/v2/web/01-dashboard.webp" fetchpriority="high" />
   </head>
-  <body>
+  <body class="page-strip">
 
     <header class="site-header" id="top">
       <div class="container nav-shell">
@@ -206,7 +206,7 @@
           <div class="section-heading center reveal">
             <p class="eyebrow">The Screens</p>
             <h2>Every screen, and the reasoning behind it.</h2>
-            <p class="section-sub">Switch apps with the tabs — each one carries the problem it set out to solve, the result, the frameworks used, and a link to its full design canvas with artboards and the seven-rule audit.</p>
+            <p class="section-sub">Switch apps with the tabs — every screen of each app is laid out side by side. Tap a screen to see it full size, or open <em>More details</em> for the problem it solved, the result, and the frameworks used.</p>
           </div>
 
           <div class="app-tabs reveal">
@@ -221,218 +221,387 @@
 
             <!-- WealthKit -->
             <div class="app-demo active" data-app="wealthkit">
-              <div class="app-demo-phone">
-                <div class="iphone-frame iphone-lg">
-                  <div class="iphone-screen">
-                    <div class="screenshot-carousel">
-                      <div class="sc-slide active"><img src="assets/app-screenshots/wealthkit/v2/web/01-dashboard.webp" alt="WealthKit — net worth dashboard" loading="eager" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/v2/web/02-spend-feed.webp" alt="WealthKit — spend feed" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/v2/web/03-holding-detail.webp" alt="WealthKit — holding detail with chart" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/v2/web/04-buy-order.webp" alt="WealthKit — buy order keypad" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/v2/web/05-goal-complete.webp" alt="WealthKit — goal reached" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/wealthkit/v2/web/06-profile.webp" alt="WealthKit — account and security" loading="lazy" width="786" height="1704"></div>
-                    </div>
-                  </div>
+              <div class="app-demo-head">
+                <div class="app-demo-title">
+                  <p class="eyebrow">Investing · FinTech</p>
+                  <h3>WealthKit</h3>
                 </div>
-                <div class="carousel-dots"></div>
+                <button type="button" class="app-detail-toggle" aria-expanded="false" aria-controls="detail-wealthkit">
+                  <span class="adt-text">More details</span>
+                  <span class="adt-icon" aria-hidden="true">+</span>
+                </button>
               </div>
-              <div class="app-demo-info">
-                <p class="eyebrow">Investing · FinTech</p>
-                <h3>WealthKit</h3>
-                <div class="app-scara">
+
+              <p class="screen-strip-hint">6 screens — tap any one to open it full size.</p>
+
+              <div class="screen-strip">
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/wealthkit/v2/web/01-dashboard.webp" data-caption="Net worth dashboard" aria-label="View WealthKit — net worth dashboard full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/wealthkit/v2/web/01-dashboard.webp" alt="WealthKit — net worth dashboard" loading="eager" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Net worth dashboard</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/wealthkit/v2/web/02-spend-feed.webp" data-caption="Spend feed" aria-label="View WealthKit — spend feed full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/wealthkit/v2/web/02-spend-feed.webp" alt="WealthKit — spend feed" loading="eager" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Spend feed</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/wealthkit/v2/web/03-holding-detail.webp" data-caption="Holding detail with chart" aria-label="View WealthKit — holding detail with chart full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/wealthkit/v2/web/03-holding-detail.webp" alt="WealthKit — holding detail with chart" loading="eager" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Holding detail with chart</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/wealthkit/v2/web/04-buy-order.webp" data-caption="Buy order keypad" aria-label="View WealthKit — buy order keypad full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/wealthkit/v2/web/04-buy-order.webp" alt="WealthKit — buy order keypad" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Buy order keypad</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/wealthkit/v2/web/05-goal-complete.webp" data-caption="Goal reached" aria-label="View WealthKit — goal reached full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/wealthkit/v2/web/05-goal-complete.webp" alt="WealthKit — goal reached" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Goal reached</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/wealthkit/v2/web/06-profile.webp" data-caption="Account and security" aria-label="View WealthKit — account and security full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/wealthkit/v2/web/06-profile.webp" alt="WealthKit — account and security" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Account and security</figcaption>
+                </figure>
+              </div>
+
+              <div class="app-detail" id="detail-wealthkit">
+                <div class="app-detail-inner">
+                  <div class="app-scara">
                   <p><strong>Problem:</strong> Most investing apps hardcode their screen states, so every layout change needs an App Store release. WealthKit is built server-driven: the backend describes the flow, the client renders it.</p>
                   <p><strong>Result:</strong> A net-worth hero, an allocation ring and a tabular ledger that all read at a glance — and a light grey ground with inset grouped cards, the most native surface Apple ships.</p>
-                </div>
-                <ul class="app-features">
+                  </div>
+                  <ul class="app-features">
                   <li>Server-driven UI — new flows ship without a release</li>
                   <li>Allocation donut and 40×16pt sparklines drawn in Swift Charts</li>
                   <li>Amount keypad with count-up animation and a masked privacy state</li>
                   <li>Keychain + Face ID, with a real Reduce Transparency fallback</li>
                   <li>Light and dark sets, both signed off</li>
-                </ul>
-                <div class="app-tech">
+                  </ul>
+                  <div class="app-tech">
                   <span>Swift</span><span>SwiftUI</span><span>Swift Charts</span><span>Combine</span><span>Core Data</span><span>Keychain</span><span>Deep teal #0F7B6C</span>
-                </div>
-                <div class="app-links">
-                  <a href="https://claude.ai/code/artifact/c423cb7c-7e64-4eca-bc19-51f675d0048b" target="_blank" rel="noreferrer" class="app-link-github">Open the design canvas →</a>
-                  <span class="app-link-badge">Artboards, divergence table and the seven-rule audit</span>
+                  </div>
                 </div>
               </div>
             </div>
 
             <!-- FitnessPro -->
             <div class="app-demo" data-app="fitnesspro">
-              <div class="app-demo-phone">
-                <div class="iphone-frame iphone-lg">
-                  <div class="iphone-screen">
-                    <div class="screenshot-carousel">
-                      <div class="sc-slide active"><img src="assets/app-screenshots/fitnesspro/v1/web/01-today.webp" alt="FitnessPro — today's rings" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/fitnesspro/v1/web/02-history.webp" alt="FitnessPro — workout history" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/fitnesspro/v1/web/03-active-workout.webp" alt="FitnessPro — active workout" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/fitnesspro/v1/web/04-set-logger.webp" alt="FitnessPro — set logger" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/fitnesspro/v1/web/05-streak-closed.webp" alt="FitnessPro — streak celebration" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/fitnesspro/v1/web/06-you.webp" alt="FitnessPro — athlete profile" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/fitnesspro/v1/web/07-workout-detail.webp" alt="FitnessPro — workout detail" loading="lazy" width="786" height="1704"></div>
-                    </div>
-                  </div>
+              <div class="app-demo-head">
+                <div class="app-demo-title">
+                  <p class="eyebrow">Training · Health</p>
+                  <h3>FitnessPro</h3>
                 </div>
-                <div class="carousel-dots"></div>
+                <button type="button" class="app-detail-toggle" aria-expanded="false" aria-controls="detail-fitnesspro">
+                  <span class="adt-text">More details</span>
+                  <span class="adt-icon" aria-hidden="true">+</span>
+                </button>
               </div>
-              <div class="app-demo-info">
-                <p class="eyebrow">Training · Health</p>
-                <h3>FitnessPro</h3>
-                <div class="app-scara">
+
+              <p class="screen-strip-hint">7 screens — tap any one to open it full size.</p>
+
+              <div class="screen-strip">
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/fitnesspro/v1/web/01-today.webp" data-caption="Today's rings" aria-label="View FitnessPro — today's rings full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/fitnesspro/v1/web/01-today.webp" alt="FitnessPro — today's rings" loading="eager" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Today's rings</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/fitnesspro/v1/web/02-history.webp" data-caption="Workout history" aria-label="View FitnessPro — workout history full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/fitnesspro/v1/web/02-history.webp" alt="FitnessPro — workout history" loading="eager" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Workout history</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/fitnesspro/v1/web/03-active-workout.webp" data-caption="Active workout" aria-label="View FitnessPro — active workout full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/fitnesspro/v1/web/03-active-workout.webp" alt="FitnessPro — active workout" loading="eager" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Active workout</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/fitnesspro/v1/web/04-set-logger.webp" data-caption="Set logger" aria-label="View FitnessPro — set logger full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/fitnesspro/v1/web/04-set-logger.webp" alt="FitnessPro — set logger" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Set logger</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/fitnesspro/v1/web/05-streak-closed.webp" data-caption="Streak celebration" aria-label="View FitnessPro — streak celebration full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/fitnesspro/v1/web/05-streak-closed.webp" alt="FitnessPro — streak celebration" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Streak celebration</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/fitnesspro/v1/web/06-you.webp" data-caption="Athlete profile" aria-label="View FitnessPro — athlete profile full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/fitnesspro/v1/web/06-you.webp" alt="FitnessPro — athlete profile" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Athlete profile</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/fitnesspro/v1/web/07-workout-detail.webp" data-caption="Workout detail" aria-label="View FitnessPro — workout detail full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/fitnesspro/v1/web/07-workout-detail.webp" alt="FitnessPro — workout detail" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Workout detail</figcaption>
+                </figure>
+              </div>
+
+              <div class="app-detail" id="detail-fitnesspro">
+                <div class="app-detail-inner">
+                  <div class="app-scara">
                   <p><strong>Problem:</strong> A training app is read mid-set, one-handed, with about two seconds of attention. Anything that needs a second look has already failed.</p>
                   <p><strong>Result:</strong> Dark-locked by design, with no cards at all — the rings and the heart-rate zone bands are the surfaces. One giant metric, then a dense set grid, and nothing in between.</p>
-                </div>
-                <ul class="app-features">
+                  </div>
+                  <ul class="app-features">
                   <li>Progress rings, HR zone bands and a vertical zone bar</li>
                   <li>Set/rep grid, weight ruler and rest timer as first-class controls</li>
                   <li>Exercise demos: two public-domain frames crossfaded, gated behind prefers-reduced-motion</li>
                   <li>Consistency matrix and pace ladder for the history screen</li>
                   <li>Accent derives from one hex — the whole zone ramp re-maps with it</li>
-                </ul>
-                <div class="app-tech">
+                  </ul>
+                  <div class="app-tech">
                   <span>Swift</span><span>SwiftUI</span><span>HealthKit</span><span>async/await</span><span>Swift Charts</span><span>WidgetKit</span><span>Mint #3DDC84 on near-black</span>
-                </div>
-                <div class="app-links">
-                  <a href="https://claude.ai/code/artifact/89d0c446-ee86-47df-a5ed-a62adc53c939" target="_blank" rel="noreferrer" class="app-link-github">Open the design canvas →</a>
-                  <span class="app-link-badge">Artboards, divergence table and the seven-rule audit</span>
+                  </div>
                 </div>
               </div>
             </div>
 
             <!-- ShopEase -->
             <div class="app-demo" data-app="shopease">
-              <div class="app-demo-phone">
-                <div class="iphone-frame iphone-lg">
-                  <div class="iphone-screen">
-                    <div class="screenshot-carousel">
-                      <div class="sc-slide active"><img src="assets/app-screenshots/shopease/v1/web/01-shop.webp" alt="ShopEase — shop front" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/shopease/v1/web/02-ceramics.webp" alt="ShopEase — ceramics category" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/shopease/v1/web/03-product.webp" alt="ShopEase — product detail" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/shopease/v1/web/04-checkout.webp" alt="ShopEase — checkout" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/shopease/v1/web/05-empty-bag.webp" alt="ShopEase — empty bag" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/shopease/v1/web/06-account.webp" alt="ShopEase — orders and addresses" loading="lazy" width="786" height="1704"></div>
-                    </div>
-                  </div>
+              <div class="app-demo-head">
+                <div class="app-demo-title">
+                  <p class="eyebrow">Commerce · Editorial retail</p>
+                  <h3>ShopEase</h3>
                 </div>
-                <div class="carousel-dots"></div>
+                <button type="button" class="app-detail-toggle" aria-expanded="false" aria-controls="detail-shopease">
+                  <span class="adt-text">More details</span>
+                  <span class="adt-icon" aria-hidden="true">+</span>
+                </button>
               </div>
-              <div class="app-demo-info">
-                <p class="eyebrow">Commerce · Editorial retail</p>
-                <h3>ShopEase</h3>
-                <div class="app-scara">
+
+              <p class="screen-strip-hint">6 screens — tap any one to open it full size.</p>
+
+              <div class="screen-strip">
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/shopease/v1/web/01-shop.webp" data-caption="Shop front" aria-label="View ShopEase — shop front full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/shopease/v1/web/01-shop.webp" alt="ShopEase — shop front" loading="eager" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Shop front</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/shopease/v1/web/02-ceramics.webp" data-caption="Ceramics category" aria-label="View ShopEase — ceramics category full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/shopease/v1/web/02-ceramics.webp" alt="ShopEase — ceramics category" loading="eager" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Ceramics category</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/shopease/v1/web/03-product.webp" data-caption="Product detail" aria-label="View ShopEase — product detail full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/shopease/v1/web/03-product.webp" alt="ShopEase — product detail" loading="eager" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Product detail</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/shopease/v1/web/04-checkout.webp" data-caption="Checkout" aria-label="View ShopEase — checkout full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/shopease/v1/web/04-checkout.webp" alt="ShopEase — checkout" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Checkout</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/shopease/v1/web/05-empty-bag.webp" data-caption="Empty bag" aria-label="View ShopEase — empty bag full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/shopease/v1/web/05-empty-bag.webp" alt="ShopEase — empty bag" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Empty bag</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/shopease/v1/web/06-account.webp" data-caption="Orders and addresses" aria-label="View ShopEase — orders and addresses full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/shopease/v1/web/06-account.webp" alt="ShopEase — orders and addresses" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Orders and addresses</figcaption>
+                </figure>
+              </div>
+
+              <div class="app-detail" id="detail-shopease">
+                <div class="app-detail-inner">
+                  <div class="app-scara">
                   <p><strong>Problem:</strong> Marketplace apps all converge on the same look: a dense grid, a red sale badge, a card around everything. That template makes every product look like every other product.</p>
                   <p><strong>Result:</strong> A curated-objects shop set on warm paper, in an editorial register — photography sits directly on the ground with no container, prices are ink, and the accent is reserved for a markdown. The chrome is a text-only dock; the whole app has exactly one glass element.</p>
-                </div>
-                <ul class="app-features">
+                  </div>
+                  <ul class="app-features">
                   <li>Eighteen CC0 object plates, licence asserted per item at download</li>
                   <li>Studio backdrops knocked out and recomposited onto the app's own paper</li>
                   <li>Size run with sold-out struck through, glaze swatch row, sticky glass buy bar</li>
                   <li>Fraunces display over a system sans, with .19em uppercase labels</li>
                   <li>Light-locked: the warm sand ground is the identity, so there is no dark set</li>
-                </ul>
-                <div class="app-tech">
+                  </ul>
+                  <div class="app-tech">
                   <span>Swift</span><span>SwiftUI</span><span>async/await</span><span>Nuke-free image pipeline</span><span>StoreKit 2</span><span>Core Data</span><span>Oxblood #8A3418 on warm sand</span>
-                </div>
-                <div class="app-links">
-                  <a href="https://claude.ai/code/artifact/df0ae719-e3cc-4449-bd33-980386ffd4a5" target="_blank" rel="noreferrer" class="app-link-github">Open the design canvas →</a>
-                  <span class="app-link-badge">Artboards, divergence table and the seven-rule audit</span>
+                  </div>
                 </div>
               </div>
             </div>
 
             <!-- SocialFlow -->
             <div class="app-demo" data-app="socialflow">
-              <div class="app-demo-phone">
-                <div class="iphone-frame iphone-lg">
-                  <div class="iphone-screen">
-                    <div class="screenshot-carousel">
-                      <div class="sc-slide active"><img src="assets/app-screenshots/socialflow/v1/web/01-feed.webp" alt="SocialFlow — home feed" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/socialflow/v1/web/02-post.webp" alt="SocialFlow — post detail" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/socialflow/v1/web/03-compose.webp" alt="SocialFlow — compose" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/socialflow/v1/web/04-explore.webp" alt="SocialFlow — explore mosaic" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/socialflow/v1/web/05-empty.webp" alt="SocialFlow — quiet feed empty state" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/socialflow/v1/web/06-profile.webp" alt="SocialFlow — profile grid" loading="lazy" width="786" height="1704"></div>
-                    </div>
-                  </div>
+              <div class="app-demo-head">
+                <div class="app-demo-title">
+                  <p class="eyebrow">Social · Creator</p>
+                  <h3>SocialFlow</h3>
                 </div>
-                <div class="carousel-dots"></div>
+                <button type="button" class="app-detail-toggle" aria-expanded="false" aria-controls="detail-socialflow">
+                  <span class="adt-text">More details</span>
+                  <span class="adt-icon" aria-hidden="true">+</span>
+                </button>
               </div>
-              <div class="app-demo-info">
-                <p class="eyebrow">Social · Creator</p>
-                <h3>SocialFlow</h3>
-                <div class="app-scara">
+
+              <p class="screen-strip-hint">6 screens — tap any one to open it full size.</p>
+
+              <div class="screen-strip">
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/socialflow/v1/web/01-feed.webp" data-caption="Home feed" aria-label="View SocialFlow — home feed full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/socialflow/v1/web/01-feed.webp" alt="SocialFlow — home feed" loading="eager" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Home feed</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/socialflow/v1/web/02-post.webp" data-caption="Post detail" aria-label="View SocialFlow — post detail full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/socialflow/v1/web/02-post.webp" alt="SocialFlow — post detail" loading="eager" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Post detail</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/socialflow/v1/web/03-compose.webp" data-caption="Compose" aria-label="View SocialFlow — compose full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/socialflow/v1/web/03-compose.webp" alt="SocialFlow — compose" loading="eager" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Compose</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/socialflow/v1/web/04-explore.webp" data-caption="Explore mosaic" aria-label="View SocialFlow — explore mosaic full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/socialflow/v1/web/04-explore.webp" alt="SocialFlow — explore mosaic" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Explore mosaic</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/socialflow/v1/web/05-empty.webp" data-caption="Quiet feed empty state" aria-label="View SocialFlow — quiet feed empty state full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/socialflow/v1/web/05-empty.webp" alt="SocialFlow — quiet feed empty state" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Quiet feed empty state</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/socialflow/v1/web/06-profile.webp" data-caption="Profile grid" aria-label="View SocialFlow — profile grid full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/socialflow/v1/web/06-profile.webp" alt="SocialFlow — profile grid" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Profile grid</figcaption>
+                </figure>
+              </div>
+
+              <div class="app-detail" id="detail-socialflow">
+                <div class="app-detail-inner">
+                  <div class="app-scara">
                   <p><strong>Problem:</strong> A social feed is judged on the photography, and most designs bury it: a card, a border, a radius and a shadow around every post, and the picture ends up as an illustration inside a UI.</p>
                   <p><strong>Result:</strong> Pure mono, black ground, and no containers and no radius anywhere on content. Media runs edge to edge, grids run at 1pt gutters, and the only colour on the screen is the photography.</p>
-                </div>
-                <ul class="app-features">
+                  </div>
+                  <ul class="app-features">
                   <li>Forty-two CC0 frames, licence asserted per item, on one shared grade</li>
                   <li>Story rail: 2.5pt gradient ring unseen, hairline seen</li>
                   <li>Chrome that dissolves on scroll, with a compose pill instead of a plus-in-a-circle</li>
                   <li>1pt-gutter mosaic with a 2×2 anchor tile</li>
                   <li>Inter Tight set tight and large — and nothing is ever uppercased</li>
-                </ul>
-                <div class="app-tech">
+                  </ul>
+                  <div class="app-tech">
                   <span>Swift</span><span>SwiftUI</span><span>async/await</span><span>AVFoundation</span><span>Nuke</span><span>Core Data</span><span>Hot pink #FF2E63 on black</span>
-                </div>
-                <div class="app-links">
-                  <a href="https://claude.ai/code/artifact/c8514ab0-449b-4812-9f8a-a0219748e4a1" target="_blank" rel="noreferrer" class="app-link-github">Open the design canvas →</a>
-                  <span class="app-link-badge">Artboards, divergence table and the seven-rule audit</span>
+                  </div>
                 </div>
               </div>
             </div>
 
             <!-- NativeAIStudio -->
             <div class="app-demo" data-app="nativeaistudio">
-              <div class="app-demo-phone">
-                <div class="iphone-frame iphone-lg">
-                  <div class="iphone-screen">
-                    <div class="screenshot-carousel">
-                      <div class="sc-slide active"><img src="assets/app-screenshots/nativeaistudio/v1/web/01-studio.webp" alt="NativeAIStudio — studio home with model picker" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/nativeaistudio/v1/web/02-conversations.webp" alt="NativeAIStudio — conversation list" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/nativeaistudio/v1/web/03-answer.webp" alt="NativeAIStudio — streaming answer" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/nativeaistudio/v1/web/04-compose.webp" alt="NativeAIStudio — compose with tool run" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/nativeaistudio/v1/web/05-first-run.webp" alt="NativeAIStudio — first run" loading="lazy" width="786" height="1704"></div>
-                      <div class="sc-slide"><img src="assets/app-screenshots/nativeaistudio/v1/web/06-settings.webp" alt="NativeAIStudio — model and privacy" loading="lazy" width="786" height="1704"></div>
-                    </div>
-                  </div>
+              <div class="app-demo-head">
+                <div class="app-demo-title">
+                  <p class="eyebrow">AI · Productivity</p>
+                  <h3>NativeAIStudio</h3>
                 </div>
-                <div class="carousel-dots"></div>
+                <button type="button" class="app-detail-toggle" aria-expanded="false" aria-controls="detail-nativeaistudio">
+                  <span class="adt-text">More details</span>
+                  <span class="adt-icon" aria-hidden="true">+</span>
+                </button>
               </div>
-              <div class="app-demo-info">
-                <p class="eyebrow">AI · Productivity</p>
-                <h3>NativeAIStudio</h3>
-                <div class="app-scara">
+
+              <p class="screen-strip-hint">6 screens — tap any one to open it full size.</p>
+
+              <div class="screen-strip">
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/nativeaistudio/v1/web/01-studio.webp" data-caption="Studio home with model picker" aria-label="View NativeAIStudio — studio home with model picker full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/nativeaistudio/v1/web/01-studio.webp" alt="NativeAIStudio — studio home with model picker" loading="eager" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Studio home with model picker</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/nativeaistudio/v1/web/02-conversations.webp" data-caption="Conversation list" aria-label="View NativeAIStudio — conversation list full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/nativeaistudio/v1/web/02-conversations.webp" alt="NativeAIStudio — conversation list" loading="eager" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Conversation list</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/nativeaistudio/v1/web/03-answer.webp" data-caption="Streaming answer" aria-label="View NativeAIStudio — streaming answer full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/nativeaistudio/v1/web/03-answer.webp" alt="NativeAIStudio — streaming answer" loading="eager" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Streaming answer</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/nativeaistudio/v1/web/04-compose.webp" data-caption="Compose with tool run" aria-label="View NativeAIStudio — compose with tool run full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/nativeaistudio/v1/web/04-compose.webp" alt="NativeAIStudio — compose with tool run" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Compose with tool run</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/nativeaistudio/v1/web/05-first-run.webp" data-caption="First run" aria-label="View NativeAIStudio — first run full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/nativeaistudio/v1/web/05-first-run.webp" alt="NativeAIStudio — first run" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>First run</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/nativeaistudio/v1/web/06-settings.webp" data-caption="Model and privacy" aria-label="View NativeAIStudio — model and privacy full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/nativeaistudio/v1/web/06-settings.webp" alt="NativeAIStudio — model and privacy" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Model and privacy</figcaption>
+                </figure>
+              </div>
+
+              <div class="app-detail" id="detail-nativeaistudio">
+                <div class="app-detail-inner">
+                  <div class="app-scara">
                   <p><strong>Problem:</strong> Every AI client currently looks the same: a purple gradient, a sparkle on every button, a chat bubble around the assistant's text, and three bouncing dots standing in for work being done.</p>
                   <p><strong>Result:</strong> Warm ink, no tab bar, and message turns instead of cards — the user's turn is compact and right-inset, the assistant's is full width with no container at all, and that asymmetry is the whole design. Glass appears on three things across six screens.</p>
-                </div>
-                <ul class="app-features">
+                  </div>
+                  <ul class="app-features">
                   <li>Streaming response with a soft caret — no typewriter jitter, no bouncing dots</li>
                   <li>Tool-run chips with icon, name, argument and duration; running is a progress underline</li>
                   <li>Source citations as a superscript numeral with a row beneath</li>
                   <li>Composer that grows to five lines, with the send fill earned by being non-empty</li>
                   <li>Prose is IBM Plex Sans; every machine-generated fact is IBM Plex Mono</li>
-                </ul>
-                <div class="app-tech">
+                  </ul>
+                  <div class="app-tech">
                   <span>Swift</span><span>SwiftUI</span><span>async/await</span><span>AsyncSequence streaming</span><span>SwiftData</span><span>Keychain</span><span>Citrine #DFC069 on warm ink</span>
-                </div>
-                <div class="app-links">
-                  <a href="https://claude.ai/code/artifact/f2ba2b4e-628c-431a-aad8-19c68f8e7bbf" target="_blank" rel="noreferrer" class="app-link-github">Open the design canvas →</a>
-                  <span class="app-link-badge">Artboards, divergence table and the seven-rule audit</span>
+                  </div>
                 </div>
               </div>
             </div>
-
-          </div><!-- /app-demo-grid -->
+</div><!-- /app-demo-grid -->
         </div>
       </section>
 
       <!-- ══ CLIENT WORK — production case studies ═══════ -->
-      <section class="section section-dark collapsible-section collapsible-dark" id="client-work">
+      <section class="section section-dark collapsible-section collapsed collapsible-dark" id="client-work">
         <div class="container">
-          <div class="collapse-header collapse-header-dark" role="button" tabindex="0" aria-expanded="true" aria-controls="client-work-body">
+          <div class="collapse-header collapse-header-dark" role="button" tabindex="0" aria-expanded="false" aria-controls="client-work-body">
             <div class="collapse-teaser">
               <span class="eyebrow">Case Studies</span>
               <p class="collapse-summary">Real work across retirement fintech, global banking, and media streaming — measurable outcomes.</p>
@@ -519,9 +688,9 @@
       </section>
 
       <!-- ══ STACK ═══════════════════════════════════════ -->
-      <section class="section section-soft collapsible-section" id="skills">
+      <section class="section section-soft collapsible-section collapsed" id="skills">
         <div class="container">
-          <div class="collapse-header" role="button" tabindex="0" aria-expanded="true" aria-controls="skills-body">
+          <div class="collapse-header" role="button" tabindex="0" aria-expanded="false" aria-controls="skills-body">
             <div class="collapse-teaser">
               <span class="eyebrow">Tech Stack</span>
               <p class="collapse-summary">Swift &amp; SwiftUI (11 yrs) · Architecture · Combine · HealthKit · Swift 6 · SwiftData · Performance Engineering.</p>
@@ -655,6 +824,18 @@
       </div>
     </footer>
 
-    <script src="script.js?v=20260831-split"></script>
+
+    <!-- Screen lightbox (portfolio page) -->
+    <div class="lightbox" id="screen-lightbox" role="dialog" aria-modal="true" aria-label="Screen preview">
+      <button type="button" class="lb-close" aria-label="Close preview">&times;</button>
+      <button type="button" class="lb-nav lb-prev" aria-label="Previous screen">&lsaquo;</button>
+      <figure class="lb-stage">
+        <img class="lb-img" src="" alt="" />
+        <figcaption class="lb-cap"></figcaption>
+      </figure>
+      <button type="button" class="lb-nav lb-next" aria-label="Next screen">&rsaquo;</button>
+    </div>
+
+    <script src="script.js?v=20260831-grid"></script>
   </body>
 </html>

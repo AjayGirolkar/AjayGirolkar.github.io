@@ -2047,3 +2047,233 @@ body[data-theme="dark"] .form-contact-chip {
   .hero-compact .hero-badges { grid-template-columns: 1fr; }
   .contact-slim-row { flex-wrap: wrap; }
 }
+
+/* ═══════════════════════════════════════
+   SCREEN STRIP — every screen of an app, side by side
+   Scoped to .page-strip, set on the pages that use this
+   layout (portfolio root and /hire).
+═══════════════════════════════════════ */
+.page-strip .app-demo-grid { min-height: 0; }
+.page-strip .app-demo.active {
+  display: block;
+  animation: fadeSlide 380ms cubic-bezier(.4,0,.2,1);
+}
+.page-strip .app-demo + .app-demo { margin-top: 0; }
+
+/* ── head: title + details toggle ── */
+.app-demo-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.app-demo-title .eyebrow { margin-bottom: 2px; }
+.page-strip .app-demo-head h3 {
+  font-size: clamp(1.5rem,3.2vw,2.3rem);
+  font-weight: 800;
+  letter-spacing: -.04em;
+  margin: 4px 0 0;
+}
+.app-detail-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.6);
+  color: var(--text-soft);
+  font-family: inherit;
+  font-size: .82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 180ms ease;
+}
+body[data-theme="dark"] .app-detail-toggle { background: rgba(255,255,255,.05); }
+.app-detail-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.app-detail-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.app-detail-toggle.open { background: var(--accent); color: #fff; border-color: transparent; }
+.adt-icon {
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 260ms cubic-bezier(.4,0,.2,1);
+}
+.app-detail-toggle.open .adt-icon { transform: rotate(45deg); }
+
+.screen-strip-hint {
+  margin: 14px 0 22px;
+  font-size: .8rem;
+  color: var(--text-muted);
+}
+
+/* ── the strip: every screen, side by side ── */
+.screen-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 26px 18px;
+}
+.screen-shot {
+  margin: 0;
+  flex: 0 1 152px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.screen-shot figcaption {
+  font-size: .72rem;
+  line-height: 1.35;
+  color: var(--text-muted);
+  text-align: center;
+}
+.screen-shot-btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  transition: transform 240ms cubic-bezier(.4,0,.2,1);
+}
+.screen-shot-btn:hover { transform: translateY(-6px); }
+.screen-shot-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 32px; }
+.screen-shot-btn .iphone-frame,
+.screen-shot-btn .iphone-screen { display: block; }
+.iphone-frame.iphone-xs {
+  width: 100%;
+  border-radius: 30px;
+  padding: 8px 7px;
+  box-shadow: 0 0 0 1.5px #3a3a3c, 0 18px 44px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.05);
+}
+.iphone-frame.iphone-xs .iphone-screen { border-radius: 23px; }
+.screen-shot-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+/* ── collapsible per-app detail panel ── */
+.app-detail {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height .45s cubic-bezier(.4,0,.2,1), opacity .3s ease;
+}
+.app-detail.open { max-height: 1200px; opacity: 1; }
+.app-detail-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px 44px;
+  padding: 30px 0 8px;
+  margin-top: 26px;
+  border-top: 1px solid var(--line);
+}
+.app-detail-inner .app-scara { margin: 0; }
+.app-detail-inner .app-features { margin: 0; align-content: start; }
+.app-detail-inner .app-tech { grid-column: 1 / -1; margin-top: 0; }
+.app-detail-inner .app-links { grid-column: 1 / -1; margin-top: 0; }
+
+/* Toggle parked in the strip itself, beside the last screen (/hire) */
+.screen-strip-action {
+  flex: 0 0 auto;
+  align-self: center;
+  display: flex;
+  /* nudge up so the button optically centres on the phones, not on phone+caption */
+  padding-bottom: 26px;
+}
+.screen-strip-action .app-detail-toggle { white-space: nowrap; }
+/* 7 screens + the button must still share one row inside the 1220px container */
+.screen-strip.has-action .screen-shot { flex-basis: 130px; }
+@media (max-width: 1180px) {
+  .screen-strip.has-action { column-gap: 14px; }
+  .screen-strip.has-action .screen-shot { flex-basis: 114px; }
+}
+
+@media (max-width: 860px) {
+  .app-demo-head { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .app-detail-inner { grid-template-columns: 1fr; }
+  .app-detail.open { max-height: 1800px; }
+  .screen-strip { gap: 22px 14px; }
+  .screen-shot, .screen-strip.has-action .screen-shot { flex-basis: 128px; }
+}
+@media (max-width: 520px) {
+  .screen-shot, .screen-strip.has-action .screen-shot { flex: 0 1 calc(50% - 7px); }
+  .screen-strip-action { flex: 0 0 100%; justify-content: center; padding: 4px 0 0; }
+  .iphone-frame.iphone-xs { border-radius: 26px; padding: 6px 5px; }
+  .iphone-frame.iphone-xs .iphone-screen { border-radius: 21px; }
+}
+
+/* ── full-size screen lightbox ── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 28px 16px;
+  background: rgba(8,10,16,.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.lightbox.open { display: flex; animation: fadeSlide 220ms ease; }
+.lb-stage {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+.lb-img {
+  max-height: min(80vh, 860px);
+  max-width: 100%;
+  width: auto;
+  border-radius: 24px;
+  background: #000;
+  box-shadow: 0 30px 90px rgba(0,0,0,.6);
+}
+.lb-cap {
+  margin: 0;
+  font-size: .82rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.7);
+  text-align: center;
+}
+.lb-nav, .lb-close {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 180ms ease, transform 180ms ease;
+}
+.lb-nav:hover, .lb-close:hover { background: rgba(255,255,255,.18); transform: scale(1.06); }
+.lb-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+}
+@media (max-width: 640px) {
+  .lb-nav, .lb-close { width: 38px; height: 38px; font-size: 1.3rem; }
+  .lb-img { max-height: 68vh; border-radius: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .screen-shot-btn:hover { transform: none; }
+  .lightbox.open { animation: none; }
+}
