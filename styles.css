@@ -140,10 +140,38 @@ body[data-theme="dark"] .nav-shell {
 .brand {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 54px;
+  gap: 11px;
   height: 54px;
+  padding-right: 6px;
   flex: 0 0 auto;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Wordmark: the name alone, in the same accent gradient as the
+   primary button, so it re-tints itself in dark mode for free. */
+.brand-word {
+  display: flex;
+  white-space: nowrap;
+}
+
+.brand-word strong {
+  font-size: 1.32rem;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  /* Descenders in "Ajay Girolkar" get clipped by background-clip
+     at a tight line-height, so leave headroom below the baseline. */
+  line-height: 1.35;
+  color: var(--accent);
+  background: linear-gradient(115deg, var(--accent) 12%, var(--accent-soft) 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: filter 180ms ease;
+}
+
+.brand:hover .brand-word strong {
+  filter: brightness(1.12) saturate(1.15);
 }
 
 .brand-icon {
@@ -944,8 +972,12 @@ body[data-theme="dark"] .contact-form textarea {
   }
 
   .brand {
-    width: 48px;
     height: 48px;
+    gap: 9px;
+  }
+
+  .brand-word strong {
+    font-size: 1.14rem;
   }
 
   .brand-icon {
