@@ -14,6 +14,15 @@ if (savedTheme === "dark") {
 }
 
 if (themeToggle) {
+  // The button shows the theme you'd switch *to*, so the label has to follow it.
+  const syncThemeLabel = () => {
+    const isDark = root.dataset.theme === "dark";
+    themeToggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+    themeToggle.setAttribute("aria-pressed", String(isDark));
+  };
+
+  syncThemeLabel();
+
   themeToggle.addEventListener("click", () => {
     const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
 
@@ -24,6 +33,7 @@ if (themeToggle) {
     }
 
     localStorage.setItem("theme-preference", nextTheme);
+    syncThemeLabel();
   });
 }
 

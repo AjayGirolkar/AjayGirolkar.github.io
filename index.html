@@ -41,10 +41,10 @@
           <a href="#contact">Contact</a>
         </nav>
         <div class="nav-actions">
-          <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
-            <span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span>
+          <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+            <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
           </button>
-          <a class="nav-cta nav-cta-quiet" href="hire/index.html">Available for work &rarr;</a>
         </div>
       </div>
     </header>
@@ -64,6 +64,7 @@
             <div class="hero-actions">
               <a class="button button-primary" href="#work-grid">See the work</a>
               <a class="button button-secondary" href="mailto:ajaygirolkar@gmail.com?subject=iOS%20project">Email me</a>
+              <a class="button button-whatsapp" href="https://wa.me/919420963751?text=Hi%20Ajay%2C%20I%20saw%20your%20iOS%20portfolio." target="_blank" rel="noreferrer"><svg class="wa-icon" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.85 9.85 0 0 0 12.04 2zm0 18.13h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.21-8.24 8.21z"/></svg>WhatsApp</a>
             </div>
             <div class="hero-badges">
               <article class="hero-badge">
@@ -81,11 +82,38 @@
             </div>
           </div>
 
-          <aside class="founder-card hero-compact-card">
-            <img decoding="async" src="assets/ajay-profile.jpg?v=20260412" alt="Ajay Girolkar" />
-            <div>
-              <h3>Ajay Girolkar</h3>
-              <p>Swift · SwiftUI · Architecture — Pune, India. Remote-friendly.</p>
+          <aside class="profile-card hero-compact-card">
+            <div class="profile-card-top">
+              <span class="profile-avatar">
+                <img decoding="async" src="assets/ajay-profile.jpg?v=20260412" alt="Ajay Girolkar" width="72" height="72" />
+              </span>
+              <div class="profile-ident">
+                <h3>Ajay Girolkar</h3>
+                <p>Senior iOS Engineer · iOS Architect</p>
+              </div>
+            </div>
+
+            <p class="profile-status"><span class="profile-dot" aria-hidden="true"></span>Open to senior iOS roles &amp; freelance builds</p>
+
+            <dl class="profile-meta">
+              <div>
+                <dt>Based in</dt>
+                <dd>Pune, India &middot; IST (UTC+5:30)</dd>
+              </div>
+              <div>
+                <dt>Works</dt>
+                <dd>Remote-friendly &middot; EU &amp; US overlap</dd>
+              </div>
+              <div>
+                <dt>Core stack</dt>
+                <dd>Swift &middot; SwiftUI &middot; Clean Architecture</dd>
+              </div>
+            </dl>
+
+            <div class="profile-links">
+              <a href="mailto:ajaygirolkar@gmail.com?subject=iOS%20project">Email</a>
+              <a href="https://www.linkedin.com/in/ajaygirolkar" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a href="https://github.com/AjayGirolkar" target="_blank" rel="noreferrer">GitHub</a>
             </div>
           </aside>
         </div>
@@ -796,12 +824,15 @@
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.64 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.55 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 +91-9420963751
               </a>
+              <a class="form-contact-chip" href="https://wa.me/919420963751?text=Hi%20Ajay%2C%20I%20saw%20your%20iOS%20portfolio." target="_blank" rel="noreferrer">
+                <svg class="wa-icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.85 9.85 0 0 0 12.04 2zm0 18.13h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.21-8.24 8.21z"/></svg>
+                WhatsApp
+              </a>
               <a class="form-contact-chip" href="https://github.com/AjayGirolkar" target="_blank" rel="noreferrer">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
                 GitHub
               </a>
             </div>
-            <p class="contact-hire-note">Looking for rates, process and availability? <a href="hire/index.html">See how I work with clients &rarr;</a></p>
           </div>
         </div>
       </section>
@@ -819,7 +850,6 @@
           <a href="#client-work">Client Projects</a>
           <a href="#skills">Stack</a>
           <a href="#contact">Contact</a>
-          <a href="hire/index.html">Available for work</a>
         </div>
       </div>
     </footer>
