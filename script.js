@@ -27,28 +27,72 @@ if (themeToggle) {
   });
 }
 
-window.addEventListener("scroll", () => {
-  if (!header) return;
-  header.classList.toggle("scrolled", window.scrollY > 18);
-});
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add("visible");
-      observer.unobserve(entry.target);
-    });
+/* ── Scroll effects ───────────────────────────────── */
+// One passive, rAF-throttled listener drives every scroll effect. Separate
+// non-passive listeners each doing their own DOM writes made scrolling stutter.
+const scrollEffects = [];
+let scrollQueued = false;
+
+function runScrollEffects() {
+  scrollQueued = false;
+  const y = window.scrollY;
+  for (const effect of scrollEffects) effect(y);
+}
+
+window.addEventListener(
+  "scroll",
+  () => {
+    if (scrollQueued) return;
+    scrollQueued = true;
+    requestAnimationFrame(runScrollEffects);
   },
-  // rootMargin pre-triggers reveal ~400px before element enters viewport,
-  // so content is faded in by the time the user scrolls to it.
-  { threshold: 0, rootMargin: "0px 0px 400px 0px" }
+  { passive: true }
 );
 
-revealItems.forEach((item, index) => {
-  item.style.transitionDelay = `${index * 70}ms`;
-  observer.observe(item);
-});
+if (header) {
+  let scrolled = null;
+  scrollEffects.push((y) => {
+    const next = y > 18;
+    if (next === scrolled) return; // Skip the DOM write when nothing changed.
+    scrolled = next;
+    header.classList.toggle("scrolled", next);
+  });
+}
+
+if (reduceMotion) {
+  // Nothing to stagger when the fade is off — show it all up front.
+  revealItems.forEach((item) => item.classList.add("visible"));
+} else {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      });
+    },
+    // rootMargin pre-triggers reveal ~600px before the element enters the
+    // viewport, so it has finished fading in by the time the user reaches it.
+    { threshold: 0, rootMargin: "0px 0px 600px 0px" }
+  );
+
+  // Stagger restarts in each section and caps at STAGGER_MAX steps. A running
+  // page-wide index gave the last elements a ~2s transition-delay, which read
+  // as the page loading late while scrolling.
+  const STAGGER_STEP = 60;
+  const STAGGER_MAX = 4;
+  const groupCounts = new Map();
+
+  revealItems.forEach((item) => {
+    const group = item.closest("section") || document.body;
+    const i = groupCounts.get(group) || 0;
+    groupCounts.set(group, i + 1);
+    item.style.transitionDelay = `${Math.min(i, STAGGER_MAX) * STAGGER_STEP}ms`;
+    observer.observe(item);
+  });
+}
 
 /* ── Typewriter ───────────────────────────────────── */
 function initTypewriter() {
@@ -56,14 +100,28 @@ function initTypewriter() {
   if (!el) return;
   const phrases = ['scale.', 'ship fast.', 'look amazing.', 'perform.', 'last.'];
   let pi = 0, ci = 0, del = false;
+  let timer = null, onScreen = true;
+
+  if (reduceMotion) { el.textContent = phrases[0]; return; }
+
   function tick() {
+    timer = null;
+    // Nothing to animate while the hero is scrolled away; a text write every
+    // ~88ms for the whole page kept forcing layout during scroll.
+    if (!onScreen) return;
     const p = phrases[pi];
     el.textContent = p.slice(0, ci);
-    if (!del && ci === p.length) { setTimeout(() => { del = true; tick(); }, 2000); return; }
+    if (!del && ci === p.length) { del = true; timer = setTimeout(tick, 2000); return; }
     if (del && ci === 0) { del = false; pi = (pi + 1) % phrases.length; }
     ci += del ? -1 : 1;
-    setTimeout(tick, del ? 48 : 88);
+    timer = setTimeout(tick, del ? 48 : 88);
   }
+
+  new IntersectionObserver(([entry]) => {
+    onScreen = entry.isIntersecting;
+    if (onScreen && timer === null) tick();
+  }).observe(el);
+
   tick();
 }
 
@@ -111,7 +169,7 @@ function initWorkGrid() {
   const cards = document.querySelectorAll('.work-card[data-app]');
   const target = document.getElementById('apps');
   if (!cards.length || !target) return;
-  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const reduce = reduceMotion;
   cards.forEach(card => {
     card.addEventListener('click', () => {
       document.querySelector(`.app-tab[data-app="${card.dataset.app}"]`)?.click();
@@ -124,11 +182,22 @@ function initWorkGrid() {
 
 /* ── Parallax (hero phones) ───────────────────────── */
 function initParallax() {
-  const ph = document.querySelector('.hero-phone-float');
-  if (!ph || matchMedia('(prefers-reduced-motion:reduce)').matches) return;
-  window.addEventListener('scroll', () => {
-    ph.style.transform = `translateY(${scrollY * 0.05}px) rotate(-1.5deg)`;
-  }, { passive: true });
+  const phone = document.querySelector('.hero-phone-float');
+  if (!phone || reduceMotion) return;
+  // Drive the wrapper, not the phone: the phone runs the phoneFloat keyframes,
+  // and a CSS animation beats an inline transform, so writing to the phone on
+  // every scroll frame did nothing but burn main-thread time.
+  const wrap = phone.closest('.hero-phone-wrap') || phone.parentElement;
+  const hero = document.getElementById('hero');
+  if (!wrap) return;
+  let last = null;
+  scrollEffects.push(y => {
+    // Once the hero is off screen there is nothing left to shift.
+    const offset = hero && y > hero.offsetHeight ? null : Math.round(y * 0.05);
+    if (offset === last) return;
+    last = offset;
+    wrap.style.transform = offset === null ? '' : `translate3d(0, ${offset}px, 0)`;
+  });
 }
 
 /* ── Calendar interactivity ───────────────────────── */
@@ -162,9 +231,11 @@ function initCollapsibleSections() {
 
       if (isCollapsed) {
         // Trigger reveal animations inside the newly opened section
+        // Cap the stagger — an uncapped one made the last rows of a long
+        // panel appear a second or more after the click.
         const revealEls = body ? body.querySelectorAll('.reveal:not(.visible)') : [];
         revealEls.forEach((el, i) => {
-          setTimeout(() => el.classList.add('visible'), i * 60 + 50);
+          setTimeout(() => el.classList.add('visible'), Math.min(i, 4) * 60 + 40);
         });
       }
     };
@@ -207,7 +278,7 @@ function initScreenshotCarousels() {
     }
 
     function startAuto() {
-      if (matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+      if (reduceMotion) return;
       timer = setInterval(() => goTo(current + 1), 2800);
     }
     function stopAuto() { clearInterval(timer); timer = null; }
@@ -238,16 +309,39 @@ function initScreenshotCarousels() {
   });
 }
 
-/* ── Preload lazy images after first paint ────────── */
-// Keeps initial load fast (lazy until painted), then warms every
-// lazy image during idle time so they're cached before the user
-// scrolls to them — no pop-in on scroll.
+/* ── Warm lazy images after first paint ───────────── */
+// Initial load only fetches what is on screen. Once the page has painted, the
+// rest of the screenshots are pulled into the HTTP cache during idle time, so
+// opening a panel or switching an app tab shows them with no pop-in.
 function preloadLazyImages() {
   const warm = () => {
+    const urls = [];
+    const seen = new Set();
     document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-      img.loading = 'eager';
+      const url = img.getAttribute('src');
+      if (!url || img.complete || seen.has(url)) return;
+      seen.add(url);
+      urls.push(url);
     });
+    if (!urls.length) return;
+
+    // Two at a time, in document order. Flipping every image to eager at once
+    // queued ~2MB behind one connection; a detached Image also warms the cache
+    // for images the panel keeps unrendered via content-visibility, which a
+    // loading="eager" flip on its own would not.
+    const CONCURRENCY = 2;
+    let next = 0;
+    const pump = () => {
+      if (next >= urls.length) return;
+      const loader = new Image();
+      loader.decoding = 'async';
+      loader.addEventListener('load', pump, { once: true });
+      loader.addEventListener('error', pump, { once: true });
+      loader.src = urls[next++];
+    };
+    for (let i = 0; i < CONCURRENCY; i++) pump();
   };
+
   if ('requestIdleCallback' in window) {
     requestIdleCallback(warm, { timeout: 2000 });
   } else {

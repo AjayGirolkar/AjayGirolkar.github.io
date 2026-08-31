@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=20260831-grid" />
+    <link rel="stylesheet" href="styles.css?v=20260831-perf" />
     <!-- Preload what paints above the fold: the face and the first work card -->
     <link rel="preload" as="image" href="assets/ajay-profile.jpg?v=20260412" fetchpriority="high" />
     <link rel="preload" as="image" href="assets/app-screenshots/wealthkit/v2/web/01-dashboard.webp" fetchpriority="high" />
@@ -82,7 +82,7 @@
           </div>
 
           <aside class="founder-card hero-compact-card">
-            <img src="assets/ajay-profile.jpg?v=20260412" alt="Ajay Girolkar" />
+            <img decoding="async" src="assets/ajay-profile.jpg?v=20260412" alt="Ajay Girolkar" />
             <div>
               <h3>Ajay Girolkar</h3>
               <p>Swift · SwiftUI · Architecture — Pune, India. Remote-friendly.</p>
@@ -106,7 +106,7 @@
               <span class="work-card-shot">
                 <span class="iphone-frame">
                   <span class="iphone-screen">
-                    <img src="assets/app-screenshots/wealthkit/v2/web/01-dashboard.webp" alt="WealthKit — net worth dashboard" width="786" height="1704" />
+                    <img decoding="async" src="assets/app-screenshots/wealthkit/v2/web/01-dashboard.webp" alt="WealthKit — net worth dashboard" width="786" height="1704" />
                   </span>
                 </span>
               </span>
@@ -122,7 +122,7 @@
               <span class="work-card-shot">
                 <span class="iphone-frame">
                   <span class="iphone-screen">
-                    <img src="assets/app-screenshots/fitnesspro/v1/web/01-today.webp" alt="FitnessPro — today's rings" width="786" height="1704" loading="lazy" />
+                    <img decoding="async" src="assets/app-screenshots/fitnesspro/v1/web/01-today.webp" alt="FitnessPro — today's rings" width="786" height="1704" loading="lazy" />
                   </span>
                 </span>
               </span>
@@ -138,7 +138,7 @@
               <span class="work-card-shot">
                 <span class="iphone-frame">
                   <span class="iphone-screen">
-                    <img src="assets/app-screenshots/shopease/v1/web/03-product.webp" alt="ShopEase — product detail" width="786" height="1704" loading="lazy" />
+                    <img decoding="async" src="assets/app-screenshots/shopease/v1/web/03-product.webp" alt="ShopEase — product detail" width="786" height="1704" loading="lazy" />
                   </span>
                 </span>
               </span>
@@ -154,7 +154,7 @@
               <span class="work-card-shot">
                 <span class="iphone-frame">
                   <span class="iphone-screen">
-                    <img src="assets/app-screenshots/socialflow/v1/web/01-feed.webp" alt="SocialFlow — home feed" width="786" height="1704" loading="lazy" />
+                    <img decoding="async" src="assets/app-screenshots/socialflow/v1/web/01-feed.webp" alt="SocialFlow — home feed" width="786" height="1704" loading="lazy" />
                   </span>
                 </span>
               </span>
@@ -170,7 +170,7 @@
               <span class="work-card-shot">
                 <span class="iphone-frame">
                   <span class="iphone-screen">
-                    <img src="assets/app-screenshots/nativeaistudio/v1/web/03-answer.webp" alt="NativeAIStudio — streaming answer" width="786" height="1704" loading="lazy" />
+                    <img decoding="async" src="assets/app-screenshots/nativeaistudio/v1/web/03-answer.webp" alt="NativeAIStudio — streaming answer" width="786" height="1704" loading="lazy" />
                   </span>
                 </span>
               </span>
@@ -237,37 +237,37 @@
               <div class="screen-strip">
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/wealthkit/v2/web/01-dashboard.webp" data-caption="Net worth dashboard" aria-label="View WealthKit — net worth dashboard full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/wealthkit/v2/web/01-dashboard.webp" alt="WealthKit — net worth dashboard" loading="eager" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/wealthkit/v2/web/01-dashboard.webp" alt="WealthKit — net worth dashboard" loading="eager" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Net worth dashboard</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/wealthkit/v2/web/02-spend-feed.webp" data-caption="Spend feed" aria-label="View WealthKit — spend feed full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/wealthkit/v2/web/02-spend-feed.webp" alt="WealthKit — spend feed" loading="eager" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/wealthkit/v2/web/02-spend-feed.webp" alt="WealthKit — spend feed" loading="eager" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Spend feed</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/wealthkit/v2/web/03-holding-detail.webp" data-caption="Holding detail with chart" aria-label="View WealthKit — holding detail with chart full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/wealthkit/v2/web/03-holding-detail.webp" alt="WealthKit — holding detail with chart" loading="eager" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/wealthkit/v2/web/03-holding-detail.webp" alt="WealthKit — holding detail with chart" loading="eager" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Holding detail with chart</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/wealthkit/v2/web/04-buy-order.webp" data-caption="Buy order keypad" aria-label="View WealthKit — buy order keypad full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/wealthkit/v2/web/04-buy-order.webp" alt="WealthKit — buy order keypad" loading="lazy" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/wealthkit/v2/web/04-buy-order.webp" alt="WealthKit — buy order keypad" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Buy order keypad</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/wealthkit/v2/web/05-goal-complete.webp" data-caption="Goal reached" aria-label="View WealthKit — goal reached full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/wealthkit/v2/web/05-goal-complete.webp" alt="WealthKit — goal reached" loading="lazy" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/wealthkit/v2/web/05-goal-complete.webp" alt="WealthKit — goal reached" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Goal reached</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/wealthkit/v2/web/06-profile.webp" data-caption="Account and security" aria-label="View WealthKit — account and security full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/wealthkit/v2/web/06-profile.webp" alt="WealthKit — account and security" loading="lazy" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/wealthkit/v2/web/06-profile.webp" alt="WealthKit — account and security" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Account and security</figcaption>
                 </figure>
@@ -311,43 +311,43 @@
               <div class="screen-strip">
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/fitnesspro/v1/web/01-today.webp" data-caption="Today's rings" aria-label="View FitnessPro — today's rings full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/fitnesspro/v1/web/01-today.webp" alt="FitnessPro — today's rings" loading="eager" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/fitnesspro/v1/web/01-today.webp" alt="FitnessPro — today's rings" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Today's rings</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/fitnesspro/v1/web/02-history.webp" data-caption="Workout history" aria-label="View FitnessPro — workout history full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/fitnesspro/v1/web/02-history.webp" alt="FitnessPro — workout history" loading="eager" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/fitnesspro/v1/web/02-history.webp" alt="FitnessPro — workout history" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Workout history</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/fitnesspro/v1/web/03-active-workout.webp" data-caption="Active workout" aria-label="View FitnessPro — active workout full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/fitnesspro/v1/web/03-active-workout.webp" alt="FitnessPro — active workout" loading="eager" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/fitnesspro/v1/web/03-active-workout.webp" alt="FitnessPro — active workout" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Active workout</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/fitnesspro/v1/web/04-set-logger.webp" data-caption="Set logger" aria-label="View FitnessPro — set logger full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/fitnesspro/v1/web/04-set-logger.webp" alt="FitnessPro — set logger" loading="lazy" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/fitnesspro/v1/web/04-set-logger.webp" alt="FitnessPro — set logger" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Set logger</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/fitnesspro/v1/web/05-streak-closed.webp" data-caption="Streak celebration" aria-label="View FitnessPro — streak celebration full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/fitnesspro/v1/web/05-streak-closed.webp" alt="FitnessPro — streak celebration" loading="lazy" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/fitnesspro/v1/web/05-streak-closed.webp" alt="FitnessPro — streak celebration" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Streak celebration</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/fitnesspro/v1/web/06-you.webp" data-caption="Athlete profile" aria-label="View FitnessPro — athlete profile full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/fitnesspro/v1/web/06-you.webp" alt="FitnessPro — athlete profile" loading="lazy" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/fitnesspro/v1/web/06-you.webp" alt="FitnessPro — athlete profile" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Athlete profile</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/fitnesspro/v1/web/07-workout-detail.webp" data-caption="Workout detail" aria-label="View FitnessPro — workout detail full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/fitnesspro/v1/web/07-workout-detail.webp" alt="FitnessPro — workout detail" loading="lazy" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/fitnesspro/v1/web/07-workout-detail.webp" alt="FitnessPro — workout detail" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Workout detail</figcaption>
                 </figure>
@@ -391,37 +391,37 @@
               <div class="screen-strip">
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/shopease/v1/web/01-shop.webp" data-caption="Shop front" aria-label="View ShopEase — shop front full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/shopease/v1/web/01-shop.webp" alt="ShopEase — shop front" loading="eager" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/shopease/v1/web/01-shop.webp" alt="ShopEase — shop front" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Shop front</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/shopease/v1/web/02-ceramics.webp" data-caption="Ceramics category" aria-label="View ShopEase — ceramics category full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/shopease/v1/web/02-ceramics.webp" alt="ShopEase — ceramics category" loading="eager" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/shopease/v1/web/02-ceramics.webp" alt="ShopEase — ceramics category" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Ceramics category</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/shopease/v1/web/03-product.webp" data-caption="Product detail" aria-label="View ShopEase — product detail full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/shopease/v1/web/03-product.webp" alt="ShopEase — product detail" loading="eager" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/shopease/v1/web/03-product.webp" alt="ShopEase — product detail" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Product detail</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/shopease/v1/web/04-checkout.webp" data-caption="Checkout" aria-label="View ShopEase — checkout full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/shopease/v1/web/04-checkout.webp" alt="ShopEase — checkout" loading="lazy" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/shopease/v1/web/04-checkout.webp" alt="ShopEase — checkout" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Checkout</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/shopease/v1/web/05-empty-bag.webp" data-caption="Empty bag" aria-label="View ShopEase — empty bag full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/shopease/v1/web/05-empty-bag.webp" alt="ShopEase — empty bag" loading="lazy" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/shopease/v1/web/05-empty-bag.webp" alt="ShopEase — empty bag" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Empty bag</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/shopease/v1/web/06-account.webp" data-caption="Orders and addresses" aria-label="View ShopEase — orders and addresses full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/shopease/v1/web/06-account.webp" alt="ShopEase — orders and addresses" loading="lazy" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/shopease/v1/web/06-account.webp" alt="ShopEase — orders and addresses" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Orders and addresses</figcaption>
                 </figure>
@@ -465,37 +465,37 @@
               <div class="screen-strip">
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/socialflow/v1/web/01-feed.webp" data-caption="Home feed" aria-label="View SocialFlow — home feed full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/socialflow/v1/web/01-feed.webp" alt="SocialFlow — home feed" loading="eager" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/socialflow/v1/web/01-feed.webp" alt="SocialFlow — home feed" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Home feed</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/socialflow/v1/web/02-post.webp" data-caption="Post detail" aria-label="View SocialFlow — post detail full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/socialflow/v1/web/02-post.webp" alt="SocialFlow — post detail" loading="eager" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/socialflow/v1/web/02-post.webp" alt="SocialFlow — post detail" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Post detail</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/socialflow/v1/web/03-compose.webp" data-caption="Compose" aria-label="View SocialFlow — compose full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/socialflow/v1/web/03-compose.webp" alt="SocialFlow — compose" loading="eager" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/socialflow/v1/web/03-compose.webp" alt="SocialFlow — compose" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Compose</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/socialflow/v1/web/04-explore.webp" data-caption="Explore mosaic" aria-label="View SocialFlow — explore mosaic full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/socialflow/v1/web/04-explore.webp" alt="SocialFlow — explore mosaic" loading="lazy" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/socialflow/v1/web/04-explore.webp" alt="SocialFlow — explore mosaic" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Explore mosaic</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/socialflow/v1/web/05-empty.webp" data-caption="Quiet feed empty state" aria-label="View SocialFlow — quiet feed empty state full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/socialflow/v1/web/05-empty.webp" alt="SocialFlow — quiet feed empty state" loading="lazy" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/socialflow/v1/web/05-empty.webp" alt="SocialFlow — quiet feed empty state" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Quiet feed empty state</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/socialflow/v1/web/06-profile.webp" data-caption="Profile grid" aria-label="View SocialFlow — profile grid full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/socialflow/v1/web/06-profile.webp" alt="SocialFlow — profile grid" loading="lazy" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/socialflow/v1/web/06-profile.webp" alt="SocialFlow — profile grid" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Profile grid</figcaption>
                 </figure>
@@ -539,37 +539,37 @@
               <div class="screen-strip">
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/nativeaistudio/v1/web/01-studio.webp" data-caption="Studio home with model picker" aria-label="View NativeAIStudio — studio home with model picker full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/nativeaistudio/v1/web/01-studio.webp" alt="NativeAIStudio — studio home with model picker" loading="eager" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/nativeaistudio/v1/web/01-studio.webp" alt="NativeAIStudio — studio home with model picker" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Studio home with model picker</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/nativeaistudio/v1/web/02-conversations.webp" data-caption="Conversation list" aria-label="View NativeAIStudio — conversation list full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/nativeaistudio/v1/web/02-conversations.webp" alt="NativeAIStudio — conversation list" loading="eager" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/nativeaistudio/v1/web/02-conversations.webp" alt="NativeAIStudio — conversation list" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Conversation list</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/nativeaistudio/v1/web/03-answer.webp" data-caption="Streaming answer" aria-label="View NativeAIStudio — streaming answer full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/nativeaistudio/v1/web/03-answer.webp" alt="NativeAIStudio — streaming answer" loading="eager" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/nativeaistudio/v1/web/03-answer.webp" alt="NativeAIStudio — streaming answer" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Streaming answer</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/nativeaistudio/v1/web/04-compose.webp" data-caption="Compose with tool run" aria-label="View NativeAIStudio — compose with tool run full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/nativeaistudio/v1/web/04-compose.webp" alt="NativeAIStudio — compose with tool run" loading="lazy" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/nativeaistudio/v1/web/04-compose.webp" alt="NativeAIStudio — compose with tool run" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Compose with tool run</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/nativeaistudio/v1/web/05-first-run.webp" data-caption="First run" aria-label="View NativeAIStudio — first run full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/nativeaistudio/v1/web/05-first-run.webp" alt="NativeAIStudio — first run" loading="lazy" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/nativeaistudio/v1/web/05-first-run.webp" alt="NativeAIStudio — first run" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>First run</figcaption>
                 </figure>
                 <figure class="screen-shot">
                   <button type="button" class="screen-shot-btn" data-full="assets/app-screenshots/nativeaistudio/v1/web/06-settings.webp" data-caption="Model and privacy" aria-label="View NativeAIStudio — model and privacy full size">
-                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img src="assets/app-screenshots/nativeaistudio/v1/web/06-settings.webp" alt="NativeAIStudio — model and privacy" loading="lazy" width="786" height="1704"></span></span>
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="assets/app-screenshots/nativeaistudio/v1/web/06-settings.webp" alt="NativeAIStudio — model and privacy" loading="lazy" width="786" height="1704"></span></span>
                   </button>
                   <figcaption>Model and privacy</figcaption>
                 </figure>
@@ -830,12 +830,12 @@
       <button type="button" class="lb-close" aria-label="Close preview">&times;</button>
       <button type="button" class="lb-nav lb-prev" aria-label="Previous screen">&lsaquo;</button>
       <figure class="lb-stage">
-        <img class="lb-img" src="" alt="" />
+        <img decoding="async" class="lb-img" src="" alt="" />
         <figcaption class="lb-cap"></figcaption>
       </figure>
       <button type="button" class="lb-nav lb-next" aria-label="Next screen">&rsaquo;</button>
     </div>
 
-    <script src="script.js?v=20260831-grid"></script>
+    <script src="script.js?v=20260831-perf"></script>
   </body>
 </html>

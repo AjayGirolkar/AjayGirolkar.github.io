@@ -851,12 +851,20 @@ body[data-theme="dark"] .contact-form textarea {
 .reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 700ms ease, transform 700ms ease;
+  transition: opacity 450ms ease, transform 450ms ease;
 }
 
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 @media (max-width: 1120px) {
@@ -1468,9 +1476,13 @@ body[data-theme="dark"] .cal-preview { background: rgba(255,255,255,.03); }
   max-height: 0;
   overflow: hidden;
   transition: max-height .45s cubic-bezier(.4,0,.2,1);
+  /* The clipped content still cost a full layout + paint pass on every scroll
+     frame. Skip rendering it entirely while the panel is shut. */
+  content-visibility: hidden;
 }
 .collapsible-section:not(.collapsed) .collapse-body {
   max-height: 4000px;
+  content-visibility: visible;
 }
 .collapse-body > * { padding-top: 8px; }
 .collapse-body .section-heading { padding-top: 0; }
