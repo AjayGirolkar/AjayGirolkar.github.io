@@ -1,4 +1,3 @@
-const header = document.querySelector(".site-header");
 const revealItems = document.querySelectorAll(".reveal");
 const year = document.getElementById("year");
 const themeToggle = document.querySelector(".theme-toggle");
@@ -60,16 +59,6 @@ window.addEventListener(
   },
   { passive: true }
 );
-
-if (header) {
-  let scrolled = null;
-  scrollEffects.push((y) => {
-    const next = y > 18;
-    if (next === scrolled) return; // Skip the DOM write when nothing changed.
-    scrolled = next;
-    header.classList.toggle("scrolled", next);
-  });
-}
 
 if (reduceMotion) {
   // Nothing to stagger when the fade is off — show it all up front.
@@ -183,8 +172,8 @@ function initWorkGrid() {
   cards.forEach(card => {
     card.addEventListener('click', () => {
       document.querySelector(`.app-tab[data-app="${card.dataset.app}"]`)?.click();
-      // Offset for the sticky header so the tab row isn't hidden under it.
-      const top = target.getBoundingClientRect().top + window.scrollY - 84;
+      // Small breathing gap above the tab row.
+      const top = target.getBoundingClientRect().top + window.scrollY - 24;
       window.scrollTo({ top, behavior: reduce ? 'auto' : 'smooth' });
     });
   });

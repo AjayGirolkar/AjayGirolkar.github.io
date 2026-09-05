@@ -93,20 +93,12 @@ p {
   margin: 0 auto;
 }
 
+/* The header scrolls away with the page rather than pinning to the
+   top, so the hero and gallery get the full viewport height. */
 .site-header {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 80;
   padding: 18px 0;
-}
-
-.site-header.scrolled .nav-shell {
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 14px 44px rgba(28, 37, 56, 0.12);
-}
-
-body[data-theme="dark"] .site-header.scrolled .nav-shell {
-  background: rgba(15, 20, 29, 0.78);
 }
 
 .nav-shell {
