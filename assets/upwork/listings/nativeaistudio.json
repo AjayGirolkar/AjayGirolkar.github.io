@@ -1,0 +1,114 @@
+{
+  "slug": "nativeaistudio",
+  "title": "Add an AI chat feature to your iOS app (Claude / GPT)",
+  "eyebrow": "SwiftUI · Streaming · Tool use",
+  "footer": "Ajay Girolkar · Senior iOS Engineer · 11 yrs · Claude Agent SDK",
+
+  "screens_dir": "assets/app-screenshots/nativeaistudio/v1",
+  "hero_screens": ["01-studio.png", "03-answer.png", "04-compose.png"],
+  "grid_screens": [
+    "01-studio.png",
+    "02-conversations.png",
+    "03-answer.png",
+    "04-compose.png",
+    "05-first-run.png",
+    "06-settings.png"
+  ],
+
+  "hero_headline": "Ship an AI feature\ninside your iOS app",
+  "hero_sub": "Streaming chat, tool calling, conversation history. Built native in SwiftUI against the Claude or OpenAI API, with your key kept off the device.",
+
+  "grid_title": "What a shipped AI surface looks like",
+
+  "deliverables_title": "What you get",
+  "deliverables": [
+    "Streaming responses, token by token, no spinner freeze",
+    "Tool use / function calling wired to your app's own data",
+    "Conversation history persisted with SwiftData",
+    "API key handled server-side or in Keychain, never hardcoded",
+    "Cancel, retry, and rate-limit handling that actually works",
+    "Markdown and code-block rendering in the chat bubble",
+    "Prompt caching to cut your per-call token cost",
+    "Loom walkthrough of the model calls and cost model"
+  ],
+
+  "process_title": "How the build runs",
+  "process": [
+    {
+      "step": "Day 0",
+      "title": "Requirements",
+      "body": "You send repo access, your API provider, and what the AI should be able to do. Clock starts here."
+    },
+    {
+      "step": "Day 2",
+      "title": "Transport",
+      "body": "Streaming client, error handling and cancellation land first. The hard part, done early."
+    },
+    {
+      "step": "Day 5",
+      "title": "Surface",
+      "body": "Chat UI, history, and tool calls wired to your data. You get a build to try."
+    },
+    {
+      "step": "Handoff",
+      "title": "Ship",
+      "body": "Cost review, prompt tuning, revision round, and a note on what to watch in production."
+    }
+  ],
+
+  "tiers_title": "Three ways to start",
+  "tiers": [
+    {
+      "name": "Starter",
+      "price": "$499",
+      "delivery": "7 days",
+      "items": [
+        "One streaming chat screen",
+        "Your API provider wired in",
+        "Keychain key storage",
+        "1 revision round"
+      ]
+    },
+    {
+      "name": "Standard",
+      "price": "$1,400",
+      "delivery": "14 days",
+      "featured": true,
+      "items": [
+        "Chat + conversation history",
+        "Tool calling on your data",
+        "SwiftData persistence",
+        "Markdown + code rendering",
+        "Cancel, retry, rate limits",
+        "2 revision rounds"
+      ]
+    },
+    {
+      "name": "Premium",
+      "price": "$3,000",
+      "delivery": "24 days",
+      "items": [
+        "Everything in Standard",
+        "Multi-turn agent with tool loop",
+        "Prompt caching + cost dashboard",
+        "Proxy endpoint so no key ships",
+        "Unit tests on the model layer",
+        "3 revision rounds"
+      ]
+    }
+  ],
+
+  "fit_title": "Is this the right project for you?",
+  "fit_good": [
+    "You have an existing iOS app and want AI inside it",
+    "You already have, or can get, a Claude or OpenAI API key",
+    "You want native SwiftUI, not a web view wrapper",
+    "You care what each call costs you per user"
+  ],
+  "fit_bad": [
+    "You want a model trained or fine-tuned on your data",
+    "You need the backend or proxy service designed from zero",
+    "You expect on-device inference with no API",
+    "The feature is not defined yet"
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "slug": "shopease",
+  "title": "E-commerce iOS app in SwiftUI — browse, cart, checkout",
+  "eyebrow": "SwiftUI · iOS 26 · Commerce",
+  "footer": "Ajay Girolkar · Senior iOS Engineer · 11 yrs · Global banks & fintech",
+
+  "screens_dir": "assets/app-screenshots/shopease/v1",
+  "hero_screens": ["01-shop.png", "03-product.png", "04-checkout.png"],
+  "grid_screens": [
+    "01-shop.png",
+    "02-ceramics.png",
+    "03-product.png",
+    "04-checkout.png",
+    "05-empty-bag.png",
+    "06-account.png"
+  ],
+
+  "hero_headline": "Your store, native\non iPhone",
+  "hero_sub": "Browse, product detail, cart, checkout. Production SwiftUI wired to Shopify, WooCommerce, or your own API — built by an engineer with 11 years of payments work.",
+
+  "grid_title": "Six screens from a build like yours",
+
+  "deliverables_title": "What you get",
+  "deliverables": [
+    "Production SwiftUI screens, not prototypes",
+    "Catalog, search, filters, and product detail",
+    "Cart and checkout flow with Apple Pay ready",
+    "Shopify, WooCommerce or custom REST wired up",
+    "Image caching so the grid scrolls at 120fps",
+    "Empty, loading and error states designed, not skipped",
+    "Light and dark mode, Dynamic Type, VoiceOver labels",
+    "Loom walkthrough of the code and how to extend it"
+  ],
+
+  "process_title": "How the build runs",
+  "process": [
+    {
+      "step": "Day 0",
+      "title": "Requirements",
+      "body": "You send designs, your commerce backend and API keys. Delivery clock starts here."
+    },
+    {
+      "step": "Day 2",
+      "title": "Foundation",
+      "body": "Design tokens, navigation and the product model land. You get a build to run."
+    },
+    {
+      "step": "Day 6",
+      "title": "Storefront",
+      "body": "Catalog, detail, cart and checkout built against your live data. Daily push to your repo."
+    },
+    {
+      "step": "Handoff",
+      "title": "Ship",
+      "body": "Code walkthrough, revision round, and a checklist for App Store submission."
+    }
+  ],
+
+  "tiers_title": "Three ways to start",
+  "tiers": [
+    {
+      "name": "Starter",
+      "price": "$299",
+      "delivery": "6 days",
+      "items": [
+        "3 SwiftUI screens",
+        "Design token layer",
+        "Mock catalog data",
+        "1 revision round"
+      ]
+    },
+    {
+      "name": "Standard",
+      "price": "$849",
+      "delivery": "12 days",
+      "featured": true,
+      "items": [
+        "6 SwiftUI screens",
+        "Your commerce API wired in",
+        "Cart and checkout flow",
+        "Search, filters, image caching",
+        "Light and dark mode",
+        "2 revision rounds"
+      ]
+    },
+    {
+      "name": "Premium",
+      "price": "$2,200",
+      "delivery": "21 days",
+      "items": [
+        "10 SwiftUI screens",
+        "Everything in Standard",
+        "Apple Pay + StoreKit setup",
+        "Account, orders, addresses",
+        "Push notifications for orders",
+        "App Store submission support",
+        "3 revision rounds"
+      ]
+    }
+  ],
+
+  "fit_title": "Is this the right project for you?",
+  "fit_good": [
+    "You already sell online and want a native iPhone app",
+    "You have designs, a Figma file, or a reference app",
+    "Your catalog is on Shopify, WooCommerce or a REST API",
+    "You want native SwiftUI, not a web view wrapper"
+  ],
+  "fit_bad": [
+    "You need the store backend built from scratch",
+    "You want an Android app in the same order",
+    "You need a custom payment gateway certified",
+    "The scope is open-ended or still being decided"
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "slug": "wealthkit",
+  "title": "Fintech & investment iOS app in SwiftUI",
+  "eyebrow": "SwiftUI · iOS 26 · Fintech",
+  "footer": "Ajay Girolkar · Senior iOS Engineer · 11 yrs · Global banks & fintech",
+
+  "screens_dir": "assets/app-screenshots/wealthkit/v2",
+  "hero_screens": ["01-dashboard.png", "03-holding-detail.png", "05-goal-complete.png"],
+  "grid_screens": [
+    "01-dashboard.png",
+    "02-spend-feed.png",
+    "03-holding-detail.png",
+    "04-buy-order.png",
+    "05-goal-complete.png",
+    "06-profile.png"
+  ],
+
+  "hero_headline": "Your fintech app,\nbuilt native in SwiftUI",
+  "hero_sub": "Portfolio, holdings, orders, goals. Production SwiftUI from an engineer who has shipped banking apps inside global financial firms for 11 years.",
+
+  "grid_title": "Six screens from a build like yours",
+
+  "deliverables_title": "What you get",
+  "deliverables": [
+    "Production SwiftUI screens, not prototypes",
+    "MVVM + Clean Architecture, testable by design",
+    "Design token layer: colors, type, spacing, radii",
+    "async/await networking layer, no third-party deps",
+    "Light and dark mode, Dynamic Type, VoiceOver labels",
+    "Charts and animated states built with SwiftUI Charts",
+    "Xcode project that builds clean on first open",
+    "Loom walkthrough of the code and how to extend it"
+  ],
+
+  "process_title": "How the build runs",
+  "process": [
+    {
+      "step": "Day 0",
+      "title": "Requirements",
+      "body": "You send screens or a Figma link, target iOS version and API docs. Delivery clock starts here."
+    },
+    {
+      "step": "Day 2",
+      "title": "Foundation",
+      "body": "Design tokens, navigation shell and data models land. You get a build to run."
+    },
+    {
+      "step": "Day 6",
+      "title": "Screens",
+      "body": "Feature screens built against real or mock data. Daily push to your repo."
+    },
+    {
+      "step": "Handoff",
+      "title": "Ship",
+      "body": "Code walkthrough, revision round, and a checklist for App Store submission."
+    }
+  ],
+
+  "tiers_title": "Three ways to start",
+  "tiers": [
+    {
+      "name": "Starter",
+      "price": "$349",
+      "delivery": "6 days",
+      "items": [
+        "3 SwiftUI screens",
+        "Design token layer",
+        "Mock data, no backend",
+        "1 revision round"
+      ]
+    },
+    {
+      "name": "Standard",
+      "price": "$899",
+      "delivery": "12 days",
+      "featured": true,
+      "items": [
+        "6 SwiftUI screens",
+        "Design token layer",
+        "MVVM + navigation stack",
+        "async/await API layer",
+        "Light and dark mode",
+        "2 revision rounds"
+      ]
+    },
+    {
+      "name": "Premium",
+      "price": "$2,400",
+      "delivery": "21 days",
+      "items": [
+        "10 SwiftUI screens",
+        "Everything in Standard",
+        "Auth, Keychain, biometrics",
+        "SwiftUI Charts + animations",
+        "Unit tests on view models",
+        "App Store submission support",
+        "3 revision rounds"
+      ]
+    }
+  ],
+
+  "fit_title": "Is this the right project for you?",
+  "fit_good": [
+    "You have designs, a Figma file, or a clear reference app",
+    "You want native SwiftUI, not React Native or Flutter",
+    "You need finance-grade care: security, accuracy, edge cases",
+    "You want code your own team can read and extend"
+  ],
+  "fit_bad": [
+    "You need a backend or API built from scratch",
+    "You want an Android app in the same order",
+    "The scope is open-ended or still being decided",
+    "You need it live in under a week"
+  ]
+}
