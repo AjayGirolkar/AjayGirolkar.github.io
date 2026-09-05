@@ -1,0 +1,56 @@
+<!-- 03 · Artist — entity archetype. The plate is monochrome, so poster.theme() returns
+     zero chroma and the whole screen themes NEUTRAL rather than falling through to a
+     hue-0 red. That fallback is the single most load-bearing line in the extractor and
+     this screen is where it shows. Tour dates reuse the s1 timetable rhythm. -->
+<div class="ios ev-silhouette">
+{{EVTHEME}}
+<div class="stack">
+
+  <div class="poster" style="height:400px"><img src="{{IMG_ART_HERO}}" alt=""></div>
+  {{SB}}
+  <div class="orb" style="left:16px"><svg class="i"><use href="#ic-chev-l"/></svg></div>
+  <div class="orb" style="right:16px"><svg class="i"><use href="#ic-more"/></svg></div>
+
+  <div style="position:absolute;left:var(--margin);right:var(--margin);top:262px;z-index:3">
+    <div class="wide" style="color:#fff;margin-bottom:9px">Berlin · techno / industrial</div>
+    <h1 class="disp" style="font-size:54px">Ghost Signal</h1>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;top:418px;padding:0 var(--margin)">
+    <div style="display:flex;gap:9px;margin-bottom:16px">
+      <div class="btn-o" style="flex:1">Following · 14.2K</div>
+      <div class="btn-o" style="width:52px;box-shadow:inset 0 0 0 1.2px var(--ink-3)">
+        <svg class="i" style="width:19px;height:19px"><use href="#ic-bell"/></svg></div>
+    </div>
+
+    <div class="wide" style="margin-bottom:2px">Upcoming · 9 dates</div>
+    <div class="r"><div class="datebox"><u>Mar</u><b>21</b></div>
+      <div class="lbl"><div class="slot"><span class="n" style="font-size:16px">Berghain</span></div>
+        <div class="wide" style="font-size:10px;margin-top:-9px">Berlin · 00:30 · 18+</div></div>
+      <span class="val" style="color:var(--ev)">&#8377;2,300</span></div>
+    <hr class="hair">
+    <div class="r"><div class="datebox"><u>Mar</u><b>28</b></div>
+      <div class="lbl"><div class="slot"><span class="n" style="font-size:16px">De School</span></div>
+        <div class="wide" style="font-size:10px;margin-top:-9px">Amsterdam · 23:00</div></div>
+      <span class="val" style="color:var(--ev)">&#8377;2,050</span></div>
+    <hr class="hair">
+    <div class="r"><div class="datebox"><u>Apr</u><b>04</b></div>
+      <div class="lbl"><div class="slot"><span class="n" style="font-size:16px">Corsica Studios</span></div>
+        <div class="wide" style="font-size:10px;margin-top:-9px">London · 22:00 · waitlist</div></div>
+      <span class="wide" style="font-size:10px">Sold out</span></div>
+    <hr class="hair">
+    <div class="r"><div class="datebox"><u>Apr</u><b>11</b></div>
+      <div class="lbl"><div class="slot"><span class="n" style="font-size:16px">Sub Club</span></div>
+        <div class="wide" style="font-size:10px;margin-top:-9px">Glasgow · 23:00</div></div>
+      <span class="val" style="color:var(--ev)">&#8377;1,900</span></div>
+
+    <div class="wide" style="margin:19px 0 8px">From the last tour</div>
+    <div style="display:flex;gap:6px">
+      <img src="{{IMG_ART_1}}" style="width:112px;height:112px;object-fit:cover;border-radius:2px" alt="">
+      <img src="{{IMG_ART_2}}" style="width:112px;height:112px;object-fit:cover;border-radius:2px" alt="">
+      <img src="{{IMG_ART_3}}" style="width:112px;height:112px;object-fit:cover;border-radius:2px" alt="">
+    </div>
+  </div>
+  <div class="home"></div>
+</div>
+</div>

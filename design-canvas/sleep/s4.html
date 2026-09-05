@@ -1,0 +1,62 @@
+<!-- 04 · Last night — the data screen, and the one place the app is allowed to be dense.
+     The hypnogram is drawn by gen.hypnogram() from a real night's SHAPE: a fast descent
+     to N3, deep sleep front-loaded into the first two cycles, REM periods lengthening
+     toward morning, three brief wakes. A smooth sine wave would look nicer and would be
+     a lie about how sleep works. Still no containers: rows are hairlines, not cards. -->
+<div class="ios">
+<div class="stack">
+  {{SB}}
+
+  <div style="position:absolute;left:var(--margin);right:var(--margin);top:84px">
+    <p class="lbl" style="margin-bottom:14px">last night &middot; 23:06 to 06:40</p>
+    <p class="dsp" style="font-size:34px">7h 12m asleep<br>of 7h 34m in bed</p>
+    <p class="qt" style="margin-top:13px">You fell asleep in 14 minutes and woke three
+      times, none longer than four.</p>
+  </div>
+
+  <div style="position:absolute;left:var(--margin);right:var(--margin);top:292px;
+    display:flex;gap:14px">
+    <div class="stage-key">
+      <span class="lbl" style="font-size:10px">awake</span>
+      <span class="lbl" style="font-size:10px">rem</span>
+      <span class="lbl" style="font-size:10px">light</span>
+      <span class="lbl" style="font-size:10px">deep</span>
+    </div>
+    <div style="flex:1">{{HYPNO}}</div>
+  </div>
+  <div style="position:absolute;left:var(--margin);right:var(--margin);top:404px;
+    display:flex;justify-content:space-between">
+    <span class="lbl" style="font-size:10px">23:06</span>
+    <span class="lbl" style="font-size:10px">02:00</span>
+    <span class="lbl" style="font-size:10px">04:00</span>
+    <span class="lbl" style="font-size:10px">06:40</span>
+  </div>
+
+  <div style="position:absolute;left:var(--margin);right:var(--margin);top:462px">
+    <hr class="hair">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;padding:17px 0">
+      <span class="qt" style="color:var(--ink)">Deep</span>
+      <span class="fig" style="font-size:24px">1h 42m<small>24%</small></span></div>
+    <hr class="hair">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;padding:17px 0">
+      <span class="qt" style="color:var(--ink)">REM</span>
+      <span class="fig" style="font-size:24px">1h 58m<small>27%</small></span></div>
+    <hr class="hair">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;padding:17px 0">
+      <span class="qt" style="color:var(--ink)">Lowest heart rate</span>
+      <span class="fig" style="font-size:24px">52<small>bpm at 03:14</small></span></div>
+    <hr class="hair">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;padding:17px 0">
+      <span class="qt" style="color:var(--ink)">Full cycles</span>
+      <span class="fig" style="font-size:24px">5<small>of about 90 min</small></span></div>
+    <hr class="hair">
+  </div>
+
+  <div style="position:absolute;left:var(--margin);right:var(--margin);bottom:64px">
+    <p class="qt">Deep sleep is front-loaded and REM stretches toward morning &mdash;
+      last night followed that shape almost exactly.</p>
+  </div>
+
+  <div class="home"></div>
+</div>
+</div>

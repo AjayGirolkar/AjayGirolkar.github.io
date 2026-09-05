@@ -1,0 +1,185 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<style>
+/* ================= GATE — "poster ground" register, app layer =================
+   Sixth domain. The five spent identity-lock rows are fintech (light grey, inset
+   grouped cards, floating glass pill tab bar), fitness (near-black, rings as
+   surfaces), commerce (warm paper, containerless photography, editorial serif),
+   social (pure mono, edge-to-edge media, never uppercase) and AI (warm ink,
+   message turns, no tab bar, mono facts). GATE has to be none of them.
+
+   GROUND        the POSTER ART itself, running under the status bar, fading into an
+                 ink that is EXTRACTED FROM THAT POSTER (poster.theme()). No two events
+                 render the same colours. This is the one thing no other domain does:
+                 the palette is content-derived at runtime, not designed.
+   CONTAINERS    none, except one -- a die-cut ticket with punched notches and a
+                 perforation. Radius language is near-square (4px), so the die-cut
+                 reads as the only manufactured object in the app.
+   CHROME        no tab bar. Two circular glass buttons floating on the poster, and a
+                 full-width bottom slab notched like a torn stub. Nothing else.
+   TYPE          ONE family, Archivo, split by its WIDTH axis instead of by family or
+                 by tracking: giant heads at wdth 62 / wght 800, small labels at
+                 wdth 122 / wght 600. Commerce separates label from body with .19em
+                 tracking on a serif; GATE never tracks past .05em and never changes
+                 family -- width carries the whole hierarchy.
+   DENSITY       one enormous type block, then a tight timetable. Nothing in between. */
+
+.ios{
+  --f-sys:"Archivo",-apple-system,"SF Pro Text",system-ui,sans-serif;
+  --margin:18px;
+  --t-body:15px;
+  --surface:var(--ev-ink); --surface-el:var(--ev-ink-2); --surface-sunk:#000;
+  --ink:#F7F5F6; --ink-2:rgba(247,245,246,.70); --ink-3:rgba(247,245,246,.46);
+  --hairline:rgba(247,245,246,.15);
+  --accent:var(--ev); --on-accent:var(--on-ev);
+  background:var(--ev-ink); color:var(--ink);
+  font-variation-settings:"wdth" 100,"wght" 400;
+}
+/* Dark-locked, and locked by CONTENT rather than by taste: a poster fades into its own
+   darkness, not into paper. Re-pin the kit's light tokens AND its light .glass, the same
+   fix commerce/social/AI each needed in the opposite direction. */
+@media (prefers-color-scheme: light){
+  .ios{ --surface:var(--ev-ink); --surface-el:var(--ev-ink-2);
+        --ink:#F7F5F6; --ink-2:rgba(247,245,246,.70); --ink-3:rgba(247,245,246,.46);
+        --hairline:rgba(247,245,246,.15); }
+  .ios .glass{ background:rgba(255,255,255,.14);
+               -webkit-backdrop-filter:blur(22px) saturate(170%);
+               backdrop-filter:blur(22px) saturate(170%); }
+}
+.ios .stack{background:var(--ev-ink)}
+.ios .statusbar{color:#fff}
+
+/* ---------- type: the width axis IS the hierarchy ---------- */
+.ios .disp{                                  /* the artist name, and nothing else */
+  font-variation-settings:"wdth" 62,"wght" 800;
+  font-size:66px; line-height:.845; letter-spacing:-.012em;
+  text-transform:uppercase; margin:0;
+}
+.ios .disp-2{font-size:44px}
+.ios .wide{                                  /* every label in the app */
+  font-variation-settings:"wdth" 122,"wght" 600;
+  font-size:11px; letter-spacing:.045em; text-transform:uppercase;
+  color:var(--ink-2);
+}
+.ios .num{font-variation-settings:"wdth" 92,"wght" 600;font-variant-numeric:tabular-nums}
+.ios .sub{font-size:14px;color:var(--ink-2);margin:0}
+
+/* ---------- poster: the ground, not an image in a card ---------- */
+.ios .poster{position:absolute;inset:0 0 auto 0;height:560px;overflow:hidden;background:#000}
+.ios .poster img{width:100%;height:100%;object-fit:cover;display:block}
+/* two scrims, and they do different jobs. The top one only has to make the status bar
+   legible. The bottom one has to carry 66px type AND hand the poster off to the extracted
+   ink with no visible seam -- so it ends AT the ink, opaque, not at transparent black. */
+.ios .poster::before{content:"";position:absolute;inset:0 0 auto 0;height:132px;
+  background:linear-gradient(to bottom,rgba(0,0,0,.50),rgba(0,0,0,0))}
+.ios .poster::after{content:"";position:absolute;inset:auto 0 0 0;height:330px;
+  background:linear-gradient(to bottom,
+    rgba(0,0,0,0) 0%, color-mix(in srgb,var(--ev-scrim) 48%,transparent) 46%,
+    color-mix(in srgb,var(--ev-scrim) 86%,transparent) 78%, var(--ev-ink) 100%)}
+
+/* ---------- floating chrome: two circles, no tab bar anywhere in the app ---------- */
+.ios .orb{position:absolute;top:58px;width:36px;height:36px;border-radius:18px;
+  display:flex;align-items:center;justify-content:center;z-index:5;
+  background:rgba(255,255,255,.16);
+  -webkit-backdrop-filter:blur(20px) saturate(170%);backdrop-filter:blur(20px) saturate(170%);
+  box-shadow:inset 0 0 0 .5px rgba(255,255,255,.28)}
+.ios .orb .i{width:19px;height:19px;color:#fff}
+
+/* ---------- the timetable: the only dense thing in the app ---------- */
+.ios .slot{display:flex;align-items:center;gap:12px;height:44px}
+.ios .slot .t{font-variation-settings:"wdth" 88,"wght" 700;font-size:15px;
+  font-variant-numeric:tabular-nums;width:46px;color:var(--ink)}
+.ios .slot .n{font-variation-settings:"wdth" 78,"wght" 700;font-size:17px;
+  text-transform:uppercase;letter-spacing:.005em;flex:1}
+.ios .slot--head .n{color:var(--ev)}
+.ios .slot--head .t{color:var(--ev)}
+.ios .thumb{width:34px;height:34px;border-radius:3px;object-fit:cover;display:block;
+  filter:saturate(.95) brightness(1.16)}
+
+/* ---------- the die-cut: GATE's one container, used as the action slab ---------- */
+.ios .stub{position:absolute;left:0;right:0;bottom:0;background:var(--ev-ink-2);
+  border-top:.5px solid var(--hairline);padding:13px var(--margin) 0}
+/* the punched notches. Two 13px circles filled with the ground colour, half off-edge,
+   sitting ON the top border -- the same die a cloakroom stub is cut with. */
+.ios .stub::before,.ios .stub::after{content:"";position:absolute;top:-10px;width:20px;height:20px;
+  border-radius:10px;background:var(--ev-ink);box-shadow:inset 0 -.5px 0 var(--hairline)}
+.ios .stub::before{left:-10px}.ios .stub::after{right:-10px}
+/* the perforation itself: a dashed rule between the notches. Without it the two circles
+   read as a rendering artefact rather than as a die-cut. */
+.ios .perf{position:absolute;left:12px;right:12px;top:-.5px;height:1px;
+  background:repeating-linear-gradient(to right,var(--ev-ink) 0 4px,transparent 4px 9px)}
+.ios .buy{flex:1;height:50px;border-radius:4px;background:var(--ev);color:var(--on-ev);
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  font-variation-settings:"wdth" 96,"wght" 800;font-size:15px;letter-spacing:.055em;
+  text-transform:uppercase}
+.ios .live{display:inline-flex;align-items:center;gap:5px}
+.ios .live i{width:6px;height:6px;border-radius:3px;background:var(--ev);display:block;
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--ev) 24%,transparent)}
+
+/* ---------- brand ground: the two screens that belong to no single event ----------
+   Discover and Wallet cannot borrow a poster's palette, so GATE keeps exactly one
+   colour of its own. Cool violet-ink, deliberately not the four spent darks:
+   #07090A is fitness (cold neutral), #000 is social, #131211 is AI (warm), and this
+   is #0C0A10 -- violet-leaning, and the accent 253deg clears every spent accent by
+   85deg or more. It appears on 2 screens of 7; the other 5 are the artwork's. */
+.ios.brand,.ios .brand{--ev-ink:#151320;--ev-ink-2:#211D30;--ev:#8E75FF;--ev-lo:#4B3AA0;
+            --ev-scrim:#151320;--on-ev:#12101C}
+
+/* ---------- s2 discover: the proof that the palette is extracted ----------
+   Each strip is a plate with that event's OWN ink band welded to its bottom edge and
+   its OWN accent as a 3px left rule. Scroll it and the colour changes every row. */
+.ios .strip{position:relative;background:var(--ev-ink)}
+.ios .strip img{width:100%;height:112px;object-fit:cover;display:block}
+.ios .strip .band{display:flex;align-items:center;gap:10px;height:52px;
+  padding:0 var(--margin) 0 15px;border-left:3px solid var(--ev)}
+.ios .strip .nm{font-variation-settings:"wdth" 70,"wght" 800;font-size:19px;
+  text-transform:uppercase;line-height:1;flex:1}
+.ios .strip .pr{font-variation-settings:"wdth" 92,"wght" 700;font-size:14px;
+  font-variant-numeric:tabular-nums;color:var(--ev)}
+
+/* ---------- the die-cut, used as a real object on s5/s7 ----------
+   Everything else in GATE is containerless. This is the one manufactured thing, so it
+   gets the only shadow in the app and the only non-4px geometry -- the punch. */
+.ios .tkt{position:relative;background:var(--ev-ink-2);border-radius:4px;overflow:hidden;
+  box-shadow:0 18px 44px rgba(0,0,0,.55)}
+.ios .tkt img{width:100%;display:block}
+.ios .punch{position:relative;height:22px}
+.ios .punch::before,.ios .punch::after{content:"";position:absolute;top:0;width:22px;height:22px;
+  border-radius:11px;background:var(--ev-ink)}
+.ios .punch::before{left:-11px}.ios .punch::after{right:-11px}
+.ios .punch i{position:absolute;left:16px;right:16px;top:10.5px;height:1px;display:block;
+  background:repeating-linear-gradient(to right,var(--hairline) 0 5px,transparent 5px 11px)}
+.ios .fld{flex:1}
+.ios .fld b{display:block;font-variation-settings:"wdth" 90,"wght" 700;font-size:15px;
+  color:var(--ink);margin-top:2px;font-variant-numeric:tabular-nums}
+
+/* the scan code. Drawn, not an image: a fake QR that is actually a QR-shaped grid reads
+   as placeholder art the moment anyone looks, so this is a rendered block matrix with
+   real finder squares in the three corners. */
+.ios .qr{width:132px;height:132px;background:#fff;padding:8px;border-radius:2px;
+  display:grid;grid-template-columns:repeat(21,1fr);grid-auto-rows:1fr}
+.ios .qr s{background:#000;display:block}
+
+/* ---------- rows: the timetable rhythm reused for dates, money and past stubs ---- */
+.ios .r{display:flex;align-items:center;gap:13px;min-height:46px}
+.ios .r .lbl{flex:1;font-size:15px}
+.ios .r .val{font-variation-settings:"wdth" 92,"wght" 600;font-size:15px;
+  font-variant-numeric:tabular-nums}
+.ios .datebox{width:46px;text-align:left}
+.ios .datebox u{display:block;text-decoration:none;font-variation-settings:"wdth" 122,"wght" 600;
+  font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)}
+.ios .datebox b{display:block;font-variation-settings:"wdth" 70,"wght" 800;font-size:26px;
+  line-height:.9}
+.ios .btn-o{height:44px;border-radius:4px;box-shadow:inset 0 0 0 1.2px var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-variation-settings:"wdth" 100,"wght" 700;font-size:13px;letter-spacing:.06em;
+  text-transform:uppercase}
+.ios .seg{display:flex;gap:2px;background:var(--ev-ink-2);border-radius:4px;padding:2px}
+.ios .seg span{flex:1;height:32px;display:flex;align-items:center;justify-content:center;
+  border-radius:3px;font-variation-settings:"wdth" 118,"wght" 600;font-size:11px;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)}
+.ios .seg span.on{background:var(--ink);color:var(--ev-ink)}
+.ios .queue{height:5px;border-radius:3px;background:var(--hairline);overflow:hidden}
+.ios .queue i{display:block;height:100%;background:var(--ev);border-radius:3px}
+</style>

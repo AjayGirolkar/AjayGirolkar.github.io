@@ -1,0 +1,48 @@
+<!-- 03 · Story player — a transport control with no buttons in boxes. The scrubber is a
+     hairline arc, not a bar, because a bar is a container; the elapsed figure sits inside
+     the arc's opening. Skip/play/skip are glyph-only, no circles, no fills. -->
+<div class="ios">
+<div class="stack">
+  {{SB}}
+
+  <div style="position:absolute;left:var(--margin);right:var(--margin);top:92px;
+    text-align:center">
+    <p class="lbl" style="margin-bottom:15px">sleep story &middot; 6 of 24</p>
+    <p class="dsp" style="font-size:34px">The Night Ferry<br>to Ardrossan</p>
+    <p class="qt" style="margin-top:14px">Read by Iona Marr &middot; 45 minutes</p>
+  </div>
+
+  <div style="position:absolute;left:50%;top:326px;transform:translateX(-50%);
+    width:250px;height:250px">
+    <div class="halo" style="width:300px;height:300px;left:-25px;top:-25px"></div>
+    <svg width="250" height="250" viewBox="0 0 250 250" fill="none"
+      style="position:absolute;inset:0;transform:rotate(-90deg)">
+      <circle cx="125" cy="125" r="116" stroke="rgba(238,236,246,.14)" stroke-width="1.4"/>
+      <!-- 14:08 of 45:00 = 31.4% of a 728.8 circumference -->
+      <circle cx="125" cy="125" r="116" stroke="var(--moon)" stroke-width="1.8"
+        stroke-dasharray="229 500" stroke-linecap="round" opacity=".9"/>
+    </svg>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;
+      align-items:center;justify-content:center">
+      <p class="fig">14:08</p>
+      <p class="lbl" style="margin-top:12px">30:52 left</p>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;top:626px;display:flex;
+    align-items:center;justify-content:center;gap:52px">
+    <span class="lbl" style="font-size:14px;letter-spacing:.02em">&minus;15s</span>
+    <svg width="26" height="30" viewBox="0 0 26 30" fill="var(--ink)" opacity=".82">
+      <rect x="2" y="2" width="7" height="26" rx="1.4"/><rect x="17" y="2" width="7" height="26" rx="1.4"/>
+    </svg>
+    <span class="lbl" style="font-size:14px;letter-spacing:.02em">+15s</span>
+  </div>
+
+  <div style="position:absolute;left:var(--margin);right:var(--margin);bottom:78px;
+    text-align:center">
+    <p class="qt">Fades out at 30 minutes, or when you stop moving.</p>
+  </div>
+
+  <div class="home"></div>
+</div>
+</div>

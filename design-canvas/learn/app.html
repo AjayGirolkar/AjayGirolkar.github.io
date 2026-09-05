@@ -1,0 +1,127 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============= LINGO — "pressable" register, app layer =============
+   Eighth domain. Six of the seven spent grounds are dark or near-neutral and the
+   seventh (commerce paper) is quiet on purpose. Lingo is the only LOUD ground in the
+   portfolio, and the only one that is light AND saturated.
+
+   GROUND      warm cream #FFF6E9, and each screen carries one full-bleed saturated
+               colour block. Commerce's paper is a backdrop that gets out of the way;
+               this is paper that shouts.
+   CONTAINERS  chunky PRESSABLE slabs -- a solid fill with a 4px darker lip beneath it,
+               so every touchable thing looks physically depressible. This is the ONLY
+               app in the set with depth: fintech uses inset cards with no lip, GATE
+               uses a die-cut with a shadow, and everything else is flat by lock.
+               A pressed slab loses its lip and moves down 4px. Nothing else is a card.
+   CHROME      no tab bar. A top HUD -- hearts, streak, crown progress -- and a single
+               full-width slab at the bottom. Navigation is the PATH itself.
+   TYPE        Nunito 700-900 only. There is no light weight anywhere in the app; the
+               lightest text on any screen is 600. Rounded terminals, generous
+               x-height, big targets. Fitness owns oversized rounded NUMERALS as its
+               type story; here the rounded face carries the prose and the numerals are
+               incidental, which is the opposite arrangement.
+   DENSITY     one task per screen, 44pt+ targets, nothing smaller than 13px.
+   ACCENT      leaf #2FA84F on cream, with a fixed semantic set: correct is leaf,
+               wrong is clay #D8462F, locked is stone, streak is amber. The colours
+               MEAN things -- they are a state machine, not decoration.                */
+
+.ios{
+  --f-sys:"Nunito",ui-rounded,"SF Pro Rounded",-apple-system,system-ui,sans-serif;
+  --margin:20px; --t-body:16px;
+
+  --surface:#FFF6E9; --surface-el:#FFFFFF; --surface-sunk:#F3E7D4;
+  --ink:#2B2118; --ink-2:#7A6A58; --ink-3:#AC9C88;
+  --hairline:#EADCC6;
+
+  --leaf:#2FA84F;   --leaf-lip:#238C3E;   --leaf-soft:#E4F4E6;
+  --clay:#D8462F;   --clay-lip:#B2331F;   --clay-soft:#FBE7E2;
+  --amber:#F09A1E;  --amber-lip:#C77A10;
+  --sky:#1D8FD1;    --sky-lip:#146FA6;
+  --stone:#DCCEB8;  --stone-lip:#C6B69C;
+
+  --accent:var(--leaf); --on-accent:#FFFFFF;
+  background:var(--surface); color:var(--ink);
+  font-weight:700; -webkit-font-smoothing:antialiased;
+}
+/* Light-locked, and it is the identity: a dark Lingo would be a different product and
+   would also land on top of four dark apps. Re-pin the kit's dark tokens AND its dark
+   .glass -- the mirror of the fix commerce needed, and the fourth time this exact
+   re-pin has been required. It belongs in the kit. */
+@media (prefers-color-scheme: dark){
+  .ios{ --surface:#FFF6E9; --surface-el:#FFFFFF; --surface-sunk:#F3E7D4;
+        --ink:#2B2118; --ink-2:#7A6A58; --ink-3:#AC9C88; --hairline:#EADCC6; }
+  .ios .glass{ background:rgba(255,255,255,.72);
+               -webkit-backdrop-filter:blur(20px) saturate(160%);
+               backdrop-filter:blur(20px) saturate(160%); }
+}
+/* min-height is load-bearing. .ios is the 393x852 device box; .stack has NO height of
+   its own, so on a screen whose content is absolutely positioned it shrink-wraps to the
+   status bar and a ground painted here covers ~60pt. Every earlier domain got away with
+   it because --surface on .ios happened to be the same colour; the first screen with a
+   DIFFERENT ground on .stack (a green celebration screen) showed a 60pt band and 790pt
+   of cream. Ground belongs on a box that has a height. */
+.ios .stack{background:var(--surface);min-height:100%}
+.ios .statusbar{color:var(--ink)}
+.ios .home{background:var(--ink);opacity:.28}
+
+/* ---------- type ---------- */
+.ios .h1{font-size:26px;font-weight:900;line-height:1.22;letter-spacing:-.012em;margin:0}
+.ios .h2{font-size:20px;font-weight:800;line-height:1.3;margin:0}
+.ios .bd{font-size:16px;font-weight:700;line-height:1.44;margin:0}
+.ios .cap{font-size:13px;font-weight:700;color:var(--ink-2);margin:0}
+.ios .kick{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink-2)}
+
+/* ---------- the pressable slab: the app's ONE container ----------
+   Solid fill, 4px darker lip, 16px radius. `.press` drops it onto the lip. */
+.ios .slab{position:relative;border-radius:16px;background:var(--surface-el);
+  box-shadow:0 4px 0 var(--stone-lip);border:2px solid var(--stone);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;color:var(--ink);min-height:56px;padding:12px 16px;text-align:center}
+.ios .slab.sel{border-color:var(--sky);background:#E6F2FB;box-shadow:0 4px 0 var(--sky-lip);
+  color:var(--sky-lip)}
+.ios .slab.ok{border-color:var(--leaf);background:var(--leaf-soft);
+  box-shadow:0 4px 0 var(--leaf-lip);color:var(--leaf-lip)}
+.ios .slab.bad{border-color:var(--clay);background:var(--clay-soft);
+  box-shadow:0 4px 0 var(--clay-lip);color:var(--clay-lip)}
+.ios .slab.press{transform:translateY(4px);box-shadow:none}
+.ios .cta{border-radius:16px;min-height:56px;display:flex;align-items:center;
+  justify-content:center;font-weight:900;font-size:16px;letter-spacing:.05em;
+  text-transform:uppercase;color:#fff;background:var(--leaf);box-shadow:0 4px 0 var(--leaf-lip)}
+.ios .cta.mute{background:var(--stone);box-shadow:0 4px 0 var(--stone-lip);color:#fff}
+.ios .cta.clay{background:var(--clay);box-shadow:0 4px 0 var(--clay-lip)}
+
+/* ---------- the HUD: the only persistent chrome, and it is not a bar ---------- */
+.ios .hud{display:flex;align-items:center;gap:14px;padding:6px var(--margin) 0}
+.ios .hud .m{display:flex;align-items:center;gap:6px;font-weight:900;font-size:16px}
+.ios .bar{flex:1;height:14px;border-radius:7px;background:var(--stone);overflow:hidden}
+.ios .bar i{display:block;height:100%;border-radius:7px;background:var(--leaf)}
+
+/* ---------- the path: navigation IS the content ---------- */
+.ios .pathwrap{position:relative;width:353px;margin:0 auto}
+.ios .spine{position:absolute;left:0;top:0}
+.ios .node{position:absolute;width:74px;height:74px;border-radius:37px;
+  display:flex;align-items:center;justify-content:center}
+.ios .node-face{position:absolute;inset:0;border-radius:37px;display:flex;
+  align-items:center;justify-content:center;font-weight:900;font-size:14px;color:#fff;
+  padding:0 6px;text-align:center;line-height:1.1}
+.ios .n-done .node-face{background:var(--leaf);box-shadow:0 5px 0 var(--leaf-lip)}
+.ios .n-now{width:86px;height:86px;border-radius:43px}
+.ios .n-now .node-face{border-radius:43px;background:var(--amber);
+  box-shadow:0 6px 0 var(--amber-lip);font-size:16px}
+.ios .n-now::after{content:"";position:absolute;inset:-9px;border-radius:52px;
+  border:3px solid var(--amber);opacity:.32}
+.ios .n-locked .node-face{background:var(--stone);box-shadow:0 5px 0 var(--stone-lip);
+  color:#fff}
+
+/* ---------- misc ---------- */
+.ios .chip{background:var(--surface-el);border:2px solid var(--stone);border-radius:12px;
+  box-shadow:0 3px 0 var(--stone-lip);padding:8px 13px;font-weight:800;font-size:15px;
+  display:inline-flex;align-items:center;gap:7px;height:auto}
+.ios .blank{display:inline-block;min-width:104px;border-bottom:3px dashed var(--stone-lip);
+  height:26px;vertical-align:-4px}
+.ios .avatar{width:40px;height:40px;border-radius:20px;background:var(--sky);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px}
+</style>

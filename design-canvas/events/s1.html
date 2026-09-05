@@ -1,0 +1,66 @@
+<!-- 01 · Event — the hero. The poster runs edge to edge under the status bar and hands
+     off to an ink extracted from itself; the artist name is set at wdth 62 / 66px and
+     is allowed to be the largest thing on any screen in the portfolio. Below it the
+     app turns into a timetable, with no transitional zone at all -- that jump from one
+     enormous block to a tight 44px rhythm is the density signature. -->
+<div class="ios ev-antipodes">
+{{EVTHEME}}
+<div class="stack">
+
+  <div class="poster"><img src="{{IMG_HERO}}" alt=""></div>
+  {{SB}}
+
+  <div class="orb" style="left:16px"><svg class="i"><use href="#ic-chev-l"/></svg></div>
+  <div class="orb" style="right:16px"><svg class="i"><use href="#ic-share"/></svg></div>
+
+  <!-- hero type block: sits inside the poster, anchored to its bottom edge -->
+  <div style="position:absolute;left:var(--margin);right:var(--margin);top:368px;z-index:3">
+    <div class="wide" style="display:flex;align-items:center;gap:9px;margin-bottom:11px;color:#fff">
+      <span class="live"><i></i></span>SAT 14 MAR · 2026
+      <span style="opacity:.45">/</span><span style="opacity:.72">SOLD 92%</span>
+    </div>
+    <h1 class="disp">Antipodes</h1>
+    <h1 class="disp disp-2" style="color:var(--ev)">Low&nbsp;Country</h1>
+    <p class="sub" style="margin-top:12px;color:rgba(255,255,255,.78)">
+      The Foundry, Sheffield · standing, 1,100 cap<br>
+      <span style="color:rgba(255,255,255,.55)">Doors 20:00 · 18+ with ID</span></p>
+  </div>
+
+  <!-- running order. Tabular times at wdth 88 against names at wdth 78 -- the whole
+       column reads as a printed bill because the widths differ, not the family. -->
+  <div style="position:absolute;left:0;right:0;top:562px;padding:0 var(--margin)">
+    <div class="wide" style="margin-bottom:4px">Running order · stage times</div>
+    <div class="slot">
+      <span class="t">20:35</span><span class="n">Half Light</span>
+      <img class="thumb" src="{{IMG_SUP1}}" alt="">
+    </div>
+    <hr class="hair">
+    <div class="slot">
+      <span class="t">21:20</span><span class="n">Meridian Bloom</span>
+      <img class="thumb" src="{{IMG_SUP2}}" alt="">
+    </div>
+    <hr class="hair">
+    <div class="slot slot--head">
+      <span class="t">22:15</span><span class="n">Antipodes</span>
+      <img class="thumb" src="{{IMG_SUP3}}" alt="">
+    </div>
+  </div>
+
+  <!-- the die-cut stub: GATE's only container, and it is the chrome -->
+  <div class="stub"><div class="perf"></div>
+    <div class="wide" style="display:flex;justify-content:space-between;margin-bottom:10px">
+      <span>Face-value resale only · no touts</span>
+      <span style="color:var(--ev)">38 left</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;padding-bottom:26px">
+      <div>
+        <div class="wide" style="font-size:10px;margin-bottom:1px">From</div>
+        <div class="num" style="font-size:22px;line-height:1">&#8377;1,850</div>
+      </div>
+      <div class="buy">Get tickets</div>
+    </div>
+    <div class="home"></div>
+  </div>
+
+</div>
+</div>

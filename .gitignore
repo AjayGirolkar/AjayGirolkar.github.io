@@ -23,6 +23,8 @@ assets/app-screenshots/**/*.png
 design-canvas/*/src/
 design-canvas/*/_cand.*
 design-canvas/*/_graded.*
+design-canvas/*/_all.png
+design-canvas/*/_sheet.png
 
 # Pages build output assembled by .github/workflows/pages.yml
 _site/

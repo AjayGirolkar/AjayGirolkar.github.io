@@ -1,0 +1,65 @@
+<!-- 05 · Disruption — the state that decides whether a transit app is trusted. It names
+     the dates, the exact closed section, the replacement service and the real penalty in
+     minutes, and it offers the alternative rather than just apologising. The line's own
+     colour carries the header; the alert red is used on nothing but the closure itself. -->
+<div class="ios">
+<div class="stack" style="background:var(--surface)">
+  {{SB}}
+  <div class="navbar"><svg class="i"><use href="#ic-chev-l"/></svg>
+    <span class="nm" style="font-size:17px">Line status</span>
+    <svg class="i"><use href="#ic-bell"/></svg></div>
+
+  <div style="background:#224F86;padding:14px var(--margin) 17px">
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px">
+      <span class="ln" style="background:#fff;color:#224F86;min-width:30px;height:30px;
+        border-radius:4px;font-size:15px">U8</span>
+      <span class="nm" style="color:#fff;font-size:17px">Wittenau &mdash; Hermannstra&szlig;e</span>
+    </div>
+    <p class="h1" style="color:#fff;font-size:23px">Part closed this weekend</p>
+    <p class="cap" style="color:rgba(255,255,255,.86);margin-top:5px">
+      Sat 7 &ndash; Sun 8 Mar, first to last train.</p>
+  </div>
+
+  <div style="padding:16px var(--margin) 0">
+    <div class="alert" style="margin-bottom:16px">
+      <p class="cap" style="color:var(--alert);font-weight:600;margin-bottom:3px">
+        No service: Osloer Str. &harr; Alexanderplatz</p>
+      <p class="cap" style="color:var(--alert)">Track renewal between Bernauer Str. and
+        Rosenthaler Platz. Six stations closed.</p>
+    </div>
+
+    <p class="kick" style="margin-bottom:2px">Replacement</p>
+    <hr class="hair">
+    <div class="row">
+      <span class="ln" style="background:#5C6672;min-width:26px;height:26px;
+        border-radius:13px;font-size:13px">U8</span>
+      <div class="to"><p class="stn">Bus, every 5 min</p>
+        <p class="cap">Calls at all six closed stations &middot; not step-free</p></div>
+      <div class="mins" style="font-size:17px">+14<u>min</u></div>
+    </div>
+    <hr class="hair">
+
+    <p class="kick" style="margin:18px 0 2px">Faster alternative</p>
+    <hr class="hair">
+    <div class="row">
+      {{BL_U6}}
+      <div class="to"><p class="stn">via Friedrichstra&szlig;e</p>
+        <p class="cap">Change at Alexanderplatz &middot; step-free throughout</p></div>
+      <div class="mins" style="font-size:17px">+6<u>min</u></div>
+    </div>
+    <hr class="hair">
+    <div class="row">
+      {{BL_S1}}
+      <div class="to"><p class="stn">via Nordbahnhof</p>
+        <p class="cap">Runs every 10 min at weekends</p></div>
+      <div class="mins" style="font-size:17px">+9<u>min</u></div>
+    </div>
+    <hr class="hair">
+
+    <p class="cap" style="margin-top:20px">Planned works are published 12 weeks ahead.
+      You will get one notification the evening before, and nothing else.</p>
+  </div>
+
+  <div class="home"></div>
+</div>
+</div>

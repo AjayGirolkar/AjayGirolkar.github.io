@@ -379,7 +379,7 @@
           <div class="section-heading center reveal">
             <p class="eyebrow">Architecture Reference Projects</p>
             <h2>Real SwiftUI code — patterns I use in production.</h2>
-            <p class="section-sub">Five reference apps across investing, training, commerce, social and AI — each designed to iOS 26, and each deliberately built to read as a different product rather than one template in five colours. Every screen is laid out side by side; open <em>More details</em> for the problem, the stack and the design canvas.</p>
+            <p class="section-sub">Nine reference apps across investing, training, commerce, social, AI, live events, sleep, language learning and transit — each designed to iOS 26, and each deliberately built to read as a different product rather than one template in nine colours. Every screen is laid out side by side; open <em>More details</em> for the problem, the stack and the design canvas.</p>
           </div>
 
           <div class="app-tabs reveal">
@@ -388,6 +388,10 @@
             <button class="app-tab" data-app="shopease">ShopEase</button>
             <button class="app-tab" data-app="socialflow">SocialFlow</button>
             <button class="app-tab" data-app="nativeaistudio">NativeAIStudio</button>
+            <button class="app-tab" data-app="gate">GATE</button>
+            <button class="app-tab" data-app="nocturne">Nocturne</button>
+            <button class="app-tab" data-app="lingo">Lingo</button>
+            <button class="app-tab" data-app="wayfare">Wayfare</button>
           </div>
 
           <div class="app-demo-grid reveal">
@@ -793,6 +797,304 @@
                   <div class="app-links">
                     <a href="https://claude.ai/code/artifact/f2ba2b4e-628c-431a-aad8-19c68f8e7bbf" target="_blank" rel="noreferrer" class="app-link-github">Open the design canvas →</a>
                     <span class="app-link-badge">Artboards, divergence table and the seven-rule audit</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="app-demo" data-app="gate">
+              <div class="app-demo-head">
+                <div class="app-demo-title">
+                  <p class="eyebrow">Live events · Ticketing</p>
+                  <h3>GATE</h3>
+                </div>
+                <button type="button" class="app-detail-toggle" aria-expanded="false" aria-controls="detail-gate">
+                  <span class="adt-text">More details</span>
+                  <span class="adt-icon" aria-hidden="true">+</span>
+                </button>
+              </div>
+
+              <p class="screen-strip-hint">7 screens — tap any one to open it full size.</p>
+
+              <div class="screen-strip">
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/gate/v1/web/01-event.webp" data-caption="Event with running order" aria-label="View GATE — event with running order full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/gate/v1/web/01-event.webp" alt="GATE — event with running order" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Event with running order</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/gate/v1/web/02-tonight.webp" data-caption="Tonight — five events, five palettes" aria-label="View GATE — tonight — five events, five palettes full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/gate/v1/web/02-tonight.webp" alt="GATE — tonight — five events, five palettes" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Tonight — five events, five palettes</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/gate/v1/web/03-artist.webp" data-caption="Artist page" aria-label="View GATE — artist page full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/gate/v1/web/03-artist.webp" alt="GATE — artist page" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Artist page</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/gate/v1/web/04-checkout.webp" data-caption="Checkout with a held-inventory timer" aria-label="View GATE — checkout with a held-inventory timer full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/gate/v1/web/04-checkout.webp" alt="GATE — checkout with a held-inventory timer" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Checkout with a held-inventory timer</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/gate/v1/web/05-ticket.webp" data-caption="Live ticket, die-cut stub" aria-label="View GATE — live ticket, die-cut stub full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/gate/v1/web/05-ticket.webp" alt="GATE — live ticket, die-cut stub" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Live ticket, die-cut stub</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/gate/v1/web/06-waitlist.webp" data-caption="Sold out — face-value waitlist" aria-label="View GATE — sold out — face-value waitlist full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/gate/v1/web/06-waitlist.webp" alt="GATE — sold out — face-value waitlist" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Sold out — face-value waitlist</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/gate/v1/web/07-wallet.webp" data-caption="Wallet" aria-label="View GATE — wallet full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/gate/v1/web/07-wallet.webp" alt="GATE — wallet" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Wallet</figcaption>
+                </figure>
+              </div>
+
+              <div class="app-detail" id="detail-gate">
+                <div class="app-detail-inner">
+                  <div class="app-scara">
+                  <p><strong>Problem:</strong> Ticketing apps put the artwork in a thumbnail and paint everything around it in the company's own brand colour, so every gig — a string quartet and a warehouse techno night — arrives looking identical. Then the booking fee shows up on the last screen.</p>
+                  <p><strong>Result:</strong> The poster runs edge to edge as the ground, and the palette is <em>extracted</em> from it rather than designed: quantize the plate, discard the near-greys, weight what is left by pixel count × saturation<sup>1.5</sup>. Change the poster and the app re-themes. The fee is on the checkout screen, above the total.</p>
+                  </div>
+                  <ul class="app-features">
+                  <li>Per-event palette derived in code — ten events, ten grounds and accents, none chosen by hand</li>
+                  <li>Accent lightness solved for a fixed 4.6:1 against that event's own ground, so amber and blue carry identical weight; source chroma is a stage light, not a UI token</li>
+                  <li>Monochrome posters take an explicit zero-chroma branch to silver instead of falling through to red</li>
+                  <li>One family, Archivo, split by its width axis — heads at wdth 62, labels at wdth 122</li>
+                  <li>No tab bar on any screen; one die-cut ticket with punched notches is the app's only container</li>
+                  <li>Face-value return queue drawn as a real state, with a live waitlist position</li>
+                  </ul>
+                  <div class="app-tech">
+                  <span>Swift</span><span>SwiftUI</span><span>async/await</span><span>Core Image</span><span>PassKit</span><span>Vision</span><span>Extracted palette, no fixed accent</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="app-demo" data-app="nocturne">
+              <div class="app-demo-head">
+                <div class="app-demo-title">
+                  <p class="eyebrow">Sleep · Wind-down</p>
+                  <h3>Nocturne</h3>
+                </div>
+                <button type="button" class="app-detail-toggle" aria-expanded="false" aria-controls="detail-nocturne">
+                  <span class="adt-text">More details</span>
+                  <span class="adt-icon" aria-hidden="true">+</span>
+                </button>
+              </div>
+
+              <p class="screen-strip-hint">6 screens — tap any one to open it full size.</p>
+
+              <div class="screen-strip">
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/nocturne/v1/web/01-tonight.webp" data-caption="Tonight" aria-label="View Nocturne — tonight full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/nocturne/v1/web/01-tonight.webp" alt="Nocturne — tonight" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Tonight</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/nocturne/v1/web/02-breathe.webp" data-caption="4-7-8 breathing" aria-label="View Nocturne — 4-7-8 breathing full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/nocturne/v1/web/02-breathe.webp" alt="Nocturne — 4-7-8 breathing" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>4-7-8 breathing</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/nocturne/v1/web/03-story.webp" data-caption="Sleep story player" aria-label="View Nocturne — sleep story player full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/nocturne/v1/web/03-story.webp" alt="Nocturne — sleep story player" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Sleep story player</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/nocturne/v1/web/04-last-night.webp" data-caption="Last night, with hypnogram" aria-label="View Nocturne — last night, with hypnogram full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/nocturne/v1/web/04-last-night.webp" alt="Nocturne — last night, with hypnogram" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Last night, with hypnogram</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/nocturne/v1/web/05-soundscape.webp" data-caption="Soundscape mixer" aria-label="View Nocturne — soundscape mixer full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/nocturne/v1/web/05-soundscape.webp" alt="Nocturne — soundscape mixer" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Soundscape mixer</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/nocturne/v1/web/06-alarm.webp" data-caption="Alarm window dial" aria-label="View Nocturne — alarm window dial full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/nocturne/v1/web/06-alarm.webp" alt="Nocturne — alarm window dial" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Alarm window dial</figcaption>
+                </figure>
+              </div>
+
+              <div class="app-detail" id="detail-nocturne">
+                <div class="app-detail-inner">
+                  <div class="app-scara">
+                  <p><strong>Problem:</strong> Sleep apps are read at 3am in a dark bedroom and then designed at noon on a calibrated display. The result is a #FFF headline that works like a flashlight, a stock photograph of a bed, and a cartoon moon.</p>
+                  <p><strong>Result:</strong> The only gradient ground in the portfolio — the screen darkens toward the home indicator the way a room does — with no containers at all, no chrome at all, and no chromatic accent. Peak ink is 88%, never 100%, because contrast is a comfort decision here, not a compliance one.</p>
+                  </div>
+                  <ul class="app-features">
+                  <li>Zero containers: no card, plate, sheet or row background on any of the six screens</li>
+                  <li>Zero chrome: no tab bar, no nav bar, no back control — navigation is a word or a dot</li>
+                  <li>The orb is three stacked radial gradients, not a bordered circle — a 1px ring would be a container</li>
+                  <li>Hypnogram drawn from a real night's shape: deep sleep front-loaded, REM lengthening toward morning, three brief wakes — not a sine wave</li>
+                  <li>4-7-8 breathing with Weil's actual counts; the alarm is a window arc because waking mid-N3 is what makes an alarm brutal</li>
+                  <li>Newsreader Light, no uppercase anywhere, tracking never above zero</li>
+                  </ul>
+                  <div class="app-tech">
+                  <span>Swift</span><span>SwiftUI</span><span>Canvas / TimelineView</span><span>HealthKit</span><span>AVAudioEngine</span><span>No accent colour by design</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="app-demo" data-app="lingo">
+              <div class="app-demo-head">
+                <div class="app-demo-title">
+                  <p class="eyebrow">Education · Language</p>
+                  <h3>Lingo</h3>
+                </div>
+                <button type="button" class="app-detail-toggle" aria-expanded="false" aria-controls="detail-lingo">
+                  <span class="adt-text">More details</span>
+                  <span class="adt-icon" aria-hidden="true">+</span>
+                </button>
+              </div>
+
+              <p class="screen-strip-hint">6 screens — tap any one to open it full size.</p>
+
+              <div class="screen-strip">
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/lingo/v1/web/01-path.webp" data-caption="Lesson path" aria-label="View Lingo — lesson path full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/lingo/v1/web/01-path.webp" alt="Lingo — lesson path" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Lesson path</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/lingo/v1/web/02-choose.webp" data-caption="Multiple choice" aria-label="View Lingo — multiple choice full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/lingo/v1/web/02-choose.webp" alt="Lingo — multiple choice" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Multiple choice</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/lingo/v1/web/03-build.webp" data-caption="Word build" aria-label="View Lingo — word build full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/lingo/v1/web/03-build.webp" alt="Lingo — word build" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Word build</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/lingo/v1/web/04-mistake.webp" data-caption="A wrong answer, explained" aria-label="View Lingo — a wrong answer, explained full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/lingo/v1/web/04-mistake.webp" alt="Lingo — a wrong answer, explained" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>A wrong answer, explained</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/lingo/v1/web/05-complete.webp" data-caption="Unit complete" aria-label="View Lingo — unit complete full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/lingo/v1/web/05-complete.webp" alt="Lingo — unit complete" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Unit complete</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/lingo/v1/web/06-league.webp" data-caption="League standings" aria-label="View Lingo — league standings full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/lingo/v1/web/06-league.webp" alt="Lingo — league standings" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>League standings</figcaption>
+                </figure>
+              </div>
+
+              <div class="app-detail" id="detail-lingo">
+                <div class="app-detail-inner">
+                  <div class="app-scara">
+                  <p><strong>Problem:</strong> Learning apps are graded on streaks, not on teaching. The tell is the wrong-answer screen: &ldquo;Not quite!&rdquo; and a red X teaches nothing, and the distractors are usually random words rather than the forms a learner actually confuses.</p>
+                  <p><strong>Result:</strong> The only app in the portfolio with real depth &mdash; every touchable surface sits on a 4px darker lip and presses down onto it, so what is tappable is obvious without a single hint. Colour is a state machine: leaf is correct, clay is wrong, stone is locked, amber is the streak. Nothing is coloured for looks.</p>
+                  </div>
+                  <ul class="app-features">
+                  <li>The mistake screen names the actual rule &mdash; <em>cada verano</em> makes it a habit, so Spanish takes the imperfect &mdash; and shows the minimal pair</li>
+                  <li>Distractors are plausible, not random: <em>comía</em> (imperfect), <em>como</em> (present), <em>comeré</em> (future) around the correct <em>comí</em></li>
+                  <li>Lesson path positions and its dotted spine are computed from one list, so a new unit cannot desync them</li>
+                  <li>Word-build tiles leave their slots behind in the bank rather than reflowing it on every tap</li>
+                  <li>No tab bar; the path is the navigation and a HUD carries hearts, streak and crown progress</li>
+                  <li>Nunito 700–900 only &mdash; there is no light weight anywhere in the app</li>
+                  </ul>
+                  <div class="app-tech">
+                  <span>Swift</span><span>SwiftUI</span><span>Canvas</span><span>SpriteKit</span><span>SwiftData</span><span>AVSpeechSynthesizer</span><span>Semantic colour state machine</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="app-demo" data-app="wayfare">
+              <div class="app-demo-head">
+                <div class="app-demo-title">
+                  <p class="eyebrow">Transit · Navigation</p>
+                  <h3>Wayfare</h3>
+                </div>
+                <button type="button" class="app-detail-toggle" aria-expanded="false" aria-controls="detail-wayfare">
+                  <span class="adt-text">More details</span>
+                  <span class="adt-icon" aria-hidden="true">+</span>
+                </button>
+              </div>
+
+              <p class="screen-strip-hint">6 screens — tap any one to open it full size.</p>
+
+              <div class="screen-strip">
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/wayfare/v1/web/01-nearby.webp" data-caption="Nearby, sheet at peek" aria-label="View Wayfare — nearby, sheet at peek full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/wayfare/v1/web/01-nearby.webp" alt="Wayfare — nearby, sheet at peek" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Nearby, sheet at peek</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/wayfare/v1/web/02-routes.webp" data-caption="Route options, sheet at half" aria-label="View Wayfare — route options, sheet at half full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/wayfare/v1/web/02-routes.webp" alt="Wayfare — route options, sheet at half" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Route options, sheet at half</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/wayfare/v1/web/03-journey.webp" data-caption="The journey, sheet at full" aria-label="View Wayfare — the journey, sheet at full full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/wayfare/v1/web/03-journey.webp" alt="Wayfare — the journey, sheet at full" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>The journey, sheet at full</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/wayfare/v1/web/04-departures.webp" data-caption="Departure board" aria-label="View Wayfare — departure board full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/wayfare/v1/web/04-departures.webp" alt="Wayfare — departure board" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Departure board</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/wayfare/v1/web/05-disruption.webp" data-caption="Planned closure" aria-label="View Wayfare — planned closure full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/wayfare/v1/web/05-disruption.webp" alt="Wayfare — planned closure" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Planned closure</figcaption>
+                </figure>
+                <figure class="screen-shot">
+                  <button type="button" class="screen-shot-btn" data-full="../assets/app-screenshots/wayfare/v1/web/06-saved.webp" data-caption="Saved places and lines" aria-label="View Wayfare — saved places and lines full size">
+                    <span class="iphone-frame iphone-xs"><span class="iphone-screen"><img decoding="async" src="../assets/app-screenshots/wayfare/v1/web/06-saved.webp" alt="Wayfare — saved places and lines" loading="lazy" width="786" height="1704"></span></span>
+                  </button>
+                  <figcaption>Saved places and lines</figcaption>
+                </figure>
+              </div>
+
+              <div class="app-detail" id="detail-wayfare">
+                <div class="app-detail-inner">
+                  <div class="app-scara">
+                  <p><strong>Problem:</strong> Transit apps recolour the network to match their own brand, which throws away the one piece of information every rider already knows by heart — that the U8 is dark blue. Then they bury disruptions in a banner at the top, disconnected from the leg they actually affect.</p>
+                  <p><strong>Result:</strong> Wayfare has no accent colour of its own. The palette is the network&#8217;s real one, and the only non-line colour in the app is a red used for nothing but disruption. The map is the ground on every screen with a geography, and a bottom sheet at three detents trades map for timetable.</p>
+                  </div>
+                  <ul class="app-features">
+                  <li>Three detents — peek 208pt, half 452pt, full 748pt — and the sheet is the app&#8217;s only container</li>
+                  <li>Street map generated as vector, with an irregular block grid; a perfectly regular grid reads as a placeholder instantly</li>
+                  <li>Barlow in two widths, split semantically: Semi Condensed means &ldquo;this is a place on the network&rdquo;, normal Barlow is prose and times</li>
+                  <li>Countdowns are tabular so the column never shifts as it ticks; rows without real-time data say so instead of guessing</li>
+                  <li>Disruption appears inline at the leg it affects — the out-of-service lift is on the interchange, not in a banner</li>
+                  <li>Real Berlin lines, real official colours, real interchanges, real headways</li>
+                  </ul>
+                  <div class="app-tech">
+                  <span>Swift</span><span>SwiftUI</span><span>MapKit</span><span>presentationDetents</span><span>CoreLocation</span><span>GTFS-Realtime</span><span>No brand accent by design</span>
                   </div>
                 </div>
               </div>

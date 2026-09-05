@@ -1,0 +1,39 @@
+<!-- 01 · Nearby — the map is the ground and the sheet is at its PEEK detent, so the city
+     gets 640pt and the departures get 208. Real Berlin lines, real colours, real
+     interchanges. Countdowns are tabular so the column does not shift as they tick. -->
+<div class="ios">
+<div class="stack">
+  <div class="map">
+    {{MAP}}
+    <div class="pin" style="left:190px;top:206px"></div>
+    <div class="pin b" style="left:96px;top:463px"></div>
+  </div>
+  {{SB}}
+
+  <div class="mapctl" style="top:104px"><svg class="i"><use href="#ic-target"/></svg></div>
+  <div class="mapctl" style="top:154px"><svg class="i"><use href="#ic-search"/></svg></div>
+
+  <div class="sheet" style="height:212px">
+    <div class="grab"></div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:2px">
+      <p class="h1" style="font-size:21px">Rosenthaler Platz</p>
+      <span class="kick"><span class="live"></span> live</span>
+    </div>
+    <hr class="hair">
+    <div class="row">
+      {{BL_U8}}
+      <div class="to"><p class="stn">Hermannstra&szlig;e</p>
+        <p class="cap">Platform 2 &middot; front of train</p></div>
+      <div class="mins">2<u>min</u></div>
+    </div>
+    <hr class="hair">
+    <div class="row">
+      {{BL_M10}}
+      <div class="to"><p class="stn">Warschauer Str.</p>
+        <p class="cap">Tram &middot; street level</p></div>
+      <div class="mins">4<u>min</u></div>
+    </div>
+    <div class="home"></div>
+  </div>
+</div>
+</div>

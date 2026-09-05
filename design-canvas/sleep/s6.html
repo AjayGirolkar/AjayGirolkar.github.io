@@ -1,0 +1,60 @@
+<!-- 06 · Alarm — a dial, not a picker wheel. The window is the point: the alarm fires at
+     the end of the lightest stage inside a 30-minute band, so it is drawn as an ARC with
+     width rather than as a time with a switch. Waking mid-N3 is what makes an alarm feel
+     brutal, and this is the one screen where the science becomes the interface. -->
+<div class="ios">
+<div class="stack">
+  {{SB}}
+
+  <div style="position:absolute;left:var(--margin);right:var(--margin);top:84px;
+    text-align:center">
+    <p class="lbl" style="margin-bottom:14px">alarm</p>
+    <p class="qt">Wakes you at the end of a light stage,<br>inside the window you set.</p>
+  </div>
+
+  <div style="position:absolute;left:50%;top:212px;transform:translateX(-50%);
+    width:290px;height:290px">
+    <div class="halo" style="width:340px;height:340px;left:-25px;top:-25px"></div>
+    <svg width="290" height="290" viewBox="0 0 290 290" fill="none"
+      style="position:absolute;inset:0;transform:rotate(-90deg)">
+      <circle cx="145" cy="145" r="134" stroke="rgba(238,236,246,.11)" stroke-width="1.2"/>
+      <!-- 12h dial, circumference 842. 06:10 = 51.4% = 433; 06:40 = 55.6% = 468.
+           The first cut was offset -374, which drew the window 40deg from the time the
+           screen states. An arc that disagrees with its own numeral is worse than no arc. -->
+      <circle cx="145" cy="145" r="134" stroke="var(--moon)" stroke-width="10"
+        stroke-dasharray="35 807" stroke-dashoffset="-433" stroke-linecap="round" opacity=".38"/>
+      <circle cx="145" cy="145" r="134" stroke="var(--moon)" stroke-width="2.2"
+        stroke-dasharray="2 840" stroke-dashoffset="-468" stroke-linecap="round"/>
+    </svg>
+    <svg width="290" height="290" viewBox="0 0 290 290" style="position:absolute;inset:0"><line x1="145" y1="14" x2="145" y2="23" stroke="rgba(238,236,246,.34)" stroke-width="1.2" transform="rotate(0 145 145)"/><line x1="145" y1="14" x2="145" y2="19" stroke="rgba(238,236,246,.16)" stroke-width="1.2" transform="rotate(30 145 145)"/><line x1="145" y1="14" x2="145" y2="19" stroke="rgba(238,236,246,.16)" stroke-width="1.2" transform="rotate(60 145 145)"/><line x1="145" y1="14" x2="145" y2="23" stroke="rgba(238,236,246,.34)" stroke-width="1.2" transform="rotate(90 145 145)"/><line x1="145" y1="14" x2="145" y2="19" stroke="rgba(238,236,246,.16)" stroke-width="1.2" transform="rotate(120 145 145)"/><line x1="145" y1="14" x2="145" y2="19" stroke="rgba(238,236,246,.16)" stroke-width="1.2" transform="rotate(150 145 145)"/><line x1="145" y1="14" x2="145" y2="23" stroke="rgba(238,236,246,.34)" stroke-width="1.2" transform="rotate(180 145 145)"/><line x1="145" y1="14" x2="145" y2="19" stroke="rgba(238,236,246,.16)" stroke-width="1.2" transform="rotate(210 145 145)"/><line x1="145" y1="14" x2="145" y2="19" stroke="rgba(238,236,246,.16)" stroke-width="1.2" transform="rotate(240 145 145)"/><line x1="145" y1="14" x2="145" y2="23" stroke="rgba(238,236,246,.34)" stroke-width="1.2" transform="rotate(270 145 145)"/><line x1="145" y1="14" x2="145" y2="19" stroke="rgba(238,236,246,.16)" stroke-width="1.2" transform="rotate(300 145 145)"/><line x1="145" y1="14" x2="145" y2="19" stroke="rgba(238,236,246,.16)" stroke-width="1.2" transform="rotate(330 145 145)"/></svg>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;
+      align-items:center;justify-content:center">
+      <p class="fig" style="font-size:62px">06:40</p>
+      <p class="lbl" style="margin-top:14px">window opens 06:10</p>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:var(--margin);right:var(--margin);top:552px">
+    <hr class="hair">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;padding:17px 0">
+      <span class="qt" style="color:var(--ink)">Window</span>
+      <span class="qt">30 minutes</span></div>
+    <hr class="hair">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;padding:17px 0">
+      <span class="qt" style="color:var(--ink)">Sound</span>
+      <span class="qt">Harbour bell, rising over 90s</span></div>
+    <hr class="hair">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;padding:17px 0">
+      <span class="qt" style="color:var(--ink)">Repeats</span>
+      <span class="qt">Weekdays</span></div>
+    <hr class="hair">
+  </div>
+
+  <div style="position:absolute;left:var(--margin);right:var(--margin);bottom:70px;
+    text-align:center">
+    <p class="qt">Sleeping now would give you 8h 06m.</p>
+  </div>
+
+  <div class="home"></div>
+</div>
+</div>

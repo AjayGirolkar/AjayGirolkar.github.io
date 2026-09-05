@@ -1,0 +1,112 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============= WAYFARE — "map ground" register, app layer =============
+   Ninth domain, and the last identity-lock row left worth taking.
+
+   GROUND      THE MAP. Not a photograph and not a colour -- a drawn vector city that
+               runs full bleed under everything, including the status bar, on every
+               screen that has a geography. No other domain has a ground that is
+               itself information.
+   CONTAINERS  ONE: a bottom sheet, at three detents (peek 208 / half 452 / full 748).
+               Everything the app can tell you lives in that sheet. There are no cards
+               inside it either -- rows are separated by hairlines and by line colour.
+   CHROME      no tab bar, ever. A grabber, and two circular map controls floating on
+               the map. That is the entire chrome budget.
+   TYPE        Barlow, in TWO widths: Semi Condensed for anything that is a NAME on the
+               network (stations, destinations, lines) and normal Barlow for prose and
+               times. GATE splits one family by a width AXIS for hierarchy; here the
+               width split is SEMANTIC -- condensed means "this is a place on the map".
+               Times are tabular, always, because a departure board that shifts is
+               unreadable at a glance.
+   DENSITY     enormous map, then a timetable so dense it is almost a table. Nothing in
+               between, and the sheet's detent is what trades one for the other.
+   ACCENT      NONE OF ITS OWN. The palette is the network's -- real BVG/VBB line
+               colours, in gen.LINES. A transit app that recolours the network to its
+               own brand has thrown away the one thing its users already know by heart.
+               The only non-line colour is a red used exclusively for disruption.      */
+
+.ios{
+  --f-sys:"Barlow",-apple-system,system-ui,sans-serif;
+  --f-name:"Barlow Semi Condensed","Barlow",system-ui,sans-serif;
+  --margin:16px; --t-body:15px;
+
+  --map-bg:#EFEBE1; --map-road:#FFFFFF; --map-arterial:#FBF3D8;
+  --map-water:#BFD8E6; --map-park:#D8E5C8;
+
+  --surface:#FFFFFF; --surface-el:#FFFFFF; --surface-sunk:#F2F1EE;
+  --ink:#14181D; --ink-2:#5C6672; --ink-3:#98A2AE;
+  --hairline:#E4E6EA;
+  --alert:#C4342A;
+  --accent:#14181D; --on-accent:#FFFFFF;
+
+  background:var(--map-bg); color:var(--ink);
+}
+/* Light-locked: a map is read outdoors in daylight, and every dark ground in the set is
+   already spent. Re-pin the kit's dark tokens and its dark .glass -- the fifth time this
+   exact re-pin has been needed, which is now overdue to move into the kit itself. */
+@media (prefers-color-scheme: dark){
+  .ios{ --surface:#FFFFFF; --surface-el:#FFFFFF; --surface-sunk:#F2F1EE;
+        --ink:#14181D; --ink-2:#5C6672; --ink-3:#98A2AE; --hairline:#E4E6EA; }
+  .ios .glass{ background:rgba(255,255,255,.74);
+               -webkit-backdrop-filter:blur(20px) saturate(160%);
+               backdrop-filter:blur(20px) saturate(160%); }
+}
+.ios .stack{background:var(--map-bg);min-height:100%}
+.ios .statusbar{color:var(--ink)}
+.ios .home{background:var(--ink);opacity:.3}
+
+/* ---------- type: the width split is semantic, not decorative ---------- */
+.ios .nm{font-family:var(--f-name);font-weight:600;letter-spacing:.004em}
+.ios .stn{font-family:var(--f-name);font-weight:600;font-size:17px;line-height:1.2}
+.ios .h1{font-family:var(--f-name);font-weight:700;font-size:27px;line-height:1.14;margin:0}
+.ios .tm{font-variant-numeric:tabular-nums;font-weight:600}
+.ios .cap{font-size:13px;color:var(--ink-2);margin:0;line-height:1.42}
+.ios .kick{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-3)}
+
+/* ---------- line badges: rounded for buses/trams, square for U/S-Bahn ---------- */
+.ios .ln{display:inline-flex;align-items:center;justify-content:center;color:#fff;
+  font-family:var(--f-name);font-weight:700;padding:0 6px;flex-shrink:0}
+
+/* ---------- the map ---------- */
+.ios .map{position:absolute;inset:0;overflow:hidden}
+.ios .map svg{position:absolute;left:0;top:0}
+.ios .pin{position:absolute;width:15px;height:15px;border-radius:8px;background:var(--ink);
+  box-shadow:0 0 0 3.5px #fff,0 2px 6px rgba(0,0,0,.28)}
+.ios .pin.b{background:#fff;box-shadow:0 0 0 3.5px var(--ink),0 2px 6px rgba(0,0,0,.28)}
+.ios .mapctl{position:absolute;right:14px;width:42px;height:42px;border-radius:21px;
+  background:rgba(255,255,255,.86);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 10px rgba(20,24,29,.18);
+  -webkit-backdrop-filter:blur(18px) saturate(170%);backdrop-filter:blur(18px) saturate(170%)}
+.ios .mapctl .i{width:20px;height:20px;color:var(--ink)}
+
+/* ---------- the sheet: the app's one container, at three detents ---------- */
+.ios .sheet{position:absolute;left:0;right:0;bottom:0;background:var(--surface);
+  border-radius:14px 14px 0 0;box-shadow:0 -10px 34px rgba(20,24,29,.16);
+  padding:0 var(--margin)}
+.ios .grab{width:38px;height:5px;border-radius:3px;background:#D3D7DD;margin:8px auto 12px}
+
+/* ---------- rows ---------- */
+.ios .row{display:flex;align-items:center;gap:11px;min-height:56px}
+.ios .row .to{flex:1;min-width:0}
+.ios .mins{font-family:var(--f-name);font-weight:700;font-size:23px;
+  font-variant-numeric:tabular-nums;text-align:right}
+.ios .mins u{display:block;text-decoration:none;font-family:var(--f-sys);font-size:10px;
+  font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);
+  margin-top:-2px}
+.ios .live{width:7px;height:7px;border-radius:4px;background:#2E9E5B;display:inline-block;
+  box-shadow:0 0 0 3px rgba(46,158,91,.18)}
+
+/* ---------- the leg spine on the route screen ---------- */
+.ios .leg{display:flex;gap:13px}
+.ios .spine{width:22px;display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+.ios .spine b{width:13px;height:13px;border-radius:7px;background:#fff;flex-shrink:0;
+  box-shadow:0 0 0 3px var(--ink)}
+.ios .spine i{flex:1;width:7px;border-radius:4px;background:var(--ink-3);display:block}
+.ios .walkdot{flex:1;width:3px;background:repeating-linear-gradient(to bottom,
+  var(--ink-3) 0 3px,transparent 3px 8px);display:block}
+.ios .alert{background:#FBEDEC;border-left:3px solid var(--alert);padding:10px 12px;
+  border-radius:0 6px 6px 0}
+</style>

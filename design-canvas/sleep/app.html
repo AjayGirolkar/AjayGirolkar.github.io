@@ -1,0 +1,110 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,200..500&display=swap" rel="stylesheet">
+<style>
+/* ============== NOCTURNE — "night gradient" register, app layer ==============
+   Seventh domain. Spent grounds are #F2F2F7 (fintech), #07090A (fitness), #F4EFE7
+   (commerce), #000 (social), #131211 (AI) and GATE's poster-derived charcoals.
+   Every one of them is FLAT. Nocturne is the only gradient ground in the set, and
+   that is not decoration -- the screen darkens toward the bottom the way a room does.
+
+   GROUND      a vertical gradient, midnight indigo #1B1C3C at the crown falling to
+               #06060E at the home indicator. Nothing is ever painted flat.
+   CONTAINERS  NONE. Not "few" -- none. No card, no plate, no sheet, no row background
+               anywhere in the app. Content floats in the void, centred, and the only
+               shape with an edge is a soft-focus orb that has no edge either.
+   CHROME      NONE. No tab bar, no nav bar, no back chevron, no toolbar. Six screens
+               and not one persistent control. Navigation is a single word or a dot.
+   TYPE        Newsreader Light at 200-300, set large and airy -- a serif, but the
+               opposite of commerce's Fraunces: no uppercase ANYWHERE, no tracking above
+               0, optical size cranked so the strokes stay thin at display sizes.
+               And the rule that defines the app: NOTHING IS EVER PURE WHITE. Peak ink
+               is rgba 88%. Contrast is deliberately low because the screen is read in
+               a dark bedroom, and a #FFF headline at 03:00 is a flashlight.
+   DENSITY     one idea per screen and enormous voids. The emptiest app in the set.
+   ACCENT      none, chromatically. Warm moon ivory #F2E9D8 at ~11% chroma -- it reads
+               as a warm white, not a hue, so it collides with nothing and, more to the
+               point, a sleep app has no business owning a saturated colour.          */
+
+.ios{
+  --f-sys:"Newsreader",ui-serif,Georgia,"Times New Roman",serif;
+  --margin:30px;                       /* the widest margin in the set, by a lot */
+  --t-body:17px;
+
+  --night-top:#20214A; --night-mid:#15152F; --night-bot:#0A0A16;
+  --surface:#12122A; --surface-el:#1B1C3C; --surface-sunk:#06060E;
+
+  /* peak ink is 88%, not 100%. See the type note above. */
+  --ink:rgba(238,236,246,.88); --ink-2:rgba(238,236,246,.60); --ink-3:rgba(238,236,246,.38);
+  --hairline:rgba(238,236,246,.13);
+  --accent:#F2E9D8; --on-accent:#12122A;
+  --moon:#F2E9D8;
+
+  color:var(--ink);
+  font-variation-settings:"opsz" 40;
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+}
+/* min-height is load-bearing. .ios is the 393x852 device box; .stack has NO height of
+   its own, so on a screen whose content is absolutely positioned it shrink-wraps to the
+   status bar and a ground painted here covers ~60pt. Every earlier domain got away with
+   it because --surface on .ios happened to be the same colour; the first screen with a
+   DIFFERENT ground on .stack (a green celebration screen) showed a 60pt band and 790pt
+   of cream. Ground belongs on a box that has a height. */
+.ios .stack{
+  min-height:100%;
+  background:linear-gradient(180deg,var(--night-top) 0%,var(--night-mid) 46%,var(--night-bot) 100%);
+}
+/* Dark-locked by function, not by taste: this app is used with the lights off. Re-pin the
+   kit's light tokens the same way commerce, social, AI and GATE each had to. */
+@media (prefers-color-scheme: light){
+  .ios{ --ink:rgba(238,236,246,.88); --ink-2:rgba(238,236,246,.60);
+        --ink-3:rgba(238,236,246,.38); --hairline:rgba(238,236,246,.13);
+        --surface:#12122A; --surface-el:#1B1C3C; }
+  .ios .glass{ background:rgba(238,236,246,.07);
+               -webkit-backdrop-filter:blur(26px);backdrop-filter:blur(26px); }
+}
+.ios .statusbar{color:var(--ink-2)}
+.ios .home{background:var(--ink-3);opacity:1}
+
+/* ---------- type ---------- */
+.ios .dsp{font-size:40px;line-height:1.16;font-weight:200;letter-spacing:-.006em;margin:0;
+  font-variation-settings:"opsz" 60}
+.ios .lead{font-size:22px;line-height:1.5;font-weight:200;margin:0;color:var(--ink)}
+.ios .qt{font-size:15px;line-height:1.62;font-weight:300;margin:0;color:var(--ink-2)}
+/* the ONE lowercase-tracked label style. Never uppercase -- that is commerce's move and
+   it would also shout, which is the one thing this app must not do. */
+.ios .lbl{font-size:12px;letter-spacing:.09em;color:var(--ink-3);font-weight:400}
+.ios .fig{font-size:46px;line-height:1;font-weight:200;font-variant-numeric:tabular-nums;
+  font-variation-settings:"opsz" 72}
+.ios .fig small{font-size:15px;font-weight:300;color:var(--ink-3);margin-left:3px}
+
+/* ---------- the orb: the only shape in the app, and it has no edge ----------
+   Three stacked radial gradients rather than a bordered circle. A 1px ring would be a
+   container, and the lock says there are none. */
+.ios .orb{position:relative;border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 44%, rgba(242,233,216,.30) 0%, rgba(242,233,216,.10) 34%,
+                    rgba(242,233,216,0) 62%),
+    radial-gradient(circle at 50% 50%, rgba(150,150,235,.34) 0%, rgba(120,120,210,.12) 48%,
+                    rgba(90,90,170,0) 74%);
+  filter:blur(.2px)}
+.ios .orb::after{content:"";position:absolute;inset:14%;border-radius:50%;
+  background:radial-gradient(circle at 50% 40%, rgba(242,233,216,.22), rgba(242,233,216,0) 68%)}
+.ios .halo{position:absolute;border-radius:50%;
+  background:radial-gradient(circle,rgba(140,140,225,.20) 0%,rgba(140,140,225,0) 70%);
+  filter:blur(18px)}
+
+/* ---------- hypnogram + mixer ---------- */
+.ios .stage-key{display:flex;flex-direction:column;justify-content:space-between;
+  height:104px;padding:3px 0}
+.ios .mix{display:flex;align-items:flex-end;gap:3px;height:26px}
+.ios .mix i{flex:1;background:var(--moon);border-radius:1px;display:block}
+
+/* ---------- the one control surface: a hairline arc scrubber ---------- */
+.ios .arc-t{font-size:12px;letter-spacing:.09em;color:var(--ink-3)}
+.ios .tap{display:flex;align-items:center;justify-content:center;gap:9px;
+  font-size:15px;font-weight:300;color:var(--ink)}
+.ios .dot{width:5px;height:5px;border-radius:3px;background:var(--ink-3);display:block}
+.ios .dot.on{background:var(--moon)}
+</style>

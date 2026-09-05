@@ -1,0 +1,49 @@
+<!-- 04 · Wrong answer — the screen that decides whether an app teaches or just scores.
+     "Not quite!" is worth nothing. This one names the rule (preterite = a completed event,
+     imperfect = a habit), shows the minimal pair, and tells you which of the two you
+     actually wrote. The clay sheet rises OVER the exercise; the exercise stays visible. -->
+<div class="ios">
+<div class="stack">
+  {{SB}}
+
+  <div class="hud" style="padding-top:8px;padding-bottom:20px">
+    <svg class="i" style="color:var(--ink-3)"><use href="#ic-x"/></svg>
+    <div class="bar"><i style="width:52%"></i></div>
+    <span class="m" style="color:var(--clay)">&#9829; 3</span>
+  </div>
+
+  <div style="padding:0 var(--margin)">
+    <p class="kick">Choose the correct form</p>
+    <p class="h1" style="margin-top:10px;font-size:26px">Cuando era ni&ntilde;o,
+      <span style="color:var(--clay);text-decoration:line-through 3px">fui</span>
+      a la playa cada verano.</p>
+  </div>
+
+  <div style="position:absolute;left:var(--margin);right:var(--margin);top:302px;
+    display:flex;flex-direction:column;gap:12px">
+    <div class="slab bad">fui</div>
+    <div class="slab ok">iba</div>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;bottom:0;background:var(--clay-soft);
+    border-top:3px solid var(--clay);padding:20px var(--margin) 30px">
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px">
+      <span style="width:26px;height:26px;border-radius:13px;background:var(--clay);
+        color:#fff;display:flex;align-items:center;justify-content:center;
+        font-weight:900;font-size:15px">&times;</span>
+      <p class="h2" style="color:var(--clay-lip)">Correct answer: <em>iba</em></p>
+    </div>
+    <p class="bd" style="color:var(--clay-lip);font-size:15px;margin-bottom:14px">
+      <strong>cada verano</strong> makes this a habit, so Spanish takes the imperfect.
+      The preterite <em>fui</em> would mean you went once and it finished.</p>
+    <div style="display:flex;gap:10px;margin-bottom:18px">
+      <span class="chip" style="border-color:var(--clay);box-shadow:0 3px 0 var(--clay-lip);
+        font-size:13px;background:#fff">fui &rarr; I went (once)</span>
+      <span class="chip" style="border-color:var(--leaf);box-shadow:0 3px 0 var(--leaf-lip);
+        font-size:13px;background:#fff">iba &rarr; I used to go</span>
+    </div>
+    <div class="cta clay">Got it</div>
+    <div class="home"></div>
+  </div>
+</div>
+</div>

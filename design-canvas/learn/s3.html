@@ -1,0 +1,48 @@
+<!-- 03 · Word build — the tile bank. Tiles lift OUT of the bank into the answer line, so
+     the bank keeps their empty slots rather than reflowing; a bank that closes its gaps
+     makes the whole row jump on every tap. Sentence is real and idiomatic. -->
+<div class="ios">
+<div class="stack">
+  {{SB}}
+
+  <div class="hud" style="padding-top:8px;padding-bottom:20px">
+    <svg class="i" style="color:var(--ink-3)"><use href="#ic-x"/></svg>
+    <div class="bar"><i style="width:52%"></i></div>
+    <span class="m" style="color:var(--clay)">&#9829; 4</span>
+  </div>
+
+  <div style="padding:0 var(--margin)">
+    <p class="kick">Build the sentence</p>
+    <p class="h1" style="margin-top:10px;font-size:24px">We used to go to the beach
+      every summer.</p>
+  </div>
+
+  <div style="position:absolute;left:var(--margin);right:var(--margin);top:258px">
+    <div style="display:flex;flex-wrap:wrap;gap:9px;min-height:98px;
+      border-bottom:3px solid var(--hairline);padding-bottom:14px">
+      <span class="chip">&Iacute;bamos</span>
+      <span class="chip">a</span>
+      <span class="chip">la</span>
+      <span class="chip">playa</span>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:9px;margin-top:26px">
+      <span class="chip">todos</span>
+      <span class="chip" style="opacity:.28;box-shadow:none;background:transparent">&Iacute;bamos</span>
+      <span class="chip">los</span>
+      <span class="chip" style="opacity:.28;box-shadow:none;background:transparent">playa</span>
+      <span class="chip">veranos</span>
+      <span class="chip" style="opacity:.28;box-shadow:none;background:transparent">a</span>
+      <span class="chip">fuimos</span>
+      <span class="chip" style="opacity:.28;box-shadow:none;background:transparent">la</span>
+      <span class="chip">verano</span>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:var(--margin);right:var(--margin);bottom:52px">
+    <div class="cta mute">Check</div>
+  </div>
+
+  <div class="home"></div>
+</div>
+</div>

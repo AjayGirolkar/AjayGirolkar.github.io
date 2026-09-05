@@ -1,0 +1,48 @@
+<!-- 05 · Soundscape — three layers mixed independently. The level rows are drawn by
+     gen.mixer(): deterministic tick heights so the three rows read as different material
+     without re-rolling between builds. No sliders in tracks, no thumbs -- the ticks ARE
+     the control, which is the only way to have a mixer in an app with no containers. -->
+<div class="ios">
+<div class="stack">
+  {{SB}}
+
+  <div style="position:absolute;left:var(--margin);right:var(--margin);top:84px">
+    <p class="lbl" style="margin-bottom:14px">soundscape</p>
+    <p class="dsp" style="font-size:34px">Rain, wind<br>and a low room</p>
+    <p class="qt" style="margin-top:13px">Three layers, mixed live. Nothing loops on a
+      seam you can hear.</p>
+  </div>
+
+  <div style="position:absolute;left:var(--margin);right:var(--margin);top:288px">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:11px">
+      <span class="lead" style="font-size:19px">Rain on a tin roof</span>
+      <span class="lbl">72</span></div>
+    <div class="mix">{{MIX_RAIN}}</div>
+    <p class="qt" style="margin-top:9px;font-size:13px">Recorded in Kerala, June.
+      Forty-one minutes, unlooped.</p>
+
+    <div style="display:flex;align-items:baseline;justify-content:space-between;
+      margin:40px 0 11px">
+      <span class="lead" style="font-size:19px">Wind through pines</span>
+      <span class="lbl">34</span></div>
+    <div class="mix">{{MIX_WIND}}</div>
+    <p class="qt" style="margin-top:9px;font-size:13px">Kept low. Above 40 it starts to
+      read as traffic.</p>
+
+    <div style="display:flex;align-items:baseline;justify-content:space-between;
+      margin:40px 0 11px">
+      <span class="lead" style="font-size:19px">Room tone, 40&nbsp;Hz</span>
+      <span class="lbl">55</span></div>
+    <div class="mix">{{MIX_HUM}}</div>
+    <p class="qt" style="margin-top:9px;font-size:13px">The floor the other two sit on.
+      You stop hearing it in about a minute.</p>
+  </div>
+
+  <div style="position:absolute;left:var(--margin);right:var(--margin);bottom:74px;
+    text-align:center">
+    <p class="tap">Save as &ldquo;Tuesday&rdquo;</p>
+  </div>
+
+  <div class="home"></div>
+</div>
+</div>

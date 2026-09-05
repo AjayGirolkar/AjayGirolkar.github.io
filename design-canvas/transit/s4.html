@@ -1,0 +1,63 @@
+<!-- 04 · Departure board — no map at all, and it is the one screen that earns that. This
+     is the "I am standing on the platform" screen, so it is a dense table read at arm's
+     length: tabular countdowns, live dots on the ones with real-time data, scheduled-only
+     rows marked as such. Honest about which times are guesses. -->
+<div class="ios">
+<div class="stack" style="background:var(--surface)">
+  {{SB}}
+  <div class="navbar"><svg class="i"><use href="#ic-chev-l"/></svg>
+    <span class="nm" style="font-size:17px">Alexanderplatz</span>
+    <svg class="i"><use href="#ic-star"/></svg></div>
+
+  <div style="padding:2px var(--margin) 10px;display:flex;align-items:center;gap:8px">
+    <span class="kick"><span class="live"></span> live</span>
+    <span class="cap">Updated 4 seconds ago</span>
+    <span class="cap tm" style="margin-left:auto">09:41</span>
+  </div>
+
+  <div style="padding:0 var(--margin)">
+    <p class="kick" style="margin-bottom:2px">Underground &middot; platform 1&ndash;4</p>
+    <hr class="hair">
+    <div class="row" style="min-height:52px">{{B_U8}}
+      <div class="to"><p class="stn" style="font-size:16px">Hermannstra&szlig;e</p></div>
+      <div class="mins">2<u>min</u></div></div>
+    <hr class="hair">
+    <div class="row" style="min-height:52px">{{B_U8}}
+      <div class="to"><p class="stn" style="font-size:16px">Wittenau</p></div>
+      <div class="mins">3<u>min</u></div></div>
+    <hr class="hair">
+    <div class="row" style="min-height:52px">{{B_U2}}
+      <div class="to"><p class="stn" style="font-size:16px">Pankow</p></div>
+      <div class="mins">5<u>min</u></div></div>
+    <hr class="hair">
+    <div class="row" style="min-height:52px">{{B_U2}}
+      <div class="to"><p class="stn" style="font-size:16px">Ruhleben</p>
+        <p class="cap" style="color:var(--alert)">Short-formed &middot; 4 cars</p></div>
+      <div class="mins">7<u>min</u></div></div>
+    <hr class="hair">
+    <div class="row" style="min-height:52px">{{B_U6}}
+      <div class="to"><p class="stn" style="font-size:16px">Alt-Mariendorf</p></div>
+      <div class="mins">9<u>min</u></div></div>
+
+    <p class="kick" style="margin:16px 0 2px">Tram &middot; street level</p>
+    <hr class="hair">
+    <div class="row" style="min-height:52px">{{B_M10}}
+      <div class="to"><p class="stn" style="font-size:16px">Warschauer Str.</p></div>
+      <div class="mins">4<u>min</u></div></div>
+    <hr class="hair">
+    <div class="row" style="min-height:52px">{{B_M10}}
+      <div class="to"><p class="stn" style="font-size:16px">Nordbahnhof</p></div>
+      <div class="mins">11<u>min</u></div></div>
+
+    <p class="kick" style="margin:16px 0 2px">Night bus &middot; scheduled only</p>
+    <hr class="hair">
+    <div class="row" style="min-height:52px;opacity:.62">{{B_N9}}
+      <div class="to"><p class="stn" style="font-size:16px">Rathaus Steglitz</p>
+        <p class="cap">No live data on this route</p></div>
+      <div class="mins tm" style="font-size:17px">00:12</div></div>
+    <hr class="hair">
+  </div>
+
+  <div class="home"></div>
+</div>
+</div>
