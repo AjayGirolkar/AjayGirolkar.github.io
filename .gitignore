@@ -28,3 +28,6 @@ design-canvas/*/_sheet.png
 
 # Pages build output assembled by .github/workflows/pages.yml
 _site/
+
+# PDF case-study layout previews (regenerate with --png)
+assets/portfolio-pdf/_preview/

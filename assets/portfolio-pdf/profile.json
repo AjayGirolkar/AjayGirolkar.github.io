@@ -1,0 +1,133 @@
+{
+  "name": "Ajay Girolkar",
+  "role": "Senior iOS Engineer",
+  "tagline": "11 years of Swift. Most of it inside global banks and financial firms, where a crash, a leak or a rejected build was never an option.",
+  "site": "ajaygirolkar.github.io",
+  "site_url": "https://ajaygirolkar.github.io/",
+  "email": "ajaygirolkar@gmail.com",
+  "whatsapp": "+91 94209 63751",
+  "linkedin": "linkedin.com/in/ajaygirolkar",
+  "github": "github.com/AjayGirolkar",
+  "location": "Pune, India · works US & EU hours",
+  "profile_image": "assets/ajay-profile.jpg",
+  "disclosure": "Self-initiated demo build. Designed and coded end to end by me to show current iOS 26 / SwiftUI standards — not client work, and no client material appears in it.",
+  "stats": [
+    {
+      "value": "11 yrs",
+      "label": "iOS engineering"
+    },
+    {
+      "value": "Fintech",
+      "label": "Banking-grade discipline"
+    },
+    {
+      "value": "SwiftUI",
+      "label": "iOS 26 · Swift 6"
+    },
+    {
+      "value": "0",
+      "label": "Third-party UI deps"
+    }
+  ],
+  "proof_title": "What a build like this gets you",
+  "proof": [
+    "Production SwiftUI screens, not clickable prototypes — code your team can ship",
+    "MVVM + Clean Architecture with a design token layer: colors, type, spacing, radii",
+    "async/await networking, actors and structured concurrency. No third-party UI deps",
+    "Light and dark, Dynamic Type, VoiceOver labels and reduced-motion paths from day one",
+    "Xcode project that builds clean on first open, plus a Loom walkthrough of the code",
+    "TestFlight and App Store submission handled, including privacy manifests and review notes"
+  ],
+  "services_title": "How we can work together",
+  "services": [
+    {
+      "name": "Screen build",
+      "price": "from $349",
+      "delivery": "6 days",
+      "body": "3 SwiftUI screens from your designs, with the token layer and mock data.",
+      "scope": "3 screens"
+    },
+    {
+      "name": "Feature or MVP",
+      "price": "from $899",
+      "delivery": "12 days",
+      "body": "6+ screens, MVVM, navigation stack, async/await API layer, light and dark.",
+      "featured": true,
+      "scope": "6+ screens"
+    },
+    {
+      "name": "Full app or rescue",
+      "price": "from $2,400",
+      "delivery": "3 weeks+",
+      "body": "End to end build, or an audit and rescue of an inherited codebase, to App Store.",
+      "scope": "End to end"
+    }
+  ],
+  "also_title": "Also on the table",
+  "also": [
+    "UIKit / Objective-C → SwiftUI migration, Swift 6 strict concurrency",
+    "On-device AI with Apple Foundation Models, Core ML, Vision",
+    "Claude and OpenAI integrations with streaming, cost control and privacy",
+    "StoreKit 2 subscriptions, Widgets, Live Activities, App Intents and Siri",
+    "Crash, performance and App Store rejection fixes on an existing app",
+    "XCTest, Fastlane, Xcode Cloud and GitHub Actions CI/CD"
+  ],
+  "cta_title": "Send me the app you are trying to build",
+  "cta_body": "Tell me what you are working on and I will tell you straight whether I am the right fit, what it takes and what it costs. Reply the same day, most days.",
+  "process_title": "How the build runs",
+  "process": [
+    {
+      "step": "Day 0",
+      "title": "Requirements",
+      "body": "You send designs or a reference app, target iOS version and API docs. The clock starts here, not the day we agree to work together."
+    },
+    {
+      "step": "Day 2",
+      "title": "Foundation",
+      "body": "Design tokens, navigation shell and data models land. You get a build you can run on your own device."
+    },
+    {
+      "step": "Day 6",
+      "title": "Screens",
+      "body": "Feature screens built against real or mock data, pushed to your repo daily. No silent weeks."
+    },
+    {
+      "step": "Handoff",
+      "title": "Ship",
+      "body": "Code walkthrough on Loom, one revision round, and a checklist for App Store submission."
+    }
+  ],
+  "transfer_title": "What this transfers to your build",
+  "transfer_fallback": "Same engine underneath: SwiftUI screens on a design token layer, MVVM boundaries a second developer can read, and state for empty, loading, error and success handled before the happy path is called done.",
+  "apps": {
+    "gate": {
+      "transfer": "If your app is themed by content — events, brands, teams, listings — this is the pattern: colour derived in code from the artwork, contrast solved rather than eyeballed, and a checkout that shows fees before the total. The palette extractor and the PassKit wallet flow drop into any ticketing, booking or membership app."
+    },
+    "wealthkit": {
+      "transfer": "Money screens are unforgiving: precise numbers, live states and no room for a rounding error. Server-driven layout, SwiftUI Charts, Keychain and biometrics here are the same pieces a banking, investing, lending or wallet app needs — built by someone who has shipped them inside regulated financial firms for 11 years."
+    },
+    "fitnesspro": {
+      "transfer": "Built for a phone read one-handed, mid-activity, with sweat on the screen: large hit targets, glanceable numbers, and live session state that survives backgrounding. Directly applicable to fitness, field-service, logistics or any app used while the user is doing something else."
+    },
+    "shopease": {
+      "transfer": "An editorial commerce front end that keeps the product photography intact: image-forward cells, a bag with real empty and error states, and a checkout that does not lose the customer. Reusable for any retail, marketplace or D2C app where the catalogue is the brand."
+    },
+    "socialflow": {
+      "transfer": "A media feed that stays smooth at scale — prefetching, cell reuse, edge-to-edge video and image handling, plus compose and profile flows. The base for any social, community, creator or in-app feed feature."
+    },
+    "nativeaistudio": {
+      "transfer": "A production pattern for putting an LLM inside an iOS app: AsyncSequence token streaming, cancellation, cost control, on-device history in SwiftData and keys held in Keychain. This is what an AI feature in your existing app actually looks like."
+    },
+    "nocturne": {
+      "transfer": "Audio, timers and background sessions done properly — playback that survives lock, a wind-down flow that respects reduced motion, and a dark palette engineered for a bedroom at 3am. Applies to any audio, meditation, sleep or long-session app."
+    },
+    "lingo": {
+      "transfer": "A learning loop with real depth: progression state, spaced review, mistake handling and reward moments that motivate without the streak-shaming. The template for education, training, onboarding or any app that has to teach something."
+    },
+    "wayfare": {
+      "transfer": "Map-first UI with a three-detent sheet, live departures and disruption states — the hard parts of any location app. Reusable for transit, delivery, field ops, travel or store-locator features."
+    }
+  },
+  "years": "11 yrs iOS",
+  "cta_body_platform": "Message me with what you are working on — the screens, the deadline, and where it is stuck. I will tell you straight whether I am the right fit, what it takes and how long it runs. Reply the same day, most days."
+}
